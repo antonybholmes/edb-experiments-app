@@ -1,0 +1,13 @@
+bin
+.metadata
+cache
+tmp
+downloads
+res/recent.xml
+/target/
+/user.settings.xml
+/user.search.folders.xml
+/recent.files.xml
+/out.log
+/user.settings.json
+/res/

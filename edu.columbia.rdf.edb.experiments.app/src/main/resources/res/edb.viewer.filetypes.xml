@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filetypes>
+	<filetype name="CEL" ext="cel" />
+	<filetype name="CHP" ext="chp" />
+	<filetype name="MAS5" ext="mas5-annotated" />
+	<filetype name="RMA" ext="rma-annotated" />
+</filetypes>

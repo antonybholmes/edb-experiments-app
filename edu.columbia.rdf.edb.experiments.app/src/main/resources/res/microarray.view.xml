@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view name="Microarray" display_field_1="/microarray/source/characteristics_organism_part" display_field_2="/microarray/source/characteristics_organism">
+	<sections>
+		<section name="Source">
+			<field path="/microarray/source/source_name" name="Source Name"/>
+			<field path="/microarray/source/material_type" name="Material Type" />
+			<field path="/microarray/source/characteristics_organism" name="Organism"/>
+			<field path="/microarray/source/characteristics_organism_part" name="Organism Part"/>
+			<field path="/microarray/source/characteristics_disease_state" name="Disease State"/>
+			<field path="/microarray/source/characteristics_cell_type" name="Cell Type"/>
+			<field path="/microarray/source/characteristics_treatment" name="Treatment"/>
+			<field path="/microarray/source/characteristics_time_point" name="Time Point"/>
+			<field path="/microarray/source/characteristics_tumor_cells" name="% Tumor Cells"/>
+			<field path="/microarray/source/characteristics_disease_status" name="Disease Status"/>
+			<field path="/microarray/source/characteristics_gender" name="Gender"/>
+			<field path="/microarray/source/characteristics_age" name="Age"/>
+			<field path="/microarray/source/characteristics_clinical_parameters" name="Clinical Parameters"/>
+			<field path="/microarray/source/characteristics_cytogenetics" name="Cytogenetics"/>
+			<field path="/microarray/source/characteristics_igv_status" name="IgV Status"/>
+			<field path="/microarray/source/characteristics_gep_based_classification" name="GEP based classification"/>
+			<field path="/microarray/source/characteristics_biosourceprovider" name="BioSourceProvider"/>
+			<field path="/microarray/source/characteristics_source_protocol" name="Source Protocol"/>
+		</section>
+		<section name="Sample">
+			<field path="/microarray/sample/sample_name" name="Sample Name"/>
+			<field path="/microarray/sample/material_type" name="Material Type"/>
+			<field path="/microarray/sample/characteristics_sample_protocol" name="Sample Protocol"/>
+			<field path="/microarray/sample/characteristics_sample_operator" name="Sample Operator"/>
+		</section>
+		<section name="Extract">
+			<field path="/microarray/extract/extract_name" name="Extract Name"/>
+			<field path="/microarray/extract/material_type" name="Material Type"/>
+			<field path="/microarray/extract/characteristics_extract_protocol" name="Extract Protocol"/>
+			<field path="/microarray/extract/characteristics_extract_operator" name="Extract Operator"/>
+		</section>
+		<section name="Labeled Extract">
+			<field path="/microarray/labeled_extract/labeled_extract Name" name="labeled_extract Name"/>
+			<field path="/microarray/labeled_extract/label" name="Label"/>
+			<field path="/microarray/labeled_extract/characteristics_labeled_extract_protocol" name="labeled_extract Protocol"/>
+			<field path="/microarray/labeled_extract/characteristics_labeled_extract_operator" name="labeled_extract Operator"/>
+			<field path="/microarray/labeled_extract/material_type" name="Material Type"/>
+			<field path="/microarray/labeled_extract/characteristics_array_platform" name="Array Platform"/>
+			<field path="/microarray/labeled_extract/characteristics_hybridization_protocol" name="Hybridization Protocol"/>
+			<field path="/microarray/labeled_extract/characteristics_scanning_protocol" name="Scanning Protocol"/>
+			<field path="/microarray/labeled_extract/characteristics_chp_normalization_method" name="CHP Normalization Method"/>
+			<field path="/microarray/labeled_extract/characteristics_hybridization_facility" name="Hybridization Facility"/>
+			<field path="/microarray/labeled_extract/characteristics_mas5_normalization" name="MAS5 Normalization"/>
+			<field path="/microarray/labeled_extract/characteristics_mas5_normalization_file" name="MAS5 Normalization File"/>
+			<field path="/microarray/labeled_extract/characteristics_rma_normalization" name="RMA Normalization"/>
+			<field path="/microarray/labeled_extract/characteristics_rma_normalization_file" name="RMA Normalization File"/>
+			<field path="/microarray/labeled_extract/characteristics_geo_series_accession" name="GEO Series Accession"/>
+			<field path="/microarray/labeled_extract/characteristics_geo_accession" name="GEO Accession"/>
+			<field path="/microarray/labeled_extract/characteristics_geo_platform" name="GEO Platform"/>
+		</section>
+		<section name="Hybridization">
+			<field path="/microarray/hybridization/hybridization_name" name="Hybridization Name"/>
+			<field path="/microarray/hybridization/array_data_file" name="Array Data File"/>
+			<field path="/microarray/hybridization/derived_array_data_file" name="Derived Array Data File"/>
+		</section>
+	</sections>
+</view>

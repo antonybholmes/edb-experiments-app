@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<setting name="experiments.version.major" value="34" />
+	<setting name="experiments.version.minor" value="0" />
+	<setting name="experiments.version.revision" value="0" />
+	
+	<setting name="edb.experiments.search.use-regex" value="false"/>
+	<setting name="edb.experiments.default-search" value="true"/>
+	<setting name="edb.experiments.view-idf-file" value="view.idf.xml"/>
+	<setting name="edb.experiments.cache-dir" value="cache/experiments/"/>
+	<setting name="edb.experiments.idf-file" value="data.idf"/>
+	<setting name="edb.experiments.sdrf-file" value="data.sdrf"/>
+	<setting name="edb.experiments.plugins.directory" value="plugins"/>
+	<setting name="edb.experiments.recent-files.file" value="res/recent.xml"/>
+	<setting name="edb.experiments.search-terms.file" value="res/search_terms.xml"/>
+	<setting name="edb.experiments.servers.file" value="res/servers.xml"/>
+	<setting name="edb.experiments.save-db-cache" value="true"/>
+	<setting name="edb.experiments.working-directory" value="."/>
+	<setting name="edb.experiments.sample-view.file" value="res/sample.view.xml"/>
+	<setting name="edb.experiments.sdrf-view.file" value="res/sdrf.view.xml"/>
+	
+	<!-- Controls whether to search globally or only within the folder currently selected -->
+	<setting name="edb.experiments.search.within-current-folder" value="false"/>
+	
+	<setting name="edb.experiments.default-view" value="Annotation"/>
+	
+	<!-- Default layout when app starts -->
+	<setting name="edb.experiments.default-layout-view" value="Vertical"/>
+	
+	<!-- How the samples should look -->
+	<setting name="edb.experiments.samples.default-view" value="list"/>
+	
+	<setting name="edb.experiments.downloads.directory" value="downloads"/>
+
+
+	<!-- Specify which types of files the user can search for -->
+	<setting name="experiments.help.type" value="web"/>
+	<setting name="experiments.help.url" value="https://bitbucket.org/lab_rdf/experiments/wiki" />
+	
+	<setting name="edbw.server" value="http://localhost:8080/edbw6"/>
+	<setting name="edbw.key" value=""/>
+	<setting name="edbw.user" value=""/>
+	<setting name="edbw.totp.epoch.offset.ms" value="0"/>
+	<setting name="edbw.totp.step-size.ms" value="3600000"/>
+	
+	<setting name="edb.reads.conservation.remote-url" value="http://localhost:8080/conservation/api/v1/hg19/"/>
+	<setting name="edb.reads.dna.remote-url" value="http://localhost:8080/dna/api/v2/hg19/"/>
+	<setting name="edb.reads.chip-seq.remote-url" value="http://localhost:8080/tracks6/api/v1/"/>
+	<setting name="edb.reads.remote-url" value="http://localhost:8080/reads/api/v1/hg19/"/>
+	<setting name="edb.reads.mouse.conservation.remote-url" value="http://localhost:8080/alignment/api/v1/hg19/mm10/"/>
+</settings>

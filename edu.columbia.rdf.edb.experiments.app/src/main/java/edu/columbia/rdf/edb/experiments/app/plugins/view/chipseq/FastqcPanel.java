@@ -25,8 +25,8 @@ import org.jebtk.core.io.Io;
 import org.jebtk.core.io.Temp;
 import org.jebtk.core.text.TextUtils;
 import org.jebtk.graphplot.PlotFactory;
-import org.jebtk.graphplot.figure.Figure;
 import org.jebtk.graphplot.figure.SubFigure;
+import org.jebtk.graphplot.figure.SubFigurePanel;
 import org.jebtk.graphplot.figure.series.XYSeries;
 import org.jebtk.graphplot.figure.series.XYSeriesGroup;
 import org.jebtk.math.matrix.AnnotatableMatrix;
@@ -118,14 +118,15 @@ public class FastqcPanel extends ModernComponent {
 			g.add(new XYSeries(tokens.get(0)));
 		}
 		
-		SubFigure figure = new SubFigure();
+		SubFigure subFigure = new SubFigure();
 		
-		PlotFactory.createBoxWhiskerSummaryPlot(m, figure.getCurrentAxes(), g);
+		PlotFactory.createBoxWhiskerSummaryPlot(m, subFigure.currentAxes(), g);
 		
-		figure.getCurrentAxes().setInternalPlotSize(g.getCount() * 24, 300);
-		figure.getCurrentAxes().getX1Axis().getTicks().getMajorTicks().setRotation(Mathematics.HALF_PI);
+		subFigure.currentAxes().setInternalSize(g.getCount() * 24, 300);
+		subFigure.currentAxes().getX1Axis().getTicks().getMajorTicks().setRotation(Mathematics.HALF_PI);
 		
-		ModernScrollPane scrollPane = new ModernScrollPane(new Figure(figure));
+		ModernScrollPane scrollPane = 
+				new ModernScrollPane(new SubFigurePanel(subFigure));
 		
 		setBody(scrollPane);
 	}

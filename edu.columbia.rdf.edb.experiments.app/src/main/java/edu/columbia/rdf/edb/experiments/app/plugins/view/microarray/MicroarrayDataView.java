@@ -1,9 +1,16 @@
 package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.jebtk.core.io.PathUtils;
 import org.jebtk.core.path.Path;
+import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.DataViewSection;
+import edu.columbia.rdf.edb.experiments.app.plugins.view.DataViewXmlHandler;
 
 /**
  * Plugin for display of microarray data.
@@ -13,9 +20,19 @@ import edu.columbia.rdf.edb.DataViewSection;
  */
 public class MicroarrayDataView extends DataView {
 	
+	private static final java.nio.file.Path VIEW_FILE = 
+			PathUtils.getPath("res/views/microarray.xml");
+
 	public MicroarrayDataView() {
 		super("Microarray");
-
+		
+		try {
+			DataViewXmlHandler.loadXml(VIEW_FILE, this);
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+		
+		/*
 		DataViewSection section;
 
 		section = new DataViewSection("Source");
@@ -78,6 +95,7 @@ public class MicroarrayDataView extends DataView {
 		section.addField(Path.create("/Microarray/Sample/Hybridization/Array_Data_File"), "Array Data File");
 		section.addField(Path.create("/Microarray/Sample/Hybridization/Derived_Array_Data_File"), "Derived Array Data File");
 		addSection(section);
+		*/
 	}
 
 	

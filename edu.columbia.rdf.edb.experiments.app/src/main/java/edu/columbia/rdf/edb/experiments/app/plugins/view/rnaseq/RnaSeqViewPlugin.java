@@ -74,12 +74,10 @@ public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener 
 	private DataView mView;
 
 	/** The m display field 1. */
-	private Path mDisplayField1 = 
-			new Path("/Sample/Organism");
+	private Path mDisplayField1 = new Path("/Sample/Organism");
 
 	/** The m display field 2. */
-	private Path mDisplayField2 = 
-			new Path("/RNA-seq/Sample/Genome");
+	private Path mDisplayField2 = new Path("/RNA-seq/Sample/Genome");
 
 
 

@@ -15,11 +15,15 @@
  */
 package edu.columbia.rdf.edb.experiments.app.plugins.view.rnaseq;
 
-import org.jebtk.core.path.Path;
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.jebtk.core.io.PathUtils;
+import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.edb.DataView;
-import edu.columbia.rdf.edb.DataViewField;
-import edu.columbia.rdf.edb.DataViewSection;
+import edu.columbia.rdf.edb.experiments.app.plugins.view.DataViewXmlHandler;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,12 +34,22 @@ import edu.columbia.rdf.edb.DataViewSection;
  */
 public class RnaSeqDataView extends DataView {
 	
+	private static final java.nio.file.Path VIEW_FILE = 
+			PathUtils.getPath("res/views/rna_seq.xml");
+
 	/**
 	 * Instantiates a new rna seq data view.
 	 */
 	public RnaSeqDataView() {
 		super("RNA-seq");
+		
+		try {
+			DataViewXmlHandler.loadXml(VIEW_FILE, this);
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			e.printStackTrace();
+		}
 
+		/*
 		DataViewSection section = new DataViewSection("Sample");
 		section.addField(new DataViewField(new Path("/RNA-seq/Sample/Seq_Id"), "Sequence Id"));
 		section.addField(new DataViewField(new Path("/Sample/Organism"), "Organism"));
@@ -43,6 +57,7 @@ public class RnaSeqDataView extends DataView {
 		section.addField(new DataViewField(new Path("/RNA-seq/Sample/Read_Length"), "Read Length"));
 		
 		addSection(section);
+		*/
 	}
 
 	

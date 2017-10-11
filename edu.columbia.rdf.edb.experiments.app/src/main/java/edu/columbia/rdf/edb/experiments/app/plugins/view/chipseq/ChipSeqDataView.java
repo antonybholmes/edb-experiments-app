@@ -15,11 +15,18 @@
  */
 package edu.columbia.rdf.edb.experiments.app.plugins.view.chipseq;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.jebtk.core.io.PathUtils;
 import org.jebtk.core.path.Path;
+import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.DataViewField;
 import edu.columbia.rdf.edb.DataViewSection;
+import edu.columbia.rdf.edb.experiments.app.plugins.view.DataViewXmlHandler;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -29,12 +36,22 @@ import edu.columbia.rdf.edb.DataViewSection;
  */
 public class ChipSeqDataView extends DataView {
 	
+	private static final java.nio.file.Path VIEW_FILE = 
+			PathUtils.getPath("res/views/chip_seq.xml");
+
 	/**
 	 * Instantiates a new chip seq data view.
 	 */
 	public ChipSeqDataView() {
 		super("ChIP-seq");
+		
+		try {
+			DataViewXmlHandler.loadXml(VIEW_FILE, this);
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			e.printStackTrace();
+		}
 
+		/*
 		DataViewSection section;
 
 		section = new DataViewSection("Sample");
@@ -54,5 +71,6 @@ public class ChipSeqDataView extends DataView {
 		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Peak_Caller_Parameters"), "Peak Caller Parameters"));
 		
 		addSection(section);
+		*/
 	}
 }

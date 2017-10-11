@@ -15,6 +15,14 @@
  */
 package edu.columbia.rdf.edb.experiments.app.plugins.view;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.jebtk.core.io.FileUtils;
 import org.jebtk.core.path.Path;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -59,12 +67,42 @@ public class DataViewXmlHandler extends DefaultHandler {
     	}
 	}
 	
-    /**
-	 * Gets the search folders.
+	public static void loadXml(java.nio.file.Path file, DataView dataView) throws SAXException, IOException, ParserConfigurationException {
+		if (file == null || !FileUtils.exists(file)) {
+			return;
+		}
+
+		InputStream stream = FileUtils.newBufferedInputStream(file);
+
+		try {
+			loadXml(stream, dataView);
+		} finally {
+			stream.close();
+		}
+	}
+
+	/**
+	 * Load xml.
 	 *
-	 * @return the search folders
+	 * @param is the is
+	 * @param update the update
+	 * @return true, if successful
+	 * @throws SAXException the SAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ParserConfigurationException the parser configuration exception
 	 */
-	public DataView getDataView() {
-    	return mDataView;
-    }
+	protected static synchronized boolean loadXml(InputStream is, DataView dataView) throws SAXException, IOException, ParserConfigurationException {
+		if (is == null) {
+			return false;
+		}
+
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		SAXParser saxParser = factory.newSAXParser();
+
+		DataViewXmlHandler handler = new DataViewXmlHandler(dataView);
+
+		saxParser.parse(is, handler);
+
+		return true;
+	}
 }

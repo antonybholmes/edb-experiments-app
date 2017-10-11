@@ -41,10 +41,10 @@ import org.jebtk.modern.window.ModernWindowConstructor;
 
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.experiments.app.ExperimentsInfo;
+import edu.columbia.rdf.edb.experiments.app.plugins.view.microarray.Mas5Dialog;
 import edu.columbia.rdf.edb.experiments.app.plugins.view.microarray.MicroarrayExpressionData;
+import edu.columbia.rdf.edb.experiments.app.plugins.view.microarray.MicroarrayNormalizationType;
 import edu.columbia.rdf.edb.ui.ViewPluginService;
-import edu.columbia.rdf.edb.ui.microarray.Mas5Dialog;
-import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
 
 // TODO: Auto-generated Javadoc
 /**

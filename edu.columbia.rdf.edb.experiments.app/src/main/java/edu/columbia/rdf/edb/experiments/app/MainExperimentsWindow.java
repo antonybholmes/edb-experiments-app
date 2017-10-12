@@ -44,8 +44,8 @@ import org.jebtk.core.io.Temp;
 import org.jebtk.core.settings.SettingsService;
 import org.jebtk.core.stream.Stream;
 import org.jebtk.core.text.TextUtils;
-import org.jebtk.math.matrix.AnnotatableMatrix;
-import org.jebtk.math.matrix.AnnotationMatrix;
+import org.jebtk.math.matrix.DataFrame;
+import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.UIService;
@@ -68,6 +68,7 @@ import org.jebtk.modern.ribbon.RibbonMenuItem;
 import org.jebtk.modern.search.FilterModel;
 import org.jebtk.modern.status.StatusModel;
 import org.jebtk.modern.status.StatusTask;
+import org.jebtk.modern.tabs.IconTabsFolderIcon;
 import org.jebtk.modern.tabs.IconTabsPanel;
 import org.jebtk.modern.tabs.TabsModel;
 import org.jebtk.modern.view.ViewModel;
@@ -90,7 +91,6 @@ import edu.columbia.rdf.edb.experiments.app.search.RibbonWideLayoutSection;
 import edu.columbia.rdf.edb.experiments.app.search.SearchGuiFileFilter;
 import edu.columbia.rdf.edb.experiments.app.search.SearchPanel;
 import edu.columbia.rdf.edb.experiments.app.search.folder.SearchFolderRibbonSection;
-import edu.columbia.rdf.edb.experiments.app.search.folder.SearchFolderTabVectorIcon;
 import edu.columbia.rdf.edb.experiments.app.search.folder.SearchFolderTreePanel;
 import edu.columbia.rdf.edb.experiments.app.vfs.VfsWindow;
 import edu.columbia.rdf.edb.ui.RepositorySession;
@@ -570,9 +570,9 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 		groupTabsModel.addTab("Results", new ResultsVectorIcon(), mResultsPanel);
 		groupTabsModel.addTab("Groups", new GroupsVectorIcon(), mUserGroupsPanel);
 		groupTabsModel.addTab("Data Types", new DataTypesVectorIcon(), mDataTypesPanel);
-		groupTabsModel.addTab("Folders", new SearchFolderTabVectorIcon(), mSampleFolderPanel);
+		groupTabsModel.addTab("Folders", new IconTabsFolderIcon(), mSampleFolderPanel);
 
-		mViewPanel = new IconTabsPanel(groupTabsModel, 40, 20); //new ModernComponent(new IconTabsPanel(groupTabsModel, 30, 20), ModernWidget.DOUBLE_BORDER);
+		mViewPanel = new IconTabsPanel(groupTabsModel, 36, 22); //new ModernComponent(new IconTabsPanel(groupTabsModel, 30, 20), ModernWidget.DOUBLE_BORDER);
 
 		// Show the column groups by default
 		groupTabsModel.changeTab(0);
@@ -1188,8 +1188,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 			}
 		}
 		
-		AnnotationMatrix matrix = 
-				AnnotatableMatrix.createAnnotatableMatrix(samples.size(), fields.size());
+		DataFrame matrix = 
+				DataFrame.createDataFrame(samples.size(), fields.size());
 		
 		List<String> names = Stream.stream(fields)
 				.map(new Function<DataViewField, String>() {

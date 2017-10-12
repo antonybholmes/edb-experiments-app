@@ -29,8 +29,8 @@ import org.jebtk.graphplot.figure.SubFigure;
 import org.jebtk.graphplot.figure.SubFigurePanel;
 import org.jebtk.graphplot.figure.series.XYSeries;
 import org.jebtk.graphplot.figure.series.XYSeriesGroup;
-import org.jebtk.math.matrix.AnnotatableMatrix;
-import org.jebtk.math.matrix.AnnotationMatrix;
+import org.jebtk.math.matrix.DataFrame;
+import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 
@@ -98,7 +98,7 @@ public class FastqcPanel extends ModernComponent {
 			}
 		}
 		
-		AnnotationMatrix m = AnnotatableMatrix.createNumericalMatrix(5, qcLines.size() - 1);
+		DataFrame m = DataFrame.createNumericalMatrix(5, qcLines.size() - 1);
 		
 		XYSeriesGroup g = new XYSeriesGroup();
 		

@@ -45,8 +45,6 @@ import org.jebtk.core.settings.SettingsService;
 import org.jebtk.core.stream.Stream;
 import org.jebtk.core.text.TextUtils;
 import org.jebtk.math.matrix.DataFrame;
-import org.jebtk.math.matrix.DataFrame;
-import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.UIService;
 import org.jebtk.modern.button.ModernButton;
@@ -69,13 +67,11 @@ import org.jebtk.modern.search.FilterModel;
 import org.jebtk.modern.status.StatusModel;
 import org.jebtk.modern.status.StatusTask;
 import org.jebtk.modern.tabs.IconTabsFolderIcon;
-import org.jebtk.modern.tabs.IconTabsPanel;
-import org.jebtk.modern.tabs.TabsModel;
+import org.jebtk.modern.tabs.TabPanel;
 import org.jebtk.modern.view.ViewModel;
 import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernRibbonWindow;
 import org.jebtk.modern.window.ModernWindow;
-import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.edb.DataView;
@@ -99,17 +95,15 @@ import edu.columbia.rdf.edb.ui.ViewPluginService;
 import edu.columbia.rdf.edb.ui.filter.datatypes.DataTypesModel;
 import edu.columbia.rdf.edb.ui.filter.datatypes.DataTypesPanel;
 import edu.columbia.rdf.edb.ui.filter.datatypes.DataTypesService;
-import edu.columbia.rdf.edb.ui.filter.datatypes.DataTypesVectorIcon;
 import edu.columbia.rdf.edb.ui.filter.groups.GroupsModel;
 import edu.columbia.rdf.edb.ui.filter.groups.GroupsPanel;
 import edu.columbia.rdf.edb.ui.filter.groups.GroupsService;
-import edu.columbia.rdf.edb.ui.filter.groups.GroupsVectorIcon;
 import edu.columbia.rdf.edb.ui.filter.organisms.OrganismsService;
 import edu.columbia.rdf.edb.ui.filter.results.ResultsPanel;
-import edu.columbia.rdf.edb.ui.filter.results.ResultsVectorIcon;
 import edu.columbia.rdf.edb.ui.search.SearchStackElementCategory;
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
+import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -176,9 +170,6 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 
 	/** The m sample folder panel. */
 	private SearchFolderTreePanel mSampleFolderPanel; //SampleViewTreePanel
-
-	/** The m view panel. */
-	private ModernComponent mViewPanel;
 
 	/** The m files button. */
 	private ModernButton mFilesButton = new RibbonLargeButton("Files", 
@@ -379,8 +370,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 		//menuItem = new RibbonMenuItem("Download Files");
 		//getRibbonMenu().addTabbedMenuItem(menuItem);
 
-		menuItem = new RibbonMenuItem("Export");
-		getRibbonMenu().addTabbedMenuItem(menuItem);
+		//menuItem = new RibbonMenuItem("Export");
+		//getRibbonMenu().addTabbedMenuItem(menuItem);
 
 		menuItem = new RibbonMenuItem(Application.MENU_SAVE_SEARCH);
 		getRibbonMenu().addTabbedMenuItem(menuItem);
@@ -390,7 +381,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 
 		getRibbonMenu().addDefaultItems(getAppInfo());
 
-		getRibbonMenu().setDefaultIndex(4);
+		getRibbonMenu().setDefaultIndex(3);
 
 		getRibbonMenu().addClickListener(this);
 
@@ -566,16 +557,16 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 		mResultsPanel = new ResultsPanel(SampleSortService.getInstance(), mFilterModel);
 		
 
-		TabsModel groupTabsModel = new TabsModel();
-		groupTabsModel.addTab("Results", new ResultsVectorIcon(), mResultsPanel);
-		groupTabsModel.addTab("Groups", new GroupsVectorIcon(), mUserGroupsPanel);
-		groupTabsModel.addTab("Data Types", new DataTypesVectorIcon(), mDataTypesPanel);
-		groupTabsModel.addTab("Folders", new IconTabsFolderIcon(), mSampleFolderPanel);
+		//TabsModel groupTabsModel = new TabsModel();
+		getIconTabs().addTab("Results", 'R', mResultsPanel);
+		getIconTabs().addTab("Groups", 'G', mUserGroupsPanel);
+		getIconTabs().addTab("Data Types", 'T', mDataTypesPanel);
+		getIconTabs().addTab("Folders", new IconTabsFolderIcon(), new TabPanel("Folders", mSampleFolderPanel));
 
-		mViewPanel = new IconTabsPanel(groupTabsModel, 36, 22); //new ModernComponent(new IconTabsPanel(groupTabsModel, 30, 20), ModernWidget.DOUBLE_BORDER);
+		//mViewPanel = new IconTabsPanel(groupTabsModel, 36, 22); //new ModernComponent(new IconTabsPanel(groupTabsModel, 30, 20), ModernWidget.DOUBLE_BORDER);
 
 		// Show the column groups by default
-		groupTabsModel.changeTab(0);
+		getIconTabs().changeTab(0);
 		
 
 		//mViewPanel = new ModernComponent();
@@ -632,7 +623,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 		mLayoutViewModel.setView(SettingsService.getInstance().getAsString("edb.experiments.default-layout-view"));
 
 		// Add some default panes so user can search
-		addFoldersPane();
+		//addFoldersPane();
 		//addExperimentSummaryPane();
 
 		setSize(1080, 720);
@@ -724,8 +715,6 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 			ModernOptionsDialog.setVisible(this, getAppInfo());
 		} else if (e.getMessage().equals(UI.MENU_ABOUT)) {
 			ModernAboutDialog.show(this, getAppInfo());
-		} else if (e.getMessage().equals("folders_pane")) {
-			addFoldersPane();
 		} else if (e.getMessage().equals("categories_pane")) {
 			//addCategoryPane();
 		} else if (e.getMessage().equals("summary_pane")) {
@@ -1130,6 +1119,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 	}
 	 */
 
+	/*
 	private void addFoldersPane() {
 		if (getTabsPane().getModel().containsTab("Folders")) {
 			return;
@@ -1137,6 +1127,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 
 		getTabsPane().addLeftTab("Folders", mViewPanel, 200, 100, 500);
 	}
+	*/
 
 	/**
 	 * Adds the experiment summary pane.

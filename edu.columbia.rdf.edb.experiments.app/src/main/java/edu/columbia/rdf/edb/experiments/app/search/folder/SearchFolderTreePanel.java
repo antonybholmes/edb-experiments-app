@@ -166,7 +166,7 @@ public class SearchFolderTreePanel extends ModernComponent {
 	 */
 	private void setup() {
 	
-		setHeader(new ModernSubHeadingLabel("Search Folders", UI.createBottomBorder(20)));
+		//setHeader(new ModernSubHeadingLabel("Search Folders", UI.createBottomBorder(20)));
 		
 		ModernScrollPane scrollPane = new ModernScrollPane(mTree);
 		//scrollPane.setBorder(BORDER);
@@ -177,7 +177,7 @@ public class SearchFolderTreePanel extends ModernComponent {
 
 		setBody(scrollPane);
 		
-		setBorder(DOUBLE_BORDER);
+		//setBorder(DOUBLE_BORDER);
 		
 		mTree.addSelectionListener(new TreeEvents());
 	}

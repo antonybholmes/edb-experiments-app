@@ -35,7 +35,7 @@
 
 	<!-- Specify which types of files the user can search for -->
 	<setting name="experiments.help.type" value="web"/>
-	<setting name="experiments.help.url" value="https://bitbucket.org/lab_rdf/experiments/wiki" />
+	<setting name="experiments.help.url" value="https://github.com/lab-rdf/edb-experiments-app/wiki" />
 	
 	<setting name="edbw.server" value="http://localhost:8080/edbw6"/>
 	<setting name="edbw.key" value=""/>

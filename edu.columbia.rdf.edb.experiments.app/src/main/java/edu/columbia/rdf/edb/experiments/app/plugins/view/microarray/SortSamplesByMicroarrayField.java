@@ -17,6 +17,7 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
 
 import org.jebtk.core.path.RootPath;
 
+import edu.columbia.rdf.edb.ui.microarray.NormalizationDialog;
 import edu.columbia.rdf.edb.ui.sort.SortSamplesByTag;
 
 // TODO: Auto-generated Javadoc

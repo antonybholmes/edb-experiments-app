@@ -1182,7 +1182,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 		DataFrame matrix = 
 				DataFrame.createDataFrame(samples.size(), fields.size());
 		
-		List<String> names = Stream.stream(fields)
+		List<String> names = Stream.of(fields)
 				.map(new Function<DataViewField, String>() {
 					@Override
 					public String apply(DataViewField field) {

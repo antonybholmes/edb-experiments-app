@@ -56,6 +56,7 @@ import edu.columbia.rdf.edb.ui.DownloadManager;
 import edu.columbia.rdf.edb.ui.FileDownloader;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
+import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
 
 
 // TODO: Auto-generated Javadoc

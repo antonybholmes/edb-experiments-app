@@ -26,7 +26,7 @@ import org.xml.sax.SAXException;
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.DataViewField;
 import edu.columbia.rdf.edb.DataViewSection;
-import edu.columbia.rdf.edb.experiments.app.plugins.view.DataViewXmlHandler;
+import edu.columbia.rdf.edb.ui.DataViewXmlHandler;
 
 // TODO: Auto-generated Javadoc
 /**

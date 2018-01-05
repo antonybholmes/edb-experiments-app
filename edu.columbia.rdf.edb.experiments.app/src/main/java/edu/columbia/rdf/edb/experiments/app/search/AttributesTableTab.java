@@ -48,180 +48,173 @@ import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
  * @author Antony Holmes Holmes
  */
 public class AttributesTableTab extends ModernWidget {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The filtered samples. */
-	private List<Sample> filteredSamples = null;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The table. */
-	//private ModernRowTable table = new ModernRowTable();
-	private MultiViewPanel table;
-	
+  /** The filtered samples. */
+  private List<Sample> filteredSamples = null;
 
-	/** The m parent. */
-	private ModernWindow mParent;
+  /** The table. */
+  // private ModernRowTable table = new ModernRowTable();
+  private MultiViewPanel table;
 
-	/** The m status model. */
-	private StatusModel mStatusModel;
+  /** The m parent. */
+  private ModernWindow mParent;
 
-	/** The m view model. */
-	private ViewModel mViewModel;
+  /** The m status model. */
+  private StatusModel mStatusModel;
 
-	/** The m sample model. */
-	private SampleModel mSampleModel;
+  /** The m view model. */
+  private ViewModel mViewModel;
 
-	/** The m view. */
-	private DataView mView;
-	
-	/**
-	 * The Class SelectionEvents.
-	 */
-	private class SelectionEvents implements ModernSelectionListener {
-		
-		/* (non-Javadoc)
-		 * @see org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.common.event.ChangeEvent)
-		 */
-		@Override
-		public void selectionChanged(ChangeEvent e) {
-			searchSamples();
-		}
-	}
-	
-	/**
-	 * Instantiates a new attributes table tab.
-	 *
-	 * @param parent the parent
-	 * @param sampleModel the sample model
-	 * @param viewModel the view model
-	 * @param statusModel the status model
-	 * @param view the view
-	 */
-	public AttributesTableTab(ModernWindow parent, 
-			SampleModel sampleModel, 
-			ViewModel viewModel, 
-			StatusModel statusModel,
-			DataView view) {
-		mParent = parent;
-		mStatusModel = statusModel;
-		mViewModel = viewModel;
-		mSampleModel = sampleModel;
-		mView = view;
-		
-		sampleModel.addSelectionListener(new SelectionEvents());
-		
-		createUi();
-	}
+  /** The m sample model. */
+  private SampleModel mSampleModel;
 
-	/**
-	 * Creates the ui.
-	 */
-	public final void createUi() {
+  /** The m view. */
+  private DataView mView;
 
-		table = new MultiViewPanel(mViewModel);
-		
-		add(table);
-	}
+  /**
+   * The Class SelectionEvents.
+   */
+  private class SelectionEvents implements ModernSelectionListener {
 
-	
-	
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.
+     * common.event.ChangeEvent)
+     */
+    @Override
+    public void selectionChanged(ChangeEvent e) {
+      searchSamples();
+    }
+  }
 
-	/**
-	 * Search samples.
-	 */
-	private void searchSamples() {
+  /**
+   * Instantiates a new attributes table tab.
+   *
+   * @param parent
+   *          the parent
+   * @param sampleModel
+   *          the sample model
+   * @param viewModel
+   *          the view model
+   * @param statusModel
+   *          the status model
+   * @param view
+   *          the view
+   */
+  public AttributesTableTab(ModernWindow parent, SampleModel sampleModel, ViewModel viewModel, StatusModel statusModel,
+      DataView view) {
+    mParent = parent;
+    mStatusModel = statusModel;
+    mViewModel = viewModel;
+    mSampleModel = sampleModel;
+    mView = view;
 
-		filteredSamples = new ArrayList<Sample>();
+    sampleModel.addSelectionListener(new SelectionEvents());
 
-		for (Sample sample : mSampleModel.getItems()) {
-			filteredSamples.add(sample);
-		}
-		
-		displayFilteredSamples();
-	}
-	
-	/**
-	 * Display filtered samples.
-	 */
-	private void displayFilteredSamples() {
-		Collections.sort(filteredSamples);
-		
-		table.setModel(new AttributesTableModel(filteredSamples, mView));
+    createUi();
+  }
 
-		//for (int i = 0; i < table.getColumnModel().size(); ++i) {
-			//table.getColumnModel().get(i).setWidth(100);
-		//}
-	}
+  /**
+   * Creates the ui.
+   */
+  public final void createUi() {
 
-	/**
-	 * Show expression data.
-	 *
-	 * @param type the type
-	 * @throws NetworkFileException the network file exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	public void showExpressionData(MicroarrayNormalizationType type) throws NetworkFileException, IOException, ParseException {
+    table = new MultiViewPanel(mViewModel);
 
-		if (table.getCellSelectionModel().getRowSelectionModel().size() == 0) {
-			// Since we are using a row table, we must use the
-			// row model to determine which rows are currently
-			// selected.
-			
-			ModernMessageDialog.createDialog(mParent,
-					mParent.getAppInfo().getName(),
-					"You must select at least one sample.",
-					MessageDialogType.WARNING);
+    add(table);
+  }
 
-			return;
-		}
-		
-		List<Sample> expressionSamples = getSelectedSamples();
+  /**
+   * Search samples.
+   */
+  private void searchSamples() {
 
-		MicroarrayExpressionData expressionData = new MicroarrayExpressionData();
-		
-		if (type == MicroarrayNormalizationType.MAS5) {
-			Mas5Dialog dialog = new Mas5Dialog(mParent);
-			
-			dialog.setVisible(true);
-			
-			if (dialog.getStatus() == ModernDialogStatus.CANCEL) {
-				return;
-			}
-			
-			expressionData.showTables(mParent, 
-					expressionSamples, 
-					type,
-					dialog.getColumns(),
-					null,
-					true, 
-					mStatusModel);
-		} else {
-			// we all all columns since there is only the data column with rma
-			expressionData.showTables(mParent, 
-					expressionSamples, 
-					type, 
-					CollectionUtils.asList(true), 
-					null,
-					true, 
-					mStatusModel);
-		}
-	}
+    filteredSamples = new ArrayList<Sample>();
 
+    for (Sample sample : mSampleModel.getItems()) {
+      filteredSamples.add(sample);
+    }
 
-	/**
-	 * Gets the selected samples.
-	 *
-	 * @return the selected samples
-	 */
-	public List<Sample> getSelectedSamples() {
-		List<Sample> samples = new ArrayList<Sample>();
-		
-		for (int i : table.getCellSelectionModel().getRowSelectionModel()) {
-			samples.add(filteredSamples.get(table.convertRowIndexToModel(i)));
-		}
-		
-		return samples;
-	}
+    displayFilteredSamples();
+  }
+
+  /**
+   * Display filtered samples.
+   */
+  private void displayFilteredSamples() {
+    Collections.sort(filteredSamples);
+
+    table.setModel(new AttributesTableModel(filteredSamples, mView));
+
+    // for (int i = 0; i < table.getColumnModel().size(); ++i) {
+    // table.getColumnModel().get(i).setWidth(100);
+    // }
+  }
+
+  /**
+   * Show expression data.
+   *
+   * @param type
+   *          the type
+   * @throws NetworkFileException
+   *           the network file exception
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   * @throws ParseException
+   *           the parse exception
+   */
+  public void showExpressionData(MicroarrayNormalizationType type)
+      throws NetworkFileException, IOException, ParseException {
+
+    if (table.getCellSelectionModel().getRowSelectionModel().size() == 0) {
+      // Since we are using a row table, we must use the
+      // row model to determine which rows are currently
+      // selected.
+
+      ModernMessageDialog.createDialog(mParent, mParent.getAppInfo().getName(), "You must select at least one sample.",
+          MessageDialogType.WARNING);
+
+      return;
+    }
+
+    List<Sample> expressionSamples = getSelectedSamples();
+
+    MicroarrayExpressionData expressionData = new MicroarrayExpressionData();
+
+    if (type == MicroarrayNormalizationType.MAS5) {
+      Mas5Dialog dialog = new Mas5Dialog(mParent);
+
+      dialog.setVisible(true);
+
+      if (dialog.getStatus() == ModernDialogStatus.CANCEL) {
+        return;
+      }
+
+      expressionData.showTables(mParent, expressionSamples, type, dialog.getColumns(), null, true, mStatusModel);
+    } else {
+      // we all all columns since there is only the data column with rma
+      expressionData.showTables(mParent, expressionSamples, type, CollectionUtils.asList(true), null, true,
+          mStatusModel);
+    }
+  }
+
+  /**
+   * Gets the selected samples.
+   *
+   * @return the selected samples
+   */
+  public List<Sample> getSelectedSamples() {
+    List<Sample> samples = new ArrayList<Sample>();
+
+    for (int i : table.getCellSelectionModel().getRowSelectionModel()) {
+      samples.add(filteredSamples.get(table.convertRowIndexToModel(i)));
+    }
+
+    return samples;
+  }
 }

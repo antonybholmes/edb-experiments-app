@@ -27,24 +27,24 @@ import edu.columbia.rdf.edb.ui.SampleDataPanel;
  *
  */
 public class MicroarraySampleDataPanel extends SampleDataPanel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new microarray sample data panel.
-	 *
-	 * @param sample the sample
-	 * @param view the view
-	 */
-	public MicroarraySampleDataPanel(Sample sample, DataView view) {
-		super(sample, view);
-		
-		MicroarraySampleSummaryPanel titlePanel = 
-				new MicroarraySampleSummaryPanel(sample);
-		
-		setHeader(titlePanel);
-	}
-	
-	
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new microarray sample data panel.
+   *
+   * @param sample
+   *          the sample
+   * @param view
+   *          the view
+   */
+  public MicroarraySampleDataPanel(Sample sample, DataView view) {
+    super(sample, view);
+
+    MicroarraySampleSummaryPanel titlePanel = new MicroarraySampleSummaryPanel(sample);
+
+    setHeader(titlePanel);
+  }
+
 }

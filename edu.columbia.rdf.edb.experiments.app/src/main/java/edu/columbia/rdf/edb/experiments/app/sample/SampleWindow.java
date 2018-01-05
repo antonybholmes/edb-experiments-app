@@ -51,188 +51,188 @@ import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
  * The Class SampleWindow.
  */
 public class SampleWindow extends ModernRibbonWindow implements ModernWindowConstructor, ModernClickListener {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The export button. */
-	private RibbonLargeButton exportButton = new RibbonLargeButton("Export", "Sample",
-			UIService.getInstance().loadIcon("export", UIService.ICON_SIZE_32));
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The download button. */
-	private RibbonLargeButton downloadButton = new RibbonLargeButton("Download", "Files",
-			UIService.getInstance().loadIcon("zip", UIService.ICON_SIZE_32));
+  /** The export button. */
+  private RibbonLargeButton exportButton = new RibbonLargeButton("Export", "Sample",
+      UIService.getInstance().loadIcon("export", UIService.ICON_SIZE_32));
 
-	/** The m status bar. */
-	private ModernStatusBar mStatusBar = new ModernStatusBar();
+  /** The download button. */
+  private RibbonLargeButton downloadButton = new RibbonLargeButton("Download", "Files",
+      UIService.getInstance().loadIcon("zip", UIService.ICON_SIZE_32));
 
-	/** The m sample. */
-	private Sample mSample;
-	
-	/** The sample panel. */
-	private ModernComponent samplePanel;
+  /** The m status bar. */
+  private ModernStatusBar mStatusBar = new ModernStatusBar();
 
-	/**
-	 * Instantiates a new sample window.
-	 *
-	 * @param sample the sample
-	 */
-	public SampleWindow(Sample sample) {
-		super(new ExperimentsInfo());
-		
-		setTitle(sample.getName() + " - Sample - " + getAppInfo().getName());
-		
-		mSample = sample;
+  /** The m sample. */
+  private Sample mSample;
 
-		createRibbon();
+  /** The sample panel. */
+  private ModernComponent samplePanel;
 
-		createMenus();
+  /**
+   * Instantiates a new sample window.
+   *
+   * @param sample
+   *          the sample
+   */
+  public SampleWindow(Sample sample) {
+    super(new ExperimentsInfo());
 
-		createUi();
+    setTitle(sample.getName() + " - Sample - " + getAppInfo().getName());
 
-		init();
-	}
+    mSample = sample;
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.window.ModernWindowConstructor#createRibbon()
-	 */
-	public final void createRibbon() {
+    createRibbon();
 
-		//RibbongetRibbonMenu() getRibbonMenu() = new RibbongetRibbonMenu()(2);
-		
-		getRibbonMenu().setDefaultIndex(2);
+    createMenus();
 
-		RibbonMenuItem menuItem;
+    createUi();
 
+    init();
+  }
 
-		menuItem = new RibbonMenuItem(UI.MENU_INFO);
-		
-		getRibbonMenu().addTabbedMenuItem(menuItem, 
-				new RibbonPanelProductInfo(getAppInfo()));
-		
-		menuItem = new RibbonMenuItem(UI.MENU_OPTIONS);
-		getRibbonMenu().addTabbedMenuItem(menuItem);
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.window.ModernWindowConstructor#createRibbon()
+   */
+  public final void createRibbon() {
 
+    // RibbongetRibbonMenu() getRibbonMenu() = new RibbongetRibbonMenu()(2);
 
-		menuItem = new RibbonMenuItem(UI.MENU_CLOSE,
-				UIService.getInstance().loadIcon("exit", UIService.ICON_SIZE_16));
-		menuItem.addClickListener(this);
-		getRibbonMenu().addTabbedMenuItem(menuItem);
+    getRibbonMenu().setDefaultIndex(2);
 
+    RibbonMenuItem menuItem;
 
-		//ribbon = new Ribbon();
+    menuItem = new RibbonMenuItem(UI.MENU_INFO);
 
-		getRibbon().setHelpButtonEnabled(getAppInfo());
-		
-		// download
+    getRibbonMenu().addTabbedMenuItem(menuItem, new RibbonPanelProductInfo(getAppInfo()));
 
-		downloadButton.addClickListener(this);
-		//downloadButton.setCanvasSize(new Dimension(70,
-		//		getRibbon().DEFAULT_BUTTON_HEIGHT));
-		//toolbar.getComponentGroup().add(downloadButton);
+    menuItem = new RibbonMenuItem(UI.MENU_OPTIONS);
+    getRibbonMenu().addTabbedMenuItem(menuItem);
 
-		getRibbon().getHomeToolbar().add(new ClipboardRibbonSection(getRibbon()));
+    menuItem = new RibbonMenuItem(UI.MENU_CLOSE, UIService.getInstance().loadIcon("exit", UIService.ICON_SIZE_16));
+    menuItem.addClickListener(this);
+    getRibbonMenu().addTabbedMenuItem(menuItem);
 
-		downloadButton.setToolTip(new ModernToolTip("Download Files", 
-				"Download the CEL and CHP files for this sample in a zip archive."), 
-				getRibbon());
-		getRibbon().getHomeToolbar().getSection("data").add(downloadButton);
+    // ribbon = new Ribbon();
 
-		exportButton.setToolTip(new ModernToolTip("Export Sample", 
-				"Export the information on the sample as a text file. This does not include CEL, CHP or expression data."), 
-				getRibbon());
-		getRibbon().getHomeToolbar().getSection("data").add(exportButton);
+    getRibbon().setHelpButtonEnabled(getAppInfo());
 
-		// put it all together
-		getRibbon().setSelectedIndex(1);
+    // download
 
-		//showAllButton.addClickListener(this);
-		//toolbar.add(showAllButton);
-		//toolbar.add(displaySearchRecordsOnly);
+    downloadButton.addClickListener(this);
+    // downloadButton.setCanvasSize(new Dimension(70,
+    // getRibbon().DEFAULT_BUTTON_HEIGHT));
+    // toolbar.getComponentGroup().add(downloadButton);
 
-		//setRibbon(ribbon, getRibbonMenu());
-	}
+    getRibbon().getHomeToolbar().add(new ClipboardRibbonSection(getRibbon()));
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.window.ModernWindow#createUi()
-	 */
-	public final void createUi() {
+    downloadButton.setToolTip(
+        new ModernToolTip("Download Files", "Download the CEL and CHP files for this sample in a zip archive."),
+        getRibbon());
+    getRibbon().getHomeToolbar().getSection("data").add(downloadButton);
 
-		ModernPanel content = new ModernPanel();
-		
-		samplePanel = ViewPluginService.getInstance().getSamplePanel(mSample);
+    exportButton.setToolTip(
+        new ModernToolTip("Export Sample",
+            "Export the information on the sample as a text file. This does not include CEL, CHP or expression data."),
+        getRibbon());
+    getRibbon().getHomeToolbar().getSection("data").add(exportButton);
 
-		content.add(samplePanel, BorderLayout.CENTER);
+    // put it all together
+    getRibbon().setSelectedIndex(1);
 
-		content.setBorder(ModernPanel.BORDER);
+    // showAllButton.addClickListener(this);
+    // toolbar.add(showAllButton);
+    // toolbar.add(displaySearchRecordsOnly);
 
-		setBody(content);
-		
-		setFooter(mStatusBar);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.window.ModernWindow#init()
-	 */
-	public final void init() {
-		exportButton.addClickListener(this);
+    // setRibbon(ribbon, getRibbonMenu());
+  }
 
-		setSize(960, 640);
-		
-		UI.centerWindowToScreen(this);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.window.ModernWindow#createUi()
+   */
+  public final void createUi() {
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	public final void clicked(ModernClickEvent e) {
-		if (e.getMessage().equals(UI.MENU_CLOSE)) {
-			close();
-		}
-	}
+    ModernPanel content = new ModernPanel();
 
-	/**
-	 * Show expression data.
-	 *
-	 * @param type the type
-	 * @throws NetworkFileException the network file exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	private void showExpressionData(MicroarrayNormalizationType type) throws NetworkFileException, IOException, ParseException {
+    samplePanel = ViewPluginService.getInstance().getSamplePanel(mSample);
 
-		List<Sample> samples = new ArrayList<Sample>();
+    content.add(samplePanel, BorderLayout.CENTER);
 
-		samples.add(mSample);
+    content.setBorder(ModernPanel.BORDER);
 
-		MicroarrayExpressionData expressionData = 
-				new MicroarrayExpressionData();
-		
-		if (type == MicroarrayNormalizationType.MAS5) {
-			Mas5Dialog dialog = new Mas5Dialog(this);
-			
-			dialog.setVisible(true);
-			
-			if (dialog.getStatus() == ModernDialogStatus.CANCEL) {
-				return;
-			}
-			
-			expressionData.showTables(this, 
-					samples, 
-					type,
-					dialog.getColumns(),
-					null,
-					true, 
-					mStatusBar.getStatusModel());
-		} else {
-			// we all all columns since there is only the data column with rma
-			expressionData.showTables(this, 
-					samples, 
-					type, 
-					CollectionUtils.asList(true), 
-					null,
-					true, 
-					mStatusBar.getStatusModel());
-		}
-	}
+    setBody(content);
+
+    setFooter(mStatusBar);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.window.ModernWindow#init()
+   */
+  public final void init() {
+    exportButton.addClickListener(this);
+
+    setSize(960, 640);
+
+    UI.centerWindowToScreen(this);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  public final void clicked(ModernClickEvent e) {
+    if (e.getMessage().equals(UI.MENU_CLOSE)) {
+      close();
+    }
+  }
+
+  /**
+   * Show expression data.
+   *
+   * @param type
+   *          the type
+   * @throws NetworkFileException
+   *           the network file exception
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   * @throws ParseException
+   *           the parse exception
+   */
+  private void showExpressionData(MicroarrayNormalizationType type)
+      throws NetworkFileException, IOException, ParseException {
+
+    List<Sample> samples = new ArrayList<Sample>();
+
+    samples.add(mSample);
+
+    MicroarrayExpressionData expressionData = new MicroarrayExpressionData();
+
+    if (type == MicroarrayNormalizationType.MAS5) {
+      Mas5Dialog dialog = new Mas5Dialog(this);
+
+      dialog.setVisible(true);
+
+      if (dialog.getStatus() == ModernDialogStatus.CANCEL) {
+        return;
+      }
+
+      expressionData.showTables(this, samples, type, dialog.getColumns(), null, true, mStatusBar.getStatusModel());
+    } else {
+      // we all all columns since there is only the data column with rma
+      expressionData.showTables(this, samples, type, CollectionUtils.asList(true), null, true,
+          mStatusBar.getStatusModel());
+    }
+  }
 }

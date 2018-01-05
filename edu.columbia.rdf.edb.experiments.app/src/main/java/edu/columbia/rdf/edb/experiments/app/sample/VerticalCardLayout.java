@@ -26,129 +26,133 @@ import java.awt.LayoutManager;
  * The Class VerticalCardLayout.
  */
 public class VerticalCardLayout implements LayoutManager {
-	
-	/** The m preferred height. */
-	private int mPreferredHeight = 0;
-	
-	/** The size unknown. */
-	private boolean sizeUnknown = true;
 
+  /** The m preferred height. */
+  private int mPreferredHeight = 0;
 
-	/* (non-Javadoc)
-	 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String, java.awt.Component)
-	 */
-	/* Required by LayoutManager. */
-	@Override
-	public void addLayoutComponent(String name, Component comp) {
-	}
+  /** The size unknown. */
+  private boolean sizeUnknown = true;
 
-	/* (non-Javadoc)
-	 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
-	 */
-	/* Required by LayoutManager. */
-	@Override
-	public void removeLayoutComponent(Component comp) {
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
+   * java.awt.Component)
+   */
+  /* Required by LayoutManager. */
+  @Override
+  public void addLayoutComponent(String name, Component comp) {
+  }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
+   */
+  /* Required by LayoutManager. */
+  @Override
+  public void removeLayoutComponent(Component comp) {
+  }
 
-	/**
-	 * Sets the sizes.
-	 *
-	 * @param parent the new sizes
-	 */
-	private void setSizes(Container parent) {
-		int nComps = parent.getComponentCount();
-		
-		Dimension d = null;
+  /**
+   * Sets the sizes.
+   *
+   * @param parent
+   *          the new sizes
+   */
+  private void setSizes(Container parent) {
+    int nComps = parent.getComponentCount();
 
-		//Reset preferred/minimum width and height.
-		mPreferredHeight = 0;
-		
-		for (int i = 0; i < nComps; i++) {
-			Component c = parent.getComponent(i);
-			
-			if (c.isVisible()) {
-				d = c.getPreferredSize();
+    Dimension d = null;
 
-				mPreferredHeight += d.height;
+    // Reset preferred/minimum width and height.
+    mPreferredHeight = 0;
 
-			}
-		}
-	}
+    for (int i = 0; i < nComps; i++) {
+      Component c = parent.getComponent(i);
 
+      if (c.isVisible()) {
+        d = c.getPreferredSize();
 
-	/* (non-Javadoc)
-	 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
-	 */
-	/* Required by LayoutManager. */
-	@Override
-	public Dimension preferredLayoutSize(Container parent) {
-		Dimension dim = new Dimension(parent.getWidth(), 0);
+        mPreferredHeight += d.height;
 
-		setSizes(parent);
+      }
+    }
+  }
 
-		//Always add the container's insets!
-		Insets insets = parent.getInsets();
-	
-		dim.height = mPreferredHeight + insets.top + insets.bottom;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
+   */
+  /* Required by LayoutManager. */
+  @Override
+  public Dimension preferredLayoutSize(Container parent) {
+    Dimension dim = new Dimension(parent.getWidth(), 0);
 
-		sizeUnknown = false;
+    setSizes(parent);
 
-		return dim;
-	}
+    // Always add the container's insets!
+    Insets insets = parent.getInsets();
 
-	/* (non-Javadoc)
-	 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
-	 */
-	/* Required by LayoutManager. */
-	@Override
-	public Dimension minimumLayoutSize(Container parent) {
-		return preferredLayoutSize(parent);
-	}
+    dim.height = mPreferredHeight + insets.top + insets.bottom;
 
-	/* Required by LayoutManager. */
-	/* (non-Javadoc)
-	 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
-	 */
-	/*
-	 * This is called when the panel is first displayed,
-	 * and every time its size changes.
-	 * Note: You CAN'T assume preferredLayoutSize or
-	 * minimumLayoutSize will be called -- in the case
-	 * of applets, at least, they probably won't be.
-	 */
-	@Override
-	public void layoutContainer(Container parent) {
-		Insets insets = parent.getInsets();
-		
-		int maxWidth = parent.getWidth()
-				- (insets.left + insets.right);
-		
-		int nComps = parent.getComponentCount();
-		
-		int x = insets.left;
-		int y = insets.top;
+    sizeUnknown = false;
 
+    return dim;
+  }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
+   */
+  /* Required by LayoutManager. */
+  @Override
+  public Dimension minimumLayoutSize(Container parent) {
+    return preferredLayoutSize(parent);
+  }
 
-		// Go through the components' sizes, if neither
-		// preferredLayoutSize nor minimumLayoutSize has
-		// been called.
-		if (sizeUnknown) {
-			setSizes(parent);
-		}
+  /* Required by LayoutManager. */
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
+   */
+  /*
+   * This is called when the panel is first displayed, and every time its size
+   * changes. Note: You CAN'T assume preferredLayoutSize or minimumLayoutSize will
+   * be called -- in the case of applets, at least, they probably won't be.
+   */
+  @Override
+  public void layoutContainer(Container parent) {
+    Insets insets = parent.getInsets();
 
-		for (int i = 0 ; i < nComps ; i++) {
-			Component c = parent.getComponent(i);
-			
-			if (c.isVisible()) {
-				Dimension d = c.getPreferredSize();
+    int maxWidth = parent.getWidth() - (insets.left + insets.right);
 
-				// Set the component's size and position.
-				c.setBounds(x, y, maxWidth, d.height);
+    int nComps = parent.getComponentCount();
 
-				y += d.height;
-			}
-		}
-	}
+    int x = insets.left;
+    int y = insets.top;
+
+    // Go through the components' sizes, if neither
+    // preferredLayoutSize nor minimumLayoutSize has
+    // been called.
+    if (sizeUnknown) {
+      setSizes(parent);
+    }
+
+    for (int i = 0; i < nComps; i++) {
+      Component c = parent.getComponent(i);
+
+      if (c.isVisible()) {
+        Dimension d = c.getPreferredSize();
+
+        // Set the component's size and position.
+        c.setBounds(x, y, maxWidth, d.height);
+
+        y += d.height;
+      }
+    }
+  }
 }

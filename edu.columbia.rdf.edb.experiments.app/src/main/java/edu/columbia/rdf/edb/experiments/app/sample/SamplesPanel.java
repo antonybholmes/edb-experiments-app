@@ -28,33 +28,38 @@ import edu.columbia.rdf.edb.ui.SelectedSamples;
  * The Class SamplesPanel.
  */
 public abstract class SamplesPanel extends ModernWidget implements SelectedSamples {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Adds the selection listener.
-	 *
-	 * @param l the l
-	 */
-	public abstract void addSelectionListener(ModernSelectionListener l);
-	
-	/**
-	 * Sets the selected sample.
-	 *
-	 * @param name the new selected sample
-	 */
-	public abstract void setSelectedSample(String name);
-	
-	/**
-	 * Sets the selected sample.
-	 *
-	 * @param row the new selected sample
-	 */
-	public abstract void setSelectedSample(int row);
-	
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.SelectedSamples#getSelectedSamples()
-	 */
-	public abstract List<Sample> getSelectedSamples();
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Adds the selection listener.
+   *
+   * @param l
+   *          the l
+   */
+  public abstract void addSelectionListener(ModernSelectionListener l);
+
+  /**
+   * Sets the selected sample.
+   *
+   * @param name
+   *          the new selected sample
+   */
+  public abstract void setSelectedSample(String name);
+
+  /**
+   * Sets the selected sample.
+   *
+   * @param row
+   *          the new selected sample
+   */
+  public abstract void setSelectedSample(int row);
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.SelectedSamples#getSelectedSamples()
+   */
+  public abstract List<Sample> getSelectedSamples();
 }

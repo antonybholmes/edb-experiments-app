@@ -56,198 +56,222 @@ import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
  *
  */
 public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener {
-	
-	/** The m fpkm button. */
-	private ModernButtonWidget mFpkmButton = new RibbonLargeButton("FPKM", 
-			new Raster32Icon(new Window32VectorIcon(ColorUtils.decodeHtmlColor("#e580ff"))));
 
-	/** The m parent. */
-	private ModernRibbonWindow mParent;
-	
-	/** The m selected samples. */
-	private SelectionModel<Sample> mSelectedSamples;
-	
-	/** The m status model. */
-	private StatusModel mStatusModel;
-	
-	/** The m view. */
-	private DataView mView;
+  /** The m fpkm button. */
+  private ModernButtonWidget mFpkmButton = new RibbonLargeButton("FPKM",
+      new Raster32Icon(new Window32VectorIcon(ColorUtils.decodeHtmlColor("#e580ff"))));
 
-	/** The m display field 1. */
-	private Path mDisplayField1 = new Path("/Sample/Organism");
+  /** The m parent. */
+  private ModernRibbonWindow mParent;
 
-	/** The m display field 2. */
-	private Path mDisplayField2 = new Path("/RNA-seq/Sample/Genome");
+  /** The m selected samples. */
+  private SelectionModel<Sample> mSelectedSamples;
 
+  /** The m status model. */
+  private StatusModel mStatusModel;
 
+  /** The m view. */
+  private DataView mView;
 
-	/**
-	 * Instantiates a new rna seq view plugin.
-	 */
-	public RnaSeqViewPlugin() {
-		mView = new RnaSeqDataView();
+  /** The m display field 1. */
+  private Path mDisplayField1 = new Path("/Sample/Organism");
 
-		mFpkmButton.addClickListener(this);
-	}
+  /** The m display field 2. */
+  private Path mDisplayField2 = new Path("/RNA-seq/Sample/Genome");
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDisplayField1()
-	 */
-	@Override
-	public Path getDisplayField1() {
-		return mDisplayField1;
-	}
+  /**
+   * Instantiates a new rna seq view plugin.
+   */
+  public RnaSeqViewPlugin() {
+    mView = new RnaSeqDataView();
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDisplayField2()
-	 */
-	@Override
-	public Path getDisplayField2() {
-		return mDisplayField2;
-	}
+    mFpkmButton.addClickListener(this);
+  }
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#initSampleSorters(org.abh.common.ui.search.SortModel)
-	 */
-	@Override
-	public void initSampleSorters(SortModel<Sample> sampleSortModel) {
-		sampleSortModel.add(new SortSamplesByGenome());
-		sampleSortModel.add(new SortSamplesBySeqId());
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDisplayField1()
+   */
+  @Override
+  public Path getDisplayField1() {
+    return mDisplayField1;
+  }
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getSamplePanel(edu.columbia.rdf.edb.Sample)
-	 */
-	@Override
-	public ModernComponent getSamplePanel(Sample sample) {
-		return new RnaSeqSampleDataPanel(sample, mView);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDisplayField2()
+   */
+  @Override
+  public Path getDisplayField2() {
+    return mDisplayField2;
+  }
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#initSearchCategories(edu.columbia.rdf.edb.ui.search.SearchCategoryService)
-	 */
-	@Override
-	public void initSearchCategories(SearchCategoryService searchCategoryService) {
-		SearchCategoryGroup group;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * edu.columbia.rdf.edb.ui.ViewPlugin#initSampleSorters(org.abh.common.ui.search
+   * .SortModel)
+   */
+  @Override
+  public void initSampleSorters(SortModel<Sample> sampleSortModel) {
+    sampleSortModel.add(new SortSamplesByGenome());
+    sampleSortModel.add(new SortSamplesBySeqId());
+  }
 
-		group = new SearchCategoryGroup("RNA-seq");
-		group.addCategory(new SearchCategory("Sequence Id", new Path("/RNA-seq/Sample/Seq_Id")));
-		group.addCategory(new SearchCategory("Genome", new Path("/RNA-seq/Sample/Genome")));
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getSamplePanel(edu.columbia.rdf.edb.
+   * Sample)
+   */
+  @Override
+  public ModernComponent getSamplePanel(Sample sample) {
+    return new RnaSeqSampleDataPanel(sample, mView);
+  }
 
-		searchCategoryService.addGroup(group);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * edu.columbia.rdf.edb.ui.ViewPlugin#initSearchCategories(edu.columbia.rdf.edb.
+   * ui.search.SearchCategoryService)
+   */
+  @Override
+  public void initSearchCategories(SearchCategoryService searchCategoryService) {
+    SearchCategoryGroup group;
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#init(org.abh.common.ui.window.ModernRibbonWindow, org.abh.common.ui.status.StatusModel, org.abh.common.ui.widget.tooltip.ModernToolTipModel, org.abh.common.ui.SelectionModel)
-	 */
-	@Override
-	public void init(ModernRibbonWindow parent,
-			StatusModel statusModel,
-			ModernToolTipModel toolTipModel,
-			SelectionModel<Sample> selectedSamples) {
-		mParent = parent;
-		mStatusModel = statusModel;
-		mSelectedSamples = selectedSamples;
+    group = new SearchCategoryGroup("RNA-seq");
+    group.addCategory(new SearchCategory("Sequence Id", new Path("/RNA-seq/Sample/Seq_Id")));
+    group.addCategory(new SearchCategory("Genome", new Path("/RNA-seq/Sample/Genome")));
 
-		parent.getRibbon().getHomeToolbar().getSection(getExpressionType()).add(mFpkmButton);
+    searchCategoryService.addGroup(group);
+  }
 
-		mFpkmButton.setToolTip(new ModernToolTip("MAS5 Expression Data", 
-				"Download MAS5 normalized expression data for the currently selected samples."), 
-				toolTipModel);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#init(org.abh.common.ui.window.
+   * ModernRibbonWindow, org.abh.common.ui.status.StatusModel,
+   * org.abh.common.ui.widget.tooltip.ModernToolTipModel,
+   * org.abh.common.ui.SelectionModel)
+   */
+  @Override
+  public void init(ModernRibbonWindow parent, StatusModel statusModel, ModernToolTipModel toolTipModel,
+      SelectionModel<Sample> selectedSamples) {
+    mParent = parent;
+    mStatusModel = statusModel;
+    mSelectedSamples = selectedSamples;
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#customizeSampleMenu(org.abh.common.ui.menu.ModernPopupMenu)
-	 */
-	@Override
-	public void customizeSampleMenu(ModernPopupMenu menu) {
-		menu.add(new ModernTitleIconMenuItem("RNA-seq"));
+    parent.getRibbon().getHomeToolbar().getSection(getExpressionType()).add(mFpkmButton);
 
-		ModernIconMenuItem fpkmMenuItem = new ModernIconMenuItem("FPKM");
-		fpkmMenuItem.addClickListener(this);
+    mFpkmButton.setToolTip(new ModernToolTip("MAS5 Expression Data",
+        "Download MAS5 normalized expression data for the currently selected samples."), toolTipModel);
+  }
 
-		menu.add(fpkmMenuItem);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * edu.columbia.rdf.edb.ui.ViewPlugin#customizeSampleMenu(org.abh.common.ui.menu
+   * .ModernPopupMenu)
+   */
+  @Override
+  public void customizeSampleMenu(ModernPopupMenu menu) {
+    menu.add(new ModernTitleIconMenuItem("RNA-seq"));
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getExpressionType()
-	 */
-	@Override
-	public String getExpressionType() {
-		return "RNA-seq";
-	}
+    ModernIconMenuItem fpkmMenuItem = new ModernIconMenuItem("FPKM");
+    fpkmMenuItem.addClickListener(this);
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public void clicked(ModernClickEvent e) {
-		if (e.getSource().equals(mFpkmButton)) {
-			try {
-				showExpressionData();
-			} catch (NetworkFileException | IOException | ParseException ex) {
-				ex.printStackTrace();
-			}
-		}
-	}
+    menu.add(fpkmMenuItem);
+  }
 
-	/**
-	 * Show expression data.
-	 *
-	 * @throws NetworkFileException the network file exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	private void showExpressionData() throws NetworkFileException, IOException, ParseException {
-		List<Sample> samples = mSelectedSamples.getItems();
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getExpressionType()
+   */
+  @Override
+  public String getExpressionType() {
+    return "RNA-seq";
+  }
 
-		if (samples.size() == 0) {
-			ModernMessageDialog.createWarningDialog(mParent, 
-					"You must select at least one sample.");
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  @Override
+  public void clicked(ModernClickEvent e) {
+    if (e.getSource().equals(mFpkmButton)) {
+      try {
+        showExpressionData();
+      } catch (NetworkFileException | IOException | ParseException ex) {
+        ex.printStackTrace();
+      }
+    }
+  }
 
-			return;
-		}
+  /**
+   * Show expression data.
+   *
+   * @throws NetworkFileException
+   *           the network file exception
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   * @throws ParseException
+   *           the parse exception
+   */
+  private void showExpressionData() throws NetworkFileException, IOException, ParseException {
+    List<Sample> samples = mSelectedSamples.getItems();
 
-		boolean correctType = true;
+    if (samples.size() == 0) {
+      ModernMessageDialog.createWarningDialog(mParent, "You must select at least one sample.");
 
-		for (Sample sample : samples) {
-			if (!sample.getExpressionType().getName().equals("RNA-seq")) {
-				correctType = false;
-				break;
-			}
-		}
+      return;
+    }
 
-		if (!correctType) {
-			ModernMessageDialog.createWarningDialog(mParent, 
-					"Some of the samples you have selected do not contain expression data.");
+    boolean correctType = true;
 
-			return;
-		}
+    for (Sample sample : samples) {
+      if (!sample.getExpressionType().getName().equals("RNA-seq")) {
+        correctType = false;
+        break;
+      }
+    }
 
+    if (!correctType) {
+      ModernMessageDialog.createWarningDialog(mParent,
+          "Some of the samples you have selected do not contain expression data.");
 
-		if (checkForLocked(samples)) {
-			ModernMessageDialog.createWarningDialog(mParent, 
-					"You have selected one or more locked samples. These will not be shown.");
+      return;
+    }
 
-			samples = getUnlockedSamples(samples);
-		}
+    if (checkForLocked(samples)) {
+      ModernMessageDialog.createWarningDialog(mParent,
+          "You have selected one or more locked samples. These will not be shown.");
 
-		if (samples.size() > 0) {
-			RnaSeqData expressionData = 
-					new RnaSeqData();
+      samples = getUnlockedSamples(samples);
+    }
 
-			expressionData.showTables(mParent, 
-					samples,
-					true, 
-					mStatusModel);
-		}
-	}
+    if (samples.size() > 0) {
+      RnaSeqData expressionData = new RnaSeqData();
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDataView()
-	 */
-	@Override
-	public DataView getDataView() {
-		return mView;
-	}
+      expressionData.showTables(mParent, samples, true, mStatusModel);
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDataView()
+   */
+  @Override
+  public DataView getDataView() {
+    return mView;
+  }
 }

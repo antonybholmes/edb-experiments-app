@@ -22,8 +22,6 @@ import org.jebtk.modern.UIService;
 import org.jebtk.modern.list.ModernList;
 import org.jebtk.modern.list.ModernListTwoLineCellRenderer;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * Renders a file as a list item.
@@ -32,33 +30,34 @@ import org.jebtk.modern.list.ModernListTwoLineCellRenderer;
  *
  */
 public class DownloadListFileRenderer extends ModernListTwoLineCellRenderer {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * Instantiates a new download list file renderer.
-	 */
-	public DownloadListFileRenderer() {
-		super(UIService.getInstance().loadIcon("file", UIService.ICON_SIZE_32));
-	}
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.list.ModernListTwoLineCellRenderer#getCellRendererComponent(org.abh.common.ui.list.ModernList, java.lang.Object, boolean, boolean, boolean, int)
-	 */
-	public Component getCellRendererComponent(ModernList<File> list,
-			File value,
-			boolean highlight,
-			boolean isSelected,
-			boolean hasFocus,
-			int row) {
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-		if (value != null) {
-			setText(value.getName(), "Downloaded");
-		} else {
-			setText("", "");
-		}
-		
-		return super.getCellRendererComponent(list, value, highlight, isSelected, hasFocus, row);
-	}
+  /**
+   * Instantiates a new download list file renderer.
+   */
+  public DownloadListFileRenderer() {
+    super(UIService.getInstance().loadIcon("file", UIService.ICON_SIZE_32));
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.list.ModernListTwoLineCellRenderer#getCellRendererComponent
+   * (org.abh.common.ui.list.ModernList, java.lang.Object, boolean, boolean,
+   * boolean, int)
+   */
+  public Component getCellRendererComponent(ModernList<File> list, File value, boolean highlight, boolean isSelected,
+      boolean hasFocus, int row) {
+
+    if (value != null) {
+      setText(value.getName(), "Downloaded");
+    } else {
+      setText("", "");
+    }
+
+    return super.getCellRendererComponent(list, value, highlight, isSelected, hasFocus, row);
+  }
 }

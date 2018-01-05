@@ -46,274 +46,283 @@ import edu.columbia.rdf.edb.ui.search.UserSearch;
 
 // TODO: Auto-generated Javadoc
 /**
- * Displays groupings of samples so users can quickly find related
- * samples.
+ * Displays groupings of samples so users can quickly find related samples.
  * 
  * @author Antony Holmes Holmes
  *
  */
 public class SearchFolderTreePanel extends ModernComponent {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The Constant NO_SAMPLES. */
-	private static final List<Sample> NO_SAMPLES = 
-			Collections.unmodifiableList(new ArrayList<Sample>());
+  /** The Constant NO_SAMPLES. */
+  private static final List<Sample> NO_SAMPLES = Collections.unmodifiableList(new ArrayList<Sample>());
 
+  /** The m tree. */
+  private ModernTree<UserSearch> mTree;
 
-	/** The m tree. */
-	private ModernTree<UserSearch> mTree;
+  // private List<SampleFilterPanel> SampleFilters = new
+  // ArrayList<SampleFilterPanel>();
 
-	//private List<SampleFilterPanel> SampleFilters = new ArrayList<SampleFilterPanel>();
+  // private ModernPopupMenu menu;
 
+  // private ModernIconMenuItem expandMenuItem =
+  // new ModernIconMenuItem("Expand All",
+  // UIResources.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
-	//private ModernPopupMenu menu;
+  // private ModernIconMenuItem collapseMenuItem =
+  // new ModernIconMenuItem("Collapse All",
+  // UIResources.getInstance().loadIcon(MinusVectorIcon.class, 16));
 
+  // private ModernIconMenuItem sortMenuItem = new ModernCheckBoxMenuItem("Sort
+  // Descending");
 
-	//private ModernIconMenuItem expandMenuItem = 
-	//		new ModernIconMenuItem("Expand All", UIResources.getInstance().loadIcon(PlusVectorIcon.class, 16));
-	
-	//private ModernIconMenuItem collapseMenuItem = 
-	//		new ModernIconMenuItem("Collapse All", UIResources.getInstance().loadIcon(MinusVectorIcon.class, 16));
-	
-	//private ModernIconMenuItem sortMenuItem = new ModernCheckBoxMenuItem("Sort Descending");
+  /** The m sample model. */
+  private SampleModel mSampleModel;
 
-	/** The m sample model. */
-	private SampleModel mSampleModel;
+  /** The m task. */
+  private SearchCategoryTask mTask;
 
+  /**
+   * The Class TreeEvents.
+   */
+  private class TreeEvents implements ModernSelectionListener {
 
-	/** The m task. */
-	private SearchCategoryTask mTask;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.
+     * common.event.ChangeEvent)
+     */
+    @Override
+    public void selectionChanged(ChangeEvent e) {
+      search();
+    }
+  }
 
+  /**
+   * The Class SearchCategoryTask.
+   */
+  private class SearchCategoryTask extends SwingWorker<Void, Void> {
 
-	
-	/**
-	 * The Class TreeEvents.
-	 */
-	private class TreeEvents implements ModernSelectionListener {
-		
-		/* (non-Javadoc)
-		 * @see org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.common.event.ChangeEvent)
-		 */
-		@Override
-		public void selectionChanged(ChangeEvent e) {
-			search();
-		}
-	}
-	
-	/**
-	 * The Class SearchCategoryTask.
-	 */
-	private class SearchCategoryTask extends SwingWorker<Void, Void> {
+    /** The m samples. */
+    private List<Sample> mSamples = null;
 
-		/** The m samples. */
-		private List<Sample> mSamples = null;
+    // private MessageDialogTaskGlassPane mSearchScreen;
 
-		//private MessageDialogTaskGlassPane mSearchScreen;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.swing.SwingWorker#doInBackground()
+     */
+    @Override
+    public Void doInBackground() {
 
+      // mSearchScreen = mParent.createTaskDialog("Searching...");
 
-		/* (non-Javadoc)
-		 * @see javax.swing.SwingWorker#doInBackground()
-		 */
-		@Override
-		public Void doInBackground() {
+      // searchButton.setEnabled(false);
 
-			//mSearchScreen = mParent.createTaskDialog("Searching...");
+      try {
+        mSamples = getSelectedSamples();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
 
-			//searchButton.setEnabled(false);
+      return null;
+    }
 
-			try {
-				mSamples = getSelectedSamples();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			return null;
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.swing.SwingWorker#done()
+     */
+    @Override
+    public void done() {
+      mSampleModel.set(mSamples);
+    }
+  }
 
-		/* (non-Javadoc)
-		 * @see javax.swing.SwingWorker#done()
-		 */
-		@Override
-		public void done() {
-			mSampleModel.set(mSamples);
-		}
-	}
-	
-	/**
-	 * Instantiates a new search folder tree panel.
-	 *
-	 * @param sampleModel the sample model
-	 * @throws SAXException the SAX exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParserConfigurationException the parser configuration exception
-	 */
-	public SearchFolderTreePanel(SampleModel sampleModel) throws SAXException, IOException, ParserConfigurationException {
-		mSampleModel = sampleModel;
-		
-		mTree = SearchFolderTree.autoLoad();
-		
-		
-		//mSampleViewModel.addChangeListener(new SortEvents());
-		
-		setup();
-	}
-	
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-	
-		//setHeader(new ModernSubHeadingLabel("Search Folders", UI.createBottomBorder(20)));
-		
-		ModernScrollPane scrollPane = new ModernScrollPane(mTree);
-		//scrollPane.setBorder(BORDER);
-		scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.AUTO_SHOW);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
-		//scrollPane.setViewportBorder(BorderFactory.createEmptyBorder());
-		//scrollPane.getViewport().setBackground(Color.WHITE);
+  /**
+   * Instantiates a new search folder tree panel.
+   *
+   * @param sampleModel
+   *          the sample model
+   * @throws SAXException
+   *           the SAX exception
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException
+   *           the parser configuration exception
+   */
+  public SearchFolderTreePanel(SampleModel sampleModel) throws SAXException, IOException, ParserConfigurationException {
+    mSampleModel = sampleModel;
 
-		setBody(scrollPane);
-		
-		//setBorder(DOUBLE_BORDER);
-		
-		mTree.addSelectionListener(new TreeEvents());
-	}
-	
-	/**
-	 * Search.
-	 */
-	private void search() {
-		if (mTree.getSelectedNodes().size() == 0) {
-			return;
-		}
-		
-		System.err.println("Searching");
-		
-		if (mTask != null) {
-			// If a search task is currently running, cancel it to stop
-			// asynchronous results loading.
-			mTask.cancel(true);
-		}
-		
-		// Start a new search
-		mTask = new SearchCategoryTask();
-		
-		mTask.execute();
-	}
-	
-	/**
-	 * Adds the search folder.
-	 *
-	 * @param name the name
-	 * @param userSearch the user search
-	 */
-	public void addSearchFolder(String name, UserSearch userSearch) {
-		((SearchFolderTree)mTree).addSearchFolder(name, userSearch);
-	}
-	
-	/**
-	 * Delete folder.
-	 */
-	public void deleteFolder() {
-		((SearchFolderTree)mTree).deleteFolder();
-	}
+    mTree = SearchFolderTree.autoLoad();
 
-	//public void addSelectionListener(ModernSelectionListener l) {
-	//	mTree.addSelectionListener(l);
-	//}
+    // mSampleViewModel.addChangeListener(new SortEvents());
 
-	/**
-	 * Gets the selected samples.
-	 *
-	 * @return the selected samples
-	 * @throws Exception the exception
-	 */
-	private List<Sample> getSelectedSamples() throws Exception {
-		if (mTree.getSelectedNodes().size() == 0) {
-			return NO_SAMPLES; //new ArrayList<ExperimentSearchResult>();
-		}
+    setup();
+  }
 
-		List<UserSearch> folders = new ArrayList<UserSearch>(10);
-		
-		for (TreeNode<UserSearch> node : mTree.getSelectedNodes()) {
-			selectedSamples(node, folders);
-		}
-		
-		System.err.println("folders " + folders.size());
-		
-		ArraySearchRT search = new ArraySearchRT();
-		
-		Set<Sample> samples = new HashSet<Sample>();
-		
-		for (UserSearch folder : folders) {
-			Deque<SearchStackElementCategory> stack = 
-					SearchStackElementCategory.getSearchStack(folder);
-			
+  /**
+   * Setup.
+   */
+  private void setup() {
 
-			System.err.println("stack " + stack.size());
-			
-			// find a list of relevant experiments
-			try {
-				samples.addAll(search.searchSamples(stack));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return CollectionUtils.sort(samples);
-	}
-	
-	/**
-	 * Recursively examine a node and its children to find those with 
-	 * experiments.
-	 *
-	 * @param node the node
-	 * @param folders the folders
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	private void selectedSamples(TreeNode<UserSearch> node, 
-			List<UserSearch> folders) throws IOException {
-		
-		if (node.getValue() != null) {
-			folders.add(node.getValue());
-		}
-	
-		for (TreeNode<UserSearch> child : node) {
-			if (child.getValue() != null) {
-				selectedSamples(child, folders);
-			}
-		}
-	}
-	
-	/**
-	 * Sets the selected.
-	 *
-	 * @param i the new selected
-	 */
-	public void setSelected(int i) {
-		mTree.selectNode(i);
-	}
+    // setHeader(new ModernSubHeadingLabel("Search Folders",
+    // UI.createBottomBorder(20)));
 
-	/**
-	 * Gets the search folder.
-	 *
-	 * @return the search folder
-	 */
-	public UserSearch getSearchFolder() {
-		TreeNode<UserSearch> selected = mTree.getSelectedNode();
-		
-		return selected.getValue() != null ? selected.getValue() : null;
-	}
+    ModernScrollPane scrollPane = new ModernScrollPane(mTree);
+    // scrollPane.setBorder(BORDER);
+    scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.AUTO_SHOW);
+    scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+    // scrollPane.setViewportBorder(BorderFactory.createEmptyBorder());
+    // scrollPane.getViewport().setBackground(Color.WHITE);
 
-	/**
-	 * Gets the selected node.
-	 *
-	 * @return the selected node
-	 */
-	public TreeNode<UserSearch> getSelectedNode() {
-		return mTree.getSelectedNode();
-	}
+    setBody(scrollPane);
+
+    // setBorder(DOUBLE_BORDER);
+
+    mTree.addSelectionListener(new TreeEvents());
+  }
+
+  /**
+   * Search.
+   */
+  private void search() {
+    if (mTree.getSelectedNodes().size() == 0) {
+      return;
+    }
+
+    System.err.println("Searching");
+
+    if (mTask != null) {
+      // If a search task is currently running, cancel it to stop
+      // asynchronous results loading.
+      mTask.cancel(true);
+    }
+
+    // Start a new search
+    mTask = new SearchCategoryTask();
+
+    mTask.execute();
+  }
+
+  /**
+   * Adds the search folder.
+   *
+   * @param name
+   *          the name
+   * @param userSearch
+   *          the user search
+   */
+  public void addSearchFolder(String name, UserSearch userSearch) {
+    ((SearchFolderTree) mTree).addSearchFolder(name, userSearch);
+  }
+
+  /**
+   * Delete folder.
+   */
+  public void deleteFolder() {
+    ((SearchFolderTree) mTree).deleteFolder();
+  }
+
+  // public void addSelectionListener(ModernSelectionListener l) {
+  // mTree.addSelectionListener(l);
+  // }
+
+  /**
+   * Gets the selected samples.
+   *
+   * @return the selected samples
+   * @throws Exception
+   *           the exception
+   */
+  private List<Sample> getSelectedSamples() throws Exception {
+    if (mTree.getSelectedNodes().size() == 0) {
+      return NO_SAMPLES; // new ArrayList<ExperimentSearchResult>();
+    }
+
+    List<UserSearch> folders = new ArrayList<UserSearch>(10);
+
+    for (TreeNode<UserSearch> node : mTree.getSelectedNodes()) {
+      selectedSamples(node, folders);
+    }
+
+    System.err.println("folders " + folders.size());
+
+    ArraySearchRT search = new ArraySearchRT();
+
+    Set<Sample> samples = new HashSet<Sample>();
+
+    for (UserSearch folder : folders) {
+      Deque<SearchStackElementCategory> stack = SearchStackElementCategory.getSearchStack(folder);
+
+      System.err.println("stack " + stack.size());
+
+      // find a list of relevant experiments
+      try {
+        samples.addAll(search.searchSamples(stack));
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+
+    return CollectionUtils.sort(samples);
+  }
+
+  /**
+   * Recursively examine a node and its children to find those with experiments.
+   *
+   * @param node
+   *          the node
+   * @param folders
+   *          the folders
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   */
+  private void selectedSamples(TreeNode<UserSearch> node, List<UserSearch> folders) throws IOException {
+
+    if (node.getValue() != null) {
+      folders.add(node.getValue());
+    }
+
+    for (TreeNode<UserSearch> child : node) {
+      if (child.getValue() != null) {
+        selectedSamples(child, folders);
+      }
+    }
+  }
+
+  /**
+   * Sets the selected.
+   *
+   * @param i
+   *          the new selected
+   */
+  public void setSelected(int i) {
+    mTree.selectNode(i);
+  }
+
+  /**
+   * Gets the search folder.
+   *
+   * @return the search folder
+   */
+  public UserSearch getSearchFolder() {
+    TreeNode<UserSearch> selected = mTree.getSelectedNode();
+
+    return selected.getValue() != null ? selected.getValue() : null;
+  }
+
+  /**
+   * Gets the selected node.
+   *
+   * @return the selected node
+   */
+  public TreeNode<UserSearch> getSelectedNode() {
+    return mTree.getSelectedNode();
+  }
 }

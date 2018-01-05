@@ -27,27 +27,27 @@ import edu.columbia.rdf.edb.Sample;
  *
  */
 public class SampleViewModel extends SortModel<Sample> {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	//private static final SampleViewService INSTANCE = new SampleViewService();
 
-	//public static final SampleViewService getInstance() {
-	//	return INSTANCE;
-	//}
-	
-	/**
-	 * Instantiates a new sample view model.
-	 */
-	public SampleViewModel() {
-		add(new ViewSamplesByExperiment());
-		add(new ViewSamplesByOrganism());
-		add(new ViewSamplesByPerson());
-		add(new ViewSamplesByExpressionType());
-		add(new ViewSamplesByGeoSeries());
-		add(new ViewSamplesByGeoPlatform());
-		
-		setDefault("Expression Type");
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  // private static final SampleViewService INSTANCE = new SampleViewService();
+
+  // public static final SampleViewService getInstance() {
+  // return INSTANCE;
+  // }
+
+  /**
+   * Instantiates a new sample view model.
+   */
+  public SampleViewModel() {
+    add(new ViewSamplesByExperiment());
+    add(new ViewSamplesByOrganism());
+    add(new ViewSamplesByPerson());
+    add(new ViewSamplesByExpressionType());
+    add(new ViewSamplesByGeoSeries());
+    add(new ViewSamplesByGeoPlatform());
+
+    setDefault("Expression Type");
+  }
 }

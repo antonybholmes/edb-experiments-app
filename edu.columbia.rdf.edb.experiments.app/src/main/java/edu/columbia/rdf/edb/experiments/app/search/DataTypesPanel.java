@@ -41,145 +41,158 @@ import edu.columbia.rdf.edb.ui.RepositoryService;
  */
 public class DataTypesPanel extends HBox implements ModernClickEventProducer, ModernClickListener {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The m types map. */
-	private IterMap<ModernTwoStateWidget, Type> mTypesMap =
-			new IterHashMap<ModernTwoStateWidget, Type>();
-	
-	/** The m species map. */
-	private IterMap<ModernTwoStateWidget, Species> mSpeciesMap =
-			new IterHashMap<ModernTwoStateWidget, Species>();
-	
-	/** The m listeners. */
-	private ModernClickListeners mListeners = new ModernClickListeners();
-	
-	/**
-	 * Instantiates a new data types panel.
-	 */
-	public DataTypesPanel() {
-		
-		//add(new ModernLabel("Show:", 40));
-		//add(UI.createHGap(10));
-		
-		Repository rep = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
-		
-		Collection<Type> types = rep.getDataTypes();
-		
-		IterTreeMap<String, Type> typeMap = new IterTreeMap<String, Type>();
-		
-		for (Type t : types) {
-			typeMap.put(t.getName(), t);
-		}
-		
-		for (String name : typeMap) {
-			ModernTwoStateWidget check = new ModernCheckSwitch(name, true); //new FilterButton(name, true);
-			
-			check.addClickListener(this);
-			
-			mTypesMap.put(check, typeMap.get(name));
-			
-			add(check);
-			//add(UI.createHGap(5));
-		}
-		
-		//add(UI.createHGap(5));
-		
-		Collection<Species> species = rep.getOrganisms();
-		
-		IterTreeMap<String, Species> speciesMap = 
-				new IterTreeMap<String, Species>();
-		
-		for (Species s : species) {
-			speciesMap.put(s.getName(), s);
-		}
-		
-		for (String name : speciesMap) {
-			ModernTwoStateWidget check = new ModernCheckSwitch(name, true);
-			
-			check.addClickListener(this);
-			
-			mSpeciesMap.put(check, speciesMap.get(name));
-			
-			add(check);
-			//add(UI.createHGap(5));
-		}
-	}
-	
-	/**
-	 * Gets the data types.
-	 *
-	 * @return the data types
-	 */
-	public Collection<Type> getDataTypes() {
-		List<Type> ret = new ArrayList<Type>(mTypesMap.size());
-		
-		for (ModernTwoStateWidget c : mTypesMap) {
-			if (c.isSelected()) {
-				ret.add(mTypesMap.get(c));
-			}
-		}
-		
-		// Searching for all types is equivelent to not specifying so
-		// we can return an empty set 
-		if (ret.size() < mTypesMap.size()) {
-			return ret;
-		} else {
-			return Repository.ALL_TYPES;
-		}
-	}
-	
-	/**
-	 * Get organisms.
-	 *
-	 * @return the organisms
-	 */
-	public Collection<Species> getOrganisms() {
-		List<Species> ret = new ArrayList<Species>(mSpeciesMap.size());
-		
-		for (ModernTwoStateWidget c : mSpeciesMap) {
-			if (c.isSelected()) {
-				ret.add(mSpeciesMap.get(c));
-			}
-		}
-		
-		if (ret.size() < mSpeciesMap.size()) {
-			return ret;
-		} else {
-			return Repository.ALL_ORGANISMS;
-		}
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickEventProducer#addClickListener(org.abh.common.ui.event.ModernClickListener)
-	 */
-	public void addClickListener(ModernClickListener l) {
-		mListeners.addClickListener(l);
-	}
+  /** The m types map. */
+  private IterMap<ModernTwoStateWidget, Type> mTypesMap = new IterHashMap<ModernTwoStateWidget, Type>();
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickEventProducer#removeClickListener(org.abh.common.ui.event.ModernClickListener)
-	 */
-	@Override
-	public void removeClickListener(ModernClickListener l) {
-		mListeners.removeClickListener(l);
-	}
+  /** The m species map. */
+  private IterMap<ModernTwoStateWidget, Species> mSpeciesMap = new IterHashMap<ModernTwoStateWidget, Species>();
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickEventProducer#fireClicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public void fireClicked(ModernClickEvent e) {
-		mListeners.fireClicked(e);
-	}
+  /** The m listeners. */
+  private ModernClickListeners mListeners = new ModernClickListeners();
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public void clicked(ModernClickEvent e) {
-		fireClicked(e);
-	}
+  /**
+   * Instantiates a new data types panel.
+   */
+  public DataTypesPanel() {
+
+    // add(new ModernLabel("Show:", 40));
+    // add(UI.createHGap(10));
+
+    Repository rep = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+
+    Collection<Type> types = rep.getDataTypes();
+
+    IterTreeMap<String, Type> typeMap = new IterTreeMap<String, Type>();
+
+    for (Type t : types) {
+      typeMap.put(t.getName(), t);
+    }
+
+    for (String name : typeMap) {
+      ModernTwoStateWidget check = new ModernCheckSwitch(name, true); // new FilterButton(name, true);
+
+      check.addClickListener(this);
+
+      mTypesMap.put(check, typeMap.get(name));
+
+      add(check);
+      // add(UI.createHGap(5));
+    }
+
+    // add(UI.createHGap(5));
+
+    Collection<Species> species = rep.getOrganisms();
+
+    IterTreeMap<String, Species> speciesMap = new IterTreeMap<String, Species>();
+
+    for (Species s : species) {
+      speciesMap.put(s.getName(), s);
+    }
+
+    for (String name : speciesMap) {
+      ModernTwoStateWidget check = new ModernCheckSwitch(name, true);
+
+      check.addClickListener(this);
+
+      mSpeciesMap.put(check, speciesMap.get(name));
+
+      add(check);
+      // add(UI.createHGap(5));
+    }
+  }
+
+  /**
+   * Gets the data types.
+   *
+   * @return the data types
+   */
+  public Collection<Type> getDataTypes() {
+    List<Type> ret = new ArrayList<Type>(mTypesMap.size());
+
+    for (ModernTwoStateWidget c : mTypesMap) {
+      if (c.isSelected()) {
+        ret.add(mTypesMap.get(c));
+      }
+    }
+
+    // Searching for all types is equivelent to not specifying so
+    // we can return an empty set
+    if (ret.size() < mTypesMap.size()) {
+      return ret;
+    } else {
+      return Repository.ALL_TYPES;
+    }
+  }
+
+  /**
+   * Get organisms.
+   *
+   * @return the organisms
+   */
+  public Collection<Species> getOrganisms() {
+    List<Species> ret = new ArrayList<Species>(mSpeciesMap.size());
+
+    for (ModernTwoStateWidget c : mSpeciesMap) {
+      if (c.isSelected()) {
+        ret.add(mSpeciesMap.get(c));
+      }
+    }
+
+    if (ret.size() < mSpeciesMap.size()) {
+      return ret;
+    } else {
+      return Repository.ALL_ORGANISMS;
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickEventProducer#addClickListener(org.abh.
+   * common.ui.event.ModernClickListener)
+   */
+  public void addClickListener(ModernClickListener l) {
+    mListeners.addClickListener(l);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickEventProducer#removeClickListener(org.abh.
+   * common.ui.event.ModernClickListener)
+   */
+  @Override
+  public void removeClickListener(ModernClickListener l) {
+    mListeners.removeClickListener(l);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickEventProducer#fireClicked(org.abh.common.
+   * ui.event.ModernClickEvent)
+   */
+  @Override
+  public void fireClicked(ModernClickEvent e) {
+    mListeners.fireClicked(e);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  @Override
+  public void clicked(ModernClickEvent e) {
+    fireClicked(e);
+  }
 
 }

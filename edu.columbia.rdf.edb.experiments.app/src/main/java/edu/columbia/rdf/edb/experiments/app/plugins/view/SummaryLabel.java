@@ -25,21 +25,20 @@ import org.jebtk.modern.theme.ThemeService;
  * The Class SummaryLabel.
  */
 public class SummaryLabel extends ModernAutoSizeLabel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The color1. */
-	public static Color COLOR1 = 
-			ThemeService.getInstance().colors().getHighlight32(24);
-	
-	
-	/**
-	 * Instantiates a new summary label.
-	 *
-	 * @param text the text
-	 */
-	public SummaryLabel(String text) {
-		super(text, COLOR1);
-	}
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /** The color1. */
+  public static Color COLOR1 = ThemeService.getInstance().colors().getHighlight32(24);
+
+  /**
+   * Instantiates a new summary label.
+   *
+   * @param text
+   *          the text
+   */
+  public SummaryLabel(String text) {
+    super(text, COLOR1);
+  }
 }

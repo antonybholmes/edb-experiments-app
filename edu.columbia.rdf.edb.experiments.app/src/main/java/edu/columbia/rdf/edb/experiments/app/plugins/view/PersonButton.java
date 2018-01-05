@@ -27,31 +27,33 @@ import org.jebtk.modern.theme.ThemeService;
  */
 public class PersonButton extends ModernUrlTextLink {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	
-	/** The color2. */
-	private static Color COLOR2 = 
-			ThemeService.getInstance().colors().getHighlight32(12);
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new person button.
-	 *
-	 * @param title the title
-	 * @param email the email
-	 */
-	public PersonButton(String title, String email) {
-		super(title, email, SummaryLabel.COLOR1, COLOR2);
-	}
+  /** The color2. */
+  private static Color COLOR2 = ThemeService.getInstance().colors().getHighlight32(12);
 
-	/**
-	 * Instantiates a new person button.
-	 *
-	 * @param title the title
-	 * @param url the url
-	 */
-	public PersonButton(String title, URL url) {
-		super(title, url, SummaryLabel.COLOR1, COLOR2);
-	}
+  /**
+   * Instantiates a new person button.
+   *
+   * @param title
+   *          the title
+   * @param email
+   *          the email
+   */
+  public PersonButton(String title, String email) {
+    super(title, email, SummaryLabel.COLOR1, COLOR2);
+  }
+
+  /**
+   * Instantiates a new person button.
+   *
+   * @param title
+   *          the title
+   * @param url
+   *          the url
+   */
+  public PersonButton(String title, URL url) {
+    super(title, url, SummaryLabel.COLOR1, COLOR2);
+  }
 }

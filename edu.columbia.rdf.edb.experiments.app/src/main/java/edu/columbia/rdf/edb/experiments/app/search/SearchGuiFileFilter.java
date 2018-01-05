@@ -27,22 +27,26 @@ import javax.swing.filechooser.FileFilter;
  *
  */
 public class SearchGuiFileFilter extends FileFilter {
-	
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#accept(java.io.File)
-	 */
-	public final boolean accept(File f) {
-		if (f.isDirectory()) {
-            return true;
-        }
 
-        return f.getName().toLowerCase().endsWith("search");
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#accept(java.io.File)
+   */
+  public final boolean accept(File f) {
+    if (f.isDirectory()) {
+      return true;
+    }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "User Search (*.search)";
-	}
+    return f.getName().toLowerCase().endsWith("search");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "User Search (*.search)";
+  }
 }

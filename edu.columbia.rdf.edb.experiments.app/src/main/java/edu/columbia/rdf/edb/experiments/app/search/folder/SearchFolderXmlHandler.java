@@ -35,81 +35,77 @@ import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
  * The Class SearchFolderXmlHandler.
  */
 public class SearchFolderXmlHandler extends DefaultHandler {
-	
-	/** The m folder stack. */
-	private Deque<TreeNode<UserSearch>> mFolderStack =
-			new ArrayDeque<TreeNode<UserSearch>>();
-	
-	/**
-	 * Instantiates a new search folder xml handler.
-	 */
-	public SearchFolderXmlHandler() {
-		mFolderStack.push(new TreeRootNode<UserSearch>()); //new SearchFolderTreeNode("Search Folders"));
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
-	 */
-	@Override
-	public final void startElement(String uri,
-    		String localName,
-    		String qName,
-    		Attributes attributes) throws SAXException {
 
-		if (qName.equals("search-folder")) {
-			TreeNode<UserSearch> child = 
-					new SearchFolderTreeNode(attributes.getValue("name"));
-			
-			mFolderStack.peek().addChild(child);
-			mFolderStack.push(child);
-			
-		} else if (qName.equals("user-search")) {
-    		if (mFolderStack.peek().getValue() == null) {
-    			mFolderStack.peek().setValue(new UserSearch());
-    		}
-    		
-    		UserSearchEntry entry = new UserSearchEntry(SearchStackOperator.parseOperator(attributes.getValue("operator")),
-    				new SearchCategory(attributes.getValue("field-name"), new Path(attributes.getValue("field-path"))),
-    				attributes.getValue("search"));
-    		
-    		mFolderStack.peek().getValue().add(entry);
-    	} else {
-    		// do nothing
-    	}
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-	 */
-	@Override
-	public final void endElement(String uri,
-    		String localName,
-    		String qName) throws SAXException {
+  /** The m folder stack. */
+  private Deque<TreeNode<UserSearch>> mFolderStack = new ArrayDeque<TreeNode<UserSearch>>();
 
-		if (qName.equals("search-folder")) {
-			mFolderStack.pop();
-		}
-	}
-	
-	/*
-	@Override
-	public void characters(char[] ch, int start, int length) {
-		if (mMode.equals("operator")) {
-			mOperator = SearchStackOperator.parseOperator(new String(ch, start, length));
-		} else if (mMode.equals("search")) {
-			mSearch = new String(ch, start, length);
-		} else {
-			
-		}
-	}
-    */
-	
-    /**
-	 * Gets the search folders.
-	 *
-	 * @return the search folders
-	 */
-	public TreeRootNode<UserSearch> getSearchFolders() {
-    	return (TreeRootNode<UserSearch>)mFolderStack.pop();
+  /**
+   * Instantiates a new search folder xml handler.
+   */
+  public SearchFolderXmlHandler() {
+    mFolderStack.push(new TreeRootNode<UserSearch>()); // new SearchFolderTreeNode("Search Folders"));
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
+   * java.lang.String, java.lang.String, org.xml.sax.Attributes)
+   */
+  @Override
+  public final void startElement(String uri, String localName, String qName, Attributes attributes)
+      throws SAXException {
+
+    if (qName.equals("search-folder")) {
+      TreeNode<UserSearch> child = new SearchFolderTreeNode(attributes.getValue("name"));
+
+      mFolderStack.peek().addChild(child);
+      mFolderStack.push(child);
+
+    } else if (qName.equals("user-search")) {
+      if (mFolderStack.peek().getValue() == null) {
+        mFolderStack.peek().setValue(new UserSearch());
+      }
+
+      UserSearchEntry entry = new UserSearchEntry(SearchStackOperator.parseOperator(attributes.getValue("operator")),
+          new SearchCategory(attributes.getValue("field-name"), new Path(attributes.getValue("field-path"))),
+          attributes.getValue("search"));
+
+      mFolderStack.peek().getValue().add(entry);
+    } else {
+      // do nothing
     }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
+   * java.lang.String, java.lang.String)
+   */
+  @Override
+  public final void endElement(String uri, String localName, String qName) throws SAXException {
+
+    if (qName.equals("search-folder")) {
+      mFolderStack.pop();
+    }
+  }
+
+  /*
+   * @Override public void characters(char[] ch, int start, int length) { if
+   * (mMode.equals("operator")) { mOperator =
+   * SearchStackOperator.parseOperator(new String(ch, start, length)); } else if
+   * (mMode.equals("search")) { mSearch = new String(ch, start, length); } else {
+   * 
+   * } }
+   */
+
+  /**
+   * Gets the search folders.
+   *
+   * @return the search folders
+   */
+  public TreeRootNode<UserSearch> getSearchFolders() {
+    return (TreeRootNode<UserSearch>) mFolderStack.pop();
+  }
 }

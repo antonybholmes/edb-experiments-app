@@ -27,22 +27,26 @@ import javax.swing.filechooser.FileFilter;
  *
  */
 public class SmlGuiFileFilter extends FileFilter {
-	
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#accept(java.io.File)
-	 */
-	public final boolean accept(File f) {
-		if (f.isDirectory()) {
-            return true;
-        }
 
-        return f.getName().toLowerCase().endsWith("sml");
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#accept(java.io.File)
+   */
+  public final boolean accept(File f) {
+    if (f.isDirectory()) {
+      return true;
+    }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.filechooser.FileFilter#getDescription()
-	 */
-	public final String getDescription() {
-		return "User Search XML (*.sml)";
-	}
+    return f.getName().toLowerCase().endsWith("sml");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.filechooser.FileFilter#getDescription()
+   */
+  public final String getDescription() {
+    return "User Search XML (*.sml)";
+  }
 }

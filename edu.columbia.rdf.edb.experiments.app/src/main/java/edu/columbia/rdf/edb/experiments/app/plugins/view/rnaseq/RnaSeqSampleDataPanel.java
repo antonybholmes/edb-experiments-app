@@ -28,21 +28,23 @@ import edu.columbia.rdf.edb.ui.SampleDataPanel;
  *
  */
 public class RnaSeqSampleDataPanel extends SampleDataPanel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new rna seq sample data panel.
-	 *
-	 * @param sample the sample
-	 * @param view the view
-	 */
-	public RnaSeqSampleDataPanel(Sample sample, DataView view) {
-		super(sample, view);
-		
-		SampleSummaryPanel titlePanel = new SampleSummaryPanel(sample);
-		
-		setHeader(titlePanel);
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new rna seq sample data panel.
+   *
+   * @param sample
+   *          the sample
+   * @param view
+   *          the view
+   */
+  public RnaSeqSampleDataPanel(Sample sample, DataView view) {
+    super(sample, view);
+
+    SampleSummaryPanel titlePanel = new SampleSummaryPanel(sample);
+
+    setHeader(titlePanel);
+  }
 }

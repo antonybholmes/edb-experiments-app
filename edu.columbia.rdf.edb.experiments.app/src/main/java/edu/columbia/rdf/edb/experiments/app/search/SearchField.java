@@ -23,28 +23,28 @@ import org.jebtk.modern.text.SuggestionTextBox;
  */
 public class SearchField extends SuggestionTextBox {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The Constant DEFAULT_TEXT. */
-	private static final String DEFAULT_TEXT = "Search for...";
-	
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new search field.
-	 */
-	public SearchField() {
-		super(DEFAULT_TEXT);
-	}
+  /** The Constant DEFAULT_TEXT. */
+  private static final String DEFAULT_TEXT = "Search for...";
 
-	/**
-	 * Instantiates a new search field.
-	 *
-	 * @param text the text
-	 */
-	public SearchField(String text) {
-		super(DEFAULT_TEXT);
-		
-		setText(text);
-	}
+  /**
+   * Instantiates a new search field.
+   */
+  public SearchField() {
+    super(DEFAULT_TEXT);
+  }
+
+  /**
+   * Instantiates a new search field.
+   *
+   * @param text
+   *          the text
+   */
+  public SearchField(String text) {
+    super(DEFAULT_TEXT);
+
+    setText(text);
+  }
 }

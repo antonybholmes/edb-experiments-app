@@ -29,27 +29,30 @@ import org.jebtk.modern.theme.ThemeService;
  */
 public class FilterButton extends ModernChipButton {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * Instantiates a new filter button.
-	 *
-	 * @param text1 the text 1
-	 */
-	public FilterButton(String text1) {
-		this(text1, false);
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new filter button.
-	 *
-	 * @param text1 the text 1
-	 * @param selected the selected
-	 */
-	public FilterButton(String text1, boolean selected) {
-		super(text1, selected);
+  /**
+   * Instantiates a new filter button.
+   *
+   * @param text1
+   *          the text 1
+   */
+  public FilterButton(String text1) {
+    this(text1, false);
+  }
 
-		setForeground(ThemeService.getInstance().colors().getHighlight32(24));
-	}
+  /**
+   * Instantiates a new filter button.
+   *
+   * @param text1
+   *          the text 1
+   * @param selected
+   *          the selected
+   */
+  public FilterButton(String text1, boolean selected) {
+    super(text1, selected);
+
+    setForeground(ThemeService.getInstance().colors().getHighlight32(24));
+  }
 }

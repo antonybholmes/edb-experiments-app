@@ -25,63 +25,71 @@ import javax.swing.table.AbstractTableModel;
  * The Class SampleDataTableModel.
  */
 public class SampleDataTableModel extends AbstractTableModel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The column names. */
-	private String[] columnNames = {"Field", "Value"};
+  /** The column names. */
+  private String[] columnNames = { "Field", "Value" };
 
-	/** The data. */
-	private List<List<String>> data = new ArrayList<List<String>>();
+  /** The data. */
+  private List<List<String>> data = new ArrayList<List<String>>();
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getColumnCount()
-	 */
-	public final int getColumnCount() {
-		return columnNames.length;
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.table.TableModel#getColumnCount()
+   */
+  public final int getColumnCount() {
+    return columnNames.length;
+  }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getRowCount()
-	 */
-	public final int getRowCount() {
-		//System.out.println("row count" + dataSection.getRows().size());
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.table.TableModel#getRowCount()
+   */
+  public final int getRowCount() {
+    // System.out.println("row count" + dataSection.getRows().size());
 
-		return data.size();
-	}
+    return data.size();
+  }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.AbstractTableModel#getColumnName(int)
-	 */
-	public final String getColumnName(int col) {
-		//System.out.println("cname:" + columnNames.get(col));
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.table.AbstractTableModel#getColumnName(int)
+   */
+  public final String getColumnName(int col) {
+    // System.out.println("cname:" + columnNames.get(col));
 
-		return columnNames[col];
-	}
+    return columnNames[col];
+  }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getValueAt(int, int)
-	 */
-	public final Object getValueAt(int row, int col) {
-		if (col == 0) {
-			// make fields look correct
-			return data.get(row).get(col) + ":";
-		} else {
-			return data.get(row).get(col);
-		}
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.table.TableModel#getValueAt(int, int)
+   */
+  public final Object getValueAt(int row, int col) {
+    if (col == 0) {
+      // make fields look correct
+      return data.get(row).get(col) + ":";
+    } else {
+      return data.get(row).get(col);
+    }
+  }
 
-	/**
-	 * Instantiates a new sample data table model.
-	 *
-	 * @param data the data
-	 */
-	public SampleDataTableModel(List<List<String>> data) {
+  /**
+   * Instantiates a new sample data table model.
+   *
+   * @param data
+   *          the data
+   */
+  public SampleDataTableModel(List<List<String>> data) {
 
-		this.data = data;
+    this.data = data;
 
-		this.fireTableDataChanged();
-	}
+    this.fireTableDataChanged();
+  }
 }

@@ -26,19 +26,17 @@ import org.jebtk.modern.theme.ThemeService;
  * The Class ExperimentsIcon.
  */
 public class ExperimentsIcon extends ModernApplicationIcon {
-	
-	/** The Constant COLOR2. */
-	private static final Color COLOR2 =
-			ThemeService.getInstance().colors().getBlueTheme().getColor(2);
-	
-	/** The Constant COLOR1. */
-	private static final Color COLOR1 =
-			ThemeService.getInstance().colors().getBlueTheme().getColor(6);
-	
-	/**
-	 * Instantiates a new experiments icon.
-	 */
-	public ExperimentsIcon() {
-		super("E", "x", ColorTheme.BLUE);
-	}
+
+  /** The Constant COLOR2. */
+  private static final Color COLOR2 = ThemeService.getInstance().colors().getBlueTheme().getColor(2);
+
+  /** The Constant COLOR1. */
+  private static final Color COLOR1 = ThemeService.getInstance().colors().getBlueTheme().getColor(6);
+
+  /**
+   * Instantiates a new experiments icon.
+   */
+  public ExperimentsIcon() {
+    super("E", "x", ColorTheme.BLUE);
+  }
 }

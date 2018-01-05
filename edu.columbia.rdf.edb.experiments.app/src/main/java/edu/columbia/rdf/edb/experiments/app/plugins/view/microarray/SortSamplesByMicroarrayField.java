@@ -25,21 +25,24 @@ import edu.columbia.rdf.edb.ui.sort.SortSamplesByTag;
  * The Class SortSamplesByMicroarrayField.
  */
 public abstract class SortSamplesByMicroarrayField extends SortSamplesByTag {
-	
-	/**
-	 * Instantiates a new sort samples by microarray field.
-	 *
-	 * @param levels the levels
-	 */
-	public SortSamplesByMicroarrayField(Object... levels) {
-		super(new RootPath(NormalizationDialog.MICROARRAY_EXPRESSION_DATA, levels));
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getType()
-	 */
-	@Override
-	public String getType() {
-		return "Microarray Properties";
-	}
+  /**
+   * Instantiates a new sort samples by microarray field.
+   *
+   * @param levels
+   *          the levels
+   */
+  public SortSamplesByMicroarrayField(Object... levels) {
+    super(new RootPath(NormalizationDialog.MICROARRAY_EXPRESSION_DATA, levels));
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getType()
+   */
+  @Override
+  public String getType() {
+    return "Microarray Properties";
+  }
 }

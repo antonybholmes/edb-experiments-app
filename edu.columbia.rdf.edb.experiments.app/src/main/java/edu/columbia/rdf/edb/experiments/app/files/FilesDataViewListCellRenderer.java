@@ -15,7 +15,6 @@
  */
 package edu.columbia.rdf.edb.experiments.app.files;
 
-
 import java.awt.Component;
 
 import org.jebtk.modern.dataview.ModernData;
@@ -23,32 +22,30 @@ import org.jebtk.modern.dataview.ModernDataListCellRenderer;
 
 import edu.columbia.rdf.edb.FileDescriptor;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class FilesDataViewListCellRenderer.
  */
 public class FilesDataViewListCellRenderer extends ModernDataListCellRenderer {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataListCellRenderer#getCellRendererComponent(org.abh.common.ui.dataview.ModernData, java.lang.Object, boolean, boolean, boolean, int, int)
-	 */
-	@Override
-	public final Component getCellRendererComponent(ModernData dataView,
-			Object value,
-			boolean highlight,
-			boolean isSelected,
-			boolean hasFocus,
-			int row,
-			int column) {
-		
-		FileDescriptor file = (FileDescriptor)value;
-		
-		setText(file.getName());
 
-		return super.getCellRendererComponent(dataView, value, highlight, isSelected, hasFocus, row, column);
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataListCellRenderer#
+   * getCellRendererComponent(org.abh.common.ui.dataview.ModernData,
+   * java.lang.Object, boolean, boolean, boolean, int, int)
+   */
+  @Override
+  public final Component getCellRendererComponent(ModernData dataView, Object value, boolean highlight,
+      boolean isSelected, boolean hasFocus, int row, int column) {
+
+    FileDescriptor file = (FileDescriptor) value;
+
+    setText(file.getName());
+
+    return super.getCellRendererComponent(dataView, value, highlight, isSelected, hasFocus, row, column);
+  }
 }

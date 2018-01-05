@@ -23,70 +23,73 @@ import edu.columbia.rdf.edb.Sample;
  * The Class SampleListEntry.
  */
 public class SampleListEntry {
-	
-	/** The sample. */
-	private Sample sample = null;
-	
-	/** The is header. */
-	private boolean isHeader;
-	
-	/** The title. */
-	private String title;
 
-	/**
-	 * Instantiates a new sample list entry.
-	 *
-	 * @param title the title
-	 */
-	public SampleListEntry(String title) {
-		this.title = title;
-		this.isHeader = true;
-	}
+  /** The sample. */
+  private Sample sample = null;
 
-	/**
-	 * Instantiates a new sample list entry.
-	 *
-	 * @param experiment the experiment
-	 */
-	public SampleListEntry(Experiment experiment) {
-		this.title = experiment.getName();
-		this.isHeader = true;
-	}
+  /** The is header. */
+  private boolean isHeader;
 
-	/**
-	 * Instantiates a new sample list entry.
-	 *
-	 * @param sample the sample
-	 */
-	public SampleListEntry(Sample sample) {
-		this.sample = sample;
-		this.isHeader = false;
-	}
+  /** The title. */
+  private String title;
 
-	/**
-	 * Gets the sample.
-	 *
-	 * @return the sample
-	 */
-	public final Sample getSample() {
-		return sample;
-	}
+  /**
+   * Instantiates a new sample list entry.
+   *
+   * @param title
+   *          the title
+   */
+  public SampleListEntry(String title) {
+    this.title = title;
+    this.isHeader = true;
+  }
 
-	/**
-	 * Gets the title.
-	 *
-	 * @return the title
-	 */
-	public final String getTitle() {
-		return title;
-	}
+  /**
+   * Instantiates a new sample list entry.
+   *
+   * @param experiment
+   *          the experiment
+   */
+  public SampleListEntry(Experiment experiment) {
+    this.title = experiment.getName();
+    this.isHeader = true;
+  }
 
-	/**
-	 * Checks if is header.
-	 *
-	 * @return true, if is header
-	 */
-	public final boolean isHeader() {
-		return isHeader;
-	}
+  /**
+   * Instantiates a new sample list entry.
+   *
+   * @param sample
+   *          the sample
+   */
+  public SampleListEntry(Sample sample) {
+    this.sample = sample;
+    this.isHeader = false;
+  }
+
+  /**
+   * Gets the sample.
+   *
+   * @return the sample
+   */
+  public final Sample getSample() {
+    return sample;
+  }
+
+  /**
+   * Gets the title.
+   *
+   * @return the title
+   */
+  public final String getTitle() {
+    return title;
+  }
+
+  /**
+   * Checks if is header.
+   *
+   * @return true, if is header
+   */
+  public final boolean isHeader() {
+    return isHeader;
+  }
 }

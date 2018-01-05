@@ -24,14 +24,14 @@ import org.jebtk.modern.combobox.ModernComboBox;
  * @author Antony Holmes Holmes
  */
 public class SearchFilesComboBox extends ModernComboBox {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new search files combo box.
-	 */
-	public SearchFilesComboBox() {
-		addScrollMenuItem("Name");
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new search files combo box.
+   */
+  public SearchFilesComboBox() {
+    addScrollMenuItem("Name");
+  }
 }

@@ -35,37 +35,40 @@ import edu.columbia.rdf.edb.ui.SampleView;
  *
  */
 public class ViewSamplesByGeoPlatform extends SampleView {
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.search.Sorter#arrange(java.util.Collection, org.abh.common.ui.tree.ModernTree, boolean, org.abh.common.ui.search.FilterModel)
-	 */
-	public void arrange(Collection<Sample> samples, 
-			ModernTree<Sample> tree, 
-			boolean ascending,
-			FilterModel filterModel) {
-		Map<String, List<Sample>> map = ArrayListMultiMap.create();
 
-		for (Sample sample : samples) {
-			GEO geo = sample.getGEO();
-			
-			if (geo == null) {
-				continue;
-			}
-			
-			String name = geo.getGEOPlatform();
-			
-			if (map.containsKey(name)) {
-				map.get(name).add(sample);
-			}
-		}
-		
-		arrange(map, ascending, tree);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.search.Sorter#arrange(java.util.Collection,
+   * org.abh.common.ui.tree.ModernTree, boolean,
+   * org.abh.common.ui.search.FilterModel)
+   */
+  public void arrange(Collection<Sample> samples, ModernTree<Sample> tree, boolean ascending, FilterModel filterModel) {
+    Map<String, List<Sample>> map = ArrayListMultiMap.create();
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "GEO Platform";
-	}
+    for (Sample sample : samples) {
+      GEO geo = sample.getGEO();
+
+      if (geo == null) {
+        continue;
+      }
+
+      String name = geo.getGEOPlatform();
+
+      if (map.containsKey(name)) {
+        map.get(name).add(sample);
+      }
+    }
+
+    arrange(map, ascending, tree);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "GEO Platform";
+  }
 }

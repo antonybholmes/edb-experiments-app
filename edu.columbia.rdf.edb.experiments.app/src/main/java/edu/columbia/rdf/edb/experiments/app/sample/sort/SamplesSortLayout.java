@@ -4,7 +4,7 @@ import org.jebtk.modern.ColumnLayout;
 
 public class SamplesSortLayout extends ColumnLayout {
 
-	public SamplesSortLayout(int w, int height) {
-		super(3, w, height);
-	}
+  public SamplesSortLayout(int w, int height) {
+    super(3, w, height);
+  }
 }

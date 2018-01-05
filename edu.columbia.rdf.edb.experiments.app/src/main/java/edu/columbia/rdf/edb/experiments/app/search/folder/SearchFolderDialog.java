@@ -59,186 +59,187 @@ import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
  *
  */
 public class SearchFolderDialog extends ModernDialogTaskWindow {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The m clear button. */
-	private ModernButton mClearButton = 
-			new ModernDialogButton(UIService.getInstance().loadIcon("trash_bw", 16));
+  /** The m clear button. */
+  private ModernButton mClearButton = new ModernDialogButton(UIService.getInstance().loadIcon("trash_bw", 16));
 
-	/** The m add field button. */
-	private ModernDialogOptionalDropDownMenuButton mAddFieldButton;
+  /** The m add field button. */
+  private ModernDialogOptionalDropDownMenuButton mAddFieldButton;
 
-	/** The m text name. */
-	private ModernTextField mTextName = 
-			new ModernTextField("New Search");
+  /** The m text name. */
+  private ModernTextField mTextName = new ModernTextField("New Search");
 
-	/** The m search panel. */
-	private SearchCategoriesPanel mSearchPanel = null;
+  /** The m search panel. */
+  private SearchCategoriesPanel mSearchPanel = null;
 
-	/**
-	 * Instantiates a new search folder dialog.
-	 *
-	 * @param parent the parent
-	 */
-	public SearchFolderDialog(ModernWindow parent) {
-		this(parent, "New Search", UserSearch.createDefaultSearch());
-		
-		setTitle("New Search Folder");
-	}
+  /**
+   * Instantiates a new search folder dialog.
+   *
+   * @param parent
+   *          the parent
+   */
+  public SearchFolderDialog(ModernWindow parent) {
+    this(parent, "New Search", UserSearch.createDefaultSearch());
 
-	/**
-	 * Instantiates a new search folder dialog.
-	 *
-	 * @param parent the parent
-	 * @param name the name
-	 * @param userSearch the user search
-	 */
-	public SearchFolderDialog(ModernWindow parent, 
-			String name,
-			UserSearch userSearch) {
-		super(parent);
+    setTitle("New Search Folder");
+  }
 
-		setTitle("Edit Search Folder");
+  /**
+   * Instantiates a new search folder dialog.
+   *
+   * @param parent
+   *          the parent
+   * @param name
+   *          the name
+   * @param userSearch
+   *          the user search
+   */
+  public SearchFolderDialog(ModernWindow parent, String name, UserSearch userSearch) {
+    super(parent);
 
-		mTextName.setText(name);
-		
-		mSearchPanel = new SearchCategoriesPanel(parent);
+    setTitle("Edit Search Folder");
 
-		mSearchPanel.setUserSearch(userSearch);
+    mTextName.setText(name);
 
-		setup();
+    mSearchPanel = new SearchCategoriesPanel(parent);
 
-		createUi();
-	}
+    mSearchPanel.setUserSearch(userSearch);
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		addWindowListener(new WindowWidgetFocusEvents(mOkButton));
+    setup();
 
-		setSize(new Dimension(500, 380));
+    createUi();
+  }
 
-		setResizable(true);
+  /**
+   * Setup.
+   */
+  private void setup() {
+    addWindowListener(new WindowWidgetFocusEvents(mOkButton));
 
-		UI.centerWindowToScreen(this);
-	}
+    setSize(new Dimension(500, 380));
 
-	/**
-	 * Creates the ui.
-	 */
-	private final void createUi() {
-		//this.getContentPane().add(new JLabel("Change " + getProductDetails().getProductName() + " settings", JLabel.LEFT), BorderLayout.PAGE_START);
+    setResizable(true);
 
-		ModernComponent content = new ModernComponent();
+    UI.centerWindowToScreen(this);
+  }
 
-		Box box = VBox.create();
+  /**
+   * Creates the ui.
+   */
+  private final void createUi() {
+    // this.getContentPane().add(new JLabel("Change " +
+    // getProductDetails().getProductName() + " settings", JLabel.LEFT),
+    // BorderLayout.PAGE_START);
 
-		Box box2 = HBox.create();
+    ModernComponent content = new ModernComponent();
 
-		box2.add(new ModernAutoSizeLabel("Folder Name"));
-		box2.add(UI.createHGap(20));
-		box2.add(new ModernTextBorderPanel(mTextName, ModernWidget.VERY_LARGE_SIZE));
+    Box box = VBox.create();
 
-		box.add(box2);
+    Box box2 = HBox.create();
 
-		box.add(UI.createVGap(20));
+    box2.add(new ModernAutoSizeLabel("Folder Name"));
+    box2.add(UI.createHGap(20));
+    box2.add(new ModernTextBorderPanel(mTextName, ModernWidget.VERY_LARGE_SIZE));
 
-		box2 = HBox.create();
+    box.add(box2);
 
-		SearchCriteriaPopup searchCriteriaPopup = 
-				new ExperimentsSearchCriteriaPopup(mParent);
+    box.add(UI.createVGap(20));
 
-		mAddFieldButton = new ModernDialogOptionalDropDownMenuButton(UIService.getInstance().loadIcon("search_field", 16),
-				searchCriteriaPopup);
+    box2 = HBox.create();
 
-		mAddFieldButton.setClickMessage("add_field");
-		mAddFieldButton.setToolTip(new ModernToolTip("Add Field", 
-				"Add another search field to your search criteria."));
-		mAddFieldButton.addClickListener(this);
+    SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(mParent);
 
-		box2.add(mAddFieldButton);
+    mAddFieldButton = new ModernDialogOptionalDropDownMenuButton(UIService.getInstance().loadIcon("search_field", 16),
+        searchCriteriaPopup);
 
-		box2.add(ModernPanel.createHGap());
+    mAddFieldButton.setClickMessage("add_field");
+    mAddFieldButton.setToolTip(new ModernToolTip("Add Field", "Add another search field to your search criteria."));
+    mAddFieldButton.addClickListener(this);
 
-		mClearButton.setToolTip(new ModernToolTip("Remove All Search Criteria", 
-				"Remove all search criteria and return the search back to its default state."));
-		mClearButton.addClickListener(this);
-		box2.add(mClearButton);
+    box2.add(mAddFieldButton);
 
-		box.add(box2);
+    box2.add(ModernPanel.createHGap());
 
-		box.add(UI.createVGap(10));
+    mClearButton.setToolTip(new ModernToolTip("Remove All Search Criteria",
+        "Remove all search criteria and return the search back to its default state."));
+    mClearButton.addClickListener(this);
+    box2.add(mClearButton);
 
+    box.add(box2);
 
-		content.setHeader(box);
+    box.add(UI.createVGap(10));
 
-		mSearchPanel.setBorder(ModernPanel.BORDER);
-		ModernScrollPane scrollPane = new ModernScrollPane(mSearchPanel);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
-		//scrollPane.setBorder(ModernWidget.LINE_BORDER);
+    content.setHeader(box);
 
-		content.setBody(scrollPane);
+    mSearchPanel.setBorder(ModernPanel.BORDER);
+    ModernScrollPane scrollPane = new ModernScrollPane(mSearchPanel);
+    scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+    // scrollPane.setBorder(ModernWidget.LINE_BORDER);
 
-		setContent(content);
-	}
+    content.setBody(scrollPane);
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dialog.ModernDialogTaskWindow#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public final void clicked(ModernClickEvent e) {
-		if (e.getSource().equals(mAddFieldButton)) {
-			if (e.getMessage().equals(SearchPanel.FIELD_ADDED)) {
-				mSearchPanel.addUserSearchEntry(UserSearchEntry.createDefaultSearchEntry());
-			} else {
-				// from drop down menu
-				mSearchPanel.addUserSearchEntry(UserSearchEntry.create(SearchCategoryService.getInstance().getSearchCategory(e.getMessage())));
-			}
-		} else if (e.getSource().equals(mClearButton)) {
-			removeUserSearchEntries();
-		} else {
+    setContent(content);
+  }
 
-		}
-		
-		super.clicked(e);
-	}
-	
-	/**
-	 * Removes the user search entries.
-	 */
-	private void removeUserSearchEntries() {
-		ModernDialogStatus status = ModernMessageDialog.createDialog(mParent,
-				mParent.getAppInfo().getName(),
-				"Are you sure you want to remove all of your search criteria?",
-				MessageDialogType.WARNING_OK_CANCEL);
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.dialog.ModernDialogTaskWindow#clicked(org.abh.common.ui.
+   * event.ModernClickEvent)
+   */
+  @Override
+  public final void clicked(ModernClickEvent e) {
+    if (e.getSource().equals(mAddFieldButton)) {
+      if (e.getMessage().equals(SearchPanel.FIELD_ADDED)) {
+        mSearchPanel.addUserSearchEntry(UserSearchEntry.createDefaultSearchEntry());
+      } else {
+        // from drop down menu
+        mSearchPanel.addUserSearchEntry(
+            UserSearchEntry.create(SearchCategoryService.getInstance().getSearchCategory(e.getMessage())));
+      }
+    } else if (e.getSource().equals(mClearButton)) {
+      removeUserSearchEntries();
+    } else {
 
-		if (status == ModernDialogStatus.CANCEL) {
-			return;
-		}
+    }
 
-		// Remove the user entries
-		mSearchPanel.removeUserSearchEntries();
-	}
-	
-	/**
-	 * Gets the user search.
-	 *
-	 * @return the user search
-	 */
-	public UserSearch getUserSearch() {
-		return mSearchPanel.getSearch();
-	}
+    super.clicked(e);
+  }
 
-	/**
-	 * Gets the search folder name.
-	 *
-	 * @return the search folder name
-	 */
-	public String getSearchFolderName() {
-		return mTextName.getText();
-	}
+  /**
+   * Removes the user search entries.
+   */
+  private void removeUserSearchEntries() {
+    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent, mParent.getAppInfo().getName(),
+        "Are you sure you want to remove all of your search criteria?", MessageDialogType.WARNING_OK_CANCEL);
+
+    if (status == ModernDialogStatus.CANCEL) {
+      return;
+    }
+
+    // Remove the user entries
+    mSearchPanel.removeUserSearchEntries();
+  }
+
+  /**
+   * Gets the user search.
+   *
+   * @return the user search
+   */
+  public UserSearch getUserSearch() {
+    return mSearchPanel.getSearch();
+  }
+
+  /**
+   * Gets the search folder name.
+   *
+   * @return the search folder name
+   */
+  public String getSearchFolderName() {
+    return mTextName.getText();
+  }
 }

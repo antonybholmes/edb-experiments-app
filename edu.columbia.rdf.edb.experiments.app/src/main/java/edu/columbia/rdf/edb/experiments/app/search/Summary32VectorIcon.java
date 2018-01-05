@@ -26,32 +26,36 @@ import org.jebtk.modern.widget.ModernWidget;
  */
 public class Summary32VectorIcon extends RightPane32VectorIcon {
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.graphics.icons.RightPane32VectorIcon#drawIcon(java.awt.Graphics2D, int, int, int, int)
-	 */
-	@Override
-	public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
-		super.drawIcon(g2, x, y, w, h, params);
-		
-		x = x + (w - WIDTH) / 2 + WIDTH - PANE_WIDTH + 2;
-		y = y + (h - HEIGHT) / 2 + BAR_HEIGHT + 2;
-		
-		w = PANE_WIDTH - 5;
-		
-		g2.setColor(ModernWidget.LINE_COLOR);
-		
-		g2.drawLine(x, y, x + w, y);
-		
-		y += 4;
-		
-		g2.drawLine(x, y, x + w, y);
-		
-		y += 4;
-		
-		g2.drawLine(x, y, x + w, y);
-		
-		y += 4;
-		
-		g2.drawLine(x, y, x + w, y);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.graphics.icons.RightPane32VectorIcon#drawIcon(java.awt.
+   * Graphics2D, int, int, int, int)
+   */
+  @Override
+  public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
+    super.drawIcon(g2, x, y, w, h, params);
+
+    x = x + (w - WIDTH) / 2 + WIDTH - PANE_WIDTH + 2;
+    y = y + (h - HEIGHT) / 2 + BAR_HEIGHT + 2;
+
+    w = PANE_WIDTH - 5;
+
+    g2.setColor(ModernWidget.LINE_COLOR);
+
+    g2.drawLine(x, y, x + w, y);
+
+    y += 4;
+
+    g2.drawLine(x, y, x + w, y);
+
+    y += 4;
+
+    g2.drawLine(x, y, x + w, y);
+
+    y += 4;
+
+    g2.drawLine(x, y, x + w, y);
+  }
 }

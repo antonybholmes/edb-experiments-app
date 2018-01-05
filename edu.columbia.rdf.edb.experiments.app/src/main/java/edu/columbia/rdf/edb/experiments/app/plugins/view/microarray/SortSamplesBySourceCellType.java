@@ -20,22 +20,21 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
  * The Class SortSamplesBySourceCellType.
  */
 public class SortSamplesBySourceCellType extends SortSamplesByMicroarrayField {
-	
-	/**
-	 * Instantiates a new sort samples by source cell type.
-	 */
-	public SortSamplesBySourceCellType() {
-		super("Sample",
-				"Source", 
-				"Characteristic",
-				"Cell_Type");
-		// Do nothing
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Source Cell Type";
-	}
+  /**
+   * Instantiates a new sort samples by source cell type.
+   */
+  public SortSamplesBySourceCellType() {
+    super("Sample", "Source", "Characteristic", "Cell_Type");
+    // Do nothing
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Source Cell Type";
+  }
 }

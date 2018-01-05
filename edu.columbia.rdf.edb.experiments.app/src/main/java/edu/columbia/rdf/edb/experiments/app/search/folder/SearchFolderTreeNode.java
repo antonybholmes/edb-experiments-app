@@ -28,47 +28,52 @@ import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
  */
 public class SearchFolderTreeNode extends TreeNode<UserSearch> {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new search folder tree node.
-	 *
-	 * @param name the name
-	 */
-	public SearchFolderTreeNode(String name) {
-		super(name);
-	}
-	
-	/**
-	 * Instantiates a new search folder tree node.
-	 *
-	 * @param name the name
-	 * @param userSearch the user search
-	 */
-	public SearchFolderTreeNode(String name, UserSearch userSearch) {
-		super(name, userSearch);
-	}
+  /**
+   * Instantiates a new search folder tree node.
+   *
+   * @param name
+   *          the name
+   */
+  public SearchFolderTreeNode(String name) {
+    super(name);
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.tree.TreeNode#toXml(org.w3c.dom.Document)
-	 */
-	@Override
-	public Element toXml(Document doc) {
-		Element element = doc.createElement("search-folder");
-		element.setAttribute("name", getName());
-		
-		for (TreeNode<UserSearch> child : this) {
-			element.appendChild(child.toXml(doc));
-		}
-		
-		if (getValue() != null) {
-			for (UserSearchEntry entry : getValue()) {
-				element.appendChild(entry.toXml(doc));
-			}
-		}
-		
-		return element;
-	}
+  /**
+   * Instantiates a new search folder tree node.
+   *
+   * @param name
+   *          the name
+   * @param userSearch
+   *          the user search
+   */
+  public SearchFolderTreeNode(String name, UserSearch userSearch) {
+    super(name, userSearch);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.tree.TreeNode#toXml(org.w3c.dom.Document)
+   */
+  @Override
+  public Element toXml(Document doc) {
+    Element element = doc.createElement("search-folder");
+    element.setAttribute("name", getName());
+
+    for (TreeNode<UserSearch> child : this) {
+      element.appendChild(child.toXml(doc));
+    }
+
+    if (getValue() != null) {
+      for (UserSearchEntry entry : getValue()) {
+        element.appendChild(entry.toXml(doc));
+      }
+    }
+
+    return element;
+  }
 
 }

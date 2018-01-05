@@ -35,81 +35,79 @@ import edu.columbia.rdf.edb.Sample;
  * The Class SampleSummaryPanel.
  */
 public class SampleSummaryPanel extends VBox {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The label size. */
-	protected static Dimension LABEL_SIZE = 
-			new Dimension(100, ModernWidget.getWidgetHeight());
 
-	/**
-	 * Instantiates a new sample summary panel.
-	 *
-	 * @param sample the sample
-	 */
-	public SampleSummaryPanel(Sample sample) {
-		Box box;
-		
-		ModernAutoSizeLabel label = new SummaryTitleLabel(sample.getName() + " (" + sample.getExpressionType() + ")");
-		
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-		add(UI.createVGap(5));
-		
-		add(label);
+  /** The label size. */
+  protected static Dimension LABEL_SIZE = new Dimension(100, ModernWidget.getWidgetHeight());
 
-		if (sample.getAliases().size() > 1) {
-			add(UI.createVGap(5));
-			box = HBox.create();
-			box.add(new ModernAutoSizeLabel("Aliases:", LABEL_SIZE));
-			box.add(new SummaryLabel(sample.getAliases().toString()));
-			add(box);
-			
-		}
-		
-		add(UI.createVGap(5));
-		
-		box = HBox.create();
-		box.add(sample.getPersons().size() > 1 ? new ModernAutoSizeLabel("Contacts:", LABEL_SIZE) : new ModernAutoSizeLabel("Contact:", LABEL_SIZE));
+  /**
+   * Instantiates a new sample summary panel.
+   *
+   * @param sample
+   *          the sample
+   */
+  public SampleSummaryPanel(Sample sample) {
+    Box box;
 
-		List<Person> persons = CollectionUtils.sort(sample.getPersons());
-		
-		if (persons.size() > 0) {
-			for (int i = 0; i < persons.size(); ++i) {
-				Person person = persons.get(i);
-				
-				//box.add(new ModernAutoSizeLabel(person.getName()));
-				//box.add(UI.createHGap(5));
-				PersonButton button = new PersonButton(person.getName(), person.getEmail());
-				box.add(button);
-				
-				if (i < persons.size() - 1) {
-					box.add(new ModernAutoSizeLabel(","));
-				}
-				
-				box.add(UI.createHGap(5));
-			}
-		}
-		
-		/*
-		for (int i = 0; i < persons.size(); ++i) {
-			buffer.append(persons.get(i).getName());
-			//buffer.append(" (").append(TextUtils.join(ArrayUtils.sort(persons.get(i).getRoles()), TextUtils.COMMA_DELIMITER)).append(")");
-			buffer.append(" <").append(persons.get(i).getEmail()).append(">");
-			
-			if (i < persons.size() - 1) {
-				buffer.append(TextUtils.COMMA_DELIMITER);
-			}
-		}
-		*/
-		
-		//add(UI.createVGap(5));
-		
-		add(box);
-		
-		box = HBox.create();
-		box.add(new ModernAutoSizeLabel("Organism:", LABEL_SIZE));
-		box.add(new SummaryLabel(sample.getOrganism().getScientificName()));
-		add(box);
-	}
+    ModernAutoSizeLabel label = new SummaryTitleLabel(sample.getName() + " (" + sample.getExpressionType() + ")");
+
+    add(UI.createVGap(5));
+
+    add(label);
+
+    if (sample.getAliases().size() > 1) {
+      add(UI.createVGap(5));
+      box = HBox.create();
+      box.add(new ModernAutoSizeLabel("Aliases:", LABEL_SIZE));
+      box.add(new SummaryLabel(sample.getAliases().toString()));
+      add(box);
+
+    }
+
+    add(UI.createVGap(5));
+
+    box = HBox.create();
+    box.add(sample.getPersons().size() > 1 ? new ModernAutoSizeLabel("Contacts:", LABEL_SIZE)
+        : new ModernAutoSizeLabel("Contact:", LABEL_SIZE));
+
+    List<Person> persons = CollectionUtils.sort(sample.getPersons());
+
+    if (persons.size() > 0) {
+      for (int i = 0; i < persons.size(); ++i) {
+        Person person = persons.get(i);
+
+        // box.add(new ModernAutoSizeLabel(person.getName()));
+        // box.add(UI.createHGap(5));
+        PersonButton button = new PersonButton(person.getName(), person.getEmail());
+        box.add(button);
+
+        if (i < persons.size() - 1) {
+          box.add(new ModernAutoSizeLabel(","));
+        }
+
+        box.add(UI.createHGap(5));
+      }
+    }
+
+    /*
+     * for (int i = 0; i < persons.size(); ++i) {
+     * buffer.append(persons.get(i).getName());
+     * //buffer.append(" (").append(TextUtils.join(ArrayUtils.sort(persons.get(i).
+     * getRoles()), TextUtils.COMMA_DELIMITER)).append(")");
+     * buffer.append(" <").append(persons.get(i).getEmail()).append(">");
+     * 
+     * if (i < persons.size() - 1) { buffer.append(TextUtils.COMMA_DELIMITER); } }
+     */
+
+    // add(UI.createVGap(5));
+
+    add(box);
+
+    box = HBox.create();
+    box.add(new ModernAutoSizeLabel("Organism:", LABEL_SIZE));
+    box.add(new SummaryLabel(sample.getOrganism().getScientificName()));
+    add(box);
+  }
 }

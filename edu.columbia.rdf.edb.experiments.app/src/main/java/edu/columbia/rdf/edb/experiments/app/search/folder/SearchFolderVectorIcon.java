@@ -20,31 +20,32 @@ import java.awt.Graphics2D;
 
 import org.jebtk.modern.graphics.icons.FolderVectorIcon;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class SearchFolderVectorIcon.
  */
 public class SearchFolderVectorIcon extends FolderVectorIcon {
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.graphics.icons.FolderVectorIcon#drawIcon(java.awt.Graphics2D, int, int, int, int)
-	 */
-	@Override
-	public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
-		super.drawIcon(g2, x, y, w, h, params);
-		
-		double hf = h * HEIGHT_SCALE * 0.5;
-		double wf = hf;
-		
-		
-		double xf = x + (w - wf) / 2.0;
-		double yf = y + (h - hf) / 2;
-		
-		g2.setColor(Color.WHITE);
-		
-		g2.drawOval((int)xf, (int)yf, (int)(wf * 0.8), (int)(wf * 0.8));
-		
-		g2.drawLine((int)(xf + wf * 0.8), (int)(yf + wf * 0.8), (int)(xf + wf), (int)(yf + wf));
-	}
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.graphics.icons.FolderVectorIcon#drawIcon(java.awt.
+   * Graphics2D, int, int, int, int)
+   */
+  @Override
+  public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
+    super.drawIcon(g2, x, y, w, h, params);
+
+    double hf = h * HEIGHT_SCALE * 0.5;
+    double wf = hf;
+
+    double xf = x + (w - wf) / 2.0;
+    double yf = y + (h - hf) / 2;
+
+    g2.setColor(Color.WHITE);
+
+    g2.drawOval((int) xf, (int) yf, (int) (wf * 0.8), (int) (wf * 0.8));
+
+    g2.drawLine((int) (xf + wf * 0.8), (int) (yf + wf * 0.8), (int) (xf + wf), (int) (yf + wf));
+  }
 }

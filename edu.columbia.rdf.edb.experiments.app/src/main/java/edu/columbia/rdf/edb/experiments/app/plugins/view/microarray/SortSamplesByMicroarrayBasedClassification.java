@@ -20,21 +20,20 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
  * The Class SortSamplesByMicroarrayBasedClassification.
  */
 public class SortSamplesByMicroarrayBasedClassification extends SortSamplesByMicroarrayField {
-	
-	/**
-	 * Instantiates a new sort samples by microarray based classification.
-	 */
-	public SortSamplesByMicroarrayBasedClassification() {
-		super("Sample",	
-				"Source", 
-				"Characteristic",
-				"GEP_Based_Classification");
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Microarray Classification";
-	}
+  /**
+   * Instantiates a new sort samples by microarray based classification.
+   */
+  public SortSamplesByMicroarrayBasedClassification() {
+    super("Sample", "Source", "Characteristic", "GEP_Based_Classification");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Microarray Classification";
+  }
 }

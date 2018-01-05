@@ -49,313 +49,323 @@ import edu.columbia.rdf.edb.experiments.app.files.FileViewRibbonPanel;
 import edu.columbia.rdf.edb.experiments.app.files.FilesModel;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class VfsWindow.
  */
 public class VfsWindow extends ModernRibbonWindow implements ModernClickListener {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The m file view model. */
-	private ViewModel mFileViewModel = new ViewModel();
-	
-	/** The m files model. */
-	private FilesModel mFilesModel = new FilesModel();
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The m content pane. */
-	private ModernHContentPane mContentPane = 
-			new ModernHContentPane();
+  /** The m file view model. */
+  private ViewModel mFileViewModel = new ViewModel();
 
-	/** The m view panel. */
-	private VfsFilesTreePanel mViewPanel;
-	
-	/** The m files panel. */
-	private VfsFilesPanel mFilesPanel;
-	
-	/** The m download button. */
-	private ModernButton mDownloadButton = new RibbonLargeButton("Download", 
-			UIService.getInstance().loadIcon("download", 24));
-	
+  /** The m files model. */
+  private FilesModel mFilesModel = new FilesModel();
 
-	/**
-	 * Download files in the background.
-	 * 
-	 * @author Antony Holmes Holmes
-	 *
-	 */
-	private class DownloadTask extends StatusTask {
+  /** The m content pane. */
+  private ModernHContentPane mContentPane = new ModernHContentPane();
 
-		/**
-		 * Instantiates a new download task.
-		 *
-		 * @param statusModel the status model
-		 */
-		public DownloadTask(StatusModel statusModel) {
-			super(statusModel);
-		}
+  /** The m view panel. */
+  private VfsFilesTreePanel mViewPanel;
 
-		/* (non-Javadoc)
-		 * @see javax.swing.SwingWorker#doInBackground()
-		 */
-		@Override
-		public Void doInBackground() {
+  /** The m files panel. */
+  private VfsFilesPanel mFilesPanel;
 
-			publish("Downloading files...");
+  /** The m download button. */
+  private ModernButton mDownloadButton = new RibbonLargeButton("Download",
+      UIService.getInstance().loadIcon("download", 24));
 
-			try {
-				downloadFiles();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+  /**
+   * Download files in the background.
+   * 
+   * @author Antony Holmes Holmes
+   *
+   */
+  private class DownloadTask extends StatusTask {
 
-			return null;
-		}
+    /**
+     * Instantiates a new download task.
+     *
+     * @param statusModel
+     *          the status model
+     */
+    public DownloadTask(StatusModel statusModel) {
+      super(statusModel);
+    }
 
-		/* (non-Javadoc)
-		 * @see org.abh.common.ui.status.StatusTask#done()
-		 */
-		@Override
-		public void done() {
-			publish(UI.STATUS_READY);
-		}
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.swing.SwingWorker#doInBackground()
+     */
+    @Override
+    public Void doInBackground() {
 
-	/**
-	 * Instantiates a new vfs window.
-	 *
-	 * @param parent the parent
-	 */
-	public VfsWindow(ModernWindow parent) {
-		this(parent, new SampleModel());
-	}
-	
+      publish("Downloading files...");
 
-	/**
-	 * Instantiates a new vfs window.
-	 *
-	 * @param parent the parent
-	 * @param selectionModel the selection model
-	 */
-	public VfsWindow(ModernWindow parent, SampleModel selectionModel) {
-		super(parent.getAppInfo());
-		
-		setSubTitle("File Explorer");
-		
-		//First organize by experiment
-		Map<Experiment, Set<Sample>> sortByExperiment =
-				Experiment.sortSamplesByExperiment(selectionModel.getItems());
-		
-		mViewPanel = new VfsFilesTreePanel(mFilesModel, sortByExperiment);
-		
-		mFilesPanel = new VfsFilesPanel(this, mFilesModel, mFileViewModel);
-		
-		try {
-			mFilesPanel.setFiles(selectionModel);
-		} catch (IOException | ParseException e) {
-			e.printStackTrace();
-		}
+      try {
+        downloadFiles();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
 
-		createMenus();
+      return null;
+    }
 
-		createRibbon();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.abh.common.ui.status.StatusTask#done()
+     */
+    @Override
+    public void done() {
+      publish(UI.STATUS_READY);
+    }
+  }
 
-		createUi();
+  /**
+   * Instantiates a new vfs window.
+   *
+   * @param parent
+   *          the parent
+   */
+  public VfsWindow(ModernWindow parent) {
+    this(parent, new SampleModel());
+  }
 
-		createMenus();
+  /**
+   * Instantiates a new vfs window.
+   *
+   * @param parent
+   *          the parent
+   * @param selectionModel
+   *          the selection model
+   */
+  public VfsWindow(ModernWindow parent, SampleModel selectionModel) {
+    super(parent.getAppInfo());
 
-		init();
-	}
+    setSubTitle("File Explorer");
 
-	/**
-	 * Creates the ribbon.
-	 */
-	public final void createRibbon() {
+    // First organize by experiment
+    Map<Experiment, Set<Sample>> sortByExperiment = Experiment.sortSamplesByExperiment(selectionModel.getItems());
 
-		//
-		// Create the ribbon menu
-		//
+    mViewPanel = new VfsFilesTreePanel(mFilesModel, sortByExperiment);
 
-		//RibbongetRibbonMenu() getRibbonMenu() = new RibbongetRibbonMenu()(6);
+    mFilesPanel = new VfsFilesPanel(this, mFilesModel, mFileViewModel);
 
-		RibbonMenuItem menuItem;
+    try {
+      mFilesPanel.setFiles(selectionModel);
+    } catch (IOException | ParseException e) {
+      e.printStackTrace();
+    }
 
-		menuItem = new RibbonMenuItem("Download Files");
-		getRibbonMenu().addTabbedMenuItem(menuItem);
+    createMenus();
 
-		getRibbonMenu().addDefaultItems(getAppInfo());
+    createRibbon();
 
-		getRibbonMenu().setDefaultIndex(2);
-		
-		getRibbonMenu().addClickListener(this);
+    createUi();
 
-		//
-		// Create the ribbon
-		//
+    createMenus();
 
-		//getRibbon() = new Ribbon2();
-		getRibbon().setHelpButtonEnabled(getAppInfo());
+    init();
+  }
 
-		//
-		// Create the toolbars for the annotation tab
-		//
+  /**
+   * Creates the ribbon.
+   */
+  public final void createRibbon() {
 
-		ModernButtonWidget button;
+    //
+    // Create the ribbon menu
+    //
 
-		button = new QuickAccessButton(UIService.getInstance().loadIcon("download", 16));
-		button.setClickMessage("Download");
-		button.setToolTip(new ModernToolTip("Download Files", 
-				"Download the selected files to your computer in a zip archive."));
-		button.addClickListener(this);
-		addQuickAccessButton(button);
+    // RibbongetRibbonMenu() getRibbonMenu() = new RibbongetRibbonMenu()(6);
 
-		/*
-		button = new ModernButton(Resources.getInstance().loadIcon("save", 16));
-		button.setActionCommand("Export");
-		button.setToolTip(new ModernToolTip("Export", 
-				"Export the information on the currently selected samples to a text file. This does not include CEL, CHP, or expression data."));
-		button.addClickListener(this);
-		ribbon.addQuickAccessButton(button);
-		 */
+    RibbonMenuItem menuItem;
 
-		/*
-		ModernPopupMenu exportMenu = new ModernPopupMenu();
+    menuItem = new RibbonMenuItem("Download Files");
+    getRibbonMenu().addTabbedMenuItem(menuItem);
 
-		exportMenu.add(new ModernTwoLineMenuItem("Experiments", "Export experiment information.", new ModernFile32VectorIcon(ColorUtil.decodeHtmlColor("#aaccff"))));
-		exportMenu.add(new ModernTwoLineMenuItem("Samples", "Export sample information.", new ModernFile32VectorIcon(ColorUtil.decodeHtmlColor("#ffaaaa"))));
+    getRibbonMenu().addDefaultItems(getAppInfo());
 
-		button = new ModernDropDownMenuButton(UIResources.getInstance().loadScalableIcon(SaveVectorIcon.class, 16), exportMenu);
-		button.setToolTip(new ModernToolTip("Export", 
-				"Export the information on the currently selected samples to a text file. This does not include CEL, CHP, or expression data."));
-		button.addClickListener(this);
-		ribbon.addQuickAccessButton(button);
-		 */
+    getRibbonMenu().setDefaultIndex(2);
 
-		//toolbarSection = new ClipboardRibbonSection(getRibbon());
-		//toolbar.add(toolbarSection);
+    getRibbonMenu().addClickListener(this);
 
-		//mSampleViewSection = new SampleFolderRibbonSection(mSampleViewModel, getRibbon());
-		//toolbar.add(mSampleViewSection);
-		
-		mDownloadButton.setClickMessage("Download");
-		mDownloadButton.setToolTip(new ModernToolTip("Download Files", 
-				"Download the selected files to your computer in a zip archive."));
-		mDownloadButton.addClickListener(this);
-		getRibbon().getToolbar("Files").getSection("Files").add(mDownloadButton);
-		getRibbon().getToolbar("Files").addSection(new FileViewRibbonPanel(getRibbon(), mFileViewModel));
-	}
+    //
+    // Create the ribbon
+    //
 
+    // getRibbon() = new Ribbon2();
+    getRibbon().setHelpButtonEnabled(getAppInfo());
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.window.ModernWindow#createUi()
-	 */
-	@Override
-	public final void createUi() {
+    //
+    // Create the toolbars for the annotation tab
+    //
 
-		//mCategoryTreePanel = new CategoryDirectoryTreePanel(mSampleFolderModel);
+    ModernButtonWidget button;
 
-		//
-		// Create the annotation tab.
-		//
+    button = new QuickAccessButton(UIService.getInstance().loadIcon("download", 16));
+    button.setClickMessage("Download");
+    button.setToolTip(
+        new ModernToolTip("Download Files", "Download the selected files to your computer in a zip archive."));
+    button.addClickListener(this);
+    addQuickAccessButton(button);
 
-		
+    /*
+     * button = new ModernButton(Resources.getInstance().loadIcon("save", 16));
+     * button.setActionCommand("Export"); button.setToolTip(new
+     * ModernToolTip("Export",
+     * "Export the information on the currently selected samples to a text file. This does not include CEL, CHP, or expression data."
+     * )); button.addClickListener(this); ribbon.addQuickAccessButton(button);
+     */
 
-		// default to showing the user a blank search field to indicate that
-		// they can search or narrow down the criteria.
+    /*
+     * ModernPopupMenu exportMenu = new ModernPopupMenu();
+     * 
+     * exportMenu.add(new ModernTwoLineMenuItem("Experiments",
+     * "Export experiment information.", new
+     * ModernFile32VectorIcon(ColorUtil.decodeHtmlColor("#aaccff"))));
+     * exportMenu.add(new ModernTwoLineMenuItem("Samples",
+     * "Export sample information.", new
+     * ModernFile32VectorIcon(ColorUtil.decodeHtmlColor("#ffaaaa"))));
+     * 
+     * button = new
+     * ModernDropDownMenuButton(UIResources.getInstance().loadScalableIcon(
+     * SaveVectorIcon.class, 16), exportMenu); button.setToolTip(new
+     * ModernToolTip("Export",
+     * "Export the information on the currently selected samples to a text file. This does not include CEL, CHP, or expression data."
+     * )); button.addClickListener(this); ribbon.addQuickAccessButton(button);
+     */
 
+    // toolbarSection = new ClipboardRibbonSection(getRibbon());
+    // toolbar.add(toolbarSection);
 
-		//searchPanel.setBorder(BorderService.getInstance().createTopBottomBorder(ModernTheme.getInstance().getClass("widget").getInt("padding")));
+    // mSampleViewSection = new SampleFolderRibbonSection(mSampleViewModel,
+    // getRibbon());
+    // toolbar.add(mSampleViewSection);
 
+    mDownloadButton.setClickMessage("Download");
+    mDownloadButton.setToolTip(
+        new ModernToolTip("Download Files", "Download the selected files to your computer in a zip archive."));
+    mDownloadButton.addClickListener(this);
+    getRibbon().getToolbar("Files").getSection("Files").add(mDownloadButton);
+    getRibbon().getToolbar("Files").addSection(new FileViewRibbonPanel(getRibbon(), mFileViewModel));
+  }
 
-		//RibbonBarPanel topPanel = new RibbonBarPanel();
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.window.ModernWindow#createUi()
+   */
+  @Override
+  public final void createUi() {
 
-		//ModernPanel topPanel = new ModernComponent();
+    // mCategoryTreePanel = new CategoryDirectoryTreePanel(mSampleFolderModel);
 
-		//Box topPanel = new HBoxPanel();
-		//searchPanel.setBorder(ModernPanel.BORDER);
+    //
+    // Create the annotation tab.
+    //
 
-		//topPanel.add(Ui.createHorizontalGap(300));
+    // default to showing the user a blank search field to indicate that
+    // they can search or narrow down the criteria.
 
-		//JLabel label = new ModernLabel("Search for");
+    // searchPanel.setBorder(BorderService.getInstance().createTopBottomBorder(ModernTheme.getInstance().getClass("widget").getInt("padding")));
 
-		///label.setBorder(BorderService.getInstance().createBorder(10));
-		//label.setAlignmentY(TOP_ALIGNMENT);
-		//topPanel.add(label);
-		//topPanel.add(Ui.createHorizontalGap(20));
+    // RibbonBarPanel topPanel = new RibbonBarPanel();
 
+    // ModernPanel topPanel = new ModernComponent();
 
-		
-		mContentPane.getModel().setCenterTab(new CenterTab(mFilesPanel));
-		
-		//panel.add(searchPanel, BorderLayout.PAGE_START);
-		//panel.setBody(mContentPane);
-		//panel.add(mTabBar, BorderLayout.PAGE_END);
+    // Box topPanel = new HBoxPanel();
+    // searchPanel.setBorder(ModernPanel.BORDER);
 
-		setBody(mContentPane);
-	}
+    // topPanel.add(Ui.createHorizontalGap(300));
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.window.ModernWindow#init()
-	 */
-	public void init() {
-		//mTabsModel.addTabListener(this);
+    // JLabel label = new ModernLabel("Search for");
 
-		// they both need to communicate with each other
-		//experimentSortRibbonSection.addClickListener(experimentsPanel);
+    /// label.setBorder(BorderService.getInstance().createBorder(10));
+    // label.setAlignmentY(TOP_ALIGNMENT);
+    // topPanel.add(label);
+    // topPanel.add(Ui.createHorizontalGap(20));
 
-		// Add some default panes so user can search
-		addFoldersPane();
-		//addExperimentSummaryPane();
+    mContentPane.getModel().setCenterTab(new CenterTab(mFilesPanel));
 
-		setSize(1080, 720);
+    // panel.add(searchPanel, BorderLayout.PAGE_START);
+    // panel.setBody(mContentPane);
+    // panel.add(mTabBar, BorderLayout.PAGE_END);
 
-		UI.centerWindowToScreen(this);
-		
-		//mSearchWithinButton.setSelected(SettingsService.getInstance().getAsBool("edb.experiments.search.within-current-folder"));
-	}
+    setBody(mContentPane);
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	public final void clicked(ModernClickEvent e) {
-		if (e.getMessage().equals(UI.MENU_EXIT)) {
-			close();
-		} else if (e.getMessage().equals(UI.MENU_OPTIONS)) {
-			ModernOptionsDialog.setVisible(this, getAppInfo());
-		} else if (e.getMessage().equals(UI.MENU_ABOUT)) {
-			ModernAboutDialog.show(this, getAppInfo());
-		} else if (e.getMessage().equals("folders_pane")) {
-			addFoldersPane();
-		} else if (e.getMessage().toLowerCase().contains("download")) {
-			try {
-				downloadFiles();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		} else {
-			// do nothing
-		}
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.window.ModernWindow#init()
+   */
+  public void init() {
+    // mTabsModel.addTabListener(this);
 
-	/**
-	 * Download files.
-	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	private void downloadFiles() throws IOException {
-		mFilesPanel.downloadFiles();
-	}
+    // they both need to communicate with each other
+    // experimentSortRibbonSection.addClickListener(experimentsPanel);
 
-	/**
-	 * Adds the folders pane.
-	 */
-	private void addFoldersPane() {
-		if (mContentPane.getModel().containsTab("Folders")) {
-			return;
-		}
+    // Add some default panes so user can search
+    addFoldersPane();
+    // addExperimentSummaryPane();
 
-		mContentPane.getModel().addLeftTab(new SizableContentPane("Folders", mViewPanel, 300, 100, 600));
-	}
+    setSize(1080, 720);
+
+    UI.centerWindowToScreen(this);
+
+    // mSearchWithinButton.setSelected(SettingsService.getInstance().getAsBool("edb.experiments.search.within-current-folder"));
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  public final void clicked(ModernClickEvent e) {
+    if (e.getMessage().equals(UI.MENU_EXIT)) {
+      close();
+    } else if (e.getMessage().equals(UI.MENU_OPTIONS)) {
+      ModernOptionsDialog.setVisible(this, getAppInfo());
+    } else if (e.getMessage().equals(UI.MENU_ABOUT)) {
+      ModernAboutDialog.show(this, getAppInfo());
+    } else if (e.getMessage().equals("folders_pane")) {
+      addFoldersPane();
+    } else if (e.getMessage().toLowerCase().contains("download")) {
+      try {
+        downloadFiles();
+      } catch (IOException e1) {
+        e1.printStackTrace();
+      }
+    } else {
+      // do nothing
+    }
+  }
+
+  /**
+   * Download files.
+   *
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   */
+  private void downloadFiles() throws IOException {
+    mFilesPanel.downloadFiles();
+  }
+
+  /**
+   * Adds the folders pane.
+   */
+  private void addFoldersPane() {
+    if (mContentPane.getModel().containsTab("Folders")) {
+      return;
+    }
+
+    mContentPane.getModel().addLeftTab(new SizableContentPane("Folders", mViewPanel, 300, 100, 600));
+  }
 }

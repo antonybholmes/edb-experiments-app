@@ -20,69 +20,71 @@ import org.jebtk.modern.combobox.AndOrLogicalComboBox;
 
 // TODO: Auto-generated Javadoc
 /**
- * Extension of the Logical Combo box to support MatchStackOperators which
- * are a superset of the boolean operators.
+ * Extension of the Logical Combo box to support MatchStackOperators which are a
+ * superset of the boolean operators.
  * 
  * @author Antony Holmes Holmes
  */
 public class OperatorComboBox extends AndOrLogicalComboBox {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new operator combo box.
-	 *
-	 * @param operator the operator
-	 */
-	public OperatorComboBox(SearchStackOperator operator) {
-		this.setSelectedIndex(getIndexFromType(operator));
-	}
-	
-	/**
-	 * Gets the operator type from index.
-	 *
-	 * @param index the index
-	 * @return the operator type from index
-	 */
-	public static final SearchStackOperator getOperatorTypeFromIndex(int index) {
-		switch (index) {
-		case 0:
-			return SearchStackOperator.AND;
-		case 1:
-			return SearchStackOperator.OR;
-		case 2:
-			return SearchStackOperator.NOR;
-		case 3:
-			return SearchStackOperator.XOR;
-		case 4:
-			return SearchStackOperator.NAND;
-		default:
-			return SearchStackOperator.INVALID;
-		}
-	}
+  /**
+   * Instantiates a new operator combo box.
+   *
+   * @param operator
+   *          the operator
+   */
+  public OperatorComboBox(SearchStackOperator operator) {
+    this.setSelectedIndex(getIndexFromType(operator));
+  }
 
-	/**
-	 * Gets the index from type.
-	 *
-	 * @param type the type
-	 * @return the index from type
-	 */
-	public static final int getIndexFromType(SearchStackOperator type) {
-		switch (type) {
-		case AND:
-			return 0;
-		case OR:
-			return 1;
-		case NOR:
-			return 2;
-		case XOR:
-			return 3;
-		case NAND:
-			return 4;
-		default:
-			return -1;
-		}
-	}
+  /**
+   * Gets the operator type from index.
+   *
+   * @param index
+   *          the index
+   * @return the operator type from index
+   */
+  public static final SearchStackOperator getOperatorTypeFromIndex(int index) {
+    switch (index) {
+    case 0:
+      return SearchStackOperator.AND;
+    case 1:
+      return SearchStackOperator.OR;
+    case 2:
+      return SearchStackOperator.NOR;
+    case 3:
+      return SearchStackOperator.XOR;
+    case 4:
+      return SearchStackOperator.NAND;
+    default:
+      return SearchStackOperator.INVALID;
+    }
+  }
+
+  /**
+   * Gets the index from type.
+   *
+   * @param type
+   *          the type
+   * @return the index from type
+   */
+  public static final int getIndexFromType(SearchStackOperator type) {
+    switch (type) {
+    case AND:
+      return 0;
+    case OR:
+      return 1;
+    case NOR:
+      return 2;
+    case XOR:
+      return 3;
+    case NAND:
+      return 4;
+    default:
+      return -1;
+    }
+  }
 }

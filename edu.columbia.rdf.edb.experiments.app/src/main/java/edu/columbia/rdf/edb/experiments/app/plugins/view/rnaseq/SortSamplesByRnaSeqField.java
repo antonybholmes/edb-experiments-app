@@ -24,30 +24,34 @@ import edu.columbia.rdf.edb.ui.sort.SortSamplesByTag;
  * The Class SortSamplesByRnaSeqField.
  */
 public abstract class SortSamplesByRnaSeqField extends SortSamplesByTag {
-	
-	/**
-	 * Instantiates a new sort samples by rna seq field.
-	 *
-	 * @param path the path
-	 */
-	public SortSamplesByRnaSeqField(String path) {
-		this(new Path(path));
-	}
-	
-	/**
-	 * Instantiates a new sort samples by rna seq field.
-	 *
-	 * @param path the path
-	 */
-	public SortSamplesByRnaSeqField(Path path) {
-		super(path);
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getType()
-	 */
-	@Override
-	public String getType() {
-		return "RNA-seq properties";
-	}
+  /**
+   * Instantiates a new sort samples by rna seq field.
+   *
+   * @param path
+   *          the path
+   */
+  public SortSamplesByRnaSeqField(String path) {
+    this(new Path(path));
+  }
+
+  /**
+   * Instantiates a new sort samples by rna seq field.
+   *
+   * @param path
+   *          the path
+   */
+  public SortSamplesByRnaSeqField(Path path) {
+    super(path);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getType()
+   */
+  @Override
+  public String getType() {
+    return "RNA-seq properties";
+  }
 }

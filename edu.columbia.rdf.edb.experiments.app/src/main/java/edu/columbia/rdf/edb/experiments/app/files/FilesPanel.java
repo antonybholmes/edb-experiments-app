@@ -32,32 +32,33 @@ import edu.columbia.rdf.edb.ui.RepositoryService;
  * The Class FilesPanel.
  */
 public abstract class FilesPanel extends ModernComponent {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The m files. */
-	protected Set<FileDescriptor> mFiles = null;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
+  /** The m files. */
+  protected Set<FileDescriptor> mFiles = null;
 
-	/**
-	 * Sets the sample files.
-	 *
-	 * @param samples the new sample files
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	public void setSampleFiles(Collection<Sample> samples) throws IOException, ParseException {
-		Repository repository = 
-				RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
-		
-		mFiles = repository.getSampleFiles(samples);
-	}
+  /**
+   * Sets the sample files.
+   *
+   * @param samples
+   *          the new sample files
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   * @throws ParseException
+   *           the parse exception
+   */
+  public void setSampleFiles(Collection<Sample> samples) throws IOException, ParseException {
+    Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
 
-	/**
-	 * Gets the selected files.
-	 *
-	 * @return the selected files
-	 */
-	public abstract Set<FileDescriptor> getSelectedFiles();
+    mFiles = repository.getSampleFiles(samples);
+  }
+
+  /**
+   * Gets the selected files.
+   *
+   * @return the selected files
+   */
+  public abstract Set<FileDescriptor> getSelectedFiles();
 }

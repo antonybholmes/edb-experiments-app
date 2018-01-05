@@ -26,21 +26,21 @@ import org.jebtk.modern.text.ModernAutoSizeLabel;
  * The Class SummaryTitleLabel.
  */
 public class SummaryTitleLabel extends ModernAutoSizeLabel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The Constant FONT. */
-	private static final Font FONT = FontService.getInstance().loadFont(
-			SettingsService.getInstance().getAsString("theme.widget.fonts.medium-text.family"), 14);
-			
-	
-	/**
-	 * Instantiates a new summary title label.
-	 *
-	 * @param text the text
-	 */
-	public SummaryTitleLabel(String text) {
-		super(text, FONT);
-	}
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /** The Constant FONT. */
+  private static final Font FONT = FontService.getInstance()
+      .loadFont(SettingsService.getInstance().getAsString("theme.widget.fonts.medium-text.family"), 14);
+
+  /**
+   * Instantiates a new summary title label.
+   *
+   * @param text
+   *          the text
+   */
+  public SummaryTitleLabel(String text) {
+    super(text, FONT);
+  }
 }

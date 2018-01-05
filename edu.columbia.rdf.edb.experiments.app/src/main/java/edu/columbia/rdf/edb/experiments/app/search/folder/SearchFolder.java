@@ -24,67 +24,75 @@ import edu.columbia.rdf.edb.ui.search.UserSearch;
  * @author Antony Holmes Holmes
  */
 public class SearchFolder implements Comparable<SearchFolder> {
-	
-	/** The m name. */
-	private String mName;
-	
-	/** The m search. */
-	private UserSearch mSearch = null;
 
-	/**
-	 * Instantiates a new search folder.
-	 *
-	 * @param name the name
-	 * @param search the search
-	 */
-	public SearchFolder(String name, UserSearch search) {
-		mName = name;
-		mSearch = search;
-	}
-	
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public final String getName() {
-		return mName;
-	}
-	
-	/**
-	 * Gets the search.
-	 *
-	 * @return the search
-	 */
-	public final UserSearch getSearch() {
-		return mSearch;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(SearchFolder f) {
-		return mName.compareTo(f.mName);
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof SearchFolder)) {
-			return false;
-		}
-		
-		return compareTo((SearchFolder)o) == 0;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		return mName.hashCode();
-	}
+  /** The m name. */
+  private String mName;
+
+  /** The m search. */
+  private UserSearch mSearch = null;
+
+  /**
+   * Instantiates a new search folder.
+   *
+   * @param name
+   *          the name
+   * @param search
+   *          the search
+   */
+  public SearchFolder(String name, UserSearch search) {
+    mName = name;
+    mSearch = search;
+  }
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public final String getName() {
+    return mName;
+  }
+
+  /**
+   * Gets the search.
+   *
+   * @return the search
+   */
+  public final UserSearch getSearch() {
+    return mSearch;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Comparable#compareTo(java.lang.Object)
+   */
+  @Override
+  public int compareTo(SearchFolder f) {
+    return mName.compareTo(f.mName);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (!(o instanceof SearchFolder)) {
+      return false;
+    }
+
+    return compareTo((SearchFolder) o) == 0;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    return mName.hashCode();
+  }
 }

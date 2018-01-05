@@ -44,209 +44,209 @@ import edu.columbia.rdf.edb.ui.ViewPluginService;
  *
  */
 public class SampleViewWidePanel extends ModernWidget implements ModernSelectionListener, ModernClickListener {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	//private JList samplesList;
+  // private JList samplesList;
 
-	//private SamplePanel samplePanel;
+  // private SamplePanel samplePanel;
 
-	/** The m samples tree panel. */
-	private SamplesPanel mSamplesTreePanel;
+  /** The m samples tree panel. */
+  private SamplesPanel mSamplesTreePanel;
 
-	/** The m split pane. */
-	private ModernVSplitPaneLine mSplitPane;
+  /** The m split pane. */
+  private ModernVSplitPaneLine mSplitPane;
 
-	/** The m sample panel. */
-	private ModernComponent mSamplePanel;
+  /** The m sample panel. */
+  private ModernComponent mSamplePanel;
 
-	/** The m sampl selection model. */
-	private SampleModel mSamplSelectionModel;
+  /** The m sampl selection model. */
+  private SampleModel mSamplSelectionModel;
 
-	//private FilesPanel mFilesPanel;
+  // private FilesPanel mFilesPanel;
 
-	/** The m view model. */
-	private ViewModel mViewModel;
+  /** The m view model. */
+  private ViewModel mViewModel;
 
+  /*
+   * private class ViewEvents implements ChangeListener {
+   * 
+   * @Override public void changed(ChangeEvent e) { viewChanged(); } }
+   */
 
-	/*
-	private class ViewEvents implements ChangeListener {
+  /**
+   * Instantiates a new sample view wide panel.
+   *
+   * @param parent
+   *          the parent
+   * @param viewModel
+   *          the view model
+   * @param sampleModel
+   *          the sample model
+   * @param sampleSelectionModel
+   *          the sample selection model
+   * @param fileViewModel
+   *          the file view model
+   */
+  public SampleViewWidePanel(ModernWindow parent, ViewModel viewModel, SampleModel sampleModel,
+      SampleModel sampleSelectionModel, FilterModel filterModel, ViewModel fileViewModel) {
+    mViewModel = viewModel;
+    mSamplSelectionModel = sampleSelectionModel;
 
-		@Override
-		public void changed(ChangeEvent e) {
-			viewChanged();
-		}
-	}
-	*/
+    mSamplesTreePanel = new SamplesTreePanel(parent, sampleModel, filterModel);
 
-	/**
-	 * Instantiates a new sample view wide panel.
-	 *
-	 * @param parent the parent
-	 * @param viewModel the view model
-	 * @param sampleModel the sample model
-	 * @param sampleSelectionModel the sample selection model
-	 * @param fileViewModel the file view model
-	 */
-	public SampleViewWidePanel(ModernWindow parent,
-			ViewModel viewModel,
-			SampleModel sampleModel,
-			SampleModel sampleSelectionModel,
-			FilterModel filterModel,
-			ViewModel fileViewModel) {
-		mViewModel = viewModel;
-		mSamplSelectionModel = sampleSelectionModel;
+    // mFilesPanel = new FilesPanel(parent,
+    // sampleModel,
+    // sampleSelectionModel,
+    // fileViewModel);
 
-		mSamplesTreePanel = new SamplesTreePanel(parent, sampleModel, filterModel);
-		
-		
+    mSamplesTreePanel.addSelectionListener(this);
+    // mSamplesTreePanel.setBorder(ModernPanel.BORDER);
+    // samplesPanel.addClickListener(this);
 
-		//mFilesPanel = new FilesPanel(parent, 
-		//		sampleModel,
-		//		sampleSelectionModel,
-		//		fileViewModel);
+    // samplePanel = new SamplePanel(parent);
 
-		mSamplesTreePanel.addSelectionListener(this);
-		//mSamplesTreePanel.setBorder(ModernPanel.BORDER);
-		//samplesPanel.addClickListener(this);
+    // splitPaneH = new HHidePaneLeft(new SideTabPanel("Samples", samplesListPanel),
+    // samplePanel, 200,
+    // ModernTheme.getInstance().getClass("widget").getInt("padding"), false);
 
-		//samplePanel = new SamplePanel(parent);
+    // splitPaneH = new HSplitPane(new SideTabPanel("Samples", samplesListPanel),
+    // samplePanel);
 
-		//splitPaneH = new HHidePaneLeft(new SideTabPanel("Samples", samplesListPanel), samplePanel, 200, ModernTheme.getInstance().getClass("widget").getInt("padding"), false);
+    mSplitPane = new ModernVSplitPaneLine();
+    mSplitPane.addComponent(mSamplesTreePanel, 0.4);
+    mSplitPane.setDividerWidth(0);
 
-		//splitPaneH = new HSplitPane(new SideTabPanel("Samples", samplesListPanel), samplePanel);
+    add(mSplitPane, BorderLayout.CENTER);
 
-		mSplitPane = new ModernVSplitPaneLine();
-		mSplitPane.addComponent(mSamplesTreePanel, 0.4);
-		mSplitPane.setDividerWidth(0);
+    mSamplesTreePanel.setSelectedSample(1);
 
-		add(mSplitPane, BorderLayout.CENTER);
+    // viewModel.addChangeListener(new ViewEvents());
 
-		mSamplesTreePanel.setSelectedSample(1);
+    // viewChanged();
 
-		//viewModel.addChangeListener(new ViewEvents());
+    showSampleDetails();
+  }
 
-		//viewChanged();
-		
-		showSampleDetails();
-	}
+  /**
+   * Sets the selected sample.
+   *
+   * @param row
+   *          the new selected sample
+   */
+  public final void setSelectedSample(int row) {
 
+    mSamplesTreePanel.setSelectedSample(row);
 
+    showSampleDetails();
+  }
 
-	/**
-	 * Sets the selected sample.
-	 *
-	 * @param row the new selected sample
-	 */
-	public final void setSelectedSample(int row) {
+  /**
+   * Displays the details of the currently selected sample in the middle info
+   * pane.
+   */
+  private void showSampleDetails() {
 
-		mSamplesTreePanel.setSelectedSample(row);
+    // on startup ensure that that there is at least one
+    // sample in the list before trying to display something
 
-		showSampleDetails();
-	}
+    List<Sample> samples = mSamplesTreePanel.getSelectedSamples();
 
-	/**
-	 * Displays the details of the currently selected sample in the middle info pane.
-	 */
-	private void showSampleDetails() {
+    if (samples.size() == 0) {
+      return;
+    }
 
-		// on startup ensure that that there is at least one
-		// sample in the list before trying to display something
+    // show details for the first selected sample
 
-		List<Sample> samples = mSamplesTreePanel.getSelectedSamples();
+    if (mViewModel.getView().equals("Annotation")) {
+      Sample sample = samples.get(0);
 
-		if (samples.size() == 0) {
-			return;
-		}
+      mSamplePanel = ViewPluginService.getInstance().getView(sample.getExpressionType().getName())
+          .getSamplePanel(sample);
+      // mSamplePanel.setBorder(ModernPanel.BORDER);
 
-		// show details for the first selected sample
+      // mSplitPaneH.setComponent2(mSamplePanel);
+      // samplePanel.setSample(sample);
 
-		if (mViewModel.getView().equals("Annotation")) {
-			Sample sample = samples.get(0);
+      // list files for all selected samples
 
-			mSamplePanel = ViewPluginService.getInstance().getView(sample.getExpressionType().getName()).getSamplePanel(sample);
-			//mSamplePanel.setBorder(ModernPanel.BORDER);
+      // samplePanel.setSampleFiles(samplesPanel.getSelectedSamples());
 
-			//mSplitPaneH.setComponent2(mSamplePanel);
-			//samplePanel.setSample(sample);
+      mSplitPane.replaceComponent(mSamplePanel, 0.6, 1);
+    }
 
-			// list files for all selected samples
+    mSamplSelectionModel.set(samples);
+  }
 
-			//samplePanel.setSampleFiles(samplesPanel.getSelectedSamples());
-			
-			mSplitPane.replaceComponent(mSamplePanel, 0.6, 1);
-		}
+  /**
+   * Mouse clicked.
+   *
+   * @param e
+   *          the e
+   */
+  public final void mouseClicked(MouseEvent e) {
+    if (e.getClickCount() == 2) {
+      // double clicked so open sample windows for highlighted experiments
 
-		mSamplSelectionModel.set(samples);
-	}
+      // showSampleWindows();
+    } else {
+      showSampleDetails();
+    }
+  }
 
-	/**
-	 * Mouse clicked.
-	 *
-	 * @param e the e
-	 */
-	public final void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2) {
-			// double clicked so open sample windows for highlighted experiments
+  /**
+   * Gets the samples panel.
+   *
+   * @return the samples panel
+   */
+  public final SamplesPanel getSamplesPanel() {
+    return mSamplesTreePanel;
+  }
 
-			//showSampleWindows();
-		} else {
-			showSampleDetails();
-		}
-	}
+  /**
+   * Gets the selected samples.
+   *
+   * @return the selected samples
+   */
+  public List<Sample> getSelectedSamples() {
+    return mSamplesTreePanel.getSelectedSamples();
+  }
 
-	/**
-	 * Gets the samples panel.
-	 *
-	 * @return the samples panel
-	 */
-	public final SamplesPanel getSamplesPanel() {
-		return mSamplesTreePanel;
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.
+   * common.event.ChangeEvent)
+   */
+  @Override
+  public void selectionChanged(ChangeEvent e) {
+    showSampleDetails();
+  }
 
-	/**
-	 * Gets the selected samples.
-	 *
-	 * @return the selected samples
-	 */
-	public List<Sample> getSelectedSamples() {
-		return mSamplesTreePanel.getSelectedSamples();
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  public void clicked(ModernClickEvent e) {
+    if (mSamplesTreePanel.getSelectedSamples().size() == 0) {
+      return;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.common.event.ChangeEvent)
-	 */
-	@Override
-	public void selectionChanged(ChangeEvent e) {
-		showSampleDetails();
-	}
+    JFrame window = new SampleWindow(mSamplesTreePanel.getSelectedSamples().get(0));
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	public void clicked(ModernClickEvent e) {
-		if (mSamplesTreePanel.getSelectedSamples().size() == 0) {
-			return;
-		}
+    UI.centerWindowToScreen(window);
 
-		JFrame window = new SampleWindow(mSamplesTreePanel.getSelectedSamples().get(0));
+    window.setVisible(true);
+  }
 
-		UI.centerWindowToScreen(window);
-
-		window.setVisible(true);
-	}
-
-	/*
-	private void viewChanged() {
-		if (mViewModel.getView().equals("Annotation")) {
-			//if (mSamplePanel != null) {
-			//	mSplitPane.replaceComponent(mSamplePanel, 0.6, 1);
-			//}
-		} else {
-			mSplitPane.replaceComponent(mFilesPanel, 0.6, 1);
-		}
-	}
-	*/
+  /*
+   * private void viewChanged() { if (mViewModel.getView().equals("Annotation")) {
+   * //if (mSamplePanel != null) { // mSplitPane.replaceComponent(mSamplePanel,
+   * 0.6, 1); //} } else { mSplitPane.replaceComponent(mFilesPanel, 0.6, 1); } }
+   */
 }

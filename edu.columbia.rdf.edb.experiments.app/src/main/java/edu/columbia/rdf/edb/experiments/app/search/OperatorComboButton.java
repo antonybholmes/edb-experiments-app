@@ -15,7 +15,6 @@
  */
 package edu.columbia.rdf.edb.experiments.app.search;
 
-
 import java.awt.Dimension;
 
 import org.jebtk.core.search.SearchStackOperator;
@@ -24,7 +23,6 @@ import org.jebtk.modern.button.ModernDropDownMenuLabelButton;
 import org.jebtk.modern.menu.ModernMenuItem;
 import org.jebtk.modern.menu.ModernPopupMenu;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * Specialised combobox for showing selecting search criteria.
@@ -32,52 +30,53 @@ import org.jebtk.modern.menu.ModernPopupMenu;
  * @author Antony Holmes Holmes
  */
 public class OperatorComboButton extends ModernDropDownMenuLabelButton {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The Constant WIDTH. */
-	public static final int WIDTH = 48;
-	
-	/** The Constant SIZE. */
-	private static final Dimension SIZE = 
-			new Dimension(WIDTH, WIDGET_HEIGHT);
 
-	/**
-	 * Instantiates a new operator combo button.
-	 *
-	 * @param text the text
-	 */
-	public OperatorComboButton(String text) {
-		super(text);
-			
-		setup();
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new operator combo button.
-	 *
-	 * @param booleanOperator the boolean operator
-	 */
-	public OperatorComboButton(SearchStackOperator booleanOperator) {
-		this(booleanOperator.toString());
-	}
+  /** The Constant WIDTH. */
+  public static final int WIDTH = 48;
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		ModernPopupMenu menu = new ModernPopupMenu();
-		
-		ModernMenuItem menuItem = new ModernMenuItem("AND");
-		UI.setSize(menuItem, SIZE);
-		menu.add(menuItem);
-		menuItem = new ModernMenuItem("OR");
-		UI.setSize(menuItem, SIZE);
-		menu.add(menuItem);
+  /** The Constant SIZE. */
+  private static final Dimension SIZE = new Dimension(WIDTH, WIDGET_HEIGHT);
 
-		setMenu(menu);
-		
-		UI.setSize(this, SIZE);
-	}
+  /**
+   * Instantiates a new operator combo button.
+   *
+   * @param text
+   *          the text
+   */
+  public OperatorComboButton(String text) {
+    super(text);
+
+    setup();
+  }
+
+  /**
+   * Instantiates a new operator combo button.
+   *
+   * @param booleanOperator
+   *          the boolean operator
+   */
+  public OperatorComboButton(SearchStackOperator booleanOperator) {
+    this(booleanOperator.toString());
+  }
+
+  /**
+   * Setup.
+   */
+  private void setup() {
+    ModernPopupMenu menu = new ModernPopupMenu();
+
+    ModernMenuItem menuItem = new ModernMenuItem("AND");
+    UI.setSize(menuItem, SIZE);
+    menu.add(menuItem);
+    menuItem = new ModernMenuItem("OR");
+    UI.setSize(menuItem, SIZE);
+    menu.add(menuItem);
+
+    setMenu(menu);
+
+    UI.setSize(this, SIZE);
+  }
 }

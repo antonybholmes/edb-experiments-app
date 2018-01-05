@@ -21,33 +21,29 @@ import org.jebtk.modern.UIService;
 import org.jebtk.modern.menu.ModernIconMenuItem;
 import org.jebtk.modern.menu.ModernScrollPopupMenu;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
- * Specialised combobox for showing search criteria. This
- * class should be subclassed and not used directly.
+ * Specialised combobox for showing search criteria. This class should be
+ * subclassed and not used directly.
  *
  * @author Antony Holmes Holmes
  *
  */
 public class SearchCriteriaPopup extends ModernScrollPopupMenu {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The Constant MENU_ITEM_SIZE. */
-	public static final Dimension MENU_ITEM_SIZE = 
-			new Dimension(400, UIService.ICON_SIZE_48);
-	
-	/** The Constant MAX_HEIGHT. */
-	public static final int MAX_HEIGHT = 
-			ModernIconMenuItem.HEIGHT * 15;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new search criteria popup.
-	 */
-	public SearchCriteriaPopup() {
-		super(MAX_HEIGHT);
-	}
+  /** The Constant MENU_ITEM_SIZE. */
+  public static final Dimension MENU_ITEM_SIZE = new Dimension(400, UIService.ICON_SIZE_48);
+
+  /** The Constant MAX_HEIGHT. */
+  public static final int MAX_HEIGHT = ModernIconMenuItem.HEIGHT * 15;
+
+  /**
+   * Instantiates a new search criteria popup.
+   */
+  public SearchCriteriaPopup() {
+    super(MAX_HEIGHT);
+  }
 }

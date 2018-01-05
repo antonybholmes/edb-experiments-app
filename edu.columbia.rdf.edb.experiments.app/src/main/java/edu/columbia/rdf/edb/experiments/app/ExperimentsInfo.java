@@ -24,16 +24,13 @@ import org.jebtk.modern.help.GuiAppInfo;
  * The Class ExperimentsInfo.
  */
 public class ExperimentsInfo extends GuiAppInfo {
-	
-	/**
-	 * Instantiates a new experiments info.
-	 */
-	public ExperimentsInfo() {
-		super("Experiments", 
-				new AppVersion(37), 
-				"Copyright (C) 2011-${year} Antony Holmes.", 
-				UIService.getInstance().loadIcon(ExperimentsIcon.class, 32),
-				UIService.getInstance().loadIcon(ExperimentsIcon.class, 128),
-				"Experiment Database Viewer");
-	}
+
+  /**
+   * Instantiates a new experiments info.
+   */
+  public ExperimentsInfo() {
+    super("Experiments", new AppVersion(37), "Copyright (C) 2011-${year} Antony Holmes.",
+        UIService.getInstance().loadIcon(ExperimentsIcon.class, 32),
+        UIService.getInstance().loadIcon(ExperimentsIcon.class, 128), "Experiment Database Viewer");
+  }
 }

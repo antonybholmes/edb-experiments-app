@@ -37,64 +37,62 @@ import org.jebtk.modern.graphics.icons.FileVectorIcon;
 import org.jebtk.modern.graphics.icons.FolderVectorIcon;
 import org.jebtk.modern.graphics.icons.ModernIcon;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The class ModernDataListCellRenderer.
  */
 public class FilesListViewCellRenderer extends ModernDataCellRenderer {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
-	/** The Constant FILE_ICON. */
-	private static final ModernIcon FILE_ICON = new FileVectorIcon();
-	
-	/** The Constant DIR_ICON. */
-	private static final ModernIcon DIR_ICON = 
-			UIService.getInstance().loadIcon(FolderVectorIcon.class, 32);
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/** The m text. */
-	private String mText;
+  /** The Constant FILE_ICON. */
+  private static final ModernIcon FILE_ICON = new FileVectorIcon();
 
-	/** The m icon. */
-	private ModernIcon mIcon;
-	
-	/* (non-Javadoc)
-	 * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
-	 */
-	@Override
-	public void drawForegroundAAText(Graphics2D g2) {
-		mIcon.drawIcon(g2, PADDING, (getHeight() - 32) / 2, 32);
-		
-		String t = getTruncatedText(g2, mText, 0, getWidth() - DOUBLE_PADDING - 32);
+  /** The Constant DIR_ICON. */
+  private static final ModernIcon DIR_ICON = UIService.getInstance().loadIcon(FolderVectorIcon.class, 32);
 
-		g2.setColor(TEXT_COLOR);
-		g2.drawString(t, 32 + DOUBLE_PADDING, getTextYPosCenter(g2, getHeight()));
-	}
+  /** The m text. */
+  private String mText;
 
-	/* (non-Javadoc)
-	 * @see org.abh.lib.ui.modern.dataview.ModernDataCellRenderer#getCellRendererComponent(org.abh.lib.ui.modern.dataview.ModernData, java.lang.Object, boolean, boolean, boolean, int, int)
-	 */
-	public Component getCellRendererComponent(ModernData table,
-			Object value,
-			boolean highlight,
-			boolean isSelected,
-			boolean hasFocus,
-			int row,
-			int column) {
-		
-		mText = value.toString();
-		
-		if (table.getValueAt(row, 1).equals("File Folder")) {
-			mIcon = DIR_ICON;
-		} else {
-			mIcon = FILE_ICON;
-		}
+  /** The m icon. */
+  private ModernIcon mIcon;
 
-		return super.getCellRendererComponent(table, value, highlight, isSelected, hasFocus, row, column);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
+   */
+  @Override
+  public void drawForegroundAAText(Graphics2D g2) {
+    mIcon.drawIcon(g2, PADDING, (getHeight() - 32) / 2, 32);
+
+    String t = getTruncatedText(g2, mText, 0, getWidth() - DOUBLE_PADDING - 32);
+
+    g2.setColor(TEXT_COLOR);
+    g2.drawString(t, 32 + DOUBLE_PADDING, getTextYPosCenter(g2, getHeight()));
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.ui.modern.dataview.ModernDataCellRenderer#
+   * getCellRendererComponent(org.abh.lib.ui.modern.dataview.ModernData,
+   * java.lang.Object, boolean, boolean, boolean, int, int)
+   */
+  public Component getCellRendererComponent(ModernData table, Object value, boolean highlight, boolean isSelected,
+      boolean hasFocus, int row, int column) {
+
+    mText = value.toString();
+
+    if (table.getValueAt(row, 1).equals("File Folder")) {
+      mIcon = DIR_ICON;
+    } else {
+      mIcon = FILE_ICON;
+    }
+
+    return super.getCellRendererComponent(table, value, highlight, isSelected, hasFocus, row, column);
+  }
 }

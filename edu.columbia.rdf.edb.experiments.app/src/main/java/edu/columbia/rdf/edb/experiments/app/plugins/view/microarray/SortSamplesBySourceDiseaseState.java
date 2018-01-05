@@ -20,22 +20,21 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
  * The Class SortSamplesBySourceDiseaseState.
  */
 public class SortSamplesBySourceDiseaseState extends SortSamplesByMicroarrayField {
-	
-	/**
-	 * Instantiates a new sort samples by source disease state.
-	 */
-	public SortSamplesBySourceDiseaseState() {
-		super("Sample",
-				"Source", 
-				"Characteristic",
-				"Disease_State");
-		// Do nothing
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Source Disease State";
-	}
+  /**
+   * Instantiates a new sort samples by source disease state.
+   */
+  public SortSamplesBySourceDiseaseState() {
+    super("Sample", "Source", "Characteristic", "Disease_State");
+    // Do nothing
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Source Disease State";
+  }
 }

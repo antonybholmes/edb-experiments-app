@@ -20,19 +20,21 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.rnaseq;
  * The Class SortSamplesByGenome.
  */
 public class SortSamplesByGenome extends SortSamplesByRnaSeqField {
-	
-	/**
-	 * Instantiates a new sort samples by genome.
-	 */
-	public SortSamplesByGenome() {
-		super("/RNA-seq/Sample/Genome");
-	}
-	
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	@Override
-	public final String getName() {
-		return "Genome";
-	}
+
+  /**
+   * Instantiates a new sort samples by genome.
+   */
+  public SortSamplesByGenome() {
+    super("/RNA-seq/Sample/Genome");
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  @Override
+  public final String getName() {
+    return "Genome";
+  }
 }

@@ -23,50 +23,51 @@ import org.jebtk.modern.collapsepane.ModernCollapseNodeRenderer;
 import org.jebtk.modern.tree.ModernTreeBranchNodeRenderer;
 import org.jebtk.modern.widget.ModernWidget;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
- * Provides a rudimentary implementation of a node renderer that
- * detects if is selected and what the tree branching depth is.
- * This forms the basis of concrete implementations of renderers.
+ * Provides a rudimentary implementation of a node renderer that detects if is
+ * selected and what the tree branching depth is. This forms the basis of
+ * concrete implementations of renderers.
  *
  * @author Antony Holmes Holmes
  */
 public class SectionPanelCollapseNodeRenderer extends ModernCollapseNodeRenderer {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The Constant FONT. */
-	private static final Font FONT = ModernWidget.SUB_HEADING_FONT;
-	
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.collapsepane.ModernCollapseNodeRenderer#drawForegroundAAText(java.awt.Graphics2D)
-	 */
-	@Override
-	public void drawForegroundAAText(Graphics2D g2) {
-		int x = 0;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-		int y = (getHeight() - 16) / 2;
-		
-		if (mIsHighlighted) {
-			if (mIsExpanded) {
-				ModernTreeBranchNodeRenderer.BRANCH_OPEN_ICON.drawIcon(g2, x, y, 16);
-			} else {
-				ModernTreeBranchNodeRenderer.BRANCH_CLOSED_ICON.drawIcon(g2, x, y, 16);
-			}
-		}
+  /** The Constant FONT. */
+  private static final Font FONT = ModernWidget.SUB_HEADING_FONT;
 
-		x += ModernTreeBranchNodeRenderer.BRANCH_OPEN_ICON.getWidth(); //+ ModernTheme.getInstance().getClass("widget").getInt("padding");
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.collapsepane.ModernCollapseNodeRenderer#
+   * drawForegroundAAText(java.awt.Graphics2D)
+   */
+  @Override
+  public void drawForegroundAAText(Graphics2D g2) {
+    int x = 0;
 
-		Point p = getStringCenterPlotCoordinates(g2, getRect(), mName);
-			
-		g2.setColor(getForeground());
-		
-		g2.setFont(FONT);
-		
-		g2.drawString(getTruncatedText(g2, mName, x, mRect.getW()), x, p.y);
-	}
+    int y = (getHeight() - 16) / 2;
+
+    if (mIsHighlighted) {
+      if (mIsExpanded) {
+        ModernTreeBranchNodeRenderer.BRANCH_OPEN_ICON.drawIcon(g2, x, y, 16);
+      } else {
+        ModernTreeBranchNodeRenderer.BRANCH_CLOSED_ICON.drawIcon(g2, x, y, 16);
+      }
+    }
+
+    x += ModernTreeBranchNodeRenderer.BRANCH_OPEN_ICON.getWidth(); // +
+                                                                   // ModernTheme.getInstance().getClass("widget").getInt("padding");
+
+    Point p = getStringCenterPlotCoordinates(g2, getRect(), mName);
+
+    g2.setColor(getForeground());
+
+    g2.setFont(FONT);
+
+    g2.drawString(getTruncatedText(g2, mName, x, mRect.getW()), x, p.y);
+  }
 }

@@ -29,8 +29,6 @@ import org.jebtk.modern.window.ModernRibbonWindow;
 
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * Allows user to customize how the experiments are listed.
@@ -39,111 +37,110 @@ import edu.columbia.rdf.edb.ui.search.UserSearch;
  *
  */
 public class SearchFolderRibbonSection extends RibbonSection implements ModernClickListener {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The Constant DOWNLOAD. */
-	public static final String DOWNLOAD = "Download";
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The m new folder button. */
-	private ModernButtonWidget mNewFolderButton = new RibbonLargeButton("New Folder",
-					UIService.getInstance().loadIcon(SearchFolderVectorIcon.class, 24),
-					"New Search Folder",
-					"Create a new search folder.");
+  /** The Constant DOWNLOAD. */
+  public static final String DOWNLOAD = "Download";
 
-	/** The m edit folder button. */
-	private ModernButtonWidget mEditFolderButton = new RibbonLargeButton("Edit Folder",
-			UIService.getInstance().loadIcon("edit_bw", 16),
-			"Edit Search Folder",
-			"Edit the selected search folder.");
-	
-	/** The m delete folder button. */
-	private ModernButtonWidget mDeleteFolderButton = new RibbonLargeButton("Delete Folders",
-			UIService.getInstance().loadIcon("trash_bw", 16),
-			"Delete Search Folders",
-			"Delete selected search folders.");
+  /** The m new folder button. */
+  private ModernButtonWidget mNewFolderButton = new RibbonLargeButton("New Folder",
+      UIService.getInstance().loadIcon(SearchFolderVectorIcon.class, 24), "New Search Folder",
+      "Create a new search folder.");
 
-	
-	/** The m parent. */
-	private ModernRibbonWindow mParent;
+  /** The m edit folder button. */
+  private ModernButtonWidget mEditFolderButton = new RibbonLargeButton("Edit Folder",
+      UIService.getInstance().loadIcon("edit_bw", 16), "Edit Search Folder", "Edit the selected search folder.");
 
-	/** The m folder panel. */
-	private SearchFolderTreePanel mFolderPanel;
-	
-	/**
-	 * The Class DeleteEvent.
-	 */
-	private class DeleteEvent implements DialogEventListener {
+  /** The m delete folder button. */
+  private ModernButtonWidget mDeleteFolderButton = new RibbonLargeButton("Delete Folders",
+      UIService.getInstance().loadIcon("trash_bw", 16), "Delete Search Folders", "Delete selected search folders.");
 
-		/* (non-Javadoc)
-		 * @see org.abh.common.ui.dialog.DialogEventListener#statusChanged(org.abh.common.ui.dialog.DialogEvent)
-		 */
-		@Override
-		public void statusChanged(DialogEvent e) {
-			if (e.getStatus() == ModernDialogStatus.OK) {
-				mFolderPanel.deleteFolder();
-			}
-		}
-		
-	}
+  /** The m parent. */
+  private ModernRibbonWindow mParent;
 
-	/**
-	 * Instantiates a new search folder ribbon section.
-	 *
-	 * @param parent the parent
-	 * @param folderPanel the folder panel
-	 */
-	public SearchFolderRibbonSection(ModernRibbonWindow parent, 
-			SearchFolderTreePanel folderPanel) {
-		super(parent.getRibbon(), "Search Folders");
-		
-		mParent = parent;
-		mFolderPanel = folderPanel;
+  /** The m folder panel. */
+  private SearchFolderTreePanel mFolderPanel;
 
-		add(mNewFolderButton);
-		//add(mEditFolderButton);
-		add(mDeleteFolderButton);
-		
-		mNewFolderButton.addClickListener(this);
-		mEditFolderButton.addClickListener(this);
-		mDeleteFolderButton.addClickListener(this);
-	}
-	
+  /**
+   * The Class DeleteEvent.
+   */
+  private class DeleteEvent implements DialogEventListener {
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public void clicked(ModernClickEvent e) {
-		if (e.getSource().equals(mNewFolderButton)) {
-			SearchFolderDialog dialog = new SearchFolderDialog(mParent);
-			
-			dialog.setVisible(true);
-			
-			if (dialog.getStatus() == ModernDialogStatus.CANCEL) {
-				return;
-			}
-			
-			mFolderPanel.addSearchFolder(dialog.getSearchFolderName(),
-					dialog.getUserSearch());
-		} else if (e.getSource().equals(mEditFolderButton)) {
-			TreeNode<UserSearch> node = mFolderPanel.getSelectedNode();
-			
-			if (node.getValue() != null) {
-			
-				SearchFolderDialog dialog = new SearchFolderDialog(mParent,
-						node.getName(),
-						node.getValue());
-				
-				dialog.setVisible(true);
-			
-				if (dialog.getStatus() == ModernDialogStatus.OK) {
-					node.setName(dialog.getSearchFolderName());
-				}
-			}
-		} else if (e.getSource().equals(mDeleteFolderButton)) {
-			mParent.createOkCancelDialog("Are you sure you want to delete the selected search folders?", new DeleteEvent());
-		}
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.abh.common.ui.dialog.DialogEventListener#statusChanged(org.abh.common.ui.
+     * dialog.DialogEvent)
+     */
+    @Override
+    public void statusChanged(DialogEvent e) {
+      if (e.getStatus() == ModernDialogStatus.OK) {
+        mFolderPanel.deleteFolder();
+      }
+    }
+
+  }
+
+  /**
+   * Instantiates a new search folder ribbon section.
+   *
+   * @param parent
+   *          the parent
+   * @param folderPanel
+   *          the folder panel
+   */
+  public SearchFolderRibbonSection(ModernRibbonWindow parent, SearchFolderTreePanel folderPanel) {
+    super(parent.getRibbon(), "Search Folders");
+
+    mParent = parent;
+    mFolderPanel = folderPanel;
+
+    add(mNewFolderButton);
+    // add(mEditFolderButton);
+    add(mDeleteFolderButton);
+
+    mNewFolderButton.addClickListener(this);
+    mEditFolderButton.addClickListener(this);
+    mDeleteFolderButton.addClickListener(this);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  @Override
+  public void clicked(ModernClickEvent e) {
+    if (e.getSource().equals(mNewFolderButton)) {
+      SearchFolderDialog dialog = new SearchFolderDialog(mParent);
+
+      dialog.setVisible(true);
+
+      if (dialog.getStatus() == ModernDialogStatus.CANCEL) {
+        return;
+      }
+
+      mFolderPanel.addSearchFolder(dialog.getSearchFolderName(), dialog.getUserSearch());
+    } else if (e.getSource().equals(mEditFolderButton)) {
+      TreeNode<UserSearch> node = mFolderPanel.getSelectedNode();
+
+      if (node.getValue() != null) {
+
+        SearchFolderDialog dialog = new SearchFolderDialog(mParent, node.getName(), node.getValue());
+
+        dialog.setVisible(true);
+
+        if (dialog.getStatus() == ModernDialogStatus.OK) {
+          node.setName(dialog.getSearchFolderName());
+        }
+      }
+    } else if (e.getSource().equals(mDeleteFolderButton)) {
+      mParent.createOkCancelDialog("Are you sure you want to delete the selected search folders?", new DeleteEvent());
+    }
+  }
 }

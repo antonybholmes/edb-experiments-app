@@ -21,25 +21,24 @@ import edu.columbia.rdf.edb.ui.search.SearchCategory;
 
 // TODO: Auto-generated Javadoc
 /**
- * Acts like a flat drop down menu button, but alters the button
- * text as well.
+ * Acts like a flat drop down menu button, but alters the button text as well.
  *
  * @author Antony Holmes Holmes
  */
 public class SearchCategoryDropDownMenuButton extends ModernDropDownMenuLabelButton {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	
-	/**
-	 * Instantiates a new search category drop down menu button.
-	 *
-	 * @param field the field
-	 * @param searchCriteriaPopup the search criteria popup
-	 */
-	public SearchCategoryDropDownMenuButton(SearchCategory field, 
-			SearchCriteriaPopup searchCriteriaPopup) {
-		super(field.getName(), searchCriteriaPopup);
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new search category drop down menu button.
+   *
+   * @param field
+   *          the field
+   * @param searchCriteriaPopup
+   *          the search criteria popup
+   */
+  public SearchCategoryDropDownMenuButton(SearchCategory field, SearchCriteriaPopup searchCriteriaPopup) {
+    super(field.getName(), searchCriteriaPopup);
+  }
 }

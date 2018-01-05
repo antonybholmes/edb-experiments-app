@@ -29,82 +29,90 @@ import edu.columbia.rdf.edb.FileDescriptor;
  * The Class FilesTableModel.
  */
 public class FilesTableModel extends ModernColumnHeaderTableModel {
-	
-	/** The Constant HEADINGS. */
-	private static final String[] HEADINGS = {"Name", "Type", "Date"};
 
-	//private Experiment experiment;
-	//private Biomaterial biomaterial;
+  /** The Constant HEADINGS. */
+  private static final String[] HEADINGS = { "Name", "Type", "Date" };
 
-	/** The items. */
-	private List<FileDescriptor> items = new ArrayList<FileDescriptor>();
+  // private Experiment experiment;
+  // private Biomaterial biomaterial;
 
+  /** The items. */
+  private List<FileDescriptor> items = new ArrayList<FileDescriptor>();
 
-	/**
-	 * Instantiates a new files table model.
-	 */
-	FilesTableModel() {
+  /**
+   * Instantiates a new files table model.
+   */
+  FilesTableModel() {
 
-		// do nothing
-	}
+    // do nothing
+  }
 
-	/**
-	 * Instantiates a new files table model.
-	 *
-	 * @param files the files
-	 */
-	public FilesTableModel(List<FileDescriptor> files) {
+  /**
+   * Instantiates a new files table model.
+   *
+   * @param files
+   *          the files
+   */
+  public FilesTableModel(List<FileDescriptor> files) {
 
-		for (FileDescriptor f : files) {
-			
-		    items.add(f);
-		}
+    for (FileDescriptor f : files) {
 
-		//this.fireTableDataChanged();
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
-	 */
-	@Override
-	public final int getColumnCount() {
-		return HEADINGS.length;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getRowCount()
-	 */
-	@Override
-	public final int getRowCount() {
-		return items.size();
-	}
+      items.add(f);
+    }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
-	 */
-	@Override
-	public final List<String> getColumnAnnotationText(int column) {
-		return CollectionUtils.asList(HEADINGS[column]);
-	}
+    // this.fireTableDataChanged();
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getValueAt(int, int)
-	 */
-	@Override
-	public final Object getValueAt(int row, int col) {
-		if (items.size() == 0) {
-			return "";
-		}
-		
-		switch (col) {
-		case 0:
-			return items.get(row).getName();
-		case 1:
-			return items.get(row).getExt();
-		case 2:
-			return DateUtils.getRevFormattedDate(items.get(row).getDate());
-		default:
-			return "";
-		}
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
+   */
+  @Override
+  public final int getColumnCount() {
+    return HEADINGS.length;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getRowCount()
+   */
+  @Override
+  public final int getRowCount() {
+    return items.size();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
+   */
+  @Override
+  public final List<String> getColumnAnnotationText(int column) {
+    return CollectionUtils.asList(HEADINGS[column]);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getValueAt(int, int)
+   */
+  @Override
+  public final Object getValueAt(int row, int col) {
+    if (items.size() == 0) {
+      return "";
+    }
+
+    switch (col) {
+    case 0:
+      return items.get(row).getName();
+    case 1:
+      return items.get(row).getExt();
+    case 2:
+      return DateUtils.getRevFormattedDate(items.get(row).getDate());
+    default:
+      return "";
+    }
+  }
 }

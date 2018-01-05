@@ -37,148 +37,143 @@ import edu.columbia.rdf.edb.ui.SelectedSamples;
  *
  */
 public class SampleViewPanel extends ModernPanel implements SelectedSamples {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The m annotation vertical panel. */
-	private SampleViewVerticalPanel mAnnotationVerticalPanel;
-	//private ExperimentsTreePanel experimentsPanel;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The m tabs panel. */
-	private TabsViewPanel mTabsPanel = new TabsViewPanel();
+  /** The m annotation vertical panel. */
+  private SampleViewVerticalPanel mAnnotationVerticalPanel;
+  // private ExperimentsTreePanel experimentsPanel;
 
-	//private ModernRowTable mViewDetails = new ModernRowTable();
-	//private ModernDataListView mViewList = new ModernDataListView();
-	//private ModernDataTileView mViewTiles = new ModernDataTileView();
+  /** The m tabs panel. */
+  private TabsViewPanel mTabsPanel = new TabsViewPanel();
 
-	/** The m layout view model. */
-	private ViewModel mLayoutViewModel;
+  // private ModernRowTable mViewDetails = new ModernRowTable();
+  // private ModernDataListView mViewList = new ModernDataListView();
+  // private ModernDataTileView mViewTiles = new ModernDataTileView();
 
-	/** The m annotation wide panel. */
-	private SampleViewWidePanel mAnnotationWidePanel;
+  /** The m layout view model. */
+  private ViewModel mLayoutViewModel;
 
-	/** The m filtered samples. */
-	private List<Sample> mFilteredSamples;
+  /** The m annotation wide panel. */
+  private SampleViewWidePanel mAnnotationWidePanel;
 
-	/** The m sample model. */
-	private SampleModel mSampleModel;
+  /** The m filtered samples. */
+  private List<Sample> mFilteredSamples;
 
-	/**
-	 * The Class ViewEvents.
-	 */
-	private class ViewEvents implements ChangeListener {
+  /** The m sample model. */
+  private SampleModel mSampleModel;
 
-		/* (non-Javadoc)
-		 * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
-		 */
-		@Override
-		public void changed(ChangeEvent e) {
-			viewChanged();
-		}
-	}
+  /**
+   * The Class ViewEvents.
+   */
+  private class ViewEvents implements ChangeListener {
 
-	/**
-	 * Instantiates a new sample view panel.
-	 *
-	 * @param parent the parent
-	 * @param viewModel the view model
-	 * @param layoutViewModel the layout view model
-	 * @param sampleModel the sample model
-	 * @param sampleSelectionModel the sample selection model
-	 * @param fileViewModel the file view model
-	 */
-	public SampleViewPanel(ModernWindow parent,
-			ViewModel viewModel,
-			ViewModel layoutViewModel,
-			SampleModel sampleModel,
-			SampleModel sampleSelectionModel,
-			FilterModel filterModel,
-			ViewModel fileViewModel) {
-		mLayoutViewModel = layoutViewModel;
-		mSampleModel = sampleModel;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     */
+    @Override
+    public void changed(ChangeEvent e) {
+      viewChanged();
+    }
+  }
 
+  /**
+   * Instantiates a new sample view panel.
+   *
+   * @param parent
+   *          the parent
+   * @param viewModel
+   *          the view model
+   * @param layoutViewModel
+   *          the layout view model
+   * @param sampleModel
+   *          the sample model
+   * @param sampleSelectionModel
+   *          the sample selection model
+   * @param fileViewModel
+   *          the file view model
+   */
+  public SampleViewPanel(ModernWindow parent, ViewModel viewModel, ViewModel layoutViewModel, SampleModel sampleModel,
+      SampleModel sampleSelectionModel, FilterModel filterModel, ViewModel fileViewModel) {
+    mLayoutViewModel = layoutViewModel;
+    mSampleModel = sampleModel;
 
-		mAnnotationVerticalPanel = new SampleViewVerticalPanel(parent,
-				viewModel,
-				sampleModel,
-				sampleSelectionModel,
-				filterModel,
-				fileViewModel);
+    mAnnotationVerticalPanel = new SampleViewVerticalPanel(parent, viewModel, sampleModel, sampleSelectionModel,
+        filterModel, fileViewModel);
 
-		mAnnotationWidePanel = new SampleViewWidePanel(parent,
-				viewModel,
-				sampleModel,
-				sampleSelectionModel,
-				filterModel,
-				fileViewModel);
+    mAnnotationWidePanel = new SampleViewWidePanel(parent, viewModel, sampleModel, sampleSelectionModel, filterModel,
+        fileViewModel);
 
+    // sampleModel.addSelectionListener(new SelectionEvents());
 
-		//sampleModel.addSelectionListener(new SelectionEvents());
+    mTabsPanel.getTabsModel().addTab("Vertical", mAnnotationVerticalPanel);
+    mTabsPanel.getTabsModel().addTab("Wide", mAnnotationWidePanel);
+    // mTabsPanel.getTabsModel().addTab("Details", new
+    // ModernScrollPane(mViewDetails));
 
-		mTabsPanel.getTabsModel().addTab("Vertical", mAnnotationVerticalPanel);
-		mTabsPanel.getTabsModel().addTab("Wide", mAnnotationWidePanel);
-		//mTabsPanel.getTabsModel().addTab("Details", new ModernScrollPane(mViewDetails));
+    // mTabsPanel.getTabsModel().addTab("List", new ModernScrollPane(mViewList));
+    // mTabsPanel.getTabsModel().addTab("Tiles", new ModernScrollPane(mViewTiles));
 
-		//mTabsPanel.getTabsModel().addTab("List", new ModernScrollPane(mViewList));
-		//mTabsPanel.getTabsModel().addTab("Tiles", new ModernScrollPane(mViewTiles));
+    setBody(mTabsPanel);
 
+    setBorder(TOP_BORDER);
 
-		setBody(mTabsPanel);
+    layoutViewModel.addChangeListener(new ViewEvents());
+  }
 
-		setBorder(TOP_BORDER);
+  /**
+   * Filter samples.
+   */
+  private final void filterSamples() {
 
-		layoutViewModel.addChangeListener(new ViewEvents());
-	}
+    if (mSampleModel.size() == 0) {
+      return;
+    }
 
-	/**
-	 * Filter samples.
-	 */
-	private final void filterSamples() {
+    mFilteredSamples = new ArrayList<Sample>();
 
-		if (mSampleModel.size() == 0) {
-			return;
-		}
+    String expressionType = mSampleModel.get(0).getExpressionType().getName();
 
-		mFilteredSamples = new ArrayList<Sample>();
+    // When viewing samples in a table, they must all be of the
+    // same type, so take the type of the first and keep only those
+    // samples that match its type.
+    for (Sample sample : mSampleModel.getItems()) {
+      if (!sample.getExpressionType().equals(expressionType)) {
+        continue;
+      }
 
-		String expressionType = 
-				mSampleModel.get(0).getExpressionType().getName();
+      mFilteredSamples.add(sample);
+    }
+  }
 
-		// When viewing samples in a table, they must all be of the
-		// same type, so take the type of the first and keep only those
-		// samples that match its type.
-		for (Sample sample : mSampleModel.getItems()) {
-			if (!sample.getExpressionType().equals(expressionType)) {
-				continue;
-			}
+  /**
+   * View changed.
+   */
+  private void viewChanged() {
+    mTabsPanel.getTabsModel().changeTab(mLayoutViewModel.getView());
 
-			mFilteredSamples.add(sample);
-		}
-	}
+    filterSamples();
+  }
 
-	/**
-	 * View changed.
-	 */
-	private void viewChanged() {
-		mTabsPanel.getTabsModel().changeTab(mLayoutViewModel.getView());
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.SelectedSamples#getSelectedSamples()
+   */
+  @Override
+  public List<Sample> getSelectedSamples() {
 
-		filterSamples();
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.SelectedSamples#getSelectedSamples()
-	 */
-	@Override
-	public List<Sample> getSelectedSamples() {
-
-		switch (mTabsPanel.getTabsModel().getSelectedIndex()) {
-		case 0:
-			return mAnnotationVerticalPanel.getSamplesPanel().getSelectedSamples();
-		case 1:
-			return mAnnotationWidePanel.getSamplesPanel().getSelectedSamples();
-		default:
-			return null;
-		}
-	}
+    switch (mTabsPanel.getTabsModel().getSelectedIndex()) {
+    case 0:
+      return mAnnotationVerticalPanel.getSamplesPanel().getSelectedSamples();
+    case 1:
+      return mAnnotationWidePanel.getSamplesPanel().getSelectedSamples();
+    default:
+      return null;
+    }
+  }
 }

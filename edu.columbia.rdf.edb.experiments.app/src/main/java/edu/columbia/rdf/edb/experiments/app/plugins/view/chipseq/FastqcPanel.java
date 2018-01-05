@@ -44,90 +44,92 @@ import edu.columbia.rdf.edb.ui.DownloadManager;
  */
 public class FastqcPanel extends ModernComponent {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	
-	/**
-	 * Instantiates a new fastqc panel.
-	 *
-	 * @param sample the sample
-	 * @param file the file
-	 */
-	public FastqcPanel(Sample sample, FileDescriptor file) {
-		try {
-			java.nio.file.Path tempFile = Temp.generateTempFile();
-			
-			DownloadManager.download(file, tempFile);
-			
-			List<String> lines = Io.getLines(tempFile);
-			
-			//System.err.println(lines.toString());
-			
-			makePerBaseQualityPlot(lines);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Make per base quality plot.
-	 *
-	 * @param lines the lines
-	 * @throws ParseException the parse exception
-	 */
-	private void makePerBaseQualityPlot(List<String> lines) throws ParseException {
-		
-		List<String> qcLines = new ArrayList<String>();
-		
-		boolean found = false;
-		
-		for (String line : lines) {
-			if (line.contains("Per base sequence quality")) {
-				found = true;
-			} else {
-				if (found) {
-					if (line.startsWith(">>")) {
-						break;
-					}
-					
-					qcLines.add(line);
-				}
-			}
-		}
-		
-		DataFrame m = DataFrame.createNumericalMatrix(5, qcLines.size() - 1);
-		
-		XYSeriesGroup g = new XYSeriesGroup();
-		
-		for (int i = 1; i < qcLines.size(); ++i) {
-			System.err.println(qcLines.get(i));
-			
-			List<String> tokens = TextUtils.tabSplit(qcLines.get(i));
-			
-			m.setColumnName(i - 1, tokens.get(0));
-			
-			m.set(0, i - 1, TextUtils.parseDouble(tokens.get(2)));
-			m.set(1, i - 1, TextUtils.parseDouble(tokens.get(3)));
-			m.set(2, i - 1, TextUtils.parseDouble(tokens.get(4)));
-			m.set(3, i - 1, TextUtils.parseDouble(tokens.get(5)));
-			m.set(4, i - 1, TextUtils.parseDouble(tokens.get(6)));
-			
-			g.add(new XYSeries(tokens.get(0)));
-		}
-		
-		SubFigure subFigure = new SubFigure();
-		
-		PlotFactory.createBoxWhiskerSummaryPlot(m, subFigure.currentAxes(), g);
-		
-		subFigure.currentAxes().setInternalSize(g.getCount() * 24, 300);
-		subFigure.currentAxes().getX1Axis().getTicks().getMajorTicks().setRotation(Mathematics.HALF_PI);
-		
-		ModernScrollPane scrollPane = 
-				new ModernScrollPane(new SubFigurePanel(subFigure));
-		
-		setBody(scrollPane);
-	}
+  /**
+   * Instantiates a new fastqc panel.
+   *
+   * @param sample
+   *          the sample
+   * @param file
+   *          the file
+   */
+  public FastqcPanel(Sample sample, FileDescriptor file) {
+    try {
+      java.nio.file.Path tempFile = Temp.generateTempFile();
+
+      DownloadManager.download(file, tempFile);
+
+      List<String> lines = Io.getLines(tempFile);
+
+      // System.err.println(lines.toString());
+
+      makePerBaseQualityPlot(lines);
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Make per base quality plot.
+   *
+   * @param lines
+   *          the lines
+   * @throws ParseException
+   *           the parse exception
+   */
+  private void makePerBaseQualityPlot(List<String> lines) throws ParseException {
+
+    List<String> qcLines = new ArrayList<String>();
+
+    boolean found = false;
+
+    for (String line : lines) {
+      if (line.contains("Per base sequence quality")) {
+        found = true;
+      } else {
+        if (found) {
+          if (line.startsWith(">>")) {
+            break;
+          }
+
+          qcLines.add(line);
+        }
+      }
+    }
+
+    DataFrame m = DataFrame.createNumericalMatrix(5, qcLines.size() - 1);
+
+    XYSeriesGroup g = new XYSeriesGroup();
+
+    for (int i = 1; i < qcLines.size(); ++i) {
+      System.err.println(qcLines.get(i));
+
+      List<String> tokens = TextUtils.tabSplit(qcLines.get(i));
+
+      m.setColumnName(i - 1, tokens.get(0));
+
+      m.set(0, i - 1, TextUtils.parseDouble(tokens.get(2)));
+      m.set(1, i - 1, TextUtils.parseDouble(tokens.get(3)));
+      m.set(2, i - 1, TextUtils.parseDouble(tokens.get(4)));
+      m.set(3, i - 1, TextUtils.parseDouble(tokens.get(5)));
+      m.set(4, i - 1, TextUtils.parseDouble(tokens.get(6)));
+
+      g.add(new XYSeries(tokens.get(0)));
+    }
+
+    SubFigure subFigure = new SubFigure();
+
+    PlotFactory.createBoxWhiskerSummaryPlot(m, subFigure.currentAxes(), g);
+
+    subFigure.currentAxes().setInternalSize(g.getCount() * 24, 300);
+    subFigure.currentAxes().getX1Axis().getTicks().getMajorTicks().setRotation(Mathematics.HALF_PI);
+
+    ModernScrollPane scrollPane = new ModernScrollPane(new SubFigurePanel(subFigure));
+
+    setBody(scrollPane);
+  }
 }

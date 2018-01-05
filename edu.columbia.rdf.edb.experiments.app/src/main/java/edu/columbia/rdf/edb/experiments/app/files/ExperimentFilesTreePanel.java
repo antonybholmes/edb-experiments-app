@@ -46,220 +46,219 @@ import edu.columbia.rdf.edb.ui.RepositoryService;
  * The Class ExperimentFilesTreePanel.
  */
 public class ExperimentFilesTreePanel extends ModernGradientPanel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The tree. */
-	private ModernTree<FileDescriptor> tree = 
-			new ModernTree<FileDescriptor>();
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	//private SamplesSortPanel samplesListSortPanel = new SamplesSortPanel();
+  /** The tree. */
+  private ModernTree<FileDescriptor> tree = new ModernTree<FileDescriptor>();
 
-	//private Experiments experiments;
+  // private SamplesSortPanel samplesListSortPanel = new SamplesSortPanel();
 
-	/**
-	 * Instantiates a new experiment files tree panel.
-	 */
-	public ExperimentFilesTreePanel() {
-		setup();
-	}
+  // private Experiments experiments;
 
-	/**
-	 * Setup.
-	 */
-	private void setup() {
+  /**
+   * Instantiates a new experiment files tree panel.
+   */
+  public ExperimentFilesTreePanel() {
+    setup();
+  }
 
-		//setBackground(Color.PINK);
+  /**
+   * Setup.
+   */
+  private void setup() {
 
-		//samplesListSortPanel.addClickListener(this);
+    // setBackground(Color.PINK);
 
-		//add(new ModernHeadingLabel("Experiments"), BorderLayout.PAGE_START);
+    // samplesListSortPanel.addClickListener(this);
 
-		TreeNodeFileCountRenderer renderer = 
-				new TreeNodeFileCountRenderer();
+    // add(new ModernHeadingLabel("Experiments"), BorderLayout.PAGE_START);
 
-		renderer.setOpaque(false);
+    TreeNodeFileCountRenderer renderer = new TreeNodeFileCountRenderer();
 
-		tree.setNodeRenderer(renderer);
-		tree.setOpaque(false);
+    renderer.setOpaque(false);
 
-		//tree.setBorder(RIGHT_BORDER);
+    tree.setNodeRenderer(renderer);
+    tree.setOpaque(false);
 
-		ModernScrollPane scrollPane = new ModernScrollPane(tree);
-		scrollPane.setOpaque(false);
-		//scrollPane.setViewportBorder(BorderFactory.createEmptyBorder());
-		//scrollPane.getViewport().setBackground(Color.WHITE);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
-		//scrollPane.setOpaque(true);
-		//scrollPane.setBackground(Color.WHITE);
-		//scrollPane.setBorder(DialogButton.DARK_BORDER);
+    // tree.setBorder(RIGHT_BORDER);
 
-		setBody(scrollPane);
+    ModernScrollPane scrollPane = new ModernScrollPane(tree);
+    scrollPane.setOpaque(false);
+    // scrollPane.setViewportBorder(BorderFactory.createEmptyBorder());
+    // scrollPane.getViewport().setBackground(Color.WHITE);
+    scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+    // scrollPane.setOpaque(true);
+    // scrollPane.setBackground(Color.WHITE);
+    // scrollPane.setBorder(DialogButton.DARK_BORDER);
 
-		//setBorder(AbstractHidePane.HORIZONTAL_BORDER);
-	}
+    setBody(scrollPane);
 
-	/**
-	 * Load samples.
-	 *
-	 * @param samples the samples
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	public void loadSamples(Collection<Sample> samples) throws IOException, ParseException {
-		if (samples == null) {
-			return;
-		}
+    // setBorder(AbstractHidePane.HORIZONTAL_BORDER);
+  }
 
-		Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+  /**
+   * Load samples.
+   *
+   * @param samples
+   *          the samples
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   * @throws ParseException
+   *           the parse exception
+   */
+  public void loadSamples(Collection<Sample> samples) throws IOException, ParseException {
+    if (samples == null) {
+      return;
+    }
 
-		Map<Experiment, Set<Sample>> experiments = 
-				Experiment.sortSamplesByExperiment(samples);
+    Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
 
-		List<Experiment> sortedExperiments = 
-				CollectionUtils.sort(experiments.keySet());
+    Map<Experiment, Set<Sample>> experiments = Experiment.sortSamplesByExperiment(samples);
 
-		TreeRootNode<FileDescriptor> root = 
-				new TreeRootNode<FileDescriptor>();
+    List<Experiment> sortedExperiments = CollectionUtils.sort(experiments.keySet());
 
-		TreeNode<FileDescriptor> experimentsRoot = 
-				new TreeNode<FileDescriptor>("Experiments");
+    TreeRootNode<FileDescriptor> root = new TreeRootNode<FileDescriptor>();
 
-		for (Experiment experiment : sortedExperiments) {
-			TreeNode<FileDescriptor> experimentNode = 
-					new TreeNode<FileDescriptor>(experiment.getName());
+    TreeNode<FileDescriptor> experimentsRoot = new TreeNode<FileDescriptor>("Experiments");
 
-			experimentNode.setIsExpandable(false);
+    for (Experiment experiment : sortedExperiments) {
+      TreeNode<FileDescriptor> experimentNode = new TreeNode<FileDescriptor>(experiment.getName());
 
-			for (FileDescriptor file : repository.getSampleFiles(experiments.get(experiment))) {
+      experimentNode.setIsExpandable(false);
 
-				TreeNode<FileDescriptor> fileNode = 
-						new TreeNode<FileDescriptor>(file.getName(), file);
+      for (FileDescriptor file : repository.getSampleFiles(experiments.get(experiment))) {
 
-				experimentNode.addChild(fileNode);
-			}
+        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(file.getName(), file);
 
-			//TreeNode<ArrayDbFileDescriptor> samplesNode = 
-			//		new TreeNode<ArrayDbFileDescriptor>("Samples");
+        experimentNode.addChild(fileNode);
+      }
 
-			/*
-			List<SampleSearchResult> sortedSamples = Lists.sort(experiment.getSamples());
+      // TreeNode<ArrayDbFileDescriptor> samplesNode =
+      // new TreeNode<ArrayDbFileDescriptor>("Samples");
 
-			for (SampleSearchResult sample : sortedSamples) {
-				TreeNode<ArrayDbFileDescriptor> sampleNode = 
-						new TreeNode<ArrayDbFileDescriptor>(sample.getName());
+      /*
+       * List<SampleSearchResult> sortedSamples = Lists.sort(experiment.getSamples());
+       * 
+       * for (SampleSearchResult sample : sortedSamples) {
+       * TreeNode<ArrayDbFileDescriptor> sampleNode = new
+       * TreeNode<ArrayDbFileDescriptor>(sample.getName());
+       * 
+       * sampleNode.setIsExpandable(false);
+       * 
+       * sortedFiles = Lists.sort(sample.getExpressionData().getFiles());
+       * 
+       * for (ArrayDbFileDescriptor file : sortedFiles) {
+       * 
+       * TreeNode<ArrayDbFileDescriptor> fileNode = new
+       * TreeNode<ArrayDbFileDescriptor>(file.getName(), file);
+       * 
+       * sampleNode.addChild(fileNode); }
+       * 
+       * //samplesNode.addChild(sampleNode);
+       * 
+       * experimentNode.addChild(sampleNode); }
+       * 
+       * //experimentNode.addChild(samplesNode);
+       */
 
-				sampleNode.setIsExpandable(false);
+      experimentsRoot.addChild(experimentNode);
 
-				sortedFiles = Lists.sort(sample.getExpressionData().getFiles());
+      // loadOtherFiles(experiment, experimentNode);
+    }
 
-				for (ArrayDbFileDescriptor file : sortedFiles) {
+    root.addChild(experimentsRoot);
 
-					TreeNode<ArrayDbFileDescriptor> fileNode = 
-							new TreeNode<ArrayDbFileDescriptor>(file.getName(), file);
+    tree.setRoot(root);
 
-					sampleNode.addChild(fileNode);
-				}
+    if (tree.getChildCount() > 0) {
+      tree.selectNode(1);
+    }
+  }
 
-				//samplesNode.addChild(sampleNode);
+  /**
+   * Gets the selected files.
+   *
+   * @return the selected files
+   */
+  public List<FileDescriptor> getSelectedFiles() {
 
-				experimentNode.addChild(sampleNode);
-			}
+    Set<FileDescriptor> fileSet = new HashSet<FileDescriptor>();
 
-			//experimentNode.addChild(samplesNode);
-			 */
+    for (TreeNode<FileDescriptor> node : tree.getSelectedNodes()) {
+      getFiles(node, fileSet);
+    }
 
-			experimentsRoot.addChild(experimentNode);
+    List<FileDescriptor> files = new ArrayList<FileDescriptor>();
 
-			//loadOtherFiles(experiment, experimentNode);
-		}
+    for (FileDescriptor file : fileSet) {
+      files.add(file);
+    }
 
-		root.addChild(experimentsRoot);
+    Collections.sort(files);
 
-		tree.setRoot(root);
+    return files;
+  }
 
-		if (tree.getChildCount() > 0) {
-			tree.selectNode(1);
-		}
-	}
+  /**
+   * Gets the files.
+   *
+   * @param node
+   *          the node
+   * @param files
+   *          the files
+   * @return the files
+   */
+  private void getFiles(TreeNode<FileDescriptor> node, Set<FileDescriptor> files) {
+    if (node.getValue() != null) {
+      files.add(node.getValue());
+    }
 
-	/**
-	 * Gets the selected files.
-	 *
-	 * @return the selected files
-	 */
-	public List<FileDescriptor> getSelectedFiles() {
+    if (node.isParent()) {
+      for (TreeNode<FileDescriptor> child : node) {
+        getFiles(child, files);
+      }
+    }
+  }
 
-		Set<FileDescriptor> fileSet = new HashSet<FileDescriptor>();
+  /**
+   * Sets the selected sample.
+   *
+   * @param sample
+   *          the new selected sample
+   */
+  public void setSelectedSample(Sample sample) {
+    setSelectedSample(sample.getName());
+  }
 
-		for(TreeNode<FileDescriptor> node : tree.getSelectedNodes()) {
-			getFiles(node, fileSet);
-		}
+  /**
+   * Sets the selected sample.
+   *
+   * @param name
+   *          the new selected sample
+   */
+  public void setSelectedSample(String name) {
+    setSelectedSample(tree.getNodeIndexByName(name));
+  }
 
-		List<FileDescriptor> files = new ArrayList<FileDescriptor>();
+  /**
+   * Sets the selected sample.
+   *
+   * @param row
+   *          the new selected sample
+   */
+  public void setSelectedSample(int row) {
+    tree.selectNode(row);
+  }
 
-		for (FileDescriptor file : fileSet) {
-			files.add(file);
-		}
-
-		Collections.sort(files);
-
-		return files;
-	}
-
-	/**
-	 * Gets the files.
-	 *
-	 * @param node the node
-	 * @param files the files
-	 * @return the files
-	 */
-	private void getFiles(TreeNode<FileDescriptor> node, Set<FileDescriptor> files) {
-		if (node.getValue() != null) {
-			files.add(node.getValue());
-		}
-
-		if (node.isParent()) {
-			for (TreeNode<FileDescriptor> child : node) {
-				getFiles(child, files);
-			}
-		}
-	}
-
-	/**
-	 * Sets the selected sample.
-	 *
-	 * @param sample the new selected sample
-	 */
-	public void setSelectedSample(Sample sample) {
-		setSelectedSample(sample.getName());
-	}
-
-	/**
-	 * Sets the selected sample.
-	 *
-	 * @param name the new selected sample
-	 */
-	public void setSelectedSample(String name) {
-		setSelectedSample(tree.getNodeIndexByName(name));
-	}
-
-	/**
-	 * Sets the selected sample.
-	 *
-	 * @param row the new selected sample
-	 */
-	public void setSelectedSample(int row) {
-		tree.selectNode(row);
-	}
-
-	/**
-	 * Adds the selection listener.
-	 *
-	 * @param l the l
-	 */
-	public void addSelectionListener(ModernSelectionListener l) {
-		tree.addSelectionListener(l);
-	}
+  /**
+   * Adds the selection listener.
+   *
+   * @param l
+   *          the l
+   */
+  public void addSelectionListener(ModernSelectionListener l) {
+    tree.addSelectionListener(l);
+  }
 }

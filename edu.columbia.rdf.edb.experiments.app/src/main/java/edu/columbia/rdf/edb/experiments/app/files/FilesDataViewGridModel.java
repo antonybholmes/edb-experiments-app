@@ -30,91 +30,98 @@ import edu.columbia.rdf.edb.FileType;
  * The Class FilesDataViewGridModel.
  */
 public class FilesDataViewGridModel extends ModernColumnHeaderTableModel {
-	
-	/** The Constant HEADINGS. */
-	private static final String[] HEADINGS = {"Name", "Type", "Date"};
 
-	/** The m items. */
-	private List<FileDescriptor> mItems = new ArrayList<FileDescriptor>();
+  /** The Constant HEADINGS. */
+  private static final String[] HEADINGS = { "Name", "Type", "Date" };
 
+  /** The m items. */
+  private List<FileDescriptor> mItems = new ArrayList<FileDescriptor>();
 
-	/**
-	 * Instantiates a new files data view grid model.
-	 */
-	FilesDataViewGridModel() {
-		// do nothing
-	}
+  /**
+   * Instantiates a new files data view grid model.
+   */
+  FilesDataViewGridModel() {
+    // do nothing
+  }
 
-	/**
-	 * Instantiates a new files data view grid model.
-	 *
-	 * @param files the files
-	 */
-	public FilesDataViewGridModel(List<FileDescriptor> files) {
+  /**
+   * Instantiates a new files data view grid model.
+   *
+   * @param files
+   *          the files
+   */
+  public FilesDataViewGridModel(List<FileDescriptor> files) {
 
-		mItems = files;
-		
-		//Collections.sort(items);
-		
-		/*
-		for (ArrayDbFileDescriptor f : files) {
-			
-		    items.add(f);
-		}
-		*/
-		
-		//this.fireTableDataChanged();
-	}
+    mItems = files;
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
-	 */
-	public final int getColumnCount() {
-		return HEADINGS.length;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
-	 */
-	@Override
-	public final List<String> getColumnAnnotationText(int column) {
-		if (column < HEADINGS.length) {
-			return CollectionUtils.asList(HEADINGS[column]);
-		} else {
-			return Collections.emptyList();
-		}
-	}
+    // Collections.sort(items);
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getRowCount()
-	 */
-	public final int getRowCount() {
-		//System.out.println("row count" + dataSection.getRows().size());
+    /*
+     * for (ArrayDbFileDescriptor f : files) {
+     * 
+     * items.add(f); }
+     */
 
-		return mItems.size();
-	}
+    // this.fireTableDataChanged();
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getValueAt(int, int)
-	 */
-	public final Object getValueAt(int row, int col) {
-		if (mItems.size() == 0) {
-			return "";
-		}
-		
-		switch (col) {
-		case 0:
-			return mItems.get(row).getName();
-		case 1:
-			if (mItems.get(row).getType() == FileType.DIR) {
-				return "File Folder";
-			} else {
-				return mItems.get(row).getExt();
-			}
-		case 2:
-			return mItems.get(row).getDate();
-		}
-		
-		return "";
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
+   */
+  public final int getColumnCount() {
+    return HEADINGS.length;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
+   */
+  @Override
+  public final List<String> getColumnAnnotationText(int column) {
+    if (column < HEADINGS.length) {
+      return CollectionUtils.asList(HEADINGS[column]);
+    } else {
+      return Collections.emptyList();
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getRowCount()
+   */
+  public final int getRowCount() {
+    // System.out.println("row count" + dataSection.getRows().size());
+
+    return mItems.size();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getValueAt(int, int)
+   */
+  public final Object getValueAt(int row, int col) {
+    if (mItems.size() == 0) {
+      return "";
+    }
+
+    switch (col) {
+    case 0:
+      return mItems.get(row).getName();
+    case 1:
+      if (mItems.get(row).getType() == FileType.DIR) {
+        return "File Folder";
+      } else {
+        return mItems.get(row).getExt();
+      }
+    case 2:
+      return mItems.get(row).getDate();
+    }
+
+    return "";
+  }
 }

@@ -27,19 +27,21 @@ import edu.columbia.rdf.edb.ui.search.SearchCategory;
  *
  */
 public class SearchCategoryComboBox extends ModernComboBox {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new search category combo box.
-	 *
-	 * @param searchCriteriaPopup the search criteria popup
-	 * @param field the field
-	 */
-	public SearchCategoryComboBox(SearchCriteriaPopup searchCriteriaPopup, SearchCategory field) {
-		super.setMenu(searchCriteriaPopup);
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-		setText(field.getName());
-	}
+  /**
+   * Instantiates a new search category combo box.
+   *
+   * @param searchCriteriaPopup
+   *          the search criteria popup
+   * @param field
+   *          the field
+   */
+  public SearchCategoryComboBox(SearchCriteriaPopup searchCriteriaPopup, SearchCategory field) {
+    super.setMenu(searchCriteriaPopup);
+
+    setText(field.getName());
+  }
 }

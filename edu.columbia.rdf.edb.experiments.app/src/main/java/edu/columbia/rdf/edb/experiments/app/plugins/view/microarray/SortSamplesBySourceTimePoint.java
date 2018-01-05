@@ -20,22 +20,21 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
  * The Class SortSamplesBySourceTimePoint.
  */
 public class SortSamplesBySourceTimePoint extends SortSamplesByMicroarrayField {
-	
-	/**
-	 * Instantiates a new sort samples by source time point.
-	 */
-	public SortSamplesBySourceTimePoint() {
-		super("Sample",		
-				"Source", 
-				"Characteristic",
-				"Time_Point");
-		// Do nothing
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Source Time Point";
-	}
+  /**
+   * Instantiates a new sort samples by source time point.
+   */
+  public SortSamplesBySourceTimePoint() {
+    super("Sample", "Source", "Characteristic", "Time_Point");
+    // Do nothing
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Source Time Point";
+  }
 }

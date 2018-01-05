@@ -44,111 +44,116 @@ import edu.columbia.rdf.edb.ui.RepositoryService;
  * The Class VfsFilesPanel.
  */
 public class VfsFilesPanel extends ModernPanel implements ChangeListener {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The m table. */
-	private FilesMultiViewPanel mTable;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The m parent. */
-	private ModernWindow mParent;
+  /** The m table. */
+  private FilesMultiViewPanel mTable;
 
-	/** The m files model. */
-	private FilesModel mFilesModel;
+  /** The m parent. */
+  private ModernWindow mParent;
 
-	/** The m files. */
-	private List<FileDescriptor> mFiles;
+  /** The m files model. */
+  private FilesModel mFilesModel;
 
+  /** The m files. */
+  private List<FileDescriptor> mFiles;
 
-	/**
-	 * Instantiates a new vfs files panel.
-	 *
-	 * @param parent the parent
-	 * @param filesModel the files model
-	 * @param viewModel the view model
-	 */
-	public VfsFilesPanel(ModernWindow parent,
-			FilesModel filesModel,
-			ViewModel viewModel) {
-		mParent = parent;
-		mFilesModel = filesModel;
-		
-		mFilesModel.addChangeListener(this);
+  /**
+   * Instantiates a new vfs files panel.
+   *
+   * @param parent
+   *          the parent
+   * @param filesModel
+   *          the files model
+   * @param viewModel
+   *          the view model
+   */
+  public VfsFilesPanel(ModernWindow parent, FilesModel filesModel, ViewModel viewModel) {
+    mParent = parent;
+    mFilesModel = filesModel;
 
-		mTable = new FilesMultiViewPanel(viewModel);
-		
-		createUi();
-	}
+    mFilesModel.addChangeListener(this);
 
-	/**
-	 * Creates the ui.
-	 */
-	public final void createUi() {
-		setBody(mTable);
-		
-		setBorder(BORDER);
-	}
+    mTable = new FilesMultiViewPanel(viewModel);
 
-	/**
-	 * Display filtered files.
-	 *
-	 * @param files the files
-	 */
-	private void displayFilteredFiles(Collection<FileDescriptor> files) {
-		mFiles = CollectionUtils.sort(files);
-		
-		mTable.setModel(new FilesDataViewGridModel(mFiles));
-	}
+    createUi();
+  }
 
-	/**
-	 * Download files.
-	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public void downloadFiles() throws IOException {
+  /**
+   * Creates the ui.
+   */
+  public final void createUi() {
+    setBody(mTable);
 
-		Set<FileDescriptor> files = new TreeSet<FileDescriptor>();
+    setBorder(BORDER);
+  }
 
-		for (int i : mTable.getCellSelectionModel().getRowSelectionModel()) {
-			files.add(mFiles.get(mTable.convertRowIndexToModel(i)));
-		}
+  /**
+   * Display filtered files.
+   *
+   * @param files
+   *          the files
+   */
+  private void displayFilteredFiles(Collection<FileDescriptor> files) {
+    mFiles = CollectionUtils.sort(files);
 
-		DownloadManager.downloadAsZip(mParent, files);
-	}
-	
+    mTable.setModel(new FilesDataViewGridModel(mFiles));
+  }
 
-	/**
-	 * Gets the tabs model.
-	 *
-	 * @return the tabs model
-	 */
-	public TabsModel getTabsModel() {
-		return mTable.getTabsModel();
-	}
+  /**
+   * Download files.
+   *
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   */
+  public void downloadFiles() throws IOException {
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
-	 */
-	@Override
-	public void changed(ChangeEvent e) {
-		displayFilteredFiles(mFilesModel);
-	}
+    Set<FileDescriptor> files = new TreeSet<FileDescriptor>();
 
-	/**
-	 * Sets the files.
-	 *
-	 * @param selectionModel the new files
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ParseException the parse exception
-	 */
-	public void setFiles(SampleModel selectionModel) throws IOException, ParseException {
-		if (selectionModel.size() > 0) {
-			Repository repository = RepositoryService
-					.getInstance()
-					.getRepository(RepositoryService.DEFAULT_REP);
-			
-			displayFilteredFiles(repository.getSampleFiles(selectionModel.getItems()));
-		}
-	}
+    for (int i : mTable.getCellSelectionModel().getRowSelectionModel()) {
+      files.add(mFiles.get(mTable.convertRowIndexToModel(i)));
+    }
+
+    DownloadManager.downloadAsZip(mParent, files);
+  }
+
+  /**
+   * Gets the tabs model.
+   *
+   * @return the tabs model
+   */
+  public TabsModel getTabsModel() {
+    return mTable.getTabsModel();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+   */
+  @Override
+  public void changed(ChangeEvent e) {
+    displayFilteredFiles(mFilesModel);
+  }
+
+  /**
+   * Sets the files.
+   *
+   * @param selectionModel
+   *          the new files
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   * @throws ParseException
+   *           the parse exception
+   */
+  public void setFiles(SampleModel selectionModel) throws IOException, ParseException {
+    if (selectionModel.size() > 0) {
+      Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+
+      displayFilteredFiles(repository.getSampleFiles(selectionModel.getItems()));
+    }
+  }
 }

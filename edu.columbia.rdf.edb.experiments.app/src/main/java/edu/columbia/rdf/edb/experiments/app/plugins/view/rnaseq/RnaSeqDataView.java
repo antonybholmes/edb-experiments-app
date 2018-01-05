@@ -33,32 +33,31 @@ import edu.columbia.rdf.edb.ui.DataViewXmlHandler;
  *
  */
 public class RnaSeqDataView extends DataView {
-	
-	private static final java.nio.file.Path VIEW_FILE = 
-			PathUtils.getPath("res/views/rna_seq.xml");
 
-	/**
-	 * Instantiates a new rna seq data view.
-	 */
-	public RnaSeqDataView() {
-		super("RNA-seq");
-		
-		try {
-			DataViewXmlHandler.loadXml(VIEW_FILE, this);
-		} catch (SAXException | IOException | ParserConfigurationException e) {
-			e.printStackTrace();
-		}
+  private static final java.nio.file.Path VIEW_FILE = PathUtils.getPath("res/views/rna_seq.xml");
 
-		/*
-		DataViewSection section = new DataViewSection("Sample");
-		section.addField(new DataViewField(new Path("/RNA-seq/Sample/Seq_Id"), "Sequence Id"));
-		section.addField(new DataViewField(new Path("/Sample/Organism"), "Organism"));
-		section.addField(new DataViewField(new Path("/RNA-seq/Sample/Genome"), "Genome"));
-		section.addField(new DataViewField(new Path("/RNA-seq/Sample/Read_Length"), "Read Length"));
-		
-		addSection(section);
-		*/
-	}
+  /**
+   * Instantiates a new rna seq data view.
+   */
+  public RnaSeqDataView() {
+    super("RNA-seq");
 
-	
+    try {
+      DataViewXmlHandler.loadXml(VIEW_FILE, this);
+    } catch (SAXException | IOException | ParserConfigurationException e) {
+      e.printStackTrace();
+    }
+
+    /*
+     * DataViewSection section = new DataViewSection("Sample"); section.addField(new
+     * DataViewField(new Path("/RNA-seq/Sample/Seq_Id"), "Sequence Id"));
+     * section.addField(new DataViewField(new Path("/Sample/Organism"),
+     * "Organism")); section.addField(new DataViewField(new
+     * Path("/RNA-seq/Sample/Genome"), "Genome")); section.addField(new
+     * DataViewField(new Path("/RNA-seq/Sample/Read_Length"), "Read Length"));
+     * 
+     * addSection(section);
+     */
+  }
+
 }

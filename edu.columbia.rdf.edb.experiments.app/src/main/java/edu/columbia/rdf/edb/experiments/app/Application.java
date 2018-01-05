@@ -15,9 +15,6 @@
  */
 package edu.columbia.rdf.edb.experiments.app;
 
-
-
-
 // TODO: Auto-generated Javadoc
 /**
  * Contains constant strings for commonly used command names within the program.
@@ -27,19 +24,19 @@ package edu.columbia.rdf.edb.experiments.app;
  */
 
 public class Application {
-	
-	/** The Constant MENU_RELOAD_CACHE. */
-	public static final String MENU_RELOAD_CACHE = "Reload cache";
-	
-	/** The Constant BUTTON_FIELD. */
-	public static final String BUTTON_FIELD = "Add field";
-	
-	/** The Constant BUTTON_SDRF. */
-	public static final String BUTTON_SDRF = "SDRF";
-	
-	/** The Constant MENU_SAVE_SEARCH. */
-	public static final String MENU_SAVE_SEARCH = "Save Search";
-	
-	/** The Constant MENU_LOAD_SEARCH. */
-	public static final String MENU_LOAD_SEARCH = "Load Search";
+
+  /** The Constant MENU_RELOAD_CACHE. */
+  public static final String MENU_RELOAD_CACHE = "Reload cache";
+
+  /** The Constant BUTTON_FIELD. */
+  public static final String BUTTON_FIELD = "Add field";
+
+  /** The Constant BUTTON_SDRF. */
+  public static final String BUTTON_SDRF = "SDRF";
+
+  /** The Constant MENU_SAVE_SEARCH. */
+  public static final String MENU_SAVE_SEARCH = "Save Search";
+
+  /** The Constant MENU_LOAD_SEARCH. */
+  public static final String MENU_LOAD_SEARCH = "Load Search";
 }

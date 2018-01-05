@@ -20,22 +20,21 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
  * The Class SortSamplesBySourceGender.
  */
 public class SortSamplesBySourceGender extends SortSamplesByMicroarrayField {
-	
-	/**
-	 * Instantiates a new sort samples by source gender.
-	 */
-	public SortSamplesBySourceGender() {
-		super("Sample",
-				"Source", 
-				"Characteristic",
-				"Gender");
-		// Do nothing
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Gender";
-	}
+  /**
+   * Instantiates a new sort samples by source gender.
+   */
+  public SortSamplesBySourceGender() {
+    super("Sample", "Source", "Characteristic", "Gender");
+    // Do nothing
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Gender";
+  }
 }

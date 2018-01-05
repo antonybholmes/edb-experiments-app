@@ -35,42 +35,48 @@ import edu.columbia.rdf.edb.ui.DataViewXmlHandler;
  * @author Antony Holmes Holmes
  */
 public class ChipSeqDataView extends DataView {
-	
-	private static final java.nio.file.Path VIEW_FILE = 
-			PathUtils.getPath("res/views/chip_seq.xml");
 
-	/**
-	 * Instantiates a new chip seq data view.
-	 */
-	public ChipSeqDataView() {
-		super("ChIP-seq");
-		
-		try {
-			DataViewXmlHandler.loadXml(VIEW_FILE, this);
-		} catch (SAXException | IOException | ParserConfigurationException e) {
-			e.printStackTrace();
-		}
+  private static final java.nio.file.Path VIEW_FILE = PathUtils.getPath("res/views/chip_seq.xml");
 
-		/*
-		DataViewSection section;
+  /**
+   * Instantiates a new chip seq data view.
+   */
+  public ChipSeqDataView() {
+    super("ChIP-seq");
 
-		section = new DataViewSection("Sample");
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Seq_Id"), "Sequence Id"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Classification"), "Classification"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Cell_Type"), "Cell Type"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Treatment"), "Treatment"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Genome"), "Genome"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Read_Length"), "Read Length"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Reads"), "Reads"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Mapped_Reads"), "Mapped Read"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Duplicate_Reads"), "Duplicate Reads"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Percent_Duplicate_Reads"), "% Duplicate Reads"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Unique_Reads"), "Unique Reads"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Percent_Unique_Reads"), "% Unique Reads"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Peak_Caller"), "Peak Caller"));
-		section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Peak_Caller_Parameters"), "Peak Caller Parameters"));
-		
-		addSection(section);
-		*/
-	}
+    try {
+      DataViewXmlHandler.loadXml(VIEW_FILE, this);
+    } catch (SAXException | IOException | ParserConfigurationException e) {
+      e.printStackTrace();
+    }
+
+    /*
+     * DataViewSection section;
+     * 
+     * section = new DataViewSection("Sample"); section.addField(new
+     * DataViewField(new Path("/ChIP-Seq/Sample/Seq_Id"), "Sequence Id"));
+     * section.addField(new DataViewField(new
+     * Path("/ChIP-Seq/Sample/Classification"), "Classification"));
+     * section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Cell_Type"),
+     * "Cell Type")); section.addField(new DataViewField(new
+     * Path("/ChIP-Seq/Sample/Treatment"), "Treatment")); section.addField(new
+     * DataViewField(new Path("/ChIP-Seq/Sample/Genome"), "Genome"));
+     * section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Read_Length"),
+     * "Read Length")); section.addField(new DataViewField(new
+     * Path("/ChIP-Seq/Sample/Reads"), "Reads")); section.addField(new
+     * DataViewField(new Path("/ChIP-Seq/Sample/Mapped_Reads"), "Mapped Read"));
+     * section.addField(new DataViewField(new
+     * Path("/ChIP-Seq/Sample/Duplicate_Reads"), "Duplicate Reads"));
+     * section.addField(new DataViewField(new
+     * Path("/ChIP-Seq/Sample/Percent_Duplicate_Reads"), "% Duplicate Reads"));
+     * section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Unique_Reads"),
+     * "Unique Reads")); section.addField(new DataViewField(new
+     * Path("/ChIP-Seq/Sample/Percent_Unique_Reads"), "% Unique Reads"));
+     * section.addField(new DataViewField(new Path("/ChIP-Seq/Sample/Peak_Caller"),
+     * "Peak Caller")); section.addField(new DataViewField(new
+     * Path("/ChIP-Seq/Sample/Peak_Caller_Parameters"), "Peak Caller Parameters"));
+     * 
+     * addSection(section);
+     */
+  }
 }

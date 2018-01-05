@@ -49,115 +49,123 @@ import edu.columbia.rdf.edb.Sample;
  *
  */
 public class SampleViewRibbonSection extends RibbonSection implements ModernClickListener {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The Constant SIZE. */
-	private static final Dimension SIZE = new Dimension(120, ModernWidget.WIDGET_HEIGHT);
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The m button sort map. */
-	private Map<String, ModernClickWidget> mButtonSortMap = 
-			new HashMap<String, ModernClickWidget>();
+  /** The Constant SIZE. */
+  private static final Dimension SIZE = new Dimension(120, ModernWidget.WIDGET_HEIGHT);
 
-	/** The m sample view model. */
-	private SampleViewModel mSampleViewModel;
+  /** The m button sort map. */
+  private Map<String, ModernClickWidget> mButtonSortMap = new HashMap<String, ModernClickWidget>();
 
+  /** The m sample view model. */
+  private SampleViewModel mSampleViewModel;
 
-	/**
-	 * The Class SortEvents.
-	 */
-	private class SortEvents implements ChangeListener {
-		
-		/* (non-Javadoc)
-		 * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
-		 */
-		@Override
-		public void changed(ChangeEvent e) {
-			mButtonSortMap.get(mSampleViewModel.getSorter().getName()).setSelected(true);
-		}
-	}
-	
-	/**
-	 * Instantiates a new sample view ribbon section.
-	 *
-	 * @param ribbon the ribbon
-	 * @param sampleViewModel the sample view model
-	 */
-	public SampleViewRibbonSection(Ribbon ribbon, SampleViewModel sampleViewModel) {
-		super(ribbon, "Folders");
-		
-		mSampleViewModel = sampleViewModel;
+  /**
+   * The Class SortEvents.
+   */
+  private class SortEvents implements ChangeListener {
 
-		mSampleViewModel.addChangeListener(new SortEvents());
-		
-		ModernButtonGroup group = new ModernButtonGroup();
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     */
+    @Override
+    public void changed(ChangeEvent e) {
+      mButtonSortMap.get(mSampleViewModel.getSorter().getName()).setSelected(true);
+    }
+  }
 
-		List<String> names = new ArrayList<String>();
-		
-		for (Sorter<Sample> sorter : mSampleViewModel) {
-			names.add(sorter.getName());
-		}
-		
-		Collections.sort(names);
-		
-		// Add the default button
-		
-		//Dimension dim = new Dimension(70, Ribbon.LARGE_BUTTON_HEIGHT);
-		
-		//List<String> tokens = TextUtils.fastSplit(sortModel.getDefault().getName(), 
-		//		TextUtils.SPACE_DELIMITER);
-		
-		ModernClickWidget sortCheckBox;
-		
-		//if (tokens.size() > 1) {
-		//	sortCheckBox = new RibbonLargeCheckButton(tokens.get(0), tokens.get(1), ModernVectorIcon.FOLDER_32_ICON);
-		//} else {
-		//	sortCheckBox = new RibbonLargeCheckButton(tokens.get(0), ModernVectorIcon.FOLDER_32_ICON);
-		//}
-		
-		//Ui.setSize(sortCheckBox, dim);
-		
-		//group.add(sortCheckBox);
-		//sortCheckBox.addClickListener(this);
-		//mButtonSortMap.put(sortModel.getDefault().getName(), sortCheckBox);
-		
-		//buttonContainer.add(sortCheckBox);
-		
-		// Add the other buttons
-		
-		int c = 0;
-		
-		Box box = null;
-		
-		for (String name : names) {
-			if (c % 3 == 0) {
-				box = Box.createVerticalBox();
-				add(box);
-			}
-			
-			sortCheckBox = new ModernCheckButton(name, UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
-			UI.setSize(sortCheckBox, SIZE);
-			group.add(sortCheckBox);
-			sortCheckBox.addClickListener(this);
-			mButtonSortMap.put(name, sortCheckBox);
-			
-			box.add(sortCheckBox);
-			
-			++c;
-		}
-	}
+  /**
+   * Instantiates a new sample view ribbon section.
+   *
+   * @param ribbon
+   *          the ribbon
+   * @param sampleViewModel
+   *          the sample view model
+   */
+  public SampleViewRibbonSection(Ribbon ribbon, SampleViewModel sampleViewModel) {
+    super(ribbon, "Folders");
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	public void clicked(ModernClickEvent e) {
-		//if (e.getSource().equals(sortAscendButton)) {
-		//	fireAction(new ModernClickEvent(this, "sort"));
-		//}
-		
-		mSampleViewModel.setSorter(e.getMessage());
-	}
-	
-	
+    mSampleViewModel = sampleViewModel;
+
+    mSampleViewModel.addChangeListener(new SortEvents());
+
+    ModernButtonGroup group = new ModernButtonGroup();
+
+    List<String> names = new ArrayList<String>();
+
+    for (Sorter<Sample> sorter : mSampleViewModel) {
+      names.add(sorter.getName());
+    }
+
+    Collections.sort(names);
+
+    // Add the default button
+
+    // Dimension dim = new Dimension(70, Ribbon.LARGE_BUTTON_HEIGHT);
+
+    // List<String> tokens = TextUtils.fastSplit(sortModel.getDefault().getName(),
+    // TextUtils.SPACE_DELIMITER);
+
+    ModernClickWidget sortCheckBox;
+
+    // if (tokens.size() > 1) {
+    // sortCheckBox = new RibbonLargeCheckButton(tokens.get(0), tokens.get(1),
+    // ModernVectorIcon.FOLDER_32_ICON);
+    // } else {
+    // sortCheckBox = new RibbonLargeCheckButton(tokens.get(0),
+    // ModernVectorIcon.FOLDER_32_ICON);
+    // }
+
+    // Ui.setSize(sortCheckBox, dim);
+
+    // group.add(sortCheckBox);
+    // sortCheckBox.addClickListener(this);
+    // mButtonSortMap.put(sortModel.getDefault().getName(), sortCheckBox);
+
+    // buttonContainer.add(sortCheckBox);
+
+    // Add the other buttons
+
+    int c = 0;
+
+    Box box = null;
+
+    for (String name : names) {
+      if (c % 3 == 0) {
+        box = Box.createVerticalBox();
+        add(box);
+      }
+
+      sortCheckBox = new ModernCheckButton(name, UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
+      UI.setSize(sortCheckBox, SIZE);
+      group.add(sortCheckBox);
+      sortCheckBox.addClickListener(this);
+      mButtonSortMap.put(name, sortCheckBox);
+
+      box.add(sortCheckBox);
+
+      ++c;
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  public void clicked(ModernClickEvent e) {
+    // if (e.getSource().equals(sortAscendButton)) {
+    // fireAction(new ModernClickEvent(this, "sort"));
+    // }
+
+    mSampleViewModel.setSorter(e.getMessage());
+  }
+
 }

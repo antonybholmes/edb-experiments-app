@@ -20,22 +20,21 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
  * The Class SortSamplesBySourceOrganismPart.
  */
 public class SortSamplesBySourceOrganismPart extends SortSamplesByMicroarrayField {
-	
-	/**
-	 * Instantiates a new sort samples by source organism part.
-	 */
-	public SortSamplesBySourceOrganismPart() {
-		super("Sample",
-				"Source", 
-				"Characteristic",
-				"Organism_Part");
-		// Do nothing
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Source Organism Part";
-	}
+  /**
+   * Instantiates a new sort samples by source organism part.
+   */
+  public SortSamplesBySourceOrganismPart() {
+    super("Sample", "Source", "Characteristic", "Organism_Part");
+    // Do nothing
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Source Organism Part";
+  }
 }

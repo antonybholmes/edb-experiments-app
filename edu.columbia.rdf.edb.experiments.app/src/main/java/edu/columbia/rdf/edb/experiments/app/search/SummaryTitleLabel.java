@@ -25,18 +25,19 @@ import org.jebtk.modern.text.ModernLabelBold;
  * The Class SummaryTitleLabel.
  */
 public class SummaryTitleLabel extends ModernLabelBold {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * Instantiates a new summary title label.
-	 *
-	 * @param text the text
-	 */
-	public SummaryTitleLabel(String text) {
-		super(text);
-		
-		UI.setSize(this, new Dimension(Short.MAX_VALUE, 24));
-	}
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new summary title label.
+   *
+   * @param text
+   *          the text
+   */
+  public SummaryTitleLabel(String text) {
+    super(text);
+
+    UI.setSize(this, new Dimension(Short.MAX_VALUE, 24));
+  }
 }

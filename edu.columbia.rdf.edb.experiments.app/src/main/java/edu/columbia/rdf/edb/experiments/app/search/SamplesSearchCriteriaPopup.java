@@ -33,80 +33,80 @@ import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 
 // TODO: Auto-generated Javadoc
 /**
- * Specialised combobox for showing search criteria relevant
- * for search through samples within a particular
- * experiment.
+ * Specialised combobox for showing search criteria relevant for search through
+ * samples within a particular experiment.
  *
  * @author Antony Holmes Holmes
  *
  */
 public class SamplesSearchCriteriaPopup extends SearchCriteriaPopup {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new samples search criteria popup.
-	 *
-	 * @param parent the parent
-	 * @param menuItemSize the menu item size
-	 */
-	public SamplesSearchCriteriaPopup(ModernWindow parent, 
-			Dimension menuItemSize) {
-		setup(parent, menuItemSize);
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Setup.
-	 *
-	 * @param parent the parent
-	 * @param menuItemSize the menu item size
-	 */
-	private void setup(ModernWindow parent,
-			Dimension menuItemSize) {
-		ModernMenuItem item = null;
+  /**
+   * Instantiates a new samples search criteria popup.
+   *
+   * @param parent
+   *          the parent
+   * @param menuItemSize
+   *          the menu item size
+   */
+  public SamplesSearchCriteriaPopup(ModernWindow parent, Dimension menuItemSize) {
+    setup(parent, menuItemSize);
+  }
 
-		List<ModernMenuItem> items = new ArrayList<ModernMenuItem>();
+  /**
+   * Setup.
+   *
+   * @param parent
+   *          the parent
+   * @param menuItemSize
+   *          the menu item size
+   */
+  private void setup(ModernWindow parent, Dimension menuItemSize) {
+    ModernMenuItem item = null;
 
-		for (SearchCategoryGroup group : SearchCategoryService.getInstance()) {
-			if (!group.display()) {
-				continue;
-			}
+    List<ModernMenuItem> items = new ArrayList<ModernMenuItem>();
 
-			if (group.getName() == null) {
-				continue;
-			}
+    for (SearchCategoryGroup group : SearchCategoryService.getInstance()) {
+      if (!group.display()) {
+        continue;
+      }
 
-			// don't want to add experiment level
-			// searches
-			if (group.getName().equals("Experiment")) {
-				continue;
-			}
+      if (group.getName() == null) {
+        continue;
+      }
 
-			// group title
-			item = new ModernTitleMenuItem(group.getName());
+      // don't want to add experiment level
+      // searches
+      if (group.getName().equals("Experiment")) {
+        continue;
+      }
 
-			// sort items alphabetically and add to combo
+      // group title
+      item = new ModernTitleMenuItem(group.getName());
 
-			for (SearchCategory criterion : group) {
-				ModernMenuItem subItem = new ModernTwoLineMenuItem(criterion.getName(), 
-						criterion.getDescription(), 
-						UIService.getInstance().loadIcon("search_criterion", UIService.ICON_SIZE_32));
+      // sort items alphabetically and add to combo
 
-				//subItem.setActionCommand(name);
-				
-				UI.setSize(subItem, MENU_ITEM_SIZE);
+      for (SearchCategory criterion : group) {
+        ModernMenuItem subItem = new ModernTwoLineMenuItem(criterion.getName(), criterion.getDescription(),
+            UIService.getInstance().loadIcon("search_criterion", UIService.ICON_SIZE_32));
 
-				item.getSubMenuItems().add(subItem);
-			}
+        // subItem.setActionCommand(name);
 
-			items.add(item);
-		}
+        UI.setSize(subItem, MENU_ITEM_SIZE);
 
-		addScrollMenuItems(items);
+        item.getSubMenuItems().add(subItem);
+      }
 
-		//addBreakLine();
+      items.add(item);
+    }
 
-		//addModernMenuItem(new ModernMenuItem("All Fields"));
-	}
+    addScrollMenuItems(items);
+
+    // addBreakLine();
+
+    // addModernMenuItem(new ModernMenuItem("All Fields"));
+  }
 }

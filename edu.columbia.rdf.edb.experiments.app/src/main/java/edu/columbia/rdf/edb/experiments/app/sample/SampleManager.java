@@ -42,286 +42,254 @@ import edu.columbia.rdf.edb.Sample;
  * The Class SampleManager.
  */
 public class SampleManager {
-	
-	/**
-	 * Export.
-	 *
-	 * @param parent the parent
-	 * @param sample the sample
-	 * @param view the view
-	 * @return the path
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public static Path export(ModernWindow parent, 
-			Sample sample,
-			DataView view) throws IOException {
-		List<Sample> samples = new ArrayList<Sample>();
-		
-		samples.add(sample);
-		
-		return export(parent, samples, view);
-	}
-	
-	/**
-	 * Export.
-	 *
-	 * @param parent the parent
-	 * @param samples the samples
-	 * @param view the view
-	 * @return the path
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public final static Path export(ModernWindow parent, 
-			List<Sample> samples,
-			DataView view) throws IOException {
 
-		if (samples == null || samples.size() == 0) {
-			ModernMessageDialog.createDialog(parent,
-					parent.getAppInfo().getName(),
-					"You must select at least one sample to export.",
-					MessageDialogType.WARNING);
+  /**
+   * Export.
+   *
+   * @param parent
+   *          the parent
+   * @param sample
+   *          the sample
+   * @param view
+   *          the view
+   * @return the path
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   */
+  public static Path export(ModernWindow parent, Sample sample, DataView view) throws IOException {
+    List<Sample> samples = new ArrayList<Sample>();
 
-			return null;
-		}
-		
-        JFileChooser fc = new JFileChooser();
+    samples.add(sample);
 
-	    TsvGuiFileFilter tsvFilter = new TsvGuiFileFilter();
+    return export(parent, samples, view);
+  }
 
-        fc.addChoosableFileFilter(tsvFilter);
-        fc.setAcceptAllFileFilterUsed(false);
-        fc.setFileFilter(tsvFilter);
+  /**
+   * Export.
+   *
+   * @param parent
+   *          the parent
+   * @param samples
+   *          the samples
+   * @param view
+   *          the view
+   * @return the path
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   */
+  public final static Path export(ModernWindow parent, List<Sample> samples, DataView view) throws IOException {
 
-        //Show it.
-        int returnVal = fc.showDialog(parent, "Export");
+    if (samples == null || samples.size() == 0) {
+      ModernMessageDialog.createDialog(parent, parent.getAppInfo().getName(),
+          "You must select at least one sample to export.", MessageDialogType.WARNING);
 
-        //Process the results.
-        if (returnVal == JFileChooser.CANCEL_OPTION) {
-        	return null;
+      return null;
+    }
+
+    JFileChooser fc = new JFileChooser();
+
+    TsvGuiFileFilter tsvFilter = new TsvGuiFileFilter();
+
+    fc.addChoosableFileFilter(tsvFilter);
+    fc.setAcceptAllFileFilterUsed(false);
+    fc.setFileFilter(tsvFilter);
+
+    // Show it.
+    int returnVal = fc.showDialog(parent, "Export");
+
+    // Process the results.
+    if (returnVal == JFileChooser.CANCEL_OPTION) {
+      return null;
+    }
+
+    java.nio.file.Path output = PathUtils.addExtension(fc.getSelectedFile().toPath(), "txt");
+
+    if (FileUtils.exists(output)) {
+      ModernDialogStatus n = ModernMessageDialog.createFileReplaceDialog(parent, output);
+
+      if (n == ModernDialogStatus.CANCEL) {
+        return export(parent, samples, view);
+      }
+    }
+
+    export(samples, view, output);
+
+    ModernMessageDialog.createFileSavedDialog(parent, parent.getAppInfo().getName(), output);
+
+    return output;
+  }
+
+  /**
+   * Export.
+   *
+   * @param samples
+   *          the samples
+   * @param view
+   *          the view
+   * @param output
+   *          the output
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   */
+  public static void export(List<Sample> samples, DataView view, Path output) throws IOException {
+    BufferedWriter out = FileUtils.newBufferedWriter(output);
+
+    try {
+
+      //
+      // Output a header
+      //
+
+      List<String> tokens = new ArrayList<String>();
+
+      for (DataViewSection section : view) {
+        tokens.add(section.getName());
+        tokens.add(TextUtils.emptyCells(section.size() - 1));
+      }
+
+      out.write(TextUtils.join(tokens, TextUtils.TAB_DELIMITER));
+      out.newLine();
+
+      tokens = new ArrayList<String>();
+
+      for (DataViewSection section : view) {
+        for (DataViewField field : section) {
+          tokens.add(field.getName());
+        }
+      }
+
+      out.write(TextUtils.join(tokens, TextUtils.TAB_DELIMITER));
+      out.newLine();
+
+      //
+      // items
+      //
+
+      for (Sample s : samples) {
+        tokens = new ArrayList<String>();
+
+        for (DataViewSection section : view) {
+          for (DataViewField field : section) {
+            // System.err.println(field + ":" +
+            // s.getSection(section.getType()).getData(field));
+
+            tokens.add(s.getTags().getTag(field.getPath()).getValue());
+          }
         }
 
-        
-        
-        java.nio.file.Path output = PathUtils.addExtension(fc.getSelectedFile().toPath(), "txt");
+        out.write(TextUtils.join(tokens, TextUtils.TAB_DELIMITER));
+        out.newLine();
+      }
+    } finally {
+      out.close();
+    }
+  }
 
-		if (FileUtils.exists(output)) {
-			ModernDialogStatus n = ModernMessageDialog.createFileReplaceDialog(parent, output);
+  /*
+   * public static void exportExperiments(ModernWindow parent, Experiment
+   * experiment) throws IOException { List<Experiment> experiments = new
+   * ArrayList<Experiment>();
+   * 
+   * experiments.add(experiment);
+   * 
+   * exportExperiments(parent, experiments); }
+   */
 
-			if (n == ModernDialogStatus.CANCEL) {
-				return export(parent, samples, view);
-			}
-		}
-		
-		export(samples, view, output);
-    	
-    	ModernMessageDialog.createFileSavedDialog(parent, parent.getAppInfo().getName(), output);
-    	
-    	return output;
-	}
-	
-	/**
-	 * Export.
-	 *
-	 * @param samples the samples
-	 * @param view the view
-	 * @param output the output
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public static void export(List<Sample> samples,
-			DataView view,
-			Path output) throws IOException {
-		BufferedWriter out = FileUtils.newBufferedWriter(output);
-	
-	    try {
-	    	
-    	    //
-    	    // Output a header
-    	    //
-    	    
-    	    List<String> tokens = new ArrayList<String>();
-    	    
-    	    for (DataViewSection section : view) {
-    	    	tokens.add(section.getName());
-    	    	tokens.add(TextUtils.emptyCells(section.size() - 1));
-    		}
-    	    
-    	    out.write(TextUtils.join(tokens, TextUtils.TAB_DELIMITER));
-    	    out.newLine();
-    	    
-    	    tokens = new ArrayList<String>();
-    	    
-    	    for (DataViewSection section : view) {
-    	    	for (DataViewField field : section) {
-    	    		tokens.add(field.getName());
-    	    	}
-    	    }
-    	    
-    	    out.write(TextUtils.join(tokens, TextUtils.TAB_DELIMITER));
-    	    out.newLine();
-	    
-    	    //
-    	    // items
-    	    //
-	    
-	    	for (Sample s : samples) {
-	    		tokens = new ArrayList<String>();
-	    	    
-	    		for (DataViewSection section : view) {
-	    			for (DataViewField field : section) {
-	    	    		//System.err.println(field + ":" + s.getSection(section.getType()).getData(field));
-	    	    		
-	    	    		tokens.add(s.getTags().getTag(field.getPath()).getValue());
-	    	    	}
-	    	    }
-	    	    
-	    	    out.write(TextUtils.join(tokens, TextUtils.TAB_DELIMITER));
-	    	    out.newLine();
-	    	}
-	    } finally {
-	    	out.close();
-	    }
-	}
-	
-	/*
-	public static void exportExperiments(ModernWindow parent, Experiment experiment) throws IOException {
-		List<Experiment> experiments = new ArrayList<Experiment>();
-		
-		experiments.add(experiment);
-		
-		exportExperiments(parent, experiments);
-	}
-	*/
-	
-	/*
-	public final static File exportExperiments(ModernWindow parent, List<Experiment> experiments) throws IOException {
+  /*
+   * public final static File exportExperiments(ModernWindow parent,
+   * List<Experiment> experiments) throws IOException {
+   * 
+   * if (experiments == null || experiments.size() == 0) {
+   * ModernMessageDialog.createDialog(parent, parent.getAppInfo().getName(),
+   * "You must select at least one experiment to export.",
+   * MessageDialogType.WARNING);
+   * 
+   * return null; }
+   * 
+   * JFileChooser fc = new JFileChooser();
+   * 
+   * TsvGuiFileFilter tsvFilter = new TsvGuiFileFilter();
+   * 
+   * fc.addChoosableFileFilter(tsvFilter); fc.setAcceptAllFileFilterUsed(false);
+   * fc.setFileFilter(tsvFilter);
+   * 
+   * //Show it. int returnVal = fc.showDialog(parent, "Export");
+   * 
+   * //Process the results. if (returnVal == JFileChooser.CANCEL_OPTION) { return
+   * null; }
+   * 
+   * File output = Io.addExtension(fc.getSelectedFile(), "txt");
+   * 
+   * if (output.exists()) { ModernDialogStatus n =
+   * ModernMessageDialog.createFileReplaceDialog(parent, output);
+   * 
+   * if (n == ModernDialogStatus.CANCEL) { return exportExperiments(parent,
+   * experiments); } }
+   * 
+   * boolean ret = exportExperiments(experiments, output);
+   * 
+   * if (ret) { ModernMessageDialog.createFileSavedDialog(parent,
+   * parent.getAppInfo().getName(), output);
+   * 
+   * return output; } else { return null; } }
+   */
 
-		if (experiments == null || experiments.size() == 0) {
-			ModernMessageDialog.createDialog(parent,
-					parent.getAppInfo().getName(),
-					"You must select at least one experiment to export.",
-					MessageDialogType.WARNING);
-
-			return null;
-		}
-		
-        JFileChooser fc = new JFileChooser();
-
-	    TsvGuiFileFilter tsvFilter = new TsvGuiFileFilter();
-
-        fc.addChoosableFileFilter(tsvFilter);
-        fc.setAcceptAllFileFilterUsed(false);
-        fc.setFileFilter(tsvFilter);
-
-        //Show it.
-        int returnVal = fc.showDialog(parent, "Export");
-
-        //Process the results.
-        if (returnVal == JFileChooser.CANCEL_OPTION) {
-        	return null;
-        }
-
-        File output = Io.addExtension(fc.getSelectedFile(), "txt");
-
-		if (output.exists()) {
-			ModernDialogStatus n = ModernMessageDialog.createFileReplaceDialog(parent, output);
-
-			if (n == ModernDialogStatus.CANCEL) {
-				return exportExperiments(parent, experiments);
-			}
-		}
-		
-		boolean ret = exportExperiments(experiments, output);
-    	
-    	if (ret) {
-    		ModernMessageDialog.createFileSavedDialog(parent, 
-    				parent.getAppInfo().getName(), output);
-    		
-    		return output;
-    	} else {
-    		return null;
-    	}
-	}
-	*/
-	
-	/*
-	public static boolean exportExperiments(List<Experiment> experiments, File output) {
-
-		try{
-    	    BufferedWriter out = new BufferedWriter(new FileWriter(output));
-    	
-    	    try {
-    	    	for (Experiment experiment : experiments) {
-	    	    	out.write("Experiment Title");
-	    	    	out.write(TextUtils.TAB_DELIMITER);
-	    	    	
-	    	    	out.write(experiment.getName());
-	    	    	out.newLine();
-	
-	    	    	if (experiment.getArrayDesigns() != null) {
-		    	    	out.write("Array Designs");
-		    	    	out.write(TextUtils.TAB_DELIMITER);
-		    	    	
-		    			List<String> values = new ArrayList<String>();
-		
-		    			for (ArrayDesign arrayDesign : experiment.getArrayDesigns()) {
-		    				values.add(arrayDesign.getName() + " (" + arrayDesign.getProvider() + ")");
-		    			}
-		
-		    			Collections.sort(values);
-		
-		    			out.write(TextUtils.join(values, TextUtils.COMMA_DELIMITER));
-		    			out.newLine();
-	    	    	}
-	
-	    			out.write("Organisms");
-	    			out.write(TextUtils.TAB_DELIMITER);
-	    			out.write(TextUtils.join(ArrayUtils.sort(experiment.getOrganisms()), TextUtils.COMMA_DELIMITER));
-	    	    	out.newLine();
-	    	    	
-	    	    	out.write("Type");
-	    			out.write(TextUtils.TAB_DELIMITER);
-	    			out.write(TextUtils.join(ArrayUtils.sort(experiment.getSampleTypes()), TextUtils.COMMA_DELIMITER));
-	    	    	out.newLine();
-	    			
-	    	    	out.write("Description");
-	    	    	out.write(TextUtils.TAB_DELIMITER);
-	    			
-	    			out.write(experiment.getDescription());
-	    	    	out.newLine();
-	    	    	
-	    	    	out.write("Persons");
-	    	    	out.newLine();
-	    	    	
-	    	    	for (Person contact : experiment.getPersons()) {
-	    				out.write(contact.getName());
-	    				out.write(TextUtils.TAB_DELIMITER);
-	    				out.write(contact.getEmailAddress());
-	    				out.newLine();
-	
-	    				List<String> roles = new ArrayList<String>();
-	
-	    				for (String role : contact.getRoles()) {
-	    					roles.add(SubstitutionService.getInstance().getSubstitute(role));
-	    				}
-	    				
-	    				Collections.sort(roles);
-	    				
-	    				out.write(TextUtils.join(roles, TextUtils.TAB_DELIMITER));
-	    				out.newLine();
-	    	    	}
-	    	    	
-	    	    	out.newLine();
-    			}
-    	    } finally {
-    	    	out.close();
-    	    }
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    		
-    		return false;
-    	}
-		
-		return true;
-	}
-	*/
+  /*
+   * public static boolean exportExperiments(List<Experiment> experiments, File
+   * output) {
+   * 
+   * try{ BufferedWriter out = new BufferedWriter(new FileWriter(output));
+   * 
+   * try { for (Experiment experiment : experiments) {
+   * out.write("Experiment Title"); out.write(TextUtils.TAB_DELIMITER);
+   * 
+   * out.write(experiment.getName()); out.newLine();
+   * 
+   * if (experiment.getArrayDesigns() != null) { out.write("Array Designs");
+   * out.write(TextUtils.TAB_DELIMITER);
+   * 
+   * List<String> values = new ArrayList<String>();
+   * 
+   * for (ArrayDesign arrayDesign : experiment.getArrayDesigns()) {
+   * values.add(arrayDesign.getName() + " (" + arrayDesign.getProvider() + ")"); }
+   * 
+   * Collections.sort(values);
+   * 
+   * out.write(TextUtils.join(values, TextUtils.COMMA_DELIMITER)); out.newLine();
+   * }
+   * 
+   * out.write("Organisms"); out.write(TextUtils.TAB_DELIMITER);
+   * out.write(TextUtils.join(ArrayUtils.sort(experiment.getOrganisms()),
+   * TextUtils.COMMA_DELIMITER)); out.newLine();
+   * 
+   * out.write("Type"); out.write(TextUtils.TAB_DELIMITER);
+   * out.write(TextUtils.join(ArrayUtils.sort(experiment.getSampleTypes()),
+   * TextUtils.COMMA_DELIMITER)); out.newLine();
+   * 
+   * out.write("Description"); out.write(TextUtils.TAB_DELIMITER);
+   * 
+   * out.write(experiment.getDescription()); out.newLine();
+   * 
+   * out.write("Persons"); out.newLine();
+   * 
+   * for (Person contact : experiment.getPersons()) {
+   * out.write(contact.getName()); out.write(TextUtils.TAB_DELIMITER);
+   * out.write(contact.getEmailAddress()); out.newLine();
+   * 
+   * List<String> roles = new ArrayList<String>();
+   * 
+   * for (String role : contact.getRoles()) {
+   * roles.add(SubstitutionService.getInstance().getSubstitute(role)); }
+   * 
+   * Collections.sort(roles);
+   * 
+   * out.write(TextUtils.join(roles, TextUtils.TAB_DELIMITER)); out.newLine(); }
+   * 
+   * out.newLine(); } } finally { out.close(); } } catch (Exception e) {
+   * e.printStackTrace();
+   * 
+   * return false; }
+   * 
+   * return true; }
+   */
 }

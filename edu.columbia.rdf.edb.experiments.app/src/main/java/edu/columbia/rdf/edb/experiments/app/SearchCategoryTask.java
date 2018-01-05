@@ -20,67 +20,68 @@ import edu.columbia.rdf.edb.ui.search.SearchStackElementCategory;
  */
 public class SearchCategoryTask extends SwingWorker<Void, Void> {
 
-	/** The m search stack. */
-	private Deque<SearchStackElementCategory> mSearchStack;
+  /** The m search stack. */
+  private Deque<SearchStackElementCategory> mSearchStack;
 
-	/** The m samples. */
-	private List<Sample> mSamples;
+  /** The m samples. */
+  private List<Sample> mSamples;
 
-	/** The m data types. */
-	private Collection<Type> mDataTypes;
+  /** The m data types. */
+  private Collection<Type> mDataTypes;
 
-	/** The m organisms. */
-	private Collection<Species> mOrganisms;
-	
-	private SampleModel mSampleSearchModel;
+  /** The m organisms. */
+  private Collection<Species> mOrganisms;
 
-	private Groups mGroups;
+  private SampleModel mSampleSearchModel;
 
-	/**
-	 * Instantiates a new search category task.
-	 *
-	 * @param searchStack the search stack
-	 * @param dataTypes the data types
-	 * @param organisms the organisms
-	 */
-	public SearchCategoryTask(SampleModel model,
-			Deque<SearchStackElementCategory> searchStack,
-			Collection<Type> dataTypes,
-			Collection<Species> organisms,
-			Groups groups) {
-		mSampleSearchModel = model;
-		mSearchStack = searchStack;
-		mDataTypes = dataTypes;
-		mOrganisms = organisms;
-		mGroups = groups;
-	}
+  private Groups mGroups;
 
-	/* (non-Javadoc)
-	 * @see javax.swing.SwingWorker#doInBackground()
-	 */
-	@Override
-	public Void doInBackground() {
+  /**
+   * Instantiates a new search category task.
+   *
+   * @param searchStack
+   *          the search stack
+   * @param dataTypes
+   *          the data types
+   * @param organisms
+   *          the organisms
+   */
+  public SearchCategoryTask(SampleModel model, Deque<SearchStackElementCategory> searchStack,
+      Collection<Type> dataTypes, Collection<Species> organisms, Groups groups) {
+    mSampleSearchModel = model;
+    mSearchStack = searchStack;
+    mDataTypes = dataTypes;
+    mOrganisms = organisms;
+    mGroups = groups;
+  }
 
-		ArraySearchRT search = new ArraySearchRT();
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.SwingWorker#doInBackground()
+   */
+  @Override
+  public Void doInBackground() {
 
-		// find a list of relevant experiments
-		try {
-			mSamples = search.searchSamples(mSearchStack, 
-					mDataTypes, 
-					mOrganisms,
-					mGroups);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    ArraySearchRT search = new ArraySearchRT();
 
-		return null;
-	}
+    // find a list of relevant experiments
+    try {
+      mSamples = search.searchSamples(mSearchStack, mDataTypes, mOrganisms, mGroups);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
-	/* (non-Javadoc)
-	 * @see javax.swing.SwingWorker#done()
-	 */
-	@Override
-	public void done() {
-		mSampleSearchModel.set(mSamples);
-	}
+    return null;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see javax.swing.SwingWorker#done()
+   */
+  @Override
+  public void done() {
+    mSampleSearchModel.set(mSamples);
+  }
 }

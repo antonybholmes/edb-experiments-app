@@ -26,74 +26,75 @@ import org.jebtk.modern.widget.ModernWidget;
  */
 public class CategoryPane32VectorIcon extends Window32VectorIcon {
 
-	/** The Constant PANE_WIDTH_1. */
-	private static final int PANE_WIDTH_1 = 8;
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.graphics.icons.Window32VectorIcon#drawIcon(java.awt.Graphics2D, int, int, int, int)
-	 */
-	@Override
-	public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
-		super.drawIcon(g2, x, y, w, h, params);
-		
-		x = x + (w - WIDTH) / 2 + 2;
-		y = y + (h - HEIGHT) / 2 + BAR_HEIGHT;
-		
-		int x2 = x + 1;
-		
-		int w1 = PANE_WIDTH_1 - 3;
-		int y1 = y + 2;
+  /** The Constant PANE_WIDTH_1. */
+  private static final int PANE_WIDTH_1 = 8;
 
-		g2.setColor(ModernWidget.LINE_COLOR);
-		
-		g2.drawLine(x + PANE_WIDTH_1, y, x + PANE_WIDTH_1, y + HEIGHT - 6);
-		
-		y1 += 2;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.graphics.icons.Window32VectorIcon#drawIcon(java.awt.
+   * Graphics2D, int, int, int, int)
+   */
+  @Override
+  public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
+    super.drawIcon(g2, x, y, w, h, params);
 
-		y1 += 2;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
-		
-		y1 += 4;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
-		
-		y1 += 2;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
-		
-		y1 += 2;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
-		
-		
-		x2 = x + PANE_WIDTH_1 + 2;
-		y1 = y + 2;
-		
-		g2.drawLine(x + 2 * PANE_WIDTH_1 + 1, y, x + 2 * PANE_WIDTH_1 + 1, y + HEIGHT - 6);
-		
-		y1 += 2;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
+    x = x + (w - WIDTH) / 2 + 2;
+    y = y + (h - HEIGHT) / 2 + BAR_HEIGHT;
 
-		y1 += 2;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
-		
-		y1 += 4;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
-		
-		y1 += 2;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
-		
-		y1 += 2;
-		
-		g2.drawLine(x2, y1, x2 + w1, y1);
-		
-		
-	}
+    int x2 = x + 1;
+
+    int w1 = PANE_WIDTH_1 - 3;
+    int y1 = y + 2;
+
+    g2.setColor(ModernWidget.LINE_COLOR);
+
+    g2.drawLine(x + PANE_WIDTH_1, y, x + PANE_WIDTH_1, y + HEIGHT - 6);
+
+    y1 += 2;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    y1 += 2;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    y1 += 4;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    y1 += 2;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    y1 += 2;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    x2 = x + PANE_WIDTH_1 + 2;
+    y1 = y + 2;
+
+    g2.drawLine(x + 2 * PANE_WIDTH_1 + 1, y, x + 2 * PANE_WIDTH_1 + 1, y + HEIGHT - 6);
+
+    y1 += 2;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    y1 += 2;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    y1 += 4;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    y1 += 2;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+    y1 += 2;
+
+    g2.drawLine(x2, y1, x2 + w1, y1);
+
+  }
 }

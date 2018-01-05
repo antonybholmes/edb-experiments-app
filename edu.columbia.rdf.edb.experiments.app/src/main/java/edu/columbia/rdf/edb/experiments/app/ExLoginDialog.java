@@ -30,75 +30,75 @@ import edu.columbia.rdf.edb.ui.RepositoryService;
 import edu.columbia.rdf.edb.ui.RepositorySession;
 import edu.columbia.rdf.edb.ui.network.ServerException;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class ExLoginDialog.
  */
 public class ExLoginDialog extends LoginDialog {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new ex login dialog.
-	 *
-	 * @param appInfo the app info
-	 * @param login the login
-	 */
-	public ExLoginDialog(GuiAppInfo appInfo, EDBWLogin login) {
-		super(appInfo, login);
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.LoginDialog#success()
-	 */
-	@Override
-	protected void success() {
+  /**
+   * Instantiates a new ex login dialog.
+   *
+   * @param appInfo
+   *          the app info
+   * @param login
+   *          the login
+   */
+  public ExLoginDialog(GuiAppInfo appInfo, EDBWLogin login) {
+    super(appInfo, login);
+  }
 
-		RepositorySession session = null;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.LoginDialog#success()
+   */
+  @Override
+  protected void success() {
 
-		//try {
-		//	session = new ExperimentDbRepositorySession(login);
-		///} catch (UnsupportedEncodingException e1) {
-		//	e1.printStackTrace();
-		//}
+    RepositorySession session = null;
 
-		try {
-			session = new EDBRepositorySession(mLogin);
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-		}
+    // try {
+    // session = new ExperimentDbRepositorySession(login);
+    /// } catch (UnsupportedEncodingException e1) {
+    // e1.printStackTrace();
+    // }
 
-		if (session == null) {
-			ModernMessageDialog.createDialog(null, 
-					getAppInfo().getName(), 
-					"The ExperimentDB server is not responding.", 
-					MessageDialogType.WARNING);
+    try {
+      session = new EDBRepositorySession(mLogin);
+    } catch (UnsupportedEncodingException e1) {
+      e1.printStackTrace();
+    }
 
-			return;
-		}
+    if (session == null) {
+      ModernMessageDialog.createDialog(null, getAppInfo().getName(), "The ExperimentDB server is not responding.",
+          MessageDialogType.WARNING);
 
-		//SetupTask setupTask = new SetupTask(session);
-		//setupTask.execute();
+      return;
+    }
 
+    // SetupTask setupTask = new SetupTask(session);
+    // setupTask.execute();
 
-		Repository repository = null;
+    Repository repository = null;
 
-		try {
-			repository = session.restore();
+    try {
+      repository = session.restore();
 
-			RepositoryService.getInstance().setRepository(RepositoryService.DEFAULT_REP, repository);
+      RepositoryService.getInstance().setRepository(RepositoryService.DEFAULT_REP, repository);
 
-			MainExperimentsWindow window = new MainExperimentsWindow(getAppInfo());
+      MainExperimentsWindow window = new MainExperimentsWindow(getAppInfo());
 
-			window.setVisible(true);
-		} catch (ServerException ex) {
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-	}
+      window.setVisible(true);
+    } catch (ServerException ex) {
+      ex.printStackTrace();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    } catch (ClassNotFoundException ex) {
+      ex.printStackTrace();
+    }
+  }
 }

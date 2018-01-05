@@ -38,55 +38,52 @@ import edu.columbia.rdf.edb.ui.sort.SortSamplesByExperiment;
  *
  */
 public class ViewSamplesByExperiment extends SampleSorter {
-	
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.search.Sorter#arrange(java.util.Collection, org.abh.common.ui.tree.ModernTree, boolean, org.abh.common.ui.search.FilterModel)
-	 */
-	@Override
-	public void arrange(Collection<Sample> samples, 
-			ModernTree<Sample> tree, 
-			boolean ascending,
-			FilterModel filterModel) {
-		
-		Map<Experiment, Set<Sample>> experiments = 
-    			Experiment.sortSamplesByExperiment(samples);
-		
-		List<Experiment> sortedExperiments = 
-				SortSamplesByExperiment.sortByTitle(experiments.keySet(), ascending);
-		
-		tree.clear();
-		
-		TreeRootNode<Sample> root = 
-				new TreeRootNode<Sample>();
-		
-		TreeNode<Sample> titleNode = 
-				new TreeNode<Sample>(getName());
-		
-		root.addChild(titleNode);
 
-		for (Experiment experiment : sortedExperiments) {
-			TreeNode<Sample> node = 
-					new TreeNode<Sample>(experiment.getName());
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.search.Sorter#arrange(java.util.Collection,
+   * org.abh.common.ui.tree.ModernTree, boolean,
+   * org.abh.common.ui.search.FilterModel)
+   */
+  @Override
+  public void arrange(Collection<Sample> samples, ModernTree<Sample> tree, boolean ascending, FilterModel filterModel) {
 
-			List<Sample> sortedSamples = 
-					sortByName(experiments.get(experiment), ascending);
+    Map<Experiment, Set<Sample>> experiments = Experiment.sortSamplesByExperiment(samples);
 
-			for (Sample sample : sortedSamples) {
-				node.addChild(new TreeNode<Sample>(sample.getName(), sample));
-			}
-			
-			node.setIsExpandable(false);
+    List<Experiment> sortedExperiments = SortSamplesByExperiment.sortByTitle(experiments.keySet(), ascending);
 
-			titleNode.addChild(node);
-		}
-		
-		tree.setRoot(root);
-	}
+    tree.clear();
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Experiment";
-	}
+    TreeRootNode<Sample> root = new TreeRootNode<Sample>();
+
+    TreeNode<Sample> titleNode = new TreeNode<Sample>(getName());
+
+    root.addChild(titleNode);
+
+    for (Experiment experiment : sortedExperiments) {
+      TreeNode<Sample> node = new TreeNode<Sample>(experiment.getName());
+
+      List<Sample> sortedSamples = sortByName(experiments.get(experiment), ascending);
+
+      for (Sample sample : sortedSamples) {
+        node.addChild(new TreeNode<Sample>(sample.getName(), sample));
+      }
+
+      node.setIsExpandable(false);
+
+      titleNode.addChild(node);
+    }
+
+    tree.setRoot(root);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Experiment";
+  }
 }

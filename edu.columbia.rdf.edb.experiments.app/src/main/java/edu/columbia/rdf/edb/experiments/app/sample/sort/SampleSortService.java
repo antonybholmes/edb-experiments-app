@@ -30,46 +30,45 @@ import edu.columbia.rdf.edb.ui.sort.SortSamplesByPerson;
  * The Class SampleSortService.
  */
 public class SampleSortService extends SampleSortModel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The Constant INSTANCE. */
-	private static final SampleSortService INSTANCE = new SampleSortService();
 
-	/**
-	 * Gets the single instance of SampleSortService.
-	 *
-	 * @return single instance of SampleSortService
-	 */
-	public static final SampleSortService getInstance() {
-		return INSTANCE;
-	}
-	
-	/**
-	 * Instantiates a new sample sort service.
-	 */
-	private SampleSortService() {
-		add(new SortSamplesByExperiment());
-		add(new SortSamplesByExpressionType());
-		add(new SortSamplesByName());
-		add(new SortSamplesByOrganism());
-		add(new SortSamplesByPerson());
-		add(new SortSamplesByGEOSeries());
-		add(new SortSamplesByGEOPlatform());
-		add(new SortSamplesByGroup());
-		
-		/*
-		add(new SortSamplesByArrayPlatform());
-		add(new SortSamplesBySourceCellType());
-		add(new SortSamplesBySourceDiseaseState());
-		add(new SortSamplesBySourceDiseaseStatus());
-		add(new SortSamplesBySourceGender());
-		add(new SortSamplesByMicroarrayBasedClassification());
-		add(new SortSamplesBySourceMaterialType());
-		add(new SortSamplesBySourceOrganismPart());
-		*/
-		
-		setSorter("Sample Name");
-	}
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /** The Constant INSTANCE. */
+  private static final SampleSortService INSTANCE = new SampleSortService();
+
+  /**
+   * Gets the single instance of SampleSortService.
+   *
+   * @return single instance of SampleSortService
+   */
+  public static final SampleSortService getInstance() {
+    return INSTANCE;
+  }
+
+  /**
+   * Instantiates a new sample sort service.
+   */
+  private SampleSortService() {
+    add(new SortSamplesByExperiment());
+    add(new SortSamplesByExpressionType());
+    add(new SortSamplesByName());
+    add(new SortSamplesByOrganism());
+    add(new SortSamplesByPerson());
+    add(new SortSamplesByGEOSeries());
+    add(new SortSamplesByGEOPlatform());
+    add(new SortSamplesByGroup());
+
+    /*
+     * add(new SortSamplesByArrayPlatform()); add(new
+     * SortSamplesBySourceCellType()); add(new SortSamplesBySourceDiseaseState());
+     * add(new SortSamplesBySourceDiseaseStatus()); add(new
+     * SortSamplesBySourceGender()); add(new
+     * SortSamplesByMicroarrayBasedClassification()); add(new
+     * SortSamplesBySourceMaterialType()); add(new
+     * SortSamplesBySourceOrganismPart());
+     */
+
+    setSorter("Sample Name");
+  }
 }

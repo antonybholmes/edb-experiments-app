@@ -25,20 +25,21 @@ import org.jebtk.modern.text.ModernClipboardTextField;
  * The Class SummaryTextField.
  */
 public class SummaryTextField extends ModernClipboardTextField {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * Instantiates a new summary text field.
-	 *
-	 * @param text the text
-	 */
-	public SummaryTextField(String text) {
-		super(text);
-		
-		setEditable(false);
-		
-		UI.setSize(this, new Dimension(Short.MAX_VALUE, 16));
-	}
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Instantiates a new summary text field.
+   *
+   * @param text
+   *          the text
+   */
+  public SummaryTextField(String text) {
+    super(text);
+
+    setEditable(false);
+
+    UI.setSize(this, new Dimension(Short.MAX_VALUE, 16));
+  }
 }

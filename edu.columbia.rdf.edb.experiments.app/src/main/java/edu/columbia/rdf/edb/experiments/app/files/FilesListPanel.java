@@ -36,61 +36,65 @@ import edu.columbia.rdf.edb.Sample;
  * The Class FilesListPanel.
  */
 public class FilesListPanel extends FilesPanel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/** The m list. */
-	private ModernList<FileDescriptor> mList = 
-			new ModernList<FileDescriptor>(new FilesListCellRenderer());
-	
-	/** The m model. */
-	private ModernListModel<FileDescriptor> mModel;
-	
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new files list panel.
-	 */
-	public FilesListPanel() {
-		mList.setCellRenderer(new FilesListCellRenderer());
-		mList.setRowHeight(UIService.ICON_SIZE_48);
-		mList.setBorder(RIGHT_BORDER);
-		
-		ModernScrollPane scrollPane = new ModernScrollPane(mList);
-		//scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+  /** The m list. */
+  private ModernList<FileDescriptor> mList = new ModernList<FileDescriptor>(new FilesListCellRenderer());
 
-		//setBorder(AbstractHidePane.VERTICAL_BORDER);
-		
-		setBody(scrollPane);
-	}
+  /** The m model. */
+  private ModernListModel<FileDescriptor> mModel;
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.experiments.app.files.FilesPanel#setSampleFiles(java.util.Collection)
-	 */
-	public final void setSampleFiles(Collection<Sample> samples) throws IOException, ParseException {
-		super.setSampleFiles(samples);
-		
-		mModel = new ModernListModel<FileDescriptor>();
-		
-		for (FileDescriptor file : CollectionUtils.sort(mFiles)) {
-			mModel.addValue(file);
-		}
+  /**
+   * Instantiates a new files list panel.
+   */
+  public FilesListPanel() {
+    mList.setCellRenderer(new FilesListCellRenderer());
+    mList.setRowHeight(UIService.ICON_SIZE_48);
+    mList.setBorder(RIGHT_BORDER);
 
-		mList.setModel(mModel);
-	}
-	
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.experiments.app.files.FilesPanel#getSelectedFiles()
-	 */
-	@Override
-	public Set<FileDescriptor> getSelectedFiles() {
-		Set<FileDescriptor> ret = new HashSet<FileDescriptor>();
-		
-		for (int i : mList.getSelectionModel()) {
-			ret.add(mModel.getValueAt(i));
-		}
-		
-		return ret;
-	}
+    ModernScrollPane scrollPane = new ModernScrollPane(mList);
+    // scrollPane.setVerticalScrollBarPolicy(ScrollBarPolicy.ALWAYS);
+    scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+
+    // setBorder(AbstractHidePane.VERTICAL_BORDER);
+
+    setBody(scrollPane);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * edu.columbia.rdf.edb.experiments.app.files.FilesPanel#setSampleFiles(java.
+   * util.Collection)
+   */
+  public final void setSampleFiles(Collection<Sample> samples) throws IOException, ParseException {
+    super.setSampleFiles(samples);
+
+    mModel = new ModernListModel<FileDescriptor>();
+
+    for (FileDescriptor file : CollectionUtils.sort(mFiles)) {
+      mModel.addValue(file);
+    }
+
+    mList.setModel(mModel);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.experiments.app.files.FilesPanel#getSelectedFiles()
+   */
+  @Override
+  public Set<FileDescriptor> getSelectedFiles() {
+    Set<FileDescriptor> ret = new HashSet<FileDescriptor>();
+
+    for (int i : mList.getSelectionModel()) {
+      ret.add(mModel.getValueAt(i));
+    }
+
+    return ret;
+  }
 }

@@ -43,215 +43,223 @@ import edu.columbia.rdf.edb.ui.ViewPluginService;
  *
  */
 public class SampleViewVerticalPanel extends ModernWidget implements ModernSelectionListener, ModernClickListener {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	//private JList samplesList;
+  // private JList samplesList;
 
-	//private SamplePanel samplePanel;
+  // private SamplePanel samplePanel;
 
-	/** The m samples tree panel. */
-	private SamplesPanel mSamplesTreePanel;
+  /** The m samples tree panel. */
+  private SamplesPanel mSamplesTreePanel;
 
-	/** The m split pane. */
-	private ModernHSplitPaneLine mSplitPane;
+  /** The m split pane. */
+  private ModernHSplitPaneLine mSplitPane;
 
-	/** The m sample panel. */
-	private ModernComponent mSamplePanel;
+  /** The m sample panel. */
+  private ModernComponent mSamplePanel;
 
-	/** The m sampl selection model. */
-	private SampleModel mSamplSelectionModel;
+  /** The m sampl selection model. */
+  private SampleModel mSamplSelectionModel;
 
-	//private FilesPanel mFilesPanel;
+  // private FilesPanel mFilesPanel;
 
-	/** The m view model. */
-	private ViewModel mViewModel;
+  /** The m view model. */
+  private ViewModel mViewModel;
 
+  // private ExperimentSummaryPanel mExperimentSummaryPanel;
 
-	//private ExperimentSummaryPanel mExperimentSummaryPanel;
+  // private ModernVSplitPaneLine mVSplitPane;
 
+  /*
+   * private class ViewEvents implements ChangeListener {
+   * 
+   * @Override public void changed(ChangeEvent e) { viewChanged(); } }
+   */
 
-	//private ModernVSplitPaneLine mVSplitPane;
+  /**
+   * Instantiates a new sample view vertical panel.
+   *
+   * @param parent
+   *          the parent
+   * @param viewModel
+   *          the view model
+   * @param sampleModel
+   *          the sample model
+   * @param sampleSelectionModel
+   *          the sample selection model
+   * @param fileViewModel
+   *          the file view model
+   */
+  public SampleViewVerticalPanel(ModernWindow parent, ViewModel viewModel, SampleModel sampleModel,
+      SampleModel sampleSelectionModel, FilterModel filterModel, ViewModel fileViewModel) {
+    mViewModel = viewModel;
+    mSamplSelectionModel = sampleSelectionModel;
 
-	/*
-	private class ViewEvents implements ChangeListener {
+    mSamplesTreePanel = new SamplesTreePanel(parent, sampleModel, filterModel);
 
-		@Override
-		public void changed(ChangeEvent e) {
-			viewChanged();
-		}
-	}
-	*/
+    // mExperimentSummaryPanel =
+    // new ExperimentSummaryPanel(sampleSelectionModel);
 
-	/**
-	 * Instantiates a new sample view vertical panel.
-	 *
-	 * @param parent the parent
-	 * @param viewModel the view model
-	 * @param sampleModel the sample model
-	 * @param sampleSelectionModel the sample selection model
-	 * @param fileViewModel the file view model
-	 */
-	public SampleViewVerticalPanel(ModernWindow parent,
-			ViewModel viewModel,
-			SampleModel sampleModel,
-			SampleModel sampleSelectionModel,
-			FilterModel filterModel,
-			ViewModel fileViewModel) {
-		mViewModel = viewModel;
-		mSamplSelectionModel = sampleSelectionModel;
+    // mVSplitPane = new ModernVSplitPaneLine();
+    // mVSplitPane.addEmpty(0.8);
+    // mVSplitPane.add(mExperimentSummaryPanel, 0.2);
+    // mVSplitPane.setDividerWidth(0);
 
-		mSamplesTreePanel = new SamplesTreePanel(parent, sampleModel, filterModel);
-		
-		//mExperimentSummaryPanel = 
-		//		new ExperimentSummaryPanel(sampleSelectionModel);
-		
-		//mVSplitPane = new ModernVSplitPaneLine();
-		//mVSplitPane.addEmpty(0.8);
-		//mVSplitPane.add(mExperimentSummaryPanel, 0.2);
-		//mVSplitPane.setDividerWidth(0);
+    // mFilesPanel = new FilesPanel(parent,
+    // sampleModel,
+    // sampleSelectionModel,
+    // fileViewModel);
 
-		//mFilesPanel = new FilesPanel(parent, 
-		//		sampleModel,
-		//		sampleSelectionModel,
-		//		fileViewModel);
+    mSamplesTreePanel.addSelectionListener(this);
+    // mSamplesTreePanel.setBorder(ModernPanel.BORDER);
+    // samplesPanel.addClickListener(this);
 
-		mSamplesTreePanel.addSelectionListener(this);
-		//mSamplesTreePanel.setBorder(ModernPanel.BORDER);
-		//samplesPanel.addClickListener(this);
+    // samplePanel = new SamplePanel(parent);
 
-		//samplePanel = new SamplePanel(parent);
+    // splitPaneH = new HHidePaneLeft(new SideTabPanel("Samples", samplesListPanel),
+    // samplePanel, 200,
+    // ModernTheme.getInstance().getClass("widget").getInt("padding"), false);
 
-		//splitPaneH = new HHidePaneLeft(new SideTabPanel("Samples", samplesListPanel), samplePanel, 200, ModernTheme.getInstance().getClass("widget").getInt("padding"), false);
+    // splitPaneH = new HSplitPane(new SideTabPanel("Samples", samplesListPanel),
+    // samplePanel);
 
-		//splitPaneH = new HSplitPane(new SideTabPanel("Samples", samplesListPanel), samplePanel);
+    mSplitPane = new ModernHSplitPaneLine();
+    mSplitPane.addComponent(mSamplesTreePanel, 0.4);
+    mSplitPane.addEmpty(0.6);
+    mSplitPane.setDividerWidth(0);
 
-		mSplitPane = new ModernHSplitPaneLine();
-		mSplitPane.addComponent(mSamplesTreePanel, 0.4);
-		mSplitPane.addEmpty(0.6);
-		mSplitPane.setDividerWidth(0);
+    setBody(mSplitPane);
 
-		setBody(mSplitPane);
+    mSamplesTreePanel.setSelectedSample(1);
 
-		mSamplesTreePanel.setSelectedSample(1);
+    // viewModel.addChangeListener(new ViewEvents());
 
-		//viewModel.addChangeListener(new ViewEvents());
+    // viewChanged();
 
-		//viewChanged();
-		
-		showSampleDetails();
-	}
+    showSampleDetails();
+  }
 
-	/**
-	 * Sets the selected sample.
-	 *
-	 * @param row the new selected sample
-	 */
-	public final void setSelectedSample(int row) {
-		mSamplesTreePanel.setSelectedSample(row);
+  /**
+   * Sets the selected sample.
+   *
+   * @param row
+   *          the new selected sample
+   */
+  public final void setSelectedSample(int row) {
+    mSamplesTreePanel.setSelectedSample(row);
 
-		showSampleDetails();
-	}
+    showSampleDetails();
+  }
 
-	/**
-	 * Displays the details of the currently selected sample in the middle info pane.
-	 */
-	private void showSampleDetails() {
+  /**
+   * Displays the details of the currently selected sample in the middle info
+   * pane.
+   */
+  private void showSampleDetails() {
 
-		// on startup ensure that that there is at least one
-		// sample in the list before trying to display something
+    // on startup ensure that that there is at least one
+    // sample in the list before trying to display something
 
-		List<Sample> samples = mSamplesTreePanel.getSelectedSamples();
+    List<Sample> samples = mSamplesTreePanel.getSelectedSamples();
 
-		if (samples.size() == 0) {
-			return;
-		}
+    if (samples.size() == 0) {
+      return;
+    }
 
-		// show details for the first selected sample
+    // show details for the first selected sample
 
-		if (mViewModel.getView().equals("Annotation")) {
-			Sample sample = samples.get(0);
+    if (mViewModel.getView().equals("Annotation")) {
+      Sample sample = samples.get(0);
 
-			mSamplePanel = ViewPluginService.getInstance().getView(sample).getSamplePanel(sample);
-			//mSamplePanel.setBorder(ModernPanel.BORDER);
+      mSamplePanel = ViewPluginService.getInstance().getView(sample).getSamplePanel(sample);
+      // mSamplePanel.setBorder(ModernPanel.BORDER);
 
-			//mSplitPane.replaceComponent(mSamplePanel, 0.6, 1);
-			
-			//mVSplitPane.replaceComponent(mSamplePanel, 0);
-			mSplitPane.replaceComponent(mSamplePanel, 1);
-		}
+      // mSplitPane.replaceComponent(mSamplePanel, 0.6, 1);
 
-		mSamplSelectionModel.set(samples);
-	}
+      // mVSplitPane.replaceComponent(mSamplePanel, 0);
+      mSplitPane.replaceComponent(mSamplePanel, 1);
+    }
 
-	/**
-	 * Mouse clicked.
-	 *
-	 * @param e the e
-	 */
-	public final void mouseClicked(MouseEvent e) {
-		if (e.getClickCount() == 2) {
-			// double clicked so open sample windows for highlighted experiments
+    mSamplSelectionModel.set(samples);
+  }
 
-			//showSampleWindows();
-		} else {
-			showSampleDetails();
-		}
-	}
+  /**
+   * Mouse clicked.
+   *
+   * @param e
+   *          the e
+   */
+  public final void mouseClicked(MouseEvent e) {
+    if (e.getClickCount() == 2) {
+      // double clicked so open sample windows for highlighted experiments
 
-	/**
-	 * Gets the samples panel.
-	 *
-	 * @return the samples panel
-	 */
-	public final SamplesPanel getSamplesPanel() {
-		return mSamplesTreePanel;
-	}
+      // showSampleWindows();
+    } else {
+      showSampleDetails();
+    }
+  }
 
-	/**
-	 * Gets the selected samples.
-	 *
-	 * @return the selected samples
-	 */
-	public List<Sample> getSelectedSamples() {
-		return mSamplesTreePanel.getSelectedSamples();
-	}
+  /**
+   * Gets the samples panel.
+   *
+   * @return the samples panel
+   */
+  public final SamplesPanel getSamplesPanel() {
+    return mSamplesTreePanel;
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.common.event.ChangeEvent)
-	 */
-	@Override
-	public void selectionChanged(ChangeEvent e) {
-		showSampleDetails();
-	}
+  /**
+   * Gets the selected samples.
+   *
+   * @return the selected samples
+   */
+  public List<Sample> getSelectedSamples() {
+    return mSamplesTreePanel.getSelectedSamples();
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public void clicked(ModernClickEvent e) {
-		if (mSamplesTreePanel.getSelectedSamples().size() == 0) {
-			return;
-		}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.
+   * common.event.ChangeEvent)
+   */
+  @Override
+  public void selectionChanged(ChangeEvent e) {
+    showSampleDetails();
+  }
 
-		JFrame window = new SampleWindow(mSamplesTreePanel.getSelectedSamples().get(0));
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  @Override
+  public void clicked(ModernClickEvent e) {
+    if (mSamplesTreePanel.getSelectedSamples().size() == 0) {
+      return;
+    }
 
-		UI.centerWindowToScreen(window);
+    JFrame window = new SampleWindow(mSamplesTreePanel.getSelectedSamples().get(0));
 
-		window.setVisible(true);
-	}
+    UI.centerWindowToScreen(window);
 
-	//private void viewChanged() {
-		//if (mViewModel.getView().equals("Annotation")) {
-			//showSampleDetails();
-			
-			//mVSplitPane.replaceComponent(mSamplePanel, 0.8, 0);
-			
-			//mSplitPane.replaceComponent(mVSplitPane, 0.6, 1);
-		//} else {
-		//	mSplitPane.replaceComponent(mFilesPanel, 1);
-		//}
-	//}
+    window.setVisible(true);
+  }
+
+  // private void viewChanged() {
+  // if (mViewModel.getView().equals("Annotation")) {
+  // showSampleDetails();
+
+  // mVSplitPane.replaceComponent(mSamplePanel, 0.8, 0);
+
+  // mSplitPane.replaceComponent(mVSplitPane, 0.6, 1);
+  // } else {
+  // mSplitPane.replaceComponent(mFilesPanel, 1);
+  // }
+  // }
 }

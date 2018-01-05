@@ -27,7 +27,7 @@ import edu.columbia.rdf.edb.FileDescriptor;
  *
  */
 public class FilesModel extends ListModel<FileDescriptor> {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 }

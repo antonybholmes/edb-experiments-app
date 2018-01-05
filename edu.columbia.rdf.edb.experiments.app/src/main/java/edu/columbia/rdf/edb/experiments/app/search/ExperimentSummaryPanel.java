@@ -44,133 +44,139 @@ import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
  * @author Antony Holmes Holmes
  */
 public class ExperimentSummaryPanel extends ModernPanel implements ModernSelectionListener {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-	
-	/** The m model. */
-	private SampleModel mModel;
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new experiment summary panel.
-	 *
-	 * @param model the model
-	 */
-	public ExperimentSummaryPanel(SampleModel model) {
-		mModel = model;
-		
-		setBackground(ThemeService.getInstance().colors().getHighlight32(0));
-		
-		setBorder(LARGE_BORDER);
-		
-		model.addSelectionListener(this);
-	}
-	
-	/**
-	 * Display.
-	 *
-	 * @param experiments the experiments
-	 */
-	private void display(Collection<Experiment> experiments) {	
-		Box box = VBox.create();
-		
-		//add(new ModernHeadingLabel("Details"), BorderLayout.PAGE_START);
+  /** The m model. */
+  private SampleModel mModel;
 
-		//add(new ModernHeadingLabel("Experiment"));
-		//add(Ui.createVerticalGap(DOUBLE_PADDING));
-		
-		for (Experiment experiment : experiments) {
-			box.add(new SummaryTitleLabel("Experiment Title"));
-			box.add(new ModernAutoSizeLabel(experiment.getName()));
+  /**
+   * Instantiates a new experiment summary panel.
+   *
+   * @param model
+   *          the model
+   */
+  public ExperimentSummaryPanel(SampleModel model) {
+    mModel = model;
 
-			box.add(UI.createVGap(10));
-			box.add(new SummaryTitleLabel("Experiment Id"));
-			box.add(new ModernAutoSizeLabel(experiment.getPublicId()));
+    setBackground(ThemeService.getInstance().colors().getHighlight32(0));
 
-			//add(Ui.createVerticalGap(10));
-			//add(new SummaryTitleLabel("Sample Types"));
-			//add(new ModernLabel(TextUtils.join(ArrayUtils.sort(experiment.getSampleTypes()), TextUtils.COMMA_DELIMITER)));
+    setBorder(LARGE_BORDER);
 
-			//add(Ui.createVerticalGap(10));
-			//add(new SummaryTitleLabel("Organisms"));
-			//add(new ModernLabel(TextUtils.join(ArrayUtils.sort(experiment.getOrganisms()), TextUtils.COMMA_DELIMITER)));
+    model.addSelectionListener(this);
+  }
 
-			//if (experiment.getArrayDesigns() != null) {
-			//	add(Ui.createVerticalGap(10));
-			//	add(new SummaryTitleLabel("Array Designs"));
-			//	add(new ModernLabel(TextUtils.join(ArrayUtils.sort(experiment.getArrayDesigns()), TextUtils.COMMA_DELIMITER)));
-			//}
+  /**
+   * Display.
+   *
+   * @param experiments
+   *          the experiments
+   */
+  private void display(Collection<Experiment> experiments) {
+    Box box = VBox.create();
 
-			//add(Ui.createVerticalGap(10));
+    // add(new ModernHeadingLabel("Details"), BorderLayout.PAGE_START);
 
-			/*
-			add(new SummaryTitleLabel("Contacts"));
+    // add(new ModernHeadingLabel("Experiment"));
+    // add(Ui.createVerticalGap(DOUBLE_PADDING));
 
-			Map<String, Person> contacts = new HashMap<String, Person>();
+    for (Experiment experiment : experiments) {
+      box.add(new SummaryTitleLabel("Experiment Title"));
+      box.add(new ModernAutoSizeLabel(experiment.getName()));
 
-			//for (Person contact : experiment.getPersons()) {
-			//	String name = contact.getName();
+      box.add(UI.createVGap(10));
+      box.add(new SummaryTitleLabel("Experiment Id"));
+      box.add(new ModernAutoSizeLabel(experiment.getPublicId()));
 
-			//	contacts.put(name, contact);
-			//}
+      // add(Ui.createVerticalGap(10));
+      // add(new SummaryTitleLabel("Sample Types"));
+      // add(new
+      // ModernLabel(TextUtils.join(ArrayUtils.sort(experiment.getSampleTypes()),
+      // TextUtils.COMMA_DELIMITER)));
 
-			List<String> names = ArrayUtils.sortKeys(contacts);
+      // add(Ui.createVerticalGap(10));
+      // add(new SummaryTitleLabel("Organisms"));
+      // add(new
+      // ModernLabel(TextUtils.join(ArrayUtils.sort(experiment.getOrganisms()),
+      // TextUtils.COMMA_DELIMITER)));
 
-			for (String name : names) {
-				Person contact = contacts.get(name);
+      // if (experiment.getArrayDesigns() != null) {
+      // add(Ui.createVerticalGap(10));
+      // add(new SummaryTitleLabel("Array Designs"));
+      // add(new
+      // ModernLabel(TextUtils.join(ArrayUtils.sort(experiment.getArrayDesigns()),
+      // TextUtils.COMMA_DELIMITER)));
+      // }
 
-				List<String> roles = new ArrayList<String>();
+      // add(Ui.createVerticalGap(10));
 
-				for (String role : contact.getRoles()) {
-					roles.add(SubstitutionService.getInstance().getSubstitute(role));
-				}
+      /*
+       * add(new SummaryTitleLabel("Contacts"));
+       * 
+       * Map<String, Person> contacts = new HashMap<String, Person>();
+       * 
+       * //for (Person contact : experiment.getPersons()) { // String name =
+       * contact.getName();
+       * 
+       * // contacts.put(name, contact); //}
+       * 
+       * List<String> names = ArrayUtils.sortKeys(contacts);
+       * 
+       * for (String name : names) { Person contact = contacts.get(name);
+       * 
+       * List<String> roles = new ArrayList<String>();
+       * 
+       * for (String role : contact.getRoles()) {
+       * roles.add(SubstitutionService.getInstance().getSubstitute(role)); }
+       * 
+       * Collections.sort(roles);
+       * 
+       * add(new ModernLabel(contact.getName() + " (" + TextUtils.join(roles,
+       * TextUtils.FORMATTED_LIST_DELIMITER) + ")"));
+       * 
+       * 
+       * add(new ModernLabel(contact.getEmailAddress()));
+       * 
+       * add(ModernTheme.createVerticalGap()); }
+       */
 
-				Collections.sort(roles);
+      box.add(UI.createVGap(10));
+      box.add(new SummaryTitleLabel("Description"));
 
-				add(new ModernLabel(contact.getName() + " (" + TextUtils.join(roles, TextUtils.FORMATTED_LIST_DELIMITER) + ")"));
+      ModernMultilineLabel textArea = new ModernMultilineLabel(experiment.getDescription());
+      box.add(textArea);
+    }
 
+    ModernScrollPane scrollPane = new ModernScrollPane(box);
 
-				add(new ModernLabel(contact.getEmailAddress()));
+    scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
+    scrollPane.setScrollBarLocation(ScrollBarLocation.FLOATING);
 
-				add(ModernTheme.createVerticalGap());
-			}
-			*/
-			
-			box.add(UI.createVGap(10));
-			box.add(new SummaryTitleLabel("Description"));
-			
-			ModernMultilineLabel textArea = 
-					new ModernMultilineLabel(experiment.getDescription());
-			box.add(textArea);
-		}
+    removeAll();
+    setBody(scrollPane);
 
-		ModernScrollPane scrollPane = new ModernScrollPane(box);
-		
-		scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
-		scrollPane.setScrollBarLocation(ScrollBarLocation.FLOATING);
-		
-		removeAll();
-		setBody(scrollPane);
-		
-		revalidate();
-		repaint();
-	}
+    revalidate();
+    repaint();
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.common.event.ChangeEvent)
-	 */
-	@Override
-	public void selectionChanged(ChangeEvent e) {
-		if (mModel.size() == 0) {
-			return;
-		}
-		
-		Sample sample = mModel.get(0);
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernSelectionListener#selectionChanged(org.abh.
+   * common.event.ChangeEvent)
+   */
+  @Override
+  public void selectionChanged(ChangeEvent e) {
+    if (mModel.size() == 0) {
+      return;
+    }
 
-		List<Experiment> sortedExperiments = 
-				CollectionUtils.asList(sample.getExperiment());
-		
-		display(sortedExperiments);
-	}
+    Sample sample = mModel.get(0);
+
+    List<Experiment> sortedExperiments = CollectionUtils.asList(sample.getExperiment());
+
+    display(sortedExperiments);
+  }
 }

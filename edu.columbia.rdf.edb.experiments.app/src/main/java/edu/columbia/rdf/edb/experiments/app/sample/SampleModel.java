@@ -21,16 +21,15 @@ import edu.columbia.rdf.edb.Sample;
 
 // TODO: Auto-generated Javadoc
 /**
- * Centrally keep track of selected experiments in the order they were
- * selected.
+ * Centrally keep track of selected experiments in the order they were selected.
  * 
  * @author Antony Holmes Holmes
  *
  */
 public class SampleModel extends SelectionModel<Sample> {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	// do nothing
+  // do nothing
 }

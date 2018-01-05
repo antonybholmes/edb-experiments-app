@@ -20,22 +20,21 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
  * The Class SortSamplesByArrayPlatform.
  */
 public class SortSamplesByArrayPlatform extends SortSamplesByMicroarrayField {
-	
-	/**
-	 * Instantiates a new sort samples by array platform.
-	 */
-	public SortSamplesByArrayPlatform() {
-		super("Sample",
-				"Labeled_Extract", 
-				"Characteristic",
-				"Array_Platform");
-		// Do nothing
-	}
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Array Platform";
-	}
+  /**
+   * Instantiates a new sort samples by array platform.
+   */
+  public SortSamplesByArrayPlatform() {
+    super("Sample", "Labeled_Extract", "Characteristic", "Array_Platform");
+    // Do nothing
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Array Platform";
+  }
 }

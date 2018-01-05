@@ -26,14 +26,15 @@ import edu.columbia.rdf.edb.Experiment;
  * The Class ExperimentsTab.
  */
 public abstract class ExperimentsTab extends ModernWidget {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Sets the experiments.
-	 *
-	 * @param experiments the new experiments
-	 */
-	public abstract void setExperiments(Collection<Experiment> experiments);
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /**
+   * Sets the experiments.
+   *
+   * @param experiments
+   *          the new experiments
+   */
+  public abstract void setExperiments(Collection<Experiment> experiments);
 }

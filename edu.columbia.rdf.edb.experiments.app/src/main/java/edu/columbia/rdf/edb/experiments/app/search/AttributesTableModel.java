@@ -35,94 +35,104 @@ import edu.columbia.rdf.edb.Sample;
  *
  */
 public class AttributesTableModel extends ModernTableModel {
-	
-	/** The m paths. */
-	private List<Path> mPaths = new ArrayList<Path>();
-	
-	/** The m column names. */
-	private List<String> mColumnNames = new ArrayList<String>();
-	
-	/** The column display names. */
-	private List<String> columnDisplayNames = new ArrayList<String>();
-	
-	/** The m samples. */
-	private List<Sample> mSamples = new ArrayList<Sample>();
-	
-	/** The m view. */
-	private DataView mView;
 
+  /** The m paths. */
+  private List<Path> mPaths = new ArrayList<Path>();
 
-	/**
-	 * Instantiates a new attributes table model.
-	 *
-	 * @param view the view
-	 */
-	public AttributesTableModel(DataView view) {
-		mView = view;
-		
-		setup();
-	}
+  /** The m column names. */
+  private List<String> mColumnNames = new ArrayList<String>();
 
-	/**
-	 * Instantiates a new attributes table model.
-	 *
-	 * @param samples the samples
-	 * @param view the view
-	 */
-	public AttributesTableModel(List<Sample> samples, DataView view) {
-		mView = view;
-		
-		setup();
-		
-		mSamples = samples;
-	}
-	
-	/**
-	 * Setup.
-	 */
-	private void setup() {
-		for (DataViewSection section : mView) {
-			for (DataViewField field : section) {
-				mPaths.add(field.getPath());
-				columnDisplayNames.add(field.getName());
-				mColumnNames.add(field.getName());
-			}
-		}
-	}
+  /** The column display names. */
+  private List<String> columnDisplayNames = new ArrayList<String>();
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
-	 */
-	@Override
-	public final int getColumnCount() {
-		return mColumnNames.size();
-	}
+  /** The m samples. */
+  private List<Sample> mSamples = new ArrayList<Sample>();
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getRowCount()
-	 */
-	@Override
-	public final int getRowCount() {
-		return mSamples.size();
-	}
+  /** The m view. */
+  private DataView mView;
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
-	 */
-	@Override
-	public final List<String> getColumnAnnotationText(int column) {
-		return CollectionUtils.asList(columnDisplayNames.get(column));
-	}
+  /**
+   * Instantiates a new attributes table model.
+   *
+   * @param view
+   *          the view
+   */
+  public AttributesTableModel(DataView view) {
+    mView = view;
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.dataview.ModernDataModel#getValueAt(int, int)
-	 */
-	@Override
-	public final Object getValueAt(int row, int col) {
-		if (mSamples.size() == 0) {
-			return "";
-		}
-		
-		return mSamples.get(row).getTags().getTag(mPaths.get(col)).getValue();
-	}
+    setup();
+  }
+
+  /**
+   * Instantiates a new attributes table model.
+   *
+   * @param samples
+   *          the samples
+   * @param view
+   *          the view
+   */
+  public AttributesTableModel(List<Sample> samples, DataView view) {
+    mView = view;
+
+    setup();
+
+    mSamples = samples;
+  }
+
+  /**
+   * Setup.
+   */
+  private void setup() {
+    for (DataViewSection section : mView) {
+      for (DataViewField field : section) {
+        mPaths.add(field.getPath());
+        columnDisplayNames.add(field.getName());
+        mColumnNames.add(field.getName());
+      }
+    }
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
+   */
+  @Override
+  public final int getColumnCount() {
+    return mColumnNames.size();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getRowCount()
+   */
+  @Override
+  public final int getRowCount() {
+    return mSamples.size();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
+   */
+  @Override
+  public final List<String> getColumnAnnotationText(int column) {
+    return CollectionUtils.asList(columnDisplayNames.get(column));
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.dataview.ModernDataModel#getValueAt(int, int)
+   */
+  @Override
+  public final Object getValueAt(int row, int col) {
+    if (mSamples.size() == 0) {
+      return "";
+    }
+
+    return mSamples.get(row).getTags().getTag(mPaths.get(col)).getValue();
+  }
 }

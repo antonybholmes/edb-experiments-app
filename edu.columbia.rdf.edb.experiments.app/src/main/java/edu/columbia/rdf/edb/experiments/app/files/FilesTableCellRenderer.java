@@ -38,118 +38,109 @@ import org.jebtk.modern.graphics.icons.FileVectorIcon;
 import org.jebtk.modern.graphics.icons.FolderVectorIcon;
 import org.jebtk.modern.graphics.icons.ModernIcon;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The class ModernDataGridCellRenderer.
  */
 public class FilesTableCellRenderer extends ModernDataCellRenderer {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * The member default value.
-	 */
-	protected String mDefaultValue = TextUtils.EMPTY_STRING;
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * The member text.
-	 */
-	protected String mText = TextUtils.EMPTY_STRING;
+  /**
+   * The member default value.
+   */
+  protected String mDefaultValue = TextUtils.EMPTY_STRING;
 
-	/** The m icon. */
-	private ModernIcon mIcon;
+  /**
+   * The member text.
+   */
+  protected String mText = TextUtils.EMPTY_STRING;
 
-	/** The Constant FILE_ICON. */
-	private static final ModernIcon FILE_ICON =
-			UIService.getInstance().loadIcon(FileVectorIcon.class, 16);
-	
-	/** The Constant DIR_ICON. */
-	private static final ModernIcon DIR_ICON =
-			UIService.getInstance().loadIcon(FolderVectorIcon.class, 16);
+  /** The m icon. */
+  private ModernIcon mIcon;
 
-	/**
-	 * Instantiates a new modern data grid cell renderer.
-	 *
-	 * @param defaultValue the default value
-	 */
-	public FilesTableCellRenderer(String defaultValue) {
-		mDefaultValue = defaultValue;
-	}
+  /** The Constant FILE_ICON. */
+  private static final ModernIcon FILE_ICON = UIService.getInstance().loadIcon(FileVectorIcon.class, 16);
 
-	/**
-	 * Instantiates a new modern data grid cell renderer.
-	 */
-	public FilesTableCellRenderer() {
-		this(TextUtils.EMPTY_STRING);
-	}
+  /** The Constant DIR_ICON. */
+  private static final ModernIcon DIR_ICON = UIService.getInstance().loadIcon(FolderVectorIcon.class, 16);
 
-	/* (non-Javadoc)
-	 * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
-	 */
-	@Override
-	public void drawForegroundAAText(Graphics2D g2) {
-		if (mText == null) {
-			return;
-		}
-		
-		int x = PADDING;
-		
-		mIcon.drawIcon(g2, x, (getHeight() - 16) / 2, 16);
-		
-		x += 16 + PADDING;
-		
-		String text = getTruncatedText(g2, mText, mRect.getW());
-		
-		g2.setColor(getForeground());
-		
-		
-		
-		g2.drawString(text, x, getTextYPosCenter(g2, getHeight()));
-	}
+  /**
+   * Instantiates a new modern data grid cell renderer.
+   *
+   * @param defaultValue
+   *          the default value
+   */
+  public FilesTableCellRenderer(String defaultValue) {
+    mDefaultValue = defaultValue;
+  }
 
-	/**
-	 * Sets the text.
-	 *
-	 * @param text the new text
-	 */
-	public final void setText(String text) {
-		mText = text;
-	}
+  /**
+   * Instantiates a new modern data grid cell renderer.
+   */
+  public FilesTableCellRenderer() {
+    this(TextUtils.EMPTY_STRING);
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.lib.ui.modern.dataview.ModernDataCellRenderer#getCellRendererComponent(org.abh.lib.ui.modern.dataview.ModernData, java.lang.Object, boolean, boolean, boolean, int, int)
-	 */
-	@Override
-	public Component getCellRendererComponent(ModernData table,
-			Object value,
-			boolean highlight,
-			boolean isSelected,
-			boolean hasFocus,
-			int row,
-			int column) {
-		if (value != null) {
-			setText(value.toString());
-		} else {
-			setText(mDefaultValue);
-		}
-		
-		if (table.getValueAt(row, 1).equals("File Folder")) {
-			mIcon = DIR_ICON;
-		} else {
-			mIcon = FILE_ICON;
-		}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
+   */
+  @Override
+  public void drawForegroundAAText(Graphics2D g2) {
+    if (mText == null) {
+      return;
+    }
 
-		return super.getCellRendererComponent(table, 
-				value, 
-				highlight, 
-				isSelected, 
-				hasFocus, 
-				row, 
-				column);
-	}
+    int x = PADDING;
+
+    mIcon.drawIcon(g2, x, (getHeight() - 16) / 2, 16);
+
+    x += 16 + PADDING;
+
+    String text = getTruncatedText(g2, mText, mRect.getW());
+
+    g2.setColor(getForeground());
+
+    g2.drawString(text, x, getTextYPosCenter(g2, getHeight()));
+  }
+
+  /**
+   * Sets the text.
+   *
+   * @param text
+   *          the new text
+   */
+  public final void setText(String text) {
+    mText = text;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.ui.modern.dataview.ModernDataCellRenderer#
+   * getCellRendererComponent(org.abh.lib.ui.modern.dataview.ModernData,
+   * java.lang.Object, boolean, boolean, boolean, int, int)
+   */
+  @Override
+  public Component getCellRendererComponent(ModernData table, Object value, boolean highlight, boolean isSelected,
+      boolean hasFocus, int row, int column) {
+    if (value != null) {
+      setText(value.toString());
+    } else {
+      setText(mDefaultValue);
+    }
+
+    if (table.getValueAt(row, 1).equals("File Folder")) {
+      mIcon = DIR_ICON;
+    } else {
+      mIcon = FILE_ICON;
+    }
+
+    return super.getCellRendererComponent(table, value, highlight, isSelected, hasFocus, row, column);
+  }
 }

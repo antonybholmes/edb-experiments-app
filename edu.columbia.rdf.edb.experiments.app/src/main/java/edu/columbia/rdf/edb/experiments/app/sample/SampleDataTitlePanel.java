@@ -20,54 +20,52 @@ import java.awt.BorderLayout;
 import org.jebtk.modern.text.ModernTextField;
 import org.jebtk.modern.widget.ModernWidget;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class SampleDataTitlePanel.
  */
 public class SampleDataTitlePanel extends ModernWidget {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new sample data title panel.
-	 *
-	 * @param text the text
-	 */
-	public SampleDataTitlePanel(String text) {
+  /**
+   * Instantiates a new sample data title panel.
+   *
+   * @param text
+   *          the text
+   */
+  public SampleDataTitlePanel(String text) {
 
-		ModernTextField box = new ModernTextField(text);
-		box.setFont(ModernWidget.TITLE_FONT);
-		box.setEditable(false);
+    ModernTextField box = new ModernTextField(text);
+    box.setFont(ModernWidget.TITLE_FONT);
+    box.setEditable(false);
 
-		add(box, BorderLayout.CENTER);
+    add(box, BorderLayout.CENTER);
 
-		setBorder(BORDER);
+    setBorder(BORDER);
 
-		//setCanvasSize(new Dimension(0, 50));
+    // setCanvasSize(new Dimension(0, 50));
 
-		//addMouseListener(this);
+    // addMouseListener(this);
 
-		//setup();
-	}
+    // setup();
+  }
 
-	/*
-	public final void paintComponent(Graphics g) {
-
-		Graphics2D g2 = (Graphics2D)g;
-
-		g2.setColor(Color.WHITE);
-
-		g2.fillRect(0, 0, getWidth(), getHeight());
-
-		g2.setColor(DialogButton.DARK_COLOR);
-
-		int y = getHeight() - 1;
-
-		g2.drawLine(getInsets().left, y, getWidth() - getInsets().left - getInsets().right - 1, y);
-	}
-	*/
+  /*
+   * public final void paintComponent(Graphics g) {
+   * 
+   * Graphics2D g2 = (Graphics2D)g;
+   * 
+   * g2.setColor(Color.WHITE);
+   * 
+   * g2.fillRect(0, 0, getWidth(), getHeight());
+   * 
+   * g2.setColor(DialogButton.DARK_COLOR);
+   * 
+   * int y = getHeight() - 1;
+   * 
+   * g2.drawLine(getInsets().left, y, getWidth() - getInsets().left -
+   * getInsets().right - 1, y); }
+   */
 }

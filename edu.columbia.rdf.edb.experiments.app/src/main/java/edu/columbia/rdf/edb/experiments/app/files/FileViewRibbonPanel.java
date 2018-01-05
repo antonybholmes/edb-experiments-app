@@ -31,60 +31,63 @@ import org.jebtk.modern.view.ViewModel;
  */
 public class FileViewRibbonPanel extends RibbonSection {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-	/** The m button details. */
-	private RibbonLargeCheckButton mButtonDetails =
-			new RibbonLargeRadioButton("Details", UIService.getInstance().loadIcon("view_details", 24));
-	
-	/** The m button list. */
-	private RibbonLargeCheckButton mButtonList =
-			new RibbonLargeRadioButton("List", UIService.getInstance().loadIcon("view_list", 24));
-	
-	/** The m button icons. */
-	private RibbonLargeCheckButton mButtonIcons =
-			new RibbonLargeRadioButton("Icons", UIService.getInstance().loadIcon("view_tiles", 24));
+  /** The m button details. */
+  private RibbonLargeCheckButton mButtonDetails = new RibbonLargeRadioButton("Details",
+      UIService.getInstance().loadIcon("view_details", 24));
 
+  /** The m button list. */
+  private RibbonLargeCheckButton mButtonList = new RibbonLargeRadioButton("List",
+      UIService.getInstance().loadIcon("view_list", 24));
 
-	
-	/**
-	 * Instantiates a new file view ribbon panel.
-	 *
-	 * @param ribbon the ribbon
-	 * @param viewModel the view model
-	 */
-	public FileViewRibbonPanel(Ribbon ribbon, final ViewModel viewModel) {
-		super(ribbon, "View");
-		
-		add(mButtonDetails);
-		add(mButtonList);
-		add(mButtonIcons);
-		
-		new ModernButtonGroup(mButtonDetails, mButtonList, mButtonIcons);
-		
-		mButtonDetails.addClickListener(new ModernClickListener() {
+  /** The m button icons. */
+  private RibbonLargeCheckButton mButtonIcons = new RibbonLargeRadioButton("Icons",
+      UIService.getInstance().loadIcon("view_tiles", 24));
 
-			@Override
-			public void clicked(ModernClickEvent e) {
-				viewModel.setView("Details");
-			}});
-		
-		mButtonList.addClickListener(new ModernClickListener() {
+  /**
+   * Instantiates a new file view ribbon panel.
+   *
+   * @param ribbon
+   *          the ribbon
+   * @param viewModel
+   *          the view model
+   */
+  public FileViewRibbonPanel(Ribbon ribbon, final ViewModel viewModel) {
+    super(ribbon, "View");
 
-			@Override
-			public void clicked(ModernClickEvent e) {
-				viewModel.setView("List");
-			}});
-			
-		mButtonIcons.addClickListener(new ModernClickListener() {
+    add(mButtonDetails);
+    add(mButtonList);
+    add(mButtonIcons);
 
-			@Override
-			public void clicked(ModernClickEvent e) {
-				viewModel.setView("Tiles");
-			}});
-		
-		mButtonDetails.doClick();
-	}
+    new ModernButtonGroup(mButtonDetails, mButtonList, mButtonIcons);
+
+    mButtonDetails.addClickListener(new ModernClickListener() {
+
+      @Override
+      public void clicked(ModernClickEvent e) {
+        viewModel.setView("Details");
+      }
+    });
+
+    mButtonList.addClickListener(new ModernClickListener() {
+
+      @Override
+      public void clicked(ModernClickEvent e) {
+        viewModel.setView("List");
+      }
+    });
+
+    mButtonIcons.addClickListener(new ModernClickListener() {
+
+      @Override
+      public void clicked(ModernClickEvent e) {
+        viewModel.setView("Tiles");
+      }
+    });
+
+    mButtonDetails.doClick();
+  }
 
 }

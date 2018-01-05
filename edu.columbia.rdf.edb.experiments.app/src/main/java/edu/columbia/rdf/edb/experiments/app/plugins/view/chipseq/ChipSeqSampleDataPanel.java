@@ -31,35 +31,38 @@ import edu.columbia.rdf.edb.ui.SampleDataPanel;
  * @author Antony Holmes Holmes
  */
 public class ChipSeqSampleDataPanel extends SampleDataPanel {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new chip seq sample data panel.
-	 *
-	 * @param sample the sample
-	 * @param view the view
-	 */
-	public ChipSeqSampleDataPanel(Sample sample, DataView view) {
-		super(sample, view);
-		
-		/*
-		ModernComponent panel = new ModernComponent();
-		
-		SampleSummaryPanel titlePanel = new SampleSummaryPanel(sample);
-		
-		panel.setHeader(titlePanel);
-		panel.setBody(new SampleDataPanel(sample, view));
-		
-		ModernVSplitPaneLine splitPane = new ModernVSplitPaneLine();
-		splitPane.addComponent(panel, 0.6);
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
 
-		setBody(splitPane);
-		*/
-		
-		SampleSummaryPanel titlePanel = new SampleSummaryPanel(sample);
-		
-		setHeader(new ModernComponent(titlePanel, ThemeService.getInstance().colors().getHighlight32(1), ModernWidget.LARGE_BORDER));
-	}
+  /**
+   * Instantiates a new chip seq sample data panel.
+   *
+   * @param sample
+   *          the sample
+   * @param view
+   *          the view
+   */
+  public ChipSeqSampleDataPanel(Sample sample, DataView view) {
+    super(sample, view);
+
+    /*
+     * ModernComponent panel = new ModernComponent();
+     * 
+     * SampleSummaryPanel titlePanel = new SampleSummaryPanel(sample);
+     * 
+     * panel.setHeader(titlePanel); panel.setBody(new SampleDataPanel(sample,
+     * view));
+     * 
+     * ModernVSplitPaneLine splitPane = new ModernVSplitPaneLine();
+     * splitPane.addComponent(panel, 0.6);
+     * 
+     * setBody(splitPane);
+     */
+
+    SampleSummaryPanel titlePanel = new SampleSummaryPanel(sample);
+
+    setHeader(new ModernComponent(titlePanel, ThemeService.getInstance().colors().getHighlight32(1),
+        ModernWidget.LARGE_BORDER));
+  }
 }

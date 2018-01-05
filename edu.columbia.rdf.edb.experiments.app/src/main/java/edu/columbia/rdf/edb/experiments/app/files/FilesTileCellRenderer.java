@@ -38,78 +38,72 @@ import org.jebtk.modern.graphics.icons.FolderVectorIcon;
 import org.jebtk.modern.graphics.icons.ModernIcon;
 import org.jebtk.modern.panel.ModernPanel;
 
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The class ModernDataTileCellRenderer.
  */
 public class FilesTileCellRenderer extends ModernDataCellRenderer {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
-	
-	/** The Constant FILE_ICON. */
-	private static final ModernIcon FILE_ICON =
-			UIService.getInstance().loadIcon(FileVectorIcon.class, 72);
-	
-	/** The Constant DIR_ICON. */
-	private static final ModernIcon DIR_ICON =
-			UIService.getInstance().loadIcon(FolderVectorIcon.class, 72);
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
+  /** The Constant FILE_ICON. */
+  private static final ModernIcon FILE_ICON = UIService.getInstance().loadIcon(FileVectorIcon.class, 72);
 
-	/** The m text. */
-	private String mText;
+  /** The Constant DIR_ICON. */
+  private static final ModernIcon DIR_ICON = UIService.getInstance().loadIcon(FolderVectorIcon.class, 72);
 
+  /** The m text. */
+  private String mText;
 
-	/** The m icon. */
-	private ModernIcon mIcon;
+  /** The m icon. */
+  private ModernIcon mIcon;
 
-	
-	/* (non-Javadoc)
-	 * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
-	 */
-	@Override
-	public void drawForegroundAAText(Graphics2D g2) {
-		if (mIcon != null) {
-			//this.icon.draw(this, 
-			//		g2, 
-			//		new Rectangle((this.getWidth() - 64) / 2, (this.getHeight() - 64) / 2, 64, 64));
-			
-			mIcon.drawIcon(g2, (getWidth() - 64) / 2, (getWidth() - 64) / 2, 64);
-		}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
+   */
+  @Override
+  public void drawForegroundAAText(Graphics2D g2) {
+    if (mIcon != null) {
+      // this.icon.draw(this,
+      // g2,
+      // new Rectangle((this.getWidth() - 64) / 2, (this.getHeight() - 64) / 2, 64,
+      // 64));
 
-		String t = getTruncatedText(g2, mText, 0, mRect.getW());
-		
-		int x = (getWidth() - g2.getFontMetrics().stringWidth(t)) / 2;
-		int y = getHeight() - ModernPanel.DOUBLE_PADDING;
+      mIcon.drawIcon(g2, (getWidth() - 64) / 2, (getWidth() - 64) / 2, 64);
+    }
 
-		g2.setColor(TEXT_COLOR);
-		g2.drawString(t, x, y);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.abh.lib.ui.modern.dataview.ModernDataCellRenderer#getCellRendererComponent(org.abh.lib.ui.modern.dataview.ModernData, java.lang.Object, boolean, boolean, boolean, int, int)
-	 */
-	public Component getCellRendererComponent(ModernData table,
-			Object value,
-			boolean highlight,
-			boolean isSelected,
-			boolean hasFocus,
-			int row,
-			int column) {
-		
-		mText = value.toString();
-		
-		if (table.getValueAt(row, 1).equals("File Folder")) {
-			mIcon = DIR_ICON;
-		} else {
-			mIcon = FILE_ICON;
-		}
+    String t = getTruncatedText(g2, mText, 0, mRect.getW());
 
-		return super.getCellRendererComponent(table, value, highlight, isSelected, hasFocus, row, column);
-	}
+    int x = (getWidth() - g2.getFontMetrics().stringWidth(t)) / 2;
+    int y = getHeight() - ModernPanel.DOUBLE_PADDING;
+
+    g2.setColor(TEXT_COLOR);
+    g2.drawString(t, x, y);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.ui.modern.dataview.ModernDataCellRenderer#
+   * getCellRendererComponent(org.abh.lib.ui.modern.dataview.ModernData,
+   * java.lang.Object, boolean, boolean, boolean, int, int)
+   */
+  public Component getCellRendererComponent(ModernData table, Object value, boolean highlight, boolean isSelected,
+      boolean hasFocus, int row, int column) {
+
+    mText = value.toString();
+
+    if (table.getValueAt(row, 1).equals("File Folder")) {
+      mIcon = DIR_ICON;
+    } else {
+      mIcon = FILE_ICON;
+    }
+
+    return super.getCellRendererComponent(table, value, highlight, isSelected, hasFocus, row, column);
+  }
 }

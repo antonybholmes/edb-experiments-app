@@ -36,39 +36,40 @@ import edu.columbia.rdf.edb.ui.SampleView;
  *
  */
 public class ViewSamplesByArrayPlatform extends SampleView {
-	
-	/** The Constant PATH. */
-	private static final Path PATH = 
-			new Path("/Microarray/Sample/Labeled_Extract/Characteristic/Array_Platform");
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.search.Sorter#arrange(java.util.Collection, org.abh.common.ui.tree.ModernTree, boolean, org.abh.common.ui.search.FilterModel)
-	 */
-	public void arrange(Collection<Sample> samples, 
-			ModernTree<Sample> tree, 
-			boolean ascending,
-			FilterModel filterModel) {
-		Map<String, List<Sample>> map = ArrayListMultiMap.create();
+  /** The Constant PATH. */
+  private static final Path PATH = new Path("/Microarray/Sample/Labeled_Extract/Characteristic/Array_Platform");
 
-		for (Sample sample : samples) {
-			SampleTag field = sample.getTags().getTag(PATH);
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.common.ui.search.Sorter#arrange(java.util.Collection,
+   * org.abh.common.ui.tree.ModernTree, boolean,
+   * org.abh.common.ui.search.FilterModel)
+   */
+  public void arrange(Collection<Sample> samples, ModernTree<Sample> tree, boolean ascending, FilterModel filterModel) {
+    Map<String, List<Sample>> map = ArrayListMultiMap.create();
 
-			String name = field.getValue();
-			
-			if (map.containsKey(name)) {
-				map.get(name).add(sample);
-			}
-		}
-		
-		arrange(map, ascending, tree);
-	}
+    for (Sample sample : samples) {
+      SampleTag field = sample.getTags().getTag(PATH);
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
-	 */
-	public final String getName() {
-		return "Array Platform";
-	}
-	
-	
+      String name = field.getValue();
+
+      if (map.containsKey(name)) {
+        map.get(name).add(sample);
+      }
+    }
+
+    arrange(map, ascending, tree);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.sort.SampleSorter#getName()
+   */
+  public final String getName() {
+    return "Array Platform";
+  }
+
 }

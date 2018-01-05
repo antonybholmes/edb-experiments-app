@@ -49,152 +49,156 @@ import org.jebtk.modern.view.ViewModel;
  * The class MultiViewPanel.
  */
 public class FilesMultiViewPanel extends TabsViewPanel implements ChangeListener {
-	
-	/**
-	 * The constant serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
 
-	
-	/**
-	 * The member view details.
-	 */
-	private ModernRowTable mTableDetails = new ModernRowTable();
-	
-	/**
-	 * The member view list.
-	 */
-	private ModernDataListView mViewList = new ModernDataListView();
-	
-	/**
-	 * The member view tiles.
-	 */
-	private ModernDataTileView mViewTiles = new ModernDataTileView();
-	
-	/**
-	 * The member view model.
-	 */
-	private ViewModel mViewModel;
-	
-	/**
-	 * Instantiates a new multi view panel.
-	 *
-	 * @param viewModel the view model
-	 */
-	public FilesMultiViewPanel(ViewModel viewModel) {
-		mViewModel = viewModel;
-		
-		mViewModel.addChangeListener(this);
-		
-		mTableDetails.getRendererModel().setCol(0, new FilesTableCellRenderer());
-		mViewList.getRendererModel().set(new FilesListViewCellRenderer());
-		mViewTiles.getRendererModel().set(new FilesTileCellRenderer());
-		
-		getTabsModel().addTab("Details", new ModernScrollPane(mTableDetails));
-		getTabsModel().addTab("List", new ModernScrollPane(mViewList));
-		getTabsModel().addTab("Tiles", new ModernScrollPane(mViewTiles));
-		
-		ModernDataRowTextSorter sorter = new ModernDataRowTextSorter();
-		
-		mTableDetails.getRowSortModel().set(0, sorter);
-		mTableDetails.getRowSortModel().set(1, sorter);
-		mTableDetails.getRowSortModel().set(2, new ModernDataRowDateSorter());
-		mTableDetails.getRendererModel().setCol(2, new ModernDataDateRenderer());
-		
-		mTableDetails.getColumnModel().setWidth(0, 400);
-		mTableDetails.getColumnModel().setWidth(1, 200);
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.awt.Component#addMouseListener(java.awt.event.MouseListener)
-	 */
-	public void addMouseListener(MouseListener l) {
-		mTableDetails.addMouseListener(l);
-		mViewList.addMouseListener(l);
-		mViewTiles.addMouseListener(l);
-	}
+  /**
+   * The constant serialVersionUID.
+   */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Gets the cell selection model.
-	 *
-	 * @return the cell selection model
-	 */
-	public ModernDataCellsSelectionModel getCellSelectionModel() {
-		switch (getTabsModel().getSelectedIndex()) {
-		case 0:
-			return mTableDetails.getCellSelectionModel();
-		case 1:
-			return mViewList.getCellSelectionModel();
-		case 2:
-			return mViewTiles.getCellSelectionModel();
-		default:
-			return null;
-		}
-	}
-	
-	/**
-	 * Gets the data.
-	 *
-	 * @return the data
-	 */
-	public ModernData getData() {
-		switch (getTabsModel().getSelectedIndex()) {
-		case 0:
-			return mTableDetails;
-		case 1:
-			return mViewList;
-		case 2:
-			return mViewTiles;
-		default:
-			return null;
-		}
-	}
+  /**
+   * The member view details.
+   */
+  private ModernRowTable mTableDetails = new ModernRowTable();
 
+  /**
+   * The member view list.
+   */
+  private ModernDataListView mViewList = new ModernDataListView();
 
-	/**
-	 * Sets the model.
-	 *
-	 * @param model the new model
-	 */
-	public void setModel(ModernDataModel model) {
-		mTableDetails.setModel(model);
-		mViewList.setModel(model);
-		mViewTiles.setModel(model);
-		
-		
-	}
+  /**
+   * The member view tiles.
+   */
+  private ModernDataTileView mViewTiles = new ModernDataTileView();
 
-	/**
-	 * Convert row index to model.
-	 *
-	 * @param i the i
-	 * @return the int
-	 */
-	public int convertRowIndexToModel(int i) {
-		switch (getTabsModel().getSelectedIndex()) {
-		case 0:
-			return mTableDetails.getModelRowIndex(i);
-		case 1:
-			return mViewList.getModelRowIndex(i);
-		case 2:
-			return mViewTiles.getModelRowIndex(i);
-		default:
-			return i;
-		}
-	}
+  /**
+   * The member view model.
+   */
+  private ViewModel mViewModel;
 
-	/**
-	 * View changed.
-	 */
-	private void viewChanged() {
-		getTabsModel().changeTab(mViewModel.getView());
-	}
+  /**
+   * Instantiates a new multi view panel.
+   *
+   * @param viewModel
+   *          the view model
+   */
+  public FilesMultiViewPanel(ViewModel viewModel) {
+    mViewModel = viewModel;
 
-	/* (non-Javadoc)
-	 * @see org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
-	 */
-	@Override
-	public void changed(ChangeEvent e) {
-		viewChanged();
-	}
+    mViewModel.addChangeListener(this);
+
+    mTableDetails.getRendererModel().setCol(0, new FilesTableCellRenderer());
+    mViewList.getRendererModel().set(new FilesListViewCellRenderer());
+    mViewTiles.getRendererModel().set(new FilesTileCellRenderer());
+
+    getTabsModel().addTab("Details", new ModernScrollPane(mTableDetails));
+    getTabsModel().addTab("List", new ModernScrollPane(mViewList));
+    getTabsModel().addTab("Tiles", new ModernScrollPane(mViewTiles));
+
+    ModernDataRowTextSorter sorter = new ModernDataRowTextSorter();
+
+    mTableDetails.getRowSortModel().set(0, sorter);
+    mTableDetails.getRowSortModel().set(1, sorter);
+    mTableDetails.getRowSortModel().set(2, new ModernDataRowDateSorter());
+    mTableDetails.getRendererModel().setCol(2, new ModernDataDateRenderer());
+
+    mTableDetails.getColumnModel().setWidth(0, 400);
+    mTableDetails.getColumnModel().setWidth(1, 200);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.awt.Component#addMouseListener(java.awt.event.MouseListener)
+   */
+  public void addMouseListener(MouseListener l) {
+    mTableDetails.addMouseListener(l);
+    mViewList.addMouseListener(l);
+    mViewTiles.addMouseListener(l);
+  }
+
+  /**
+   * Gets the cell selection model.
+   *
+   * @return the cell selection model
+   */
+  public ModernDataCellsSelectionModel getCellSelectionModel() {
+    switch (getTabsModel().getSelectedIndex()) {
+    case 0:
+      return mTableDetails.getCellSelectionModel();
+    case 1:
+      return mViewList.getCellSelectionModel();
+    case 2:
+      return mViewTiles.getCellSelectionModel();
+    default:
+      return null;
+    }
+  }
+
+  /**
+   * Gets the data.
+   *
+   * @return the data
+   */
+  public ModernData getData() {
+    switch (getTabsModel().getSelectedIndex()) {
+    case 0:
+      return mTableDetails;
+    case 1:
+      return mViewList;
+    case 2:
+      return mViewTiles;
+    default:
+      return null;
+    }
+  }
+
+  /**
+   * Sets the model.
+   *
+   * @param model
+   *          the new model
+   */
+  public void setModel(ModernDataModel model) {
+    mTableDetails.setModel(model);
+    mViewList.setModel(model);
+    mViewTiles.setModel(model);
+
+  }
+
+  /**
+   * Convert row index to model.
+   *
+   * @param i
+   *          the i
+   * @return the int
+   */
+  public int convertRowIndexToModel(int i) {
+    switch (getTabsModel().getSelectedIndex()) {
+    case 0:
+      return mTableDetails.getModelRowIndex(i);
+    case 1:
+      return mViewList.getModelRowIndex(i);
+    case 2:
+      return mViewTiles.getModelRowIndex(i);
+    default:
+      return i;
+    }
+  }
+
+  /**
+   * View changed.
+   */
+  private void viewChanged() {
+    getTabsModel().changeTab(mViewModel.getView());
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.abh.lib.event.ChangeListener#changed(org.abh.lib.event.ChangeEvent)
+   */
+  @Override
+  public void changed(ChangeEvent e) {
+    viewChanged();
+  }
 }

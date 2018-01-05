@@ -60,218 +60,243 @@ import edu.columbia.rdf.htsview.app.MainHtsView;
  *
  */
 public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener {
-	
-	/** The Constant CHIPSEQ. */
-	public static final String CHIPSEQ = "ChIP-Seq";
 
-	/** The m view. */
-	private DataView mView;
+  /** The Constant CHIPSEQ. */
+  public static final String CHIPSEQ = "ChIP-Seq";
 
-	/** The m display field 1. */
-	private Path mDisplayField1 = new Path("/ChIP-Seq/Sample/Seq_Id");
-	
-	/** The m display field 2. */
-	private Path mDisplayField2 = new Path("/ChIP-Seq/Sample/Treatment");
+  /** The m view. */
+  private DataView mView;
 
-	/** The m view button. */
-	private RibbonLargeButton mViewButton = 
-			new RibbonLargeButton(new HTSViewInfo().getName(), new HTSViewInfo().getIcon());
+  /** The m display field 1. */
+  private Path mDisplayField1 = new Path("/ChIP-Seq/Sample/Seq_Id");
 
-	/** The m parent. */
-	private ModernRibbonWindow mParent;
+  /** The m display field 2. */
+  private Path mDisplayField2 = new Path("/ChIP-Seq/Sample/Treatment");
 
-	/** The m selected samples. */
-	private SelectionModel<Sample> mSelectedSamples;
+  /** The m view button. */
+  private RibbonLargeButton mViewButton = new RibbonLargeButton(new HTSViewInfo().getName(),
+      new HTSViewInfo().getIcon());
 
-	/** The m login. */
-	private EDBWLogin mLogin;
+  /** The m parent. */
+  private ModernRibbonWindow mParent;
 
-	/**
-	 * Instantiates a new chip seq view plugin.
-	 *
-	 * @param login the login
-	 */
-	public ChipSeqViewPlugin(EDBWLogin login) {
-		mLogin = login;
+  /** The m selected samples. */
+  private SelectionModel<Sample> mSelectedSamples;
 
-		mView = new ChipSeqDataView();
+  /** The m login. */
+  private EDBWLogin mLogin;
 
-		mViewButton.addClickListener(this);
-	}
+  /**
+   * Instantiates a new chip seq view plugin.
+   *
+   * @param login
+   *          the login
+   */
+  public ChipSeqViewPlugin(EDBWLogin login) {
+    mLogin = login;
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDisplayField1()
-	 */
-	@Override
-	public Path getDisplayField1() {
-		return mDisplayField1;
-	}
+    mView = new ChipSeqDataView();
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDisplayField2()
-	 */
-	@Override
-	public Path getDisplayField2() {
-		return mDisplayField2;
-	}
+    mViewButton.addClickListener(this);
+  }
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#initSampleSorters(org.abh.common.ui.search.SortModel)
-	 */
-	@Override
-	public void initSampleSorters(SortModel<Sample> sampleSortModel) {
-		sampleSortModel.add(new SortSamplesByCellType());
-		sampleSortModel.add(new SortSamplesByClassification());
-		sampleSortModel.add(new SortSamplesByGenome());
-		sampleSortModel.add(new SortSamplesByTreatment());
-		//sampleSortModel.add(new SortSamplesBySourceCellType());
-		//sampleSortModel.add(new SortSamplesBySourceDiseaseState());
-		//sampleSortModel.add(new SortSamplesBySourceDiseaseStatus());
-		//sampleSortModel.add(new SortSamplesBySourceGender());
-		//sampleSortModel.add(new SortSamplesByMicroarrayBasedClassification());
-		//sampleSortModel.add(new SortSamplesBySourceMaterialType());
-		//sampleSortModel.add(new SortSamplesBySourceOrganismPart());
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDisplayField1()
+   */
+  @Override
+  public Path getDisplayField1() {
+    return mDisplayField1;
+  }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDisplayField2()
+   */
+  @Override
+  public Path getDisplayField2() {
+    return mDisplayField2;
+  }
 
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * edu.columbia.rdf.edb.ui.ViewPlugin#initSampleSorters(org.abh.common.ui.search
+   * .SortModel)
+   */
+  @Override
+  public void initSampleSorters(SortModel<Sample> sampleSortModel) {
+    sampleSortModel.add(new SortSamplesByCellType());
+    sampleSortModel.add(new SortSamplesByClassification());
+    sampleSortModel.add(new SortSamplesByGenome());
+    sampleSortModel.add(new SortSamplesByTreatment());
+    // sampleSortModel.add(new SortSamplesBySourceCellType());
+    // sampleSortModel.add(new SortSamplesBySourceDiseaseState());
+    // sampleSortModel.add(new SortSamplesBySourceDiseaseStatus());
+    // sampleSortModel.add(new SortSamplesBySourceGender());
+    // sampleSortModel.add(new SortSamplesByMicroarrayBasedClassification());
+    // sampleSortModel.add(new SortSamplesBySourceMaterialType());
+    // sampleSortModel.add(new SortSamplesBySourceOrganismPart());
+  }
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getSamplePanel(edu.columbia.rdf.edb.Sample)
-	 */
-	@Override
-	public ModernComponent getSamplePanel(Sample sample) {
-		return new ChipSeqSampleDataPanel(sample, mView);
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getSamplePanel(edu.columbia.rdf.edb.
+   * Sample)
+   */
+  @Override
+  public ModernComponent getSamplePanel(Sample sample) {
+    return new ChipSeqSampleDataPanel(sample, mView);
+  }
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#init(org.abh.common.ui.window.ModernRibbonWindow, org.abh.common.ui.status.StatusModel, org.abh.common.ui.widget.tooltip.ModernToolTipModel, org.abh.common.ui.SelectionModel)
-	 */
-	@Override
-	public void init(ModernRibbonWindow parent,
-			StatusModel statusModel,
-			ModernToolTipModel toolTipModel,
-			SelectionModel<Sample> selectedSamples) {
-		mParent = parent;
-		mSelectedSamples = selectedSamples;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#init(org.abh.common.ui.window.
+   * ModernRibbonWindow, org.abh.common.ui.status.StatusModel,
+   * org.abh.common.ui.widget.tooltip.ModernToolTipModel,
+   * org.abh.common.ui.SelectionModel)
+   */
+  @Override
+  public void init(ModernRibbonWindow parent, StatusModel statusModel, ModernToolTipModel toolTipModel,
+      SelectionModel<Sample> selectedSamples) {
+    mParent = parent;
+    mSelectedSamples = selectedSamples;
 
-		parent.getRibbon().getHomeToolbar().getSection(getExpressionType()).add(mViewButton);
+    parent.getRibbon().getHomeToolbar().getSection(getExpressionType()).add(mViewButton);
 
-		mViewButton.setToolTip(new ModernToolTip("View ChIP-seq data", 
-				"View ChIP-seq data for the currently selected samples."), 
-				toolTipModel);
-	}
+    mViewButton.setToolTip(
+        new ModernToolTip("View ChIP-seq data", "View ChIP-seq data for the currently selected samples."),
+        toolTipModel);
+  }
 
-	/* (non-Javadoc)
-	 * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.ModernClickEvent)
-	 */
-	@Override
-	public void clicked(ModernClickEvent e) {
-		try {
-			showSamples();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (ServerException e1) {
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		} catch (SAXException e1) {
-			e1.printStackTrace();
-		} catch (ParserConfigurationException e1) {
-			e1.printStackTrace();
-		}
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
+   * ModernClickEvent)
+   */
+  @Override
+  public void clicked(ModernClickEvent e) {
+    try {
+      showSamples();
+    } catch (IOException e1) {
+      e1.printStackTrace();
+    } catch (ServerException e1) {
+      e1.printStackTrace();
+    } catch (ClassNotFoundException e1) {
+      e1.printStackTrace();
+    } catch (ParseException e1) {
+      e1.printStackTrace();
+    } catch (SAXException e1) {
+      e1.printStackTrace();
+    } catch (ParserConfigurationException e1) {
+      e1.printStackTrace();
+    }
+  }
 
-	/**
-	 * Show samples.
-	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ServerException the server exception
-	 * @throws ClassNotFoundException the class not found exception
-	 * @throws ParseException the parse exception
-	 * @throws SAXException the SAX exception
-	 * @throws ParserConfigurationException the parser configuration exception
-	 */
-	private void showSamples() throws IOException, ServerException, ClassNotFoundException, ParseException, SAXException, ParserConfigurationException {
-		List<Sample> samples = mSelectedSamples.getItems();
+  /**
+   * Show samples.
+   *
+   * @throws IOException
+   *           Signals that an I/O exception has occurred.
+   * @throws ServerException
+   *           the server exception
+   * @throws ClassNotFoundException
+   *           the class not found exception
+   * @throws ParseException
+   *           the parse exception
+   * @throws SAXException
+   *           the SAX exception
+   * @throws ParserConfigurationException
+   *           the parser configuration exception
+   */
+  private void showSamples() throws IOException, ServerException, ClassNotFoundException, ParseException, SAXException,
+      ParserConfigurationException {
+    List<Sample> samples = mSelectedSamples.getItems();
 
-		if (samples.size() == 0) {
-			ModernMessageDialog.createWarningDialog(mParent, 
-					"You must select at least one sample.");
+    if (samples.size() == 0) {
+      ModernMessageDialog.createWarningDialog(mParent, "You must select at least one sample.");
 
-			return;
-		}
+      return;
+    }
 
-		boolean correctType = true;
+    boolean correctType = true;
 
-		for (Sample sample : samples) {
-			if (!sample.getExpressionType().getName().equals(getExpressionType())) {
-				correctType = false;
-				break;
-			}
-		}
+    for (Sample sample : samples) {
+      if (!sample.getExpressionType().getName().equals(getExpressionType())) {
+        correctType = false;
+        break;
+      }
+    }
 
-		if (!correctType) {
-			ModernMessageDialog.createWarningDialog(mParent, 
-					"You can only view track data for ChIP-seq samples.");
+    if (!correctType) {
+      ModernMessageDialog.createWarningDialog(mParent, "You can only view track data for ChIP-seq samples.");
 
-			return;
-		}
+      return;
+    }
 
-		// Remove locked
+    // Remove locked
 
-		if (checkForLocked(samples)) {
-			ModernMessageDialog.createWarningDialog(mParent, 
-					"You have selected one or more locked samples. These will not be shown.");
+    if (checkForLocked(samples)) {
+      ModernMessageDialog.createWarningDialog(mParent,
+          "You have selected one or more locked samples. These will not be shown.");
 
-			samples = getUnlockedSamples(samples);
-		}
-		
-		IterMap<String, Set<Sample>> sorted = Sample.sortByGenome(samples);
+      samples = getUnlockedSamples(samples);
+    }
 
-		if (sorted.size() > 0) {
-			for (String genome : sorted) {
-				MainHtsView.main(mLogin, genome, sorted.get(genome));
-			}
-		}
-	}
+    IterMap<String, Set<Sample>> sorted = Sample.sortByGenome(samples);
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#initSearchCategories(edu.columbia.rdf.edb.ui.search.SearchCategoryService)
-	 */
-	@Override
-	public void initSearchCategories(SearchCategoryService searchCategoryService) {
-		SearchCategoryGroup group;
+    if (sorted.size() > 0) {
+      for (String genome : sorted) {
+        MainHtsView.main(mLogin, genome, sorted.get(genome));
+      }
+    }
+  }
 
-		group = new SearchCategoryGroup("ChIP-Seq");
-		group.addCategory(new SearchCategory("Sequence Id", 
-				new Path("/ChIP-Seq/Sample/Seq_Id")));
-		group.addCategory(new SearchCategory("Classification", 
-				new Path("/ChIP-Seq/Sample/Classification")));
-		group.addCategory(new SearchCategory("Cell Type", 
-				new Path("/ChIP-Seq/Sample/Cell_Type")));
-		group.addCategory(new SearchCategory("Treatment", 
-				new Path("/ChIP-Seq/Sample/Treatment")));
-		group.addCategory(new SearchCategory("Genome", 
-				new Path("/ChIP-Seq/Sample/Genome")));
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * edu.columbia.rdf.edb.ui.ViewPlugin#initSearchCategories(edu.columbia.rdf.edb.
+   * ui.search.SearchCategoryService)
+   */
+  @Override
+  public void initSearchCategories(SearchCategoryService searchCategoryService) {
+    SearchCategoryGroup group;
 
-		searchCategoryService.addGroup(group);
-	}
+    group = new SearchCategoryGroup("ChIP-Seq");
+    group.addCategory(new SearchCategory("Sequence Id", new Path("/ChIP-Seq/Sample/Seq_Id")));
+    group.addCategory(new SearchCategory("Classification", new Path("/ChIP-Seq/Sample/Classification")));
+    group.addCategory(new SearchCategory("Cell Type", new Path("/ChIP-Seq/Sample/Cell_Type")));
+    group.addCategory(new SearchCategory("Treatment", new Path("/ChIP-Seq/Sample/Treatment")));
+    group.addCategory(new SearchCategory("Genome", new Path("/ChIP-Seq/Sample/Genome")));
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getExpressionType()
-	 */
-	@Override
-	public String getExpressionType() {
-		return "ChIP-Seq";
-	}
+    searchCategoryService.addGroup(group);
+  }
 
-	/* (non-Javadoc)
-	 * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDataView()
-	 */
-	@Override
-	public DataView getDataView() {
-		return mView;
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getExpressionType()
+   */
+  @Override
+  public String getExpressionType() {
+    return "ChIP-Seq";
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getDataView()
+   */
+  @Override
+  public DataView getDataView() {
+    return mView;
+  }
 }

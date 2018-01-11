@@ -50,64 +50,48 @@ public class MainExperiments {
   /**
    * The main method.
    *
-   * @param args
-   *          the arguments
-   * @throws ServerException
-   *           the server exception
-   * @throws SAXException
-   *           the SAX exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
-   * @throws KeyManagementException
-   *           the key management exception
-   * @throws NoSuchAlgorithmException
-   *           the no such algorithm exception
-   * @throws FontFormatException
-   *           the font format exception
-   * @throws ClassNotFoundException
-   *           the class not found exception
-   * @throws InstantiationException
-   *           the instantiation exception
-   * @throws IllegalAccessException
-   *           the illegal access exception
-   * @throws UnsupportedLookAndFeelException
-   *           the unsupported look and feel exception
+   * @param args the arguments
+   * @throws ServerException the server exception
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws KeyManagementException the key management exception
+   * @throws NoSuchAlgorithmException the no such algorithm exception
+   * @throws FontFormatException the font format exception
+   * @throws ClassNotFoundException the class not found exception
+   * @throws InstantiationException the instantiation exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws UnsupportedLookAndFeelException the unsupported look and feel
+   *           exception
    */
-  public static final void main(String[] args) throws ServerException, SAXException, IOException,
-      ParserConfigurationException, KeyManagementException, NoSuchAlgorithmException, FontFormatException,
-      ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+  public static final void main(String[] args) throws ServerException,
+      SAXException, IOException, ParserConfigurationException,
+      KeyManagementException, NoSuchAlgorithmException, FontFormatException,
+      ClassNotFoundException, InstantiationException, IllegalAccessException,
+      UnsupportedLookAndFeelException {
     main();
   }
 
   /**
    * Main.
    *
-   * @throws SAXException
-   *           the SAX exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
-   * @throws KeyManagementException
-   *           the key management exception
-   * @throws NoSuchAlgorithmException
-   *           the no such algorithm exception
-   * @throws FontFormatException
-   *           the font format exception
-   * @throws ClassNotFoundException
-   *           the class not found exception
-   * @throws InstantiationException
-   *           the instantiation exception
-   * @throws IllegalAccessException
-   *           the illegal access exception
-   * @throws UnsupportedLookAndFeelException
-   *           the unsupported look and feel exception
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws KeyManagementException the key management exception
+   * @throws NoSuchAlgorithmException the no such algorithm exception
+   * @throws FontFormatException the font format exception
+   * @throws ClassNotFoundException the class not found exception
+   * @throws InstantiationException the instantiation exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws UnsupportedLookAndFeelException the unsupported look and feel
+   *           exception
    */
-  public static void main() throws SAXException, IOException, ParserConfigurationException, KeyManagementException,
-      NoSuchAlgorithmException, FontFormatException, ClassNotFoundException, InstantiationException,
-      IllegalAccessException, UnsupportedLookAndFeelException {
+  public static void main()
+      throws SAXException, IOException, ParserConfigurationException,
+      KeyManagementException, NoSuchAlgorithmException, FontFormatException,
+      ClassNotFoundException, InstantiationException, IllegalAccessException,
+      UnsupportedLookAndFeelException {
     AppService.getInstance().setAppInfo("experiments");
 
     ThemeService.getInstance().setTheme();
@@ -126,7 +110,8 @@ public class MainExperiments {
     // DataViewService.getInstance().loadXml();
 
     // Load search categories
-    SearchCategoryService.getInstance().loadXml(SearchCategoryService.DEFAULT_SEARCH_CATEGORIES_XML_FILE);
+    SearchCategoryService.getInstance()
+        .loadXml(SearchCategoryService.DEFAULT_SEARCH_CATEGORIES_XML_FILE);
 
     // load plugins from the plugin directory
     // PluginService.getInstance().scanDirectory(Settings.getInstance().getChild("main.plugins-directory").getValue());
@@ -135,9 +120,11 @@ public class MainExperiments {
     // File(SettingsService.getInstance().getSetting("experiments.working-directory").getValue()));
 
     // load previous search terms
-    SearchTermsService.getInstance().loadXml(SearchTermsService.DEFAULT_XML_FILE);
+    SearchTermsService.getInstance()
+        .loadXml(SearchTermsService.DEFAULT_XML_FILE);
     DictionaryService.getInstance().loadXml(DictionaryService.DEFAULT_FILE);
-    SubstitutionService.getInstance().loadTSVFile(SubstitutionService.DEFAULT_FILE);
+    SubstitutionService.getInstance()
+        .loadTSVFile(SubstitutionService.DEFAULT_FILE);
 
     EDBWLogin login = EDBWLogin.loadFromSettings();
 

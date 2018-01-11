@@ -56,7 +56,8 @@ import edu.columbia.rdf.edb.ui.RepositoryService;
 /**
  * The Class FilesPanel.
  */
-public class FilesPanel extends ModernPanel implements ModernSelectionListener, ChangeListener, ModernClickListener {
+public class FilesPanel extends ModernPanel
+    implements ModernSelectionListener, ChangeListener, ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -87,7 +88,8 @@ public class FilesPanel extends ModernPanel implements ModernSelectionListener, 
       UIService.getInstance().loadIcon("view_details", 16));
 
   /** The m button list. */
-  private ModernCheckButton mButtonList = new ModernCheckRadioButton(UIService.getInstance().loadIcon("view_list", 16));
+  private ModernCheckButton mButtonList = new ModernCheckRadioButton(
+      UIService.getInstance().loadIcon("view_list", 16));
 
   /** The m button icons. */
   private ModernCheckButton mButtonIcons = new ModernCheckRadioButton(
@@ -102,17 +104,13 @@ public class FilesPanel extends ModernPanel implements ModernSelectionListener, 
   /**
    * Instantiates a new files panel.
    *
-   * @param parent
-   *          the parent
-   * @param sampleModel
-   *          the sample model
-   * @param sampleSelectionModel
-   *          the sample selection model
-   * @param viewModel
-   *          the view model
+   * @param parent the parent
+   * @param sampleModel the sample model
+   * @param sampleSelectionModel the sample selection model
+   * @param viewModel the view model
    */
-  public FilesPanel(ModernWindow parent, SampleModel sampleModel, SampleModel sampleSelectionModel,
-      ViewModel viewModel) {
+  public FilesPanel(ModernWindow parent, SampleModel sampleModel,
+      SampleModel sampleSelectionModel, ViewModel viewModel) {
 
     mParent = parent;
     mSampleSelectionModel = sampleSelectionModel;
@@ -216,8 +214,7 @@ public class FilesPanel extends ModernPanel implements ModernSelectionListener, 
   /**
    * Download files.
    *
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
   public void downloadFiles() throws IOException {
 
@@ -244,10 +241,8 @@ public class FilesPanel extends ModernPanel implements ModernSelectionListener, 
   /**
    * Search files.
    *
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
   private void searchFiles() throws IOException, ParseException {
 
@@ -255,11 +250,13 @@ public class FilesPanel extends ModernPanel implements ModernSelectionListener, 
 
     // searchBox.addTerm(searchBox.getText());
 
-    Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+    Repository repository = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP);
 
     for (Sample sample : mSampleSelectionModel) {
 
-      for (FileDescriptor file : repository.getSampleFiles(sample)) { // sample.getFiles()) {
+      for (FileDescriptor file : repository.getSampleFiles(sample)) { // sample.getFiles())
+                                                                      // {
         mFilteredFiles.add(file);
       }
     }
@@ -286,8 +283,8 @@ public class FilesPanel extends ModernPanel implements ModernSelectionListener, 
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+   * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+   * ChangeEvent)
    */
   @Override
   public void changed(ChangeEvent e) {
@@ -301,9 +298,8 @@ public class FilesPanel extends ModernPanel implements ModernSelectionListener, 
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {

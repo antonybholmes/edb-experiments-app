@@ -33,14 +33,15 @@ import org.jebtk.modern.ribbon.RibbonSection;
  * @author Antony Holmes Holmes
  *
  */
-public class DataExportRibbonSection extends RibbonSection implements ModernClickListener {
+public class DataExportRibbonSection extends RibbonSection
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The download button. */
-  private ModernButtonWidget downloadButton = new RibbonLargeButton("Download", "Files",
-      UIService.getInstance().loadIcon("download", 32));
+  private ModernButtonWidget downloadButton = new RibbonLargeButton("Download",
+      "Files", UIService.getInstance().loadIcon("download", 32));
 
   /** The export button. */
   private RibbonLargeDropDownButton exportButton;
@@ -48,27 +49,30 @@ public class DataExportRibbonSection extends RibbonSection implements ModernClic
   /**
    * Instantiates a new data export ribbon section.
    *
-   * @param ribbon
-   *          the ribbon
+   * @param ribbon the ribbon
    */
   public DataExportRibbonSection(Ribbon ribbon) {
     super(ribbon, "Export");
 
     ModernPopupMenu exportMenu = new ModernPopupMenu();
 
-    exportMenu.add(new ModernTwoLineMenuItem("Samples", "Export sample information.",
-        UIService.getInstance().loadIcon("file", 32)));
-    exportMenu.add(new ModernTwoLineMenuItem("Experiments", "Export experiment information.",
+    exportMenu
+        .add(new ModernTwoLineMenuItem("Samples", "Export sample information.",
+            UIService.getInstance().loadIcon("file", 32)));
+    exportMenu.add(new ModernTwoLineMenuItem("Experiments",
+        "Export experiment information.",
         UIService.getInstance().loadIcon("file", 32)));
 
-    exportButton = new RibbonLargeDropDownButton("Export", UIService.getInstance().loadIcon("save", 32), exportMenu);
+    exportButton = new RibbonLargeDropDownButton("Export",
+        UIService.getInstance().loadIcon("save", 32), exportMenu);
     exportButton.addClickListener(this);
     exportButton.setToolTip("Export",
         "Export the information on the currently selected samples to a text file. This does not include CEL, CHP, or expression data.");
     add(exportButton);
 
     downloadButton.addClickListener(this);
-    downloadButton.setToolTip("Download Files", "Download the selected files to your computer in a zip archive.");
+    downloadButton.setToolTip("Download Files",
+        "Download the selected files to your computer in a zip archive.");
     downloadButton.setClickMessage("download");
     add(downloadButton);
   }
@@ -76,9 +80,8 @@ public class DataExportRibbonSection extends RibbonSection implements ModernClic
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public void clicked(ModernClickEvent e) {
     fireClicked(new ModernClickEvent(this, e.getMessage()));

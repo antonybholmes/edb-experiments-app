@@ -42,10 +42,8 @@ public class ExLoginDialog extends LoginDialog {
   /**
    * Instantiates a new ex login dialog.
    *
-   * @param appInfo
-   *          the app info
-   * @param login
-   *          the login
+   * @param appInfo the app info
+   * @param login the login
    */
   public ExLoginDialog(GuiAppInfo appInfo, EDBWLogin login) {
     super(appInfo, login);
@@ -74,7 +72,9 @@ public class ExLoginDialog extends LoginDialog {
     }
 
     if (session == null) {
-      ModernMessageDialog.createDialog(null, getAppInfo().getName(), "The ExperimentDB server is not responding.",
+      ModernMessageDialog.createDialog(null,
+          getAppInfo().getName(),
+          "The ExperimentDB server is not responding.",
           MessageDialogType.WARNING);
 
       return;
@@ -88,7 +88,8 @@ public class ExLoginDialog extends LoginDialog {
     try {
       repository = session.restore();
 
-      RepositoryService.getInstance().setRepository(RepositoryService.DEFAULT_REP, repository);
+      RepositoryService.getInstance()
+          .setRepository(RepositoryService.DEFAULT_REP, repository);
 
       MainExperimentsWindow window = new MainExperimentsWindow(getAppInfo());
 

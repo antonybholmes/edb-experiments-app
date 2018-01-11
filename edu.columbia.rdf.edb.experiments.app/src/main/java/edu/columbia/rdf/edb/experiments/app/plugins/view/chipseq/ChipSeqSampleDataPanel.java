@@ -38,10 +38,8 @@ public class ChipSeqSampleDataPanel extends SampleDataPanel {
   /**
    * Instantiates a new chip seq sample data panel.
    *
-   * @param sample
-   *          the sample
-   * @param view
-   *          the view
+   * @param sample the sample
+   * @param view the view
    */
   public ChipSeqSampleDataPanel(Sample sample, DataView view) {
     super(sample, view);
@@ -62,7 +60,8 @@ public class ChipSeqSampleDataPanel extends SampleDataPanel {
 
     SampleSummaryPanel titlePanel = new SampleSummaryPanel(sample);
 
-    setHeader(new ModernComponent(titlePanel, ThemeService.getInstance().colors().getHighlight32(1),
+    setHeader(new ModernComponent(titlePanel,
+        ThemeService.getInstance().colors().getHighlight32(1),
         ModernWidget.LARGE_BORDER));
   }
 }

@@ -41,7 +41,8 @@ public class FilesListPanel extends FilesPanel {
   private static final long serialVersionUID = 1L;
 
   /** The m list. */
-  private ModernList<FileDescriptor> mList = new ModernList<FileDescriptor>(new FilesListCellRenderer());
+  private ModernList<FileDescriptor> mList = new ModernList<FileDescriptor>(
+      new FilesListCellRenderer());
 
   /** The m model. */
   private ModernListModel<FileDescriptor> mModel;
@@ -70,7 +71,8 @@ public class FilesListPanel extends FilesPanel {
    * edu.columbia.rdf.edb.experiments.app.files.FilesPanel#setSampleFiles(java.
    * util.Collection)
    */
-  public final void setSampleFiles(Collection<Sample> samples) throws IOException, ParseException {
+  public final void setSampleFiles(Collection<Sample> samples)
+      throws IOException, ParseException {
     super.setSampleFiles(samples);
 
     mModel = new ModernListModel<FileDescriptor>();
@@ -85,7 +87,8 @@ public class FilesListPanel extends FilesPanel {
   /*
    * (non-Javadoc)
    * 
-   * @see edu.columbia.rdf.edb.experiments.app.files.FilesPanel#getSelectedFiles()
+   * @see
+   * edu.columbia.rdf.edb.experiments.app.files.FilesPanel#getSelectedFiles()
    */
   @Override
   public Set<FileDescriptor> getSelectedFiles() {

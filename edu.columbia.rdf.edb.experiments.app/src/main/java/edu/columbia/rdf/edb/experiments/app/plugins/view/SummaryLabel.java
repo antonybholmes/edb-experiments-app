@@ -30,13 +30,13 @@ public class SummaryLabel extends ModernAutoSizeLabel {
   private static final long serialVersionUID = 1L;
 
   /** The color1. */
-  public static Color COLOR1 = ThemeService.getInstance().colors().getHighlight32(24);
+  public static Color COLOR1 = ThemeService.getInstance().colors()
+      .getHighlight32(24);
 
   /**
    * Instantiates a new summary label.
    *
-   * @param text
-   *          the text
+   * @param text the text
    */
   public SummaryLabel(String text) {
     super(text, COLOR1);

@@ -35,7 +35,8 @@ public class SearchCriteriaPopup extends ModernScrollPopupMenu {
   private static final long serialVersionUID = 1L;
 
   /** The Constant MENU_ITEM_SIZE. */
-  public static final Dimension MENU_ITEM_SIZE = new Dimension(400, UIService.ICON_SIZE_48);
+  public static final Dimension MENU_ITEM_SIZE = new Dimension(400,
+      UIService.ICON_SIZE_48);
 
   /** The Constant MAX_HEIGHT. */
   public static final int MAX_HEIGHT = ModernIconMenuItem.HEIGHT * 15;

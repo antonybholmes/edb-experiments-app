@@ -52,7 +52,8 @@ import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
 /**
  * The Class SearchPanel.
  */
-public class SearchPanel extends ModernClickWidget implements ModernClickListener, SearchCriteriaCategory {
+public class SearchPanel extends ModernClickWidget
+    implements ModernClickListener, SearchCriteriaCategory {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -67,11 +68,13 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
   private SearchCategoriesPanel mSearchFieldsPanel;
 
   /** The m search button. */
-  private ModernButton mSearchButton = new ModernButton(UIService.getInstance().loadIcon(SearchVectorIcon.class, 16)); // Resources.getInstance().loadIcon("search",
-                                                                                                                       // Resources.ICON_SIZE_16));
+  private ModernButton mSearchButton = new ModernButton(
+      UIService.getInstance().loadIcon(SearchVectorIcon.class, 16)); // Resources.getInstance().loadIcon("search",
+                                                                     // Resources.ICON_SIZE_16));
 
   /** The m clear button. */
-  private ModernButton mClearButton = new ModernButton(UIService.getInstance().loadIcon("trash_bw", 16));
+  private ModernButton mClearButton = new ModernButton(
+      UIService.getInstance().loadIcon("trash_bw", 16));
 
   /** The m add field button. */
   private ModernOptionalDropDownMenuButton mAddFieldButton;
@@ -87,8 +90,7 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
   /**
    * Create a new search category panel.
    *
-   * @param parent
-   *          the parent window.
+   * @param parent the parent window.
    */
   public SearchPanel(ModernWindow parent) {
     mParent = parent;
@@ -115,12 +117,14 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
 
     // searchScopeCombo.addMenuItem("All Samples");
     // searchScopeCombo.addMenuItem("Current Experiment");
-    // Ui.setSize(searchScopeCombo, new Dimension(150, ModernWidget.WIDGET_HEIGHT));
+    // Ui.setSize(searchScopeCombo, new Dimension(150,
+    // ModernWidget.WIDGET_HEIGHT));
     // box.add(searchScopeCombo);
     // box.add(ModernTheme.createHorizontalGap());
 
     // box2.add(Box.createHorizontalGlue());
-    mSearchButton.setToolTip(new ModernToolTip("Search", "Search for samples matching your search criteria."));
+    mSearchButton.setToolTip(new ModernToolTip("Search",
+        "Search for samples matching your search criteria."));
 
     mSearchButton.addClickListener(this);
     // searchButton.setToolTipText("Search for experiments.");
@@ -138,7 +142,8 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
 
     box.add(createHGap());
 
-    SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(parent);
+    SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(
+        parent);
 
     // SearchSharedMenu.getInstance().setup(searchCriteriaPopup);
 
@@ -148,11 +153,13 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
 
     // searchCriteriaPopup.addClickListener(this);
 
-    mAddFieldButton = new ModernOptionalDropDownMenuButton(UIService.getInstance().loadIcon("search_field", 16),
+    mAddFieldButton = new ModernOptionalDropDownMenuButton(
+        UIService.getInstance().loadIcon("search_field", 16),
         searchCriteriaPopup);
 
     mAddFieldButton.setClickMessage("add_field");
-    mAddFieldButton.setToolTip(new ModernToolTip("Add Field", "Add another search field to your search criteria."));
+    mAddFieldButton.setToolTip(new ModernToolTip("Add Field",
+        "Add another search field to your search criteria."));
     mAddFieldButton.addClickListener(this);
 
     box.add(mAddFieldButton);
@@ -219,9 +226,8 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {
@@ -234,8 +240,8 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
         addUserSearchEntry(UserSearchEntry.createDefaultSearchEntry());
       } else {
         // from drop down menu
-        addUserSearchEntry(
-            UserSearchEntry.create(SearchCategoryService.getInstance().getSearchCategory(e.getMessage())));
+        addUserSearchEntry(UserSearchEntry.create(SearchCategoryService
+            .getInstance().getSearchCategory(e.getMessage())));
       }
     } else if (e.getSource().equals(mClearButton)) {
       removeUserSearchEntries();
@@ -259,8 +265,10 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
    * Removes the user search entries.
    */
   private void removeUserSearchEntries() {
-    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent, mParent.getAppInfo().getName(),
-        "Are you sure you want to remove all of your search criteria?", MessageDialogType.WARNING_OK_CANCEL);
+    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent,
+        mParent.getAppInfo().getName(),
+        "Are you sure you want to remove all of your search criteria?",
+        MessageDialogType.WARNING_OK_CANCEL);
 
     if (status == ModernDialogStatus.CANCEL) {
       return;
@@ -285,9 +293,8 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#loadSearch(edu.columbia
-   * .rdf.edb.ui.search.UserSearch)
+   * @see edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#loadSearch(edu.
+   * columbia .rdf.edb.ui.search.UserSearch)
    */
   public void loadSearch(UserSearch search) {
     mSearchFieldsPanel.loadSearch(search);
@@ -306,8 +313,7 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
   /**
    * Sets the user search.
    *
-   * @param userSearch
-   *          the new user search
+   * @param userSearch the new user search
    */
   public final void setUserSearch(UserSearch userSearch) {
     mSearchFieldsPanel.setUserSearch(userSearch);
@@ -316,7 +322,8 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
   /*
    * (non-Javadoc)
    * 
-   * @see edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#addUserSearch(edu.
+   * @see
+   * edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#addUserSearch(edu.
    * columbia.rdf.edb.ui.search.UserSearch)
    */
   public void addUserSearch(UserSearch userSearch) {
@@ -327,8 +334,8 @@ public class SearchPanel extends ModernClickWidget implements ModernClickListene
    * (non-Javadoc)
    * 
    * @see
-   * edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#addUserSearchEntry(edu.
-   * columbia.rdf.edb.ui.search.UserSearchEntry)
+   * edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#addUserSearchEntry(
+   * edu. columbia.rdf.edb.ui.search.UserSearchEntry)
    */
   public void addUserSearchEntry(UserSearchEntry entry) {
     // Impose a cut off of 8 search criteria to stop

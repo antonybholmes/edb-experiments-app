@@ -60,7 +60,8 @@ import edu.columbia.rdf.edb.ui.ViewPluginService;
 /**
  * The Class SamplesTreePanel.
  */
-public class SamplesTreePanel extends SamplesPanel implements ModernClickListener {
+public class SamplesTreePanel extends SamplesPanel
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -81,19 +82,21 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
   private ModernPopupMenu mMenu;
 
   /** The m sort menu item. */
-  private ModernTwoStateWidget mSortMenuItem = new ModernCheckBoxMenuItem("Sort Descending");
+  private ModernTwoStateWidget mSortMenuItem = new ModernCheckBoxMenuItem(
+      "Sort Descending");
 
   /** The expand menu item. */
-  private ModernIconMenuItem expandMenuItem = new ModernIconMenuItem("Expand All",
-      UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
+  private ModernIconMenuItem expandMenuItem = new ModernIconMenuItem(
+      "Expand All", UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /** The collapse menu item. */
-  private ModernIconMenuItem collapseMenuItem = new ModernIconMenuItem("Collapse All",
+  private ModernIconMenuItem collapseMenuItem = new ModernIconMenuItem(
+      "Collapse All",
       UIService.getInstance().loadIcon(MinusVectorIcon.class, 16));
 
   /** The m view model. */
-  private ViewModel mViewModel = new ViewModel(
-      SettingsService.getInstance().getAsString("edb.experiments.samples.default-view"));
+  private ViewModel mViewModel = new ViewModel(SettingsService.getInstance()
+      .getAsString("edb.experiments.samples.default-view"));
 
   /** The m sample model. */
   private SampleModel mSampleModel;
@@ -131,8 +134,7 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
     /**
      * Show popup.
      *
-     * @param e
-     *          the e
+     * @param e the e
      */
     private void showPopup(MouseEvent e) {
       if (!e.getSource().equals(mTree)) {
@@ -175,9 +177,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.ui.search.FilterEventListener#filterChanged(org.abh.common.
-     * event.ChangeEvent)
+     * @see org.abh.common.ui.search.FilterEventListener#filterChanged(org.abh.
+     * common. event.ChangeEvent)
      */
     @Override
     public void filtersUpdated(ChangeEvent e) {
@@ -187,9 +188,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.ui.search.FilterEventListener#filtersUpdated(org.abh.common.
-     * event.ChangeEvent)
+     * @see org.abh.common.ui.search.FilterEventListener#filtersUpdated(org.abh.
+     * common. event.ChangeEvent)
      */
     @Override
     public void filtersChanged(ChangeEvent e) {
@@ -206,12 +206,13 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+     * ChangeEvent)
      */
     @Override
     public void changed(ChangeEvent e) {
-      mSortMenuItem.setSelected(!SampleSortService.getInstance().getSortAscending());
+      mSortMenuItem
+          .setSelected(!SampleSortService.getInstance().getSortAscending());
 
       filterSamples();
     }
@@ -225,8 +226,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+     * ChangeEvent)
      */
     @Override
     public void changed(ChangeEvent e) {
@@ -238,16 +239,16 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
   /**
    * Instantiates a new samples tree panel.
    *
-   * @param parent
-   *          the parent
-   * @param sampleModel
-   *          the sample model
+   * @param parent the parent
+   * @param sampleModel the sample model
    */
-  public SamplesTreePanel(ModernWindow parent, SampleModel sampleModel, FilterModel filterModel) {
+  public SamplesTreePanel(ModernWindow parent, SampleModel sampleModel,
+      FilterModel filterModel) {
     mSampleModel = sampleModel;
     mFilterModel = filterModel;
 
-    mSamplesSortPanel = new SamplesSortPanel(parent, SampleSortService.getInstance(), filterModel, mViewModel);
+    mSamplesSortPanel = new SamplesSortPanel(parent,
+        SampleSortService.getInstance(), filterModel, mViewModel);
     mSamplesSortPanel.setBorder(LEFT_BORDER);
 
     setup();
@@ -298,7 +299,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
 
     mMenu.addClickListener(this);
 
-    mMenu.add(new ModernIconMenuItem(UI.MENU_COPY, UIService.getInstance().loadIcon("copy", 16)));
+    mMenu.add(new ModernIconMenuItem(UI.MENU_COPY,
+        UIService.getInstance().loadIcon("copy", 16)));
 
     mMenu.add(new ModernTitleIconMenuItem("Sort Options"));
 
@@ -336,9 +338,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * edu.columbia.rdf.edb.experiments.app.sample.SamplesPanel#addSelectionListener
-   * (org.abh.common.ui.event.ModernSelectionListener)
+   * @see edu.columbia.rdf.edb.experiments.app.sample.SamplesPanel#
+   * addSelectionListener (org.abh.common.ui.event.ModernSelectionListener)
    */
   public final void addSelectionListener(ModernSelectionListener l) {
     mTree.addSelectionListener(l);
@@ -351,8 +352,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
    * 
    * SampleSearchResult sample;
    * 
-   * for (ModernTreeNode<SampleSearchResult> node : tree.getSelectedNodes()) { if
-   * (node.getData() == null) { continue; }
+   * for (ModernTreeNode<SampleSearchResult> node : tree.getSelectedNodes()) {
+   * if (node.getData() == null) { continue; }
    * 
    * sample = node.getData();
    * 
@@ -371,7 +372,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
    * Filter samples.
    */
   public void filterSamples() {
-    SampleSortService.getInstance().getSorter().filter(mSampleModel.getItems(), mFilterModel);
+    SampleSortService.getInstance().getSorter().filter(mSampleModel.getItems(),
+        mFilterModel);
 
     loadSamples();
   }
@@ -380,10 +382,13 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
    * Load samples.
    */
   public void loadSamples() {
-    SampleSortService.getInstance().getSorter().arrange(mSampleModel.getItems(), mTree,
-        SampleSortService.getInstance().getSortAscending(), mFilterModel);
+    SampleSortService.getInstance().getSorter().arrange(mSampleModel.getItems(),
+        mTree,
+        SampleSortService.getInstance().getSortAscending(),
+        mFilterModel);
 
-    mTree.getRoot().setChildrenAreExpanded(SampleSortService.getInstance().getExpanded());
+    mTree.getRoot()
+        .setChildrenAreExpanded(SampleSortService.getInstance().getExpanded());
 
     // Select the first node that is not a header
     if (mTree.getChildCount() > 1) {
@@ -399,7 +404,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
    * (non-Javadoc)
    * 
    * @see
-   * edu.columbia.rdf.edb.experiments.app.sample.SamplesPanel#getSelectedSamples()
+   * edu.columbia.rdf.edb.experiments.app.sample.SamplesPanel#getSelectedSamples
+   * ()
    */
   @Override
   public List<Sample> getSelectedSamples() {
@@ -422,8 +428,7 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
   /**
    * Sets the selected sample.
    *
-   * @param sample
-   *          the new selected sample
+   * @param sample the new selected sample
    */
   public void setSelectedSample(Sample sample) {
     setSelectedSample(sample.getName());
@@ -454,9 +459,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public void clicked(ModernClickEvent e) {
     if (e.getSource().equals(collapseMenuItem)) {
@@ -464,7 +468,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
     } else if (e.getSource().equals(expandMenuItem)) {
       SampleSortService.getInstance().setExpanded(true);
     } else if (e.getSource().equals(mSortMenuItem)) {
-      SampleSortService.getInstance().setSortAscending(!mSortMenuItem.isSelected());
+      SampleSortService.getInstance()
+          .setSortAscending(!mSortMenuItem.isSelected());
     } else if (e.getMessage().equals(UI.MENU_COPY)) {
       copySampleNamesToClipboard();
     } else {
@@ -502,7 +507,8 @@ public class SamplesTreePanel extends SamplesPanel implements ModernClickListene
       mTree.setNodeRenderer(LIST_RENDERER);
     }
 
-    SettingsService.getInstance().update("experiments.samples.default-view", mViewModel.getView());
+    SettingsService.getInstance().update("experiments.samples.default-view",
+        mViewModel.getView());
 
     // Attempt to save the settings
 

@@ -35,24 +35,22 @@ public class FileViewRibbonPanel extends RibbonSection {
   private static final long serialVersionUID = 1L;
 
   /** The m button details. */
-  private RibbonLargeCheckButton mButtonDetails = new RibbonLargeRadioButton("Details",
-      UIService.getInstance().loadIcon("view_details", 24));
+  private RibbonLargeCheckButton mButtonDetails = new RibbonLargeRadioButton(
+      "Details", UIService.getInstance().loadIcon("view_details", 24));
 
   /** The m button list. */
-  private RibbonLargeCheckButton mButtonList = new RibbonLargeRadioButton("List",
-      UIService.getInstance().loadIcon("view_list", 24));
+  private RibbonLargeCheckButton mButtonList = new RibbonLargeRadioButton(
+      "List", UIService.getInstance().loadIcon("view_list", 24));
 
   /** The m button icons. */
-  private RibbonLargeCheckButton mButtonIcons = new RibbonLargeRadioButton("Icons",
-      UIService.getInstance().loadIcon("view_tiles", 24));
+  private RibbonLargeCheckButton mButtonIcons = new RibbonLargeRadioButton(
+      "Icons", UIService.getInstance().loadIcon("view_tiles", 24));
 
   /**
    * Instantiates a new file view ribbon panel.
    *
-   * @param ribbon
-   *          the ribbon
-   * @param viewModel
-   *          the view model
+   * @param ribbon the ribbon
+   * @param viewModel the view model
    */
   public FileViewRibbonPanel(Ribbon ribbon, final ViewModel viewModel) {
     super(ribbon, "View");

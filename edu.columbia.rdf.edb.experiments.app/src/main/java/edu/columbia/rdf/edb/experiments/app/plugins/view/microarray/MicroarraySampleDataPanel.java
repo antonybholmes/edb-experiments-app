@@ -34,15 +34,14 @@ public class MicroarraySampleDataPanel extends SampleDataPanel {
   /**
    * Instantiates a new microarray sample data panel.
    *
-   * @param sample
-   *          the sample
-   * @param view
-   *          the view
+   * @param sample the sample
+   * @param view the view
    */
   public MicroarraySampleDataPanel(Sample sample, DataView view) {
     super(sample, view);
 
-    MicroarraySampleSummaryPanel titlePanel = new MicroarraySampleSummaryPanel(sample);
+    MicroarraySampleSummaryPanel titlePanel = new MicroarraySampleSummaryPanel(
+        sample);
 
     setHeader(titlePanel);
   }

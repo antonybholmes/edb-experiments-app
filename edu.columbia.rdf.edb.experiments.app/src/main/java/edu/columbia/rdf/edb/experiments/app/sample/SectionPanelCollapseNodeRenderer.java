@@ -31,7 +31,8 @@ import org.jebtk.modern.widget.ModernWidget;
  *
  * @author Antony Holmes Holmes
  */
-public class SectionPanelCollapseNodeRenderer extends ModernCollapseNodeRenderer {
+public class SectionPanelCollapseNodeRenderer
+    extends ModernCollapseNodeRenderer {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;

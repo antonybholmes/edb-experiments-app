@@ -30,8 +30,7 @@ public interface Exportable {
    * Exports the data. The parent is provided so that modal file dialogs can be
    * created.
    *
-   * @param parent
-   *          the parent
+   * @param parent the parent
    */
   public void export(Frame parent);
 }

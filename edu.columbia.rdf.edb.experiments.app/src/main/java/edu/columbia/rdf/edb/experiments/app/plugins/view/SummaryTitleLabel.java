@@ -32,13 +32,15 @@ public class SummaryTitleLabel extends ModernAutoSizeLabel {
 
   /** The Constant FONT. */
   private static final Font FONT = FontService.getInstance()
-      .loadFont(SettingsService.getInstance().getAsString("theme.widget.fonts.medium-text.family"), 14);
+      .loadFont(
+          SettingsService.getInstance()
+              .getAsString("theme.widget.fonts.medium-text.family"),
+          14);
 
   /**
    * Instantiates a new summary title label.
    *
-   * @param text
-   *          the text
+   * @param text the text
    */
   public SummaryTitleLabel(String text) {
     super(text, FONT);

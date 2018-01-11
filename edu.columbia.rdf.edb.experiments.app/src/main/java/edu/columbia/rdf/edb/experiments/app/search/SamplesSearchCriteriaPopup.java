@@ -24,7 +24,6 @@ import org.jebtk.modern.UIService;
 import org.jebtk.modern.menu.ModernMenuItem;
 import org.jebtk.modern.menu.ModernTitleMenuItem;
 import org.jebtk.modern.menu.ModernTwoLineMenuItem;
-import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.ui.search.SearchCategory;
@@ -47,22 +46,19 @@ public class SamplesSearchCriteriaPopup extends SearchCriteriaPopup {
   /**
    * Instantiates a new samples search criteria popup.
    *
-   * @param parent
-   *          the parent
-   * @param menuItemSize
-   *          the menu item size
+   * @param parent the parent
+   * @param menuItemSize the menu item size
    */
-  public SamplesSearchCriteriaPopup(ModernWindow parent, Dimension menuItemSize) {
+  public SamplesSearchCriteriaPopup(ModernWindow parent,
+      Dimension menuItemSize) {
     setup(parent, menuItemSize);
   }
 
   /**
    * Setup.
    *
-   * @param parent
-   *          the parent
-   * @param menuItemSize
-   *          the menu item size
+   * @param parent the parent
+   * @param menuItemSize the menu item size
    */
   private void setup(ModernWindow parent, Dimension menuItemSize) {
     ModernMenuItem item = null;
@@ -90,8 +86,9 @@ public class SamplesSearchCriteriaPopup extends SearchCriteriaPopup {
       // sort items alphabetically and add to combo
 
       for (SearchCategory criterion : group) {
-        ModernMenuItem subItem = new ModernTwoLineMenuItem(criterion.getName(), criterion.getDescription(),
-            UIService.getInstance().loadIcon("search_criterion", UIService.ICON_SIZE_32));
+        ModernMenuItem subItem = new ModernTwoLineMenuItem(criterion.getName(),
+            criterion.getDescription(), UIService.getInstance()
+                .loadIcon("search_criterion", UIService.ICON_SIZE_32));
 
         // subItem.setActionCommand(name);
 

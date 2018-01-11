@@ -63,14 +63,12 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
   /**
    * Instantiates a new vfs files panel.
    *
-   * @param parent
-   *          the parent
-   * @param filesModel
-   *          the files model
-   * @param viewModel
-   *          the view model
+   * @param parent the parent
+   * @param filesModel the files model
+   * @param viewModel the view model
    */
-  public VfsFilesPanel(ModernWindow parent, FilesModel filesModel, ViewModel viewModel) {
+  public VfsFilesPanel(ModernWindow parent, FilesModel filesModel,
+      ViewModel viewModel) {
     mParent = parent;
     mFilesModel = filesModel;
 
@@ -93,8 +91,7 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
   /**
    * Display filtered files.
    *
-   * @param files
-   *          the files
+   * @param files the files
    */
   private void displayFilteredFiles(Collection<FileDescriptor> files) {
     mFiles = CollectionUtils.sort(files);
@@ -105,8 +102,7 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
   /**
    * Download files.
    *
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
   public void downloadFiles() throws IOException {
 
@@ -131,8 +127,8 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+   * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+   * ChangeEvent)
    */
   @Override
   public void changed(ChangeEvent e) {
@@ -142,18 +138,18 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
   /**
    * Sets the files.
    *
-   * @param selectionModel
-   *          the new files
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @param selectionModel the new files
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  public void setFiles(SampleModel selectionModel) throws IOException, ParseException {
+  public void setFiles(SampleModel selectionModel)
+      throws IOException, ParseException {
     if (selectionModel.size() > 0) {
-      Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+      Repository repository = RepositoryService.getInstance()
+          .getRepository(RepositoryService.DEFAULT_REP);
 
-      displayFilteredFiles(repository.getSampleFiles(selectionModel.getItems()));
+      displayFilteredFiles(
+          repository.getSampleFiles(selectionModel.getItems()));
     }
   }
 }

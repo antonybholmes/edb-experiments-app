@@ -66,7 +66,8 @@ public class FilesListCellRenderer extends ModernListTwoLineCellRenderer {
 
     x += PADDING + 48;
 
-    y = (getHeight() / 2 - g2.getFontMetrics().getDescent() + g2.getFontMetrics().getAscent()) / 2;
+    y = (getHeight() / 2 - g2.getFontMetrics().getDescent()
+        + g2.getFontMetrics().getAscent()) / 2;
 
     g2.setColor(TEXT_COLOR);
     g2.drawString(filename, x, y);
@@ -80,14 +81,17 @@ public class FilesListCellRenderer extends ModernListTwoLineCellRenderer {
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.list.ModernListTwoLineCellRenderer#getCellRendererComponent
-   * (org.abh.common.ui.list.ModernList, java.lang.Object, boolean, boolean,
-   * boolean, int)
+   * @see org.abh.common.ui.list.ModernListTwoLineCellRenderer#
+   * getCellRendererComponent (org.abh.common.ui.list.ModernList,
+   * java.lang.Object, boolean, boolean, boolean, int)
    */
   @Override
-  public Component getCellRendererComponent(ModernList<?> list, Object value, boolean highlight, boolean isSelected,
-      boolean hasFocus, int row) {
+  public Component getCellRendererComponent(ModernList<?> list,
+      Object value,
+      boolean highlight,
+      boolean isSelected,
+      boolean hasFocus,
+      int row) {
 
     FileDescriptor file = (FileDescriptor) value;
 
@@ -99,6 +103,11 @@ public class FilesListCellRenderer extends ModernListTwoLineCellRenderer {
       type = "";
     }
 
-    return super.getCellRendererComponent(list, value, highlight, isSelected, hasFocus, row);
+    return super.getCellRendererComponent(list,
+        value,
+        highlight,
+        isSelected,
+        hasFocus,
+        row);
   }
 }

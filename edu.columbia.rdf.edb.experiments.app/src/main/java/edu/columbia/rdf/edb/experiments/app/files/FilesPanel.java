@@ -42,15 +42,14 @@ public abstract class FilesPanel extends ModernComponent {
   /**
    * Sets the sample files.
    *
-   * @param samples
-   *          the new sample files
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @param samples the new sample files
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  public void setSampleFiles(Collection<Sample> samples) throws IOException, ParseException {
-    Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+  public void setSampleFiles(Collection<Sample> samples)
+      throws IOException, ParseException {
+    Repository repository = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP);
 
     mFiles = repository.getSampleFiles(samples);
   }

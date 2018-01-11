@@ -33,7 +33,12 @@ public class SearchFolderVectorIcon extends FolderVectorIcon {
    * Graphics2D, int, int, int, int)
    */
   @Override
-  public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
+  public void drawIcon(Graphics2D g2,
+      int x,
+      int y,
+      int w,
+      int h,
+      Object... params) {
     super.drawIcon(g2, x, y, w, h, params);
 
     double hf = h * HEIGHT_SCALE * 0.5;
@@ -46,6 +51,9 @@ public class SearchFolderVectorIcon extends FolderVectorIcon {
 
     g2.drawOval((int) xf, (int) yf, (int) (wf * 0.8), (int) (wf * 0.8));
 
-    g2.drawLine((int) (xf + wf * 0.8), (int) (yf + wf * 0.8), (int) (xf + wf), (int) (yf + wf));
+    g2.drawLine((int) (xf + wf * 0.8),
+        (int) (yf + wf * 0.8),
+        (int) (xf + wf),
+        (int) (yf + wf));
   }
 }

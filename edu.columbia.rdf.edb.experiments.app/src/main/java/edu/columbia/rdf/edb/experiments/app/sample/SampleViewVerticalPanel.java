@@ -42,7 +42,8 @@ import edu.columbia.rdf.edb.ui.ViewPluginService;
  * @author Antony Holmes Holmes
  *
  */
-public class SampleViewVerticalPanel extends ModernWidget implements ModernSelectionListener, ModernClickListener {
+public class SampleViewVerticalPanel extends ModernWidget
+    implements ModernSelectionListener, ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -81,19 +82,15 @@ public class SampleViewVerticalPanel extends ModernWidget implements ModernSelec
   /**
    * Instantiates a new sample view vertical panel.
    *
-   * @param parent
-   *          the parent
-   * @param viewModel
-   *          the view model
-   * @param sampleModel
-   *          the sample model
-   * @param sampleSelectionModel
-   *          the sample selection model
-   * @param fileViewModel
-   *          the file view model
+   * @param parent the parent
+   * @param viewModel the view model
+   * @param sampleModel the sample model
+   * @param sampleSelectionModel the sample selection model
+   * @param fileViewModel the file view model
    */
-  public SampleViewVerticalPanel(ModernWindow parent, ViewModel viewModel, SampleModel sampleModel,
-      SampleModel sampleSelectionModel, FilterModel filterModel, ViewModel fileViewModel) {
+  public SampleViewVerticalPanel(ModernWindow parent, ViewModel viewModel,
+      SampleModel sampleModel, SampleModel sampleSelectionModel,
+      FilterModel filterModel, ViewModel fileViewModel) {
     mViewModel = viewModel;
     mSamplSelectionModel = sampleSelectionModel;
 
@@ -118,11 +115,13 @@ public class SampleViewVerticalPanel extends ModernWidget implements ModernSelec
 
     // samplePanel = new SamplePanel(parent);
 
-    // splitPaneH = new HHidePaneLeft(new SideTabPanel("Samples", samplesListPanel),
+    // splitPaneH = new HHidePaneLeft(new SideTabPanel("Samples",
+    // samplesListPanel),
     // samplePanel, 200,
     // ModernTheme.getInstance().getClass("widget").getInt("padding"), false);
 
-    // splitPaneH = new HSplitPane(new SideTabPanel("Samples", samplesListPanel),
+    // splitPaneH = new HSplitPane(new SideTabPanel("Samples",
+    // samplesListPanel),
     // samplePanel);
 
     mSplitPane = new ModernHSplitPaneLine();
@@ -144,8 +143,7 @@ public class SampleViewVerticalPanel extends ModernWidget implements ModernSelec
   /**
    * Sets the selected sample.
    *
-   * @param row
-   *          the new selected sample
+   * @param row the new selected sample
    */
   public final void setSelectedSample(int row) {
     mSamplesTreePanel.setSelectedSample(row);
@@ -173,7 +171,8 @@ public class SampleViewVerticalPanel extends ModernWidget implements ModernSelec
     if (mViewModel.getView().equals("Annotation")) {
       Sample sample = samples.get(0);
 
-      mSamplePanel = ViewPluginService.getInstance().getView(sample).getSamplePanel(sample);
+      mSamplePanel = ViewPluginService.getInstance().getView(sample)
+          .getSamplePanel(sample);
       // mSamplePanel.setBorder(ModernPanel.BORDER);
 
       // mSplitPane.replaceComponent(mSamplePanel, 0.6, 1);
@@ -188,8 +187,7 @@ public class SampleViewVerticalPanel extends ModernWidget implements ModernSelec
   /**
    * Mouse clicked.
    *
-   * @param e
-   *          the e
+   * @param e the e
    */
   public final void mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
@@ -234,9 +232,8 @@ public class SampleViewVerticalPanel extends ModernWidget implements ModernSelec
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {
@@ -244,7 +241,8 @@ public class SampleViewVerticalPanel extends ModernWidget implements ModernSelec
       return;
     }
 
-    JFrame window = new SampleWindow(mSamplesTreePanel.getSelectedSamples().get(0));
+    JFrame window = new SampleWindow(
+        mSamplesTreePanel.getSelectedSamples().get(0));
 
     UI.centerWindowToScreen(window);
 

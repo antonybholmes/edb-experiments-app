@@ -33,8 +33,7 @@ public class OperatorComboBox extends AndOrLogicalComboBox {
   /**
    * Instantiates a new operator combo box.
    *
-   * @param operator
-   *          the operator
+   * @param operator the operator
    */
   public OperatorComboBox(SearchStackOperator operator) {
     this.setSelectedIndex(getIndexFromType(operator));
@@ -43,8 +42,7 @@ public class OperatorComboBox extends AndOrLogicalComboBox {
   /**
    * Gets the operator type from index.
    *
-   * @param index
-   *          the index
+   * @param index the index
    * @return the operator type from index
    */
   public static final SearchStackOperator getOperatorTypeFromIndex(int index) {
@@ -67,8 +65,7 @@ public class OperatorComboBox extends AndOrLogicalComboBox {
   /**
    * Gets the index from type.
    *
-   * @param type
-   *          the type
+   * @param type the type
    * @return the index from type
    */
   public static final int getIndexFromType(SearchStackOperator type) {

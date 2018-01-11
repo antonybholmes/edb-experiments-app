@@ -39,8 +39,7 @@ public class SearchField extends SuggestionTextBox {
   /**
    * Instantiates a new search field.
    *
-   * @param text
-   *          the text
+   * @param text the text
    */
   public SearchField(String text) {
     super(DEFAULT_TEXT);

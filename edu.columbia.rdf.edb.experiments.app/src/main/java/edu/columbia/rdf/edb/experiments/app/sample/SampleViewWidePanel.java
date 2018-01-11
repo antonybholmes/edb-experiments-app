@@ -43,7 +43,8 @@ import edu.columbia.rdf.edb.ui.ViewPluginService;
  * @author Antony Holmes Holmes
  *
  */
-public class SampleViewWidePanel extends ModernWidget implements ModernSelectionListener, ModernClickListener {
+public class SampleViewWidePanel extends ModernWidget
+    implements ModernSelectionListener, ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -78,19 +79,15 @@ public class SampleViewWidePanel extends ModernWidget implements ModernSelection
   /**
    * Instantiates a new sample view wide panel.
    *
-   * @param parent
-   *          the parent
-   * @param viewModel
-   *          the view model
-   * @param sampleModel
-   *          the sample model
-   * @param sampleSelectionModel
-   *          the sample selection model
-   * @param fileViewModel
-   *          the file view model
+   * @param parent the parent
+   * @param viewModel the view model
+   * @param sampleModel the sample model
+   * @param sampleSelectionModel the sample selection model
+   * @param fileViewModel the file view model
    */
-  public SampleViewWidePanel(ModernWindow parent, ViewModel viewModel, SampleModel sampleModel,
-      SampleModel sampleSelectionModel, FilterModel filterModel, ViewModel fileViewModel) {
+  public SampleViewWidePanel(ModernWindow parent, ViewModel viewModel,
+      SampleModel sampleModel, SampleModel sampleSelectionModel,
+      FilterModel filterModel, ViewModel fileViewModel) {
     mViewModel = viewModel;
     mSamplSelectionModel = sampleSelectionModel;
 
@@ -107,11 +104,13 @@ public class SampleViewWidePanel extends ModernWidget implements ModernSelection
 
     // samplePanel = new SamplePanel(parent);
 
-    // splitPaneH = new HHidePaneLeft(new SideTabPanel("Samples", samplesListPanel),
+    // splitPaneH = new HHidePaneLeft(new SideTabPanel("Samples",
+    // samplesListPanel),
     // samplePanel, 200,
     // ModernTheme.getInstance().getClass("widget").getInt("padding"), false);
 
-    // splitPaneH = new HSplitPane(new SideTabPanel("Samples", samplesListPanel),
+    // splitPaneH = new HSplitPane(new SideTabPanel("Samples",
+    // samplesListPanel),
     // samplePanel);
 
     mSplitPane = new ModernVSplitPaneLine();
@@ -132,8 +131,7 @@ public class SampleViewWidePanel extends ModernWidget implements ModernSelection
   /**
    * Sets the selected sample.
    *
-   * @param row
-   *          the new selected sample
+   * @param row the new selected sample
    */
   public final void setSelectedSample(int row) {
 
@@ -162,8 +160,8 @@ public class SampleViewWidePanel extends ModernWidget implements ModernSelection
     if (mViewModel.getView().equals("Annotation")) {
       Sample sample = samples.get(0);
 
-      mSamplePanel = ViewPluginService.getInstance().getView(sample.getExpressionType().getName())
-          .getSamplePanel(sample);
+      mSamplePanel = ViewPluginService.getInstance()
+          .getView(sample.getExpressionType().getName()).getSamplePanel(sample);
       // mSamplePanel.setBorder(ModernPanel.BORDER);
 
       // mSplitPaneH.setComponent2(mSamplePanel);
@@ -182,8 +180,7 @@ public class SampleViewWidePanel extends ModernWidget implements ModernSelection
   /**
    * Mouse clicked.
    *
-   * @param e
-   *          the e
+   * @param e the e
    */
   public final void mouseClicked(MouseEvent e) {
     if (e.getClickCount() == 2) {
@@ -228,16 +225,16 @@ public class SampleViewWidePanel extends ModernWidget implements ModernSelection
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public void clicked(ModernClickEvent e) {
     if (mSamplesTreePanel.getSelectedSamples().size() == 0) {
       return;
     }
 
-    JFrame window = new SampleWindow(mSamplesTreePanel.getSelectedSamples().get(0));
+    JFrame window = new SampleWindow(
+        mSamplesTreePanel.getSelectedSamples().get(0));
 
     UI.centerWindowToScreen(window);
 
@@ -245,8 +242,9 @@ public class SampleViewWidePanel extends ModernWidget implements ModernSelection
   }
 
   /*
-   * private void viewChanged() { if (mViewModel.getView().equals("Annotation")) {
-   * //if (mSamplePanel != null) { // mSplitPane.replaceComponent(mSamplePanel,
-   * 0.6, 1); //} } else { mSplitPane.replaceComponent(mFilesPanel, 0.6, 1); } }
+   * private void viewChanged() { if (mViewModel.getView().equals("Annotation"))
+   * { //if (mSamplePanel != null) { //
+   * mSplitPane.replaceComponent(mSamplePanel, 0.6, 1); //} } else {
+   * mSplitPane.replaceComponent(mFilesPanel, 0.6, 1); } }
    */
 }

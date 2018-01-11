@@ -39,13 +39,15 @@ import org.jebtk.modern.view.ViewModel;
  * @author Antony Holmes Holmes
  *
  */
-public class RibbonWideLayoutSection extends RibbonSection implements ModernClickListener {
+public class RibbonWideLayoutSection extends RibbonSection
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The m vertical button. */
-  private ModernCheckButton mVerticalButton = new RibbonLargeRadioButton("Vertical",
+  private ModernCheckButton mVerticalButton = new RibbonLargeRadioButton(
+      "Vertical",
       UIService.getInstance().loadIcon(ViewVerticalVectorIcon.class, 32));
 
   /** The m wide button. */
@@ -58,7 +60,8 @@ public class RibbonWideLayoutSection extends RibbonSection implements ModernClic
 
   // private ModernCheckButton tilesButton =
   // new ModernCheckButton("Tiles",
-  // UIResources.getInstance().loadIcon("view_tiles", UIResources.ICON_SIZE_16));
+  // UIResources.getInstance().loadIcon("view_tiles",
+  // UIResources.ICON_SIZE_16));
 
   // private ModernCheckButton detailsButton =
   // new ModernCheckButton("Details",
@@ -76,8 +79,8 @@ public class RibbonWideLayoutSection extends RibbonSection implements ModernClic
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+     * ChangeEvent)
      */
     @Override
     public void changed(ChangeEvent e) {
@@ -91,19 +94,17 @@ public class RibbonWideLayoutSection extends RibbonSection implements ModernClic
 
       // Write the settings
 
-      SettingsService.getInstance().update("experiments.annotation.default-view", mModel.getView());
+      SettingsService.getInstance()
+          .update("experiments.annotation.default-view", mModel.getView());
     }
   }
 
   /**
    * Instantiates a new ribbon wide layout section.
    *
-   * @param ribbon
-   *          the ribbon
-   * @param name
-   *          the name
-   * @param model
-   *          the model
+   * @param ribbon the ribbon
+   * @param name the name
+   * @param model the model
    */
   public RibbonWideLayoutSection(Ribbon ribbon, String name, ViewModel model) {
     super(ribbon, name);
@@ -111,10 +112,12 @@ public class RibbonWideLayoutSection extends RibbonSection implements ModernClic
     mModel = model;
     mModel.addChangeListener(new ViewEvents());
 
-    mWideButton.setToolTip("Wide Layout", "Display items in a wide view with additional information.");
+    mWideButton.setToolTip("Wide Layout",
+        "Display items in a wide view with additional information.");
     mWideButton.addClickListener(this);
 
-    mVerticalButton.setToolTip("Vertical Layout", "Display items in a vertical view with additional information.");
+    mVerticalButton.setToolTip("Vertical Layout",
+        "Display items in a vertical view with additional information.");
     mVerticalButton.addClickListener(this);
 
     add(mVerticalButton);
@@ -131,9 +134,8 @@ public class RibbonWideLayoutSection extends RibbonSection implements ModernClic
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public void clicked(ModernClickEvent e) {
     if (mModel == null) {

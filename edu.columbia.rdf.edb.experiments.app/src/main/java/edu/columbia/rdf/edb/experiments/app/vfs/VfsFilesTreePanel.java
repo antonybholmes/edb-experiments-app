@@ -70,8 +70,8 @@ public class VfsFilesTreePanel extends ModernComponent {
      * (non-Javadoc)
      * 
      * @see
-     * org.abh.common.ui.tree.TreeEventAdapter#treeNodeClicked(org.abh.common.ui.
-     * tree.ModernTreeEvent)
+     * org.abh.common.ui.tree.TreeEventAdapter#treeNodeClicked(org.abh.common.
+     * ui. tree.ModernTreeEvent)
      */
     @Override
     public void treeNodeClicked(ModernTreeEvent e) {
@@ -86,12 +86,11 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Instantiates a new vfs files tree panel.
    *
-   * @param filesModel
-   *          the files model
-   * @param experiments
-   *          the experiments
+   * @param filesModel the files model
+   * @param experiments the experiments
    */
-  public VfsFilesTreePanel(FilesModel filesModel, Map<Experiment, Set<Sample>> experiments) {
+  public VfsFilesTreePanel(FilesModel filesModel,
+      Map<Experiment, Set<Sample>> experiments) {
     mFilesModel = filesModel;
     // mExperiments = experiments;
 
@@ -147,20 +146,21 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Select files.
    *
-   * @throws MalformedURLException
-   *           the malformed URL exception
-   * @throws ParseException
-   *           the parse exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws MalformedURLException the malformed URL exception
+   * @throws ParseException the parse exception
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  private void selectFiles() throws MalformedURLException, ParseException, IOException {
+  private void selectFiles()
+      throws MalformedURLException, ParseException, IOException {
     if (mTree.getSelectedNode().getChildCount() == 0) {
       int nid = mTree.getSelectionModel().first();
 
       TreeNode<FileDescriptor> node = mTree.getSelectedNode();
 
-      loadDirs(RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP), node);
+      loadDirs(
+          RepositoryService.getInstance()
+              .getRepository(RepositoryService.DEFAULT_REP),
+          node);
 
       // node.setExpanded(false);
 
@@ -175,16 +175,15 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Load dirs.
    *
-   * @throws ParseException
-   *           the parse exception
-   * @throws MalformedURLException
-   *           the malformed URL exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
+   * @throws MalformedURLException the malformed URL exception
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  public void loadDirs() throws ParseException, MalformedURLException, IOException {
+  public void loadDirs()
+      throws ParseException, MalformedURLException, IOException {
 
-    Repository store = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+    Repository store = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP);
 
     /*
      * TreeNode<FileDescriptor> root = new TreeNode<FileDescriptor>("/"); if
@@ -206,7 +205,8 @@ public class VfsFilesTreePanel extends ModernComponent {
 
     for (FileDescriptor file : store.vfs().ls()) {
       if (file.getType() == FileType.DIR) {
-        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(file.getName(), file);
+        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(
+            file.getName(), file);
 
         fileNode.setIsParent(true);
 
@@ -230,23 +230,19 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Load dirs.
    *
-   * @param store
-   *          the store
-   * @param node
-   *          the node
-   * @throws ParseException
-   *           the parse exception
-   * @throws MalformedURLException
-   *           the malformed URL exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @param store the store
+   * @param node the node
+   * @throws ParseException the parse exception
+   * @throws MalformedURLException the malformed URL exception
+   * @throws IOException Signals that an I/O exception has occurred.
    */
   public void loadDirs(Repository store, TreeNode<FileDescriptor> node)
       throws ParseException, MalformedURLException, IOException {
     for (FileDescriptor file : store.vfs().ls(node.getValue().getId())) {
 
       if (file.getType() == FileType.DIR) {
-        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(file.getName(), file);
+        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(
+            file.getName(), file);
 
         fileNode.setIsParent(true);
 
@@ -284,13 +280,12 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Gets the files.
    *
-   * @param node
-   *          the node
-   * @param files
-   *          the files
+   * @param node the node
+   * @param files the files
    * @return the files
    */
-  private void getFiles(TreeNode<FileDescriptor> node, Set<FileDescriptor> files) {
+  private void getFiles(TreeNode<FileDescriptor> node,
+      Set<FileDescriptor> files) {
     if (node.getValue() != null) {
       files.add(node.getValue());
     }
@@ -305,8 +300,7 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Sets the selected sample.
    *
-   * @param sample
-   *          the new selected sample
+   * @param sample the new selected sample
    */
   public void setSelectedSample(Sample sample) {
     setSelectedSample(sample.getName());
@@ -315,8 +309,7 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Sets the selected sample.
    *
-   * @param name
-   *          the new selected sample
+   * @param name the new selected sample
    */
   public void setSelectedSample(String name) {
     setSelectedSample(mTree.getNodeIndexByName(name));
@@ -325,8 +318,7 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Sets the selected sample.
    *
-   * @param row
-   *          the new selected sample
+   * @param row the new selected sample
    */
   public void setSelectedSample(int row) {
     mTree.selectNode(row);
@@ -335,8 +327,7 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Adds the selection listener.
    *
-   * @param l
-   *          the l
+   * @param l the l
    */
   public void addSelectionListener(ModernSelectionListener l) {
     mTree.addSelectionListener(l);
@@ -345,20 +336,20 @@ public class VfsFilesTreePanel extends ModernComponent {
   /**
    * Sets the files.
    *
-   * @throws ParseException
-   *           the parse exception
-   * @throws MalformedURLException
-   *           the malformed URL exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
+   * @throws MalformedURLException the malformed URL exception
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  private void setFiles() throws ParseException, MalformedURLException, IOException {
+  private void setFiles()
+      throws ParseException, MalformedURLException, IOException {
     FileDescriptor file = mTree.getSelectedNode().getValue();
 
     if (file != null) {
-      Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+      Repository repository = RepositoryService.getInstance()
+          .getRepository(RepositoryService.DEFAULT_REP);
 
-      List<FileDescriptor> files = repository.vfs().ls(mTree.getSelectedNode().getValue().getId());
+      List<FileDescriptor> files = repository.vfs()
+          .ls(mTree.getSelectedNode().getValue().getId());
 
       Collections.sort(files);
 

@@ -41,7 +41,6 @@ import org.jebtk.core.text.TextUtils;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.status.StatusModel;
 import org.jebtk.modern.window.ModernWindow;
-import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,6 +49,7 @@ import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.FileDownloader;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
+import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -81,32 +81,30 @@ public class RnaSeqData {
   /**
    * Shows the expression data.
    *
-   * @param parent
-   *          the parent
-   * @param samples
-   *          the samples
-   * @param checkIfFileExists
-   *          the check if file exists
-   * @param statusModel
-   *          the status model
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @param parent the parent
+   * @param samples the samples
+   * @param checkIfFileExists the check if file exists
+   * @param statusModel the status model
+   * @throws NetworkFileException the network file exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  public void showTables(ModernWindow parent, Collection<Sample> samples, boolean checkIfFileExists,
-      StatusModel statusModel) throws NetworkFileException, IOException, ParseException {
+  public void showTables(ModernWindow parent,
+      Collection<Sample> samples,
+      boolean checkIfFileExists,
+      StatusModel statusModel)
+      throws NetworkFileException, IOException, ParseException {
 
     Map<String, Set<Sample>> samplesGrouped = Sample.sortByOrganism(samples);
 
     boolean areDifferent = samplesGrouped.size() > 1;
 
     if (areDifferent) {
-      String types = TextUtils.listAsSentence(CollectionUtils.sort(samplesGrouped.keySet()));
+      String types = TextUtils
+          .listAsSentence(CollectionUtils.sort(samplesGrouped.keySet()));
 
-      ModernMessageDialog.createWarningDialog(parent, "You have selected samples from " + types + ".",
+      ModernMessageDialog.createWarningDialog(parent,
+          "You have selected samples from " + types + ".",
           "You cannot group these.");
 
       return;
@@ -114,8 +112,8 @@ public class RnaSeqData {
 
     /*
      * for threading ExpressionDataTask expressionTask = new
-     * ExpressionDataTask(parent, experiments, samplesGroupedByArray, type, columns,
-     * columnAnnotations, checkIfFileExists, statusModel);
+     * ExpressionDataTask(parent, experiments, samplesGroupedByArray, type,
+     * columns, columnAnnotations, checkIfFileExists, statusModel);
      * 
      * expressionTask.execute();
      */
@@ -126,22 +124,18 @@ public class RnaSeqData {
   /**
    * Download and merge samples.
    *
-   * @param parent
-   *          the parent
-   * @param samples
-   *          the samples
-   * @param checkIfFileExists
-   *          the check if file exists
-   * @param statusModel
-   *          the status model
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws ParseException
-   *           the parse exception
+   * @param parent the parent
+   * @param samples the samples
+   * @param checkIfFileExists the check if file exists
+   * @param statusModel the status model
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws NetworkFileException the network file exception
+   * @throws ParseException the parse exception
    */
-  public void download(Frame parent, Collection<Sample> samples, boolean checkIfFileExists, StatusModel statusModel)
+  public void download(Frame parent,
+      Collection<Sample> samples,
+      boolean checkIfFileExists,
+      StatusModel statusModel)
       throws IOException, NetworkFileException, ParseException {
 
     //
@@ -151,7 +145,9 @@ public class RnaSeqData {
     Map<Sample, Path> sampleFiles = new TreeMap<Sample, Path>();
 
     for (Sample sample : samples) {
-      Path localFile = downloadExpressionData(sample, checkIfFileExists, statusModel);
+      Path localFile = downloadExpressionData(sample,
+          checkIfFileExists,
+          statusModel);
 
       sampleFiles.put(sample, localFile);
     }
@@ -199,15 +195,13 @@ public class RnaSeqData {
   /**
    * Takes a list of files and pastes them together.
    *
-   * @param sampleFileMap
-   *          the sample file map
-   * @param statusModel
-   *          the status model
+   * @param sampleFileMap the sample file map
+   * @param statusModel the status model
    * @return the path
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  private Path pasteFiles(Map<Sample, Path> sampleFileMap, StatusModel statusModel) throws IOException {
+  private Path pasteFiles(Map<Sample, Path> sampleFileMap,
+      StatusModel statusModel) throws IOException {
     LOG.info("Merging expression data...");
 
     Path tempFile1 = Temp.generateTempFile("txt");
@@ -316,13 +310,15 @@ public class RnaSeqData {
           continue;
         }
 
-        // The first three columns are annotation (probe, entrez, gene symbol) so
+        // The first three columns are annotation (probe, entrez, gene symbol)
+        // so
         // we store them with the probe since this doesn't change regardless
         // of the number of samples
 
         // Since there can be multiple gene annotations for a given probe,
         // we store all of them
-        annotationMap.get(probe).add(TextUtils.tabJoin(CollectionUtils.head(tokens, ANNOTATION_COLUMNS)));
+        annotationMap.get(probe).add(TextUtils
+            .tabJoin(CollectionUtils.head(tokens, ANNOTATION_COLUMNS)));
       }
     } finally {
       reader.close();
@@ -405,9 +401,12 @@ public class RnaSeqData {
 
               tokens = TextUtils.tabSplit(line);
 
-              // System.err.println(tokens.get(0) + " " + probe + " " + annotation + " " +
-              // samples.get(0).getName() + " " + samples.get(1).getName() + " " +
-              // commonProbesList.size() + " " + annotationMap.get(probe).size());
+              // System.err.println(tokens.get(0) + " " + probe + " " +
+              // annotation + " " +
+              // samples.get(0).getName() + " " + samples.get(1).getName() + " "
+              // +
+              // commonProbesList.size() + " " +
+              // annotationMap.get(probe).size());
 
               if (tokens.get(0).equals(probe)) {
                 break;
@@ -450,8 +449,7 @@ public class RnaSeqData {
    * Formats a sample name to match a file name to remove inconsistencies in the
    * way files are named and the way samples are named.
    *
-   * @param name
-   *          the name
+   * @param name the name
    * @return the string
    */
   public final String convertSampleNameToFilename(String name) {
@@ -468,26 +466,22 @@ public class RnaSeqData {
   /**
    * Download a file associated with a given sample.
    *
-   * @param sample
-   *          the sample
-   * @param checkExists
-   *          the check exists
-   * @param statusModel
-   *          the status model
+   * @param sample the sample
+   * @param checkExists the check exists
+   * @param statusModel the status model
    * @return the path
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @throws NetworkFileException the network file exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  private final Path downloadExpressionData(Sample sample, boolean checkExists, StatusModel statusModel)
+  private final Path downloadExpressionData(Sample sample,
+      boolean checkExists,
+      StatusModel statusModel)
       throws NetworkFileException, IOException, ParseException {
     LOG.info("Downloading expression data for sample {} ...", sample.getName());
 
-    FileDownloader downloader = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP)
-        .getFileDownloader();
+    FileDownloader downloader = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP).getFileDownloader();
 
     FileDescriptor arrayFile = getRemoteExpressionFile(sample);
 
@@ -502,16 +496,15 @@ public class RnaSeqData {
    * For a given sample, returns the file accessor for its expression file in
    * either MAS5 or RMA form.
    *
-   * @param sample
-   *          the sample
+   * @param sample the sample
    * @return the remote expression file
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  private final FileDescriptor getRemoteExpressionFile(Sample sample) throws IOException, ParseException {
-    Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+  private final FileDescriptor getRemoteExpressionFile(Sample sample)
+      throws IOException, ParseException {
+    Repository repository = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP);
 
     for (FileDescriptor f : repository.getSampleFiles(sample)) {
       if (f.getName().contains("fpkm.txt")) {

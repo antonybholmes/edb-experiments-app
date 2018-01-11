@@ -39,7 +39,8 @@ import edu.columbia.rdf.edb.ui.RepositoryService;
 /**
  * The Class DataTypesPanel.
  */
-public class DataTypesPanel extends HBox implements ModernClickEventProducer, ModernClickListener {
+public class DataTypesPanel extends HBox
+    implements ModernClickEventProducer, ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -61,7 +62,8 @@ public class DataTypesPanel extends HBox implements ModernClickEventProducer, Mo
     // add(new ModernLabel("Show:", 40));
     // add(UI.createHGap(10));
 
-    Repository rep = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+    Repository rep = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP);
 
     Collection<Type> types = rep.getDataTypes();
 
@@ -72,7 +74,9 @@ public class DataTypesPanel extends HBox implements ModernClickEventProducer, Mo
     }
 
     for (String name : typeMap) {
-      ModernTwoStateWidget check = new ModernCheckSwitch(name, true); // new FilterButton(name, true);
+      ModernTwoStateWidget check = new ModernCheckSwitch(name, true); // new
+                                                                      // FilterButton(name,
+                                                                      // true);
 
       check.addClickListener(this);
 
@@ -163,8 +167,8 @@ public class DataTypesPanel extends HBox implements ModernClickEventProducer, Mo
    * (non-Javadoc)
    * 
    * @see
-   * org.abh.common.ui.event.ModernClickEventProducer#removeClickListener(org.abh.
-   * common.ui.event.ModernClickListener)
+   * org.abh.common.ui.event.ModernClickEventProducer#removeClickListener(org.
+   * abh. common.ui.event.ModernClickListener)
    */
   @Override
   public void removeClickListener(ModernClickListener l) {
@@ -174,9 +178,8 @@ public class DataTypesPanel extends HBox implements ModernClickEventProducer, Mo
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickEventProducer#fireClicked(org.abh.common.
-   * ui.event.ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickEventProducer#fireClicked(org.abh.
+   * common. ui.event.ModernClickEvent)
    */
   @Override
   public void fireClicked(ModernClickEvent e) {
@@ -186,9 +189,8 @@ public class DataTypesPanel extends HBox implements ModernClickEventProducer, Mo
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {

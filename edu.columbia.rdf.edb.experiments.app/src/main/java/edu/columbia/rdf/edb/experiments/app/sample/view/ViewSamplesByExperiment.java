@@ -47,11 +47,16 @@ public class ViewSamplesByExperiment extends SampleSorter {
    * org.abh.common.ui.search.FilterModel)
    */
   @Override
-  public void arrange(Collection<Sample> samples, ModernTree<Sample> tree, boolean ascending, FilterModel filterModel) {
+  public void arrange(Collection<Sample> samples,
+      ModernTree<Sample> tree,
+      boolean ascending,
+      FilterModel filterModel) {
 
-    Map<Experiment, Set<Sample>> experiments = Experiment.sortSamplesByExperiment(samples);
+    Map<Experiment, Set<Sample>> experiments = Experiment
+        .sortSamplesByExperiment(samples);
 
-    List<Experiment> sortedExperiments = SortSamplesByExperiment.sortByTitle(experiments.keySet(), ascending);
+    List<Experiment> sortedExperiments = SortSamplesByExperiment
+        .sortByTitle(experiments.keySet(), ascending);
 
     tree.clear();
 
@@ -64,7 +69,8 @@ public class ViewSamplesByExperiment extends SampleSorter {
     for (Experiment experiment : sortedExperiments) {
       TreeNode<Sample> node = new TreeNode<Sample>(experiment.getName());
 
-      List<Sample> sortedSamples = sortByName(experiments.get(experiment), ascending);
+      List<Sample> sortedSamples = sortByName(experiments.get(experiment),
+          ascending);
 
       for (Sample sample : sortedSamples) {
         node.addChild(new TreeNode<Sample>(sample.getName(), sample));

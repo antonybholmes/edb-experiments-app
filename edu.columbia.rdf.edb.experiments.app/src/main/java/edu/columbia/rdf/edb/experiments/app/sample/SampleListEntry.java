@@ -36,8 +36,7 @@ public class SampleListEntry {
   /**
    * Instantiates a new sample list entry.
    *
-   * @param title
-   *          the title
+   * @param title the title
    */
   public SampleListEntry(String title) {
     this.title = title;
@@ -47,8 +46,7 @@ public class SampleListEntry {
   /**
    * Instantiates a new sample list entry.
    *
-   * @param experiment
-   *          the experiment
+   * @param experiment the experiment
    */
   public SampleListEntry(Experiment experiment) {
     this.title = experiment.getName();
@@ -58,8 +56,7 @@ public class SampleListEntry {
   /**
    * Instantiates a new sample list entry.
    *
-   * @param sample
-   *          the sample
+   * @param sample the sample
    */
   public SampleListEntry(Sample sample) {
     this.sample = sample;

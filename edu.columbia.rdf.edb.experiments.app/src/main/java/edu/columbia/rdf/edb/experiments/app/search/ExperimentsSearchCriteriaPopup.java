@@ -57,14 +57,14 @@ public class ExperimentsSearchCriteriaPopup extends SearchCriteriaPopup {
   /**
    * Instantiates a new experiments search criteria popup.
    *
-   * @param parent
-   *          the parent
+   * @param parent the parent
    */
   public ExperimentsSearchCriteriaPopup(ModernWindow parent) {
 
     // The scroll pane needs to be non-uniform to cope with different
     // box sizes
-    getScrollPanel().setLayout(new BoxLayout(getScrollPanel(), BoxLayout.PAGE_AXIS));
+    getScrollPanel()
+        .setLayout(new BoxLayout(getScrollPanel(), BoxLayout.PAGE_AXIS));
 
     ModernMenuItem item = null;
     ModernClickWidget subItem = null;
@@ -73,7 +73,8 @@ public class ExperimentsSearchCriteriaPopup extends SearchCriteriaPopup {
 
     ModernButtonGroup group = new ModernButtonGroup();
 
-    for (SearchCategoryGroup categoryGroup : SearchCategoryService.getInstance()) {
+    for (SearchCategoryGroup categoryGroup : SearchCategoryService
+        .getInstance()) {
       if (!categoryGroup.display()) {
         continue;
       }
@@ -93,7 +94,8 @@ public class ExperimentsSearchCriteriaPopup extends SearchCriteriaPopup {
       addScrollMenuItem(item);
 
       ModernComponent gridPanel = new ModernComponent();
-      gridPanel.setLayout(new SamplesSortLayout(200, 28)); // new GridLayout(0, 3, 0, 0));
+      gridPanel.setLayout(new SamplesSortLayout(200, 28)); // new GridLayout(0,
+                                                           // 3, 0, 0));
       gridPanel.setBorder(ModernWidget.LEFT_RIGHT_BORDER);
 
       // sort items alphabetically and add to combo
@@ -109,10 +111,12 @@ public class ExperimentsSearchCriteriaPopup extends SearchCriteriaPopup {
         subItem = new ModernRadioButton(category.getName());
         subItem.addClickListener(this);
 
-        // System.err.println(name + " " + UserSearchEntryCategory.DEFAULT_FIELD);
+        // System.err.println(name + " " +
+        // UserSearchEntryCategory.DEFAULT_FIELD);
 
         // ensure the default item is checked
-        if (category.getName().equals(UserSearchEntry.DEFAULT_FIELD.getName())) {
+        if (category.getName()
+            .equals(UserSearchEntry.DEFAULT_FIELD.getName())) {
           subItem.doClick();
         }
 
@@ -131,8 +135,8 @@ public class ExperimentsSearchCriteriaPopup extends SearchCriteriaPopup {
     }
 
     /*
-     * for (SearchFieldGroup group : SearchFieldGroupsService.getInstance()) { if
-     * (!group.display()) { continue; }
+     * for (SearchFieldGroup group : SearchFieldGroupsService.getInstance()) {
+     * if (!group.display()) { continue; }
      * 
      * // group title if (group.getName() == null) { continue; }
      * 

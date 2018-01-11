@@ -46,7 +46,8 @@ import edu.columbia.rdf.edb.Sample;
  * @author Antony Holmes Holmes
  *
  */
-public class SampleSortRibbonSection extends RibbonSection implements ModernClickListener {
+public class SampleSortRibbonSection extends RibbonSection
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -73,8 +74,8 @@ public class SampleSortRibbonSection extends RibbonSection implements ModernClic
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+     * ChangeEvent)
      */
     @Override
     public void changed(ChangeEvent e) {
@@ -91,10 +92,8 @@ public class SampleSortRibbonSection extends RibbonSection implements ModernClic
   /**
    * Instantiates a new sample sort ribbon section.
    *
-   * @param ribbon
-   *          the ribbon
-   * @param sortModel
-   *          the sort model
+   * @param ribbon the ribbon
+   * @param sortModel the sort model
    */
   public SampleSortRibbonSection(Ribbon ribbon, SortModel<Sample> sortModel) {
     super(ribbon, "Sample Sort");
@@ -143,10 +142,14 @@ public class SampleSortRibbonSection extends RibbonSection implements ModernClic
 
     sortAscendButton.setSelected(true);
 
-    sortAscendButton.setToolTip("Sort Ascending", "Sort the experiments in ascending order.", mRibbon);
+    sortAscendButton.setToolTip("Sort Ascending",
+        "Sort the experiments in ascending order.",
+        mRibbon);
     sortAscendButton.addClickListener(this);
 
-    sortDescendButton.setToolTip("Sort Descending", "Sort the experiments in descending order.", mRibbon);
+    sortDescendButton.setToolTip("Sort Descending",
+        "Sort the experiments in descending order.",
+        mRibbon);
     sortDescendButton.addClickListener(this);
 
     ModernButtonGroup sortGroup = new ModernButtonGroup();
@@ -158,8 +161,7 @@ public class SampleSortRibbonSection extends RibbonSection implements ModernClic
   /**
    * Sets the sort by name.
    *
-   * @param name
-   *          the new sort by name
+   * @param name the new sort by name
    */
   public void setSortByName(String name) {
     ModernCheckBox button = mButtonSortMap.get(name);
@@ -176,9 +178,8 @@ public class SampleSortRibbonSection extends RibbonSection implements ModernClic
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public void clicked(ModernClickEvent e) {
     if (e.getSource().equals(sortAscendButton)) {

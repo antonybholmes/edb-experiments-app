@@ -40,22 +40,24 @@ public class MicroarraySampleSummaryPanel extends SampleSummaryPanel {
   /**
    * Instantiates a new microarray sample summary panel.
    *
-   * @param sample
-   *          the sample
+   * @param sample the sample
    */
   public MicroarraySampleSummaryPanel(Sample sample) {
     super(sample);
 
     Box box;
 
-    SampleTag field = sample.getTags().getTag("/Microarray/Sample/Labeled_Extract/Characteristic/Array_Platform");
+    SampleTag field = sample.getTags().getTag(
+        "/Microarray/Sample/Labeled_Extract/Characteristic/Array_Platform");
 
     if (field != null) {
       // add(UI.createVGap(5));
 
       box = HBox.create();
       box.add(new ModernAutoSizeLabel("Array Platform:", LABEL_SIZE));
-      box.add(new SummaryLabel(field.getValue())); // + " (" + sample.getArrayDesign().getProvider() + ")"));
+      box.add(new SummaryLabel(field.getValue())); // + " (" +
+                                                   // sample.getArrayDesign().getProvider()
+                                                   // + ")"));
       add(box);
     }
 
@@ -67,11 +69,13 @@ public class MicroarraySampleSummaryPanel extends SampleSummaryPanel {
       box.add(new ModernAutoSizeLabel("GEO Accession:", LABEL_SIZE));
 
       try {
-        box.add(new GEOUrlLinkButton(sample.getGEO().getGEOSeriesAccession(), sample.getGEO().getGEOSeriesAccession()));
+        box.add(new GEOUrlLinkButton(sample.getGEO().getGEOSeriesAccession(),
+            sample.getGEO().getGEOSeriesAccession()));
 
         box.add(new ModernAutoSizeLabel(" ("));
         // box.add(UI.createHGap(5));
-        box.add(new GEOUrlLinkButton(sample.getGEO().getGEOAccession(), sample.getGEO().getGEOAccession()));
+        box.add(new GEOUrlLinkButton(sample.getGEO().getGEOAccession(),
+            sample.getGEO().getGEOAccession()));
         box.add(new ModernAutoSizeLabel(")"));
 
       } catch (MalformedURLException e) {

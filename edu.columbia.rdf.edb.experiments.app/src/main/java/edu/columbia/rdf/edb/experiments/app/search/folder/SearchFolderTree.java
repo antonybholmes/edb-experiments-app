@@ -45,7 +45,8 @@ import edu.columbia.rdf.edb.ui.search.UserSearch;
 /**
  * The Class SearchFolderTree.
  */
-public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepresentation {
+public class SearchFolderTree extends ModernTree<UserSearch>
+    implements XmlRepresentation {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -54,7 +55,8 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
   private static Path USER_FILE = PathUtils.getPath("user.search.folders.xml");
 
   /** The default file. */
-  private static Path DEFAULT_FILE = PathUtils.getPath("res/default.search.folders.xml");
+  private static Path DEFAULT_FILE = PathUtils
+      .getPath("res/default.search.folders.xml");
 
   /**
    * The Class TreeEvents.
@@ -65,12 +67,13 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
      * (non-Javadoc)
      * 
      * @see
-     * org.abh.common.ui.tree.TreeEventListener#treeNodeDragged(org.abh.common.ui.
-     * tree.ModernTreeEvent)
+     * org.abh.common.ui.tree.TreeEventListener#treeNodeDragged(org.abh.common.
+     * ui. tree.ModernTreeEvent)
      */
     @Override
     public void treeNodeDragged(ModernTreeEvent e) {
-      // System.err.println("drag " + getSelectedNodes().get(0).getName() + " " +
+      // System.err.println("drag " + getSelectedNodes().get(0).getName() + " "
+      // +
       // getTargetNode().getName());
 
       List<TreeNode<UserSearch>> selectedNodes = getSelectedNodes();
@@ -90,7 +93,8 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
 
       try {
         write();
-      } catch (IOException | TransformerException | ParserConfigurationException e1) {
+      } catch (IOException | TransformerException
+          | ParserConfigurationException e1) {
         e1.printStackTrace();
       }
     }
@@ -99,8 +103,8 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
      * (non-Javadoc)
      * 
      * @see
-     * org.abh.common.ui.tree.TreeEventListener#treeNodeClicked(org.abh.common.ui.
-     * tree.ModernTreeEvent)
+     * org.abh.common.ui.tree.TreeEventListener#treeNodeClicked(org.abh.common.
+     * ui. tree.ModernTreeEvent)
      */
     @Override
     public void treeNodeClicked(ModernTreeEvent e) {
@@ -112,8 +116,8 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
      * (non-Javadoc)
      * 
      * @see
-     * org.abh.common.ui.tree.TreeEventListener#treeNodeDoubleClicked(org.abh.common
-     * .ui.tree.ModernTreeEvent)
+     * org.abh.common.ui.tree.TreeEventListener#treeNodeDoubleClicked(org.abh.
+     * common .ui.tree.ModernTreeEvent)
      */
     @Override
     public void treeNodeDoubleClicked(ModernTreeEvent e) {
@@ -133,10 +137,8 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
   /**
    * Adds the search folder.
    *
-   * @param name
-   *          the name
-   * @param userSearch
-   *          the user search
+   * @param name the name
+   * @param userSearch the user search
    */
   public void addSearchFolder(String name, UserSearch userSearch) {
     TreeNode<UserSearch> child = new SearchFolderTreeNode(name, userSearch);
@@ -145,7 +147,8 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
 
     try {
       write();
-    } catch (IOException | TransformerException | ParserConfigurationException e) {
+    } catch (IOException | TransformerException
+        | ParserConfigurationException e) {
       e.printStackTrace();
     }
   }
@@ -164,7 +167,8 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
 
     try {
       write();
-    } catch (IOException | TransformerException | ParserConfigurationException e) {
+    } catch (IOException | TransformerException
+        | ParserConfigurationException e) {
       e.printStackTrace();
     }
   }
@@ -188,14 +192,12 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
   /**
    * Write.
    *
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws TransformerException
-   *           the transformer exception
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws TransformerException the transformer exception
+   * @throws ParserConfigurationException the parser configuration exception
    */
-  public void write() throws IOException, TransformerException, ParserConfigurationException {
+  public void write()
+      throws IOException, TransformerException, ParserConfigurationException {
     Document doc = XmlUtils.createDoc();
 
     doc.appendChild(toXml(doc));
@@ -208,14 +210,12 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
    * necessary.
    *
    * @return the modern tree
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws SAXException
-   *           the SAX exception
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws SAXException the SAX exception
+   * @throws ParserConfigurationException the parser configuration exception
    */
-  public static ModernTree<UserSearch> autoLoad() throws IOException, SAXException, ParserConfigurationException {
+  public static ModernTree<UserSearch> autoLoad()
+      throws IOException, SAXException, ParserConfigurationException {
     if (!FileUtils.exists(USER_FILE)) {
       if (FileUtils.exists(DEFAULT_FILE)) {
         FileUtils.copy(DEFAULT_FILE, USER_FILE);
@@ -232,15 +232,11 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
   /**
    * Load xml.
    *
-   * @param file
-   *          the file
+   * @param file the file
    * @return the modern tree
-   * @throws SAXException
-   *           the SAX exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
    */
   public static ModernTree<UserSearch> loadXml(Path file)
       throws SAXException, IOException, ParserConfigurationException {
@@ -252,15 +248,11 @@ public class SearchFolderTree extends ModernTree<UserSearch> implements XmlRepre
   /**
    * Load xml.
    *
-   * @param is
-   *          the is
+   * @param is the is
    * @return the modern tree
-   * @throws SAXException
-   *           the SAX exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
    */
   private synchronized static ModernTree<UserSearch> loadXml(InputStream is)
       throws SAXException, IOException, ParserConfigurationException {

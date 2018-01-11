@@ -64,7 +64,8 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
   private static final long serialVersionUID = 1L;
 
   /** The m clear button. */
-  private ModernButton mClearButton = new ModernDialogButton(UIService.getInstance().loadIcon("trash_bw", 16));
+  private ModernButton mClearButton = new ModernDialogButton(
+      UIService.getInstance().loadIcon("trash_bw", 16));
 
   /** The m add field button. */
   private ModernDialogOptionalDropDownMenuButton mAddFieldButton;
@@ -78,8 +79,7 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
   /**
    * Instantiates a new search folder dialog.
    *
-   * @param parent
-   *          the parent
+   * @param parent the parent
    */
   public SearchFolderDialog(ModernWindow parent) {
     this(parent, "New Search", UserSearch.createDefaultSearch());
@@ -90,14 +90,12 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
   /**
    * Instantiates a new search folder dialog.
    *
-   * @param parent
-   *          the parent
-   * @param name
-   *          the name
-   * @param userSearch
-   *          the user search
+   * @param parent the parent
+   * @param name the name
+   * @param userSearch the user search
    */
-  public SearchFolderDialog(ModernWindow parent, String name, UserSearch userSearch) {
+  public SearchFolderDialog(ModernWindow parent, String name,
+      UserSearch userSearch) {
     super(parent);
 
     setTitle("Edit Search Folder");
@@ -142,7 +140,8 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
 
     box2.add(new ModernAutoSizeLabel("Folder Name"));
     box2.add(UI.createHGap(20));
-    box2.add(new ModernTextBorderPanel(mTextName, ModernWidget.VERY_LARGE_SIZE));
+    box2.add(
+        new ModernTextBorderPanel(mTextName, ModernWidget.VERY_LARGE_SIZE));
 
     box.add(box2);
 
@@ -150,13 +149,16 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
 
     box2 = HBox.create();
 
-    SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(mParent);
+    SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(
+        mParent);
 
-    mAddFieldButton = new ModernDialogOptionalDropDownMenuButton(UIService.getInstance().loadIcon("search_field", 16),
+    mAddFieldButton = new ModernDialogOptionalDropDownMenuButton(
+        UIService.getInstance().loadIcon("search_field", 16),
         searchCriteriaPopup);
 
     mAddFieldButton.setClickMessage("add_field");
-    mAddFieldButton.setToolTip(new ModernToolTip("Add Field", "Add another search field to your search criteria."));
+    mAddFieldButton.setToolTip(new ModernToolTip("Add Field",
+        "Add another search field to your search criteria."));
     mAddFieldButton.addClickListener(this);
 
     box2.add(mAddFieldButton);
@@ -195,11 +197,13 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
   public final void clicked(ModernClickEvent e) {
     if (e.getSource().equals(mAddFieldButton)) {
       if (e.getMessage().equals(SearchPanel.FIELD_ADDED)) {
-        mSearchPanel.addUserSearchEntry(UserSearchEntry.createDefaultSearchEntry());
+        mSearchPanel
+            .addUserSearchEntry(UserSearchEntry.createDefaultSearchEntry());
       } else {
         // from drop down menu
-        mSearchPanel.addUserSearchEntry(
-            UserSearchEntry.create(SearchCategoryService.getInstance().getSearchCategory(e.getMessage())));
+        mSearchPanel
+            .addUserSearchEntry(UserSearchEntry.create(SearchCategoryService
+                .getInstance().getSearchCategory(e.getMessage())));
       }
     } else if (e.getSource().equals(mClearButton)) {
       removeUserSearchEntries();
@@ -214,8 +218,10 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
    * Removes the user search entries.
    */
   private void removeUserSearchEntries() {
-    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent, mParent.getAppInfo().getName(),
-        "Are you sure you want to remove all of your search criteria?", MessageDialogType.WARNING_OK_CANCEL);
+    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent,
+        mParent.getAppInfo().getName(),
+        "Are you sure you want to remove all of your search criteria?",
+        MessageDialogType.WARNING_OK_CANCEL);
 
     if (status == ModernDialogStatus.CANCEL) {
       return;

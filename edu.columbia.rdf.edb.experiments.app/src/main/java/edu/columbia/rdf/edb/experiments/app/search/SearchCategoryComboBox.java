@@ -34,12 +34,11 @@ public class SearchCategoryComboBox extends ModernComboBox {
   /**
    * Instantiates a new search category combo box.
    *
-   * @param searchCriteriaPopup
-   *          the search criteria popup
-   * @param field
-   *          the field
+   * @param searchCriteriaPopup the search criteria popup
+   * @param field the field
    */
-  public SearchCategoryComboBox(SearchCriteriaPopup searchCriteriaPopup, SearchCategory field) {
+  public SearchCategoryComboBox(SearchCriteriaPopup searchCriteriaPopup,
+      SearchCategory field) {
     super.setMenu(searchCriteriaPopup);
 
     setText(field.getName());

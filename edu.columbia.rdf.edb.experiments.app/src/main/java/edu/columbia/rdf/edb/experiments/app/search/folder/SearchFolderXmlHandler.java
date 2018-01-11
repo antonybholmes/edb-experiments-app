@@ -43,7 +43,9 @@ public class SearchFolderXmlHandler extends DefaultHandler {
    * Instantiates a new search folder xml handler.
    */
   public SearchFolderXmlHandler() {
-    mFolderStack.push(new TreeRootNode<UserSearch>()); // new SearchFolderTreeNode("Search Folders"));
+    mFolderStack.push(new TreeRootNode<UserSearch>()); // new
+                                                       // SearchFolderTreeNode("Search
+                                                       // Folders"));
   }
 
   /*
@@ -53,11 +55,14 @@ public class SearchFolderXmlHandler extends DefaultHandler {
    * java.lang.String, java.lang.String, org.xml.sax.Attributes)
    */
   @Override
-  public final void startElement(String uri, String localName, String qName, Attributes attributes)
-      throws SAXException {
+  public final void startElement(String uri,
+      String localName,
+      String qName,
+      Attributes attributes) throws SAXException {
 
     if (qName.equals("search-folder")) {
-      TreeNode<UserSearch> child = new SearchFolderTreeNode(attributes.getValue("name"));
+      TreeNode<UserSearch> child = new SearchFolderTreeNode(
+          attributes.getValue("name"));
 
       mFolderStack.peek().addChild(child);
       mFolderStack.push(child);
@@ -67,8 +72,10 @@ public class SearchFolderXmlHandler extends DefaultHandler {
         mFolderStack.peek().setValue(new UserSearch());
       }
 
-      UserSearchEntry entry = new UserSearchEntry(SearchStackOperator.parseOperator(attributes.getValue("operator")),
-          new SearchCategory(attributes.getValue("field-name"), new Path(attributes.getValue("field-path"))),
+      UserSearchEntry entry = new UserSearchEntry(
+          SearchStackOperator.parseOperator(attributes.getValue("operator")),
+          new SearchCategory(attributes.getValue("field-name"),
+              new Path(attributes.getValue("field-path"))),
           attributes.getValue("search"));
 
       mFolderStack.peek().getValue().add(entry);
@@ -84,7 +91,8 @@ public class SearchFolderXmlHandler extends DefaultHandler {
    * java.lang.String, java.lang.String)
    */
   @Override
-  public final void endElement(String uri, String localName, String qName) throws SAXException {
+  public final void endElement(String uri, String localName, String qName)
+      throws SAXException {
 
     if (qName.equals("search-folder")) {
       mFolderStack.pop();
@@ -95,7 +103,8 @@ public class SearchFolderXmlHandler extends DefaultHandler {
    * @Override public void characters(char[] ch, int start, int length) { if
    * (mMode.equals("operator")) { mOperator =
    * SearchStackOperator.parseOperator(new String(ch, start, length)); } else if
-   * (mMode.equals("search")) { mSearch = new String(ch, start, length); } else {
+   * (mMode.equals("search")) { mSearch = new String(ch, start, length); } else
+   * {
    * 
    * } }
    */

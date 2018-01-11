@@ -50,18 +50,20 @@ import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
 /**
  * The Class SampleWindow.
  */
-public class SampleWindow extends ModernRibbonWindow implements ModernWindowConstructor, ModernClickListener {
+public class SampleWindow extends ModernRibbonWindow
+    implements ModernWindowConstructor, ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The export button. */
-  private RibbonLargeButton exportButton = new RibbonLargeButton("Export", "Sample",
+  private RibbonLargeButton exportButton = new RibbonLargeButton("Export",
+      "Sample",
       UIService.getInstance().loadIcon("export", UIService.ICON_SIZE_32));
 
   /** The download button. */
-  private RibbonLargeButton downloadButton = new RibbonLargeButton("Download", "Files",
-      UIService.getInstance().loadIcon("zip", UIService.ICON_SIZE_32));
+  private RibbonLargeButton downloadButton = new RibbonLargeButton("Download",
+      "Files", UIService.getInstance().loadIcon("zip", UIService.ICON_SIZE_32));
 
   /** The m status bar. */
   private ModernStatusBar mStatusBar = new ModernStatusBar();
@@ -75,8 +77,7 @@ public class SampleWindow extends ModernRibbonWindow implements ModernWindowCons
   /**
    * Instantiates a new sample window.
    *
-   * @param sample
-   *          the sample
+   * @param sample the sample
    */
   public SampleWindow(Sample sample) {
     super(new ExperimentsInfo());
@@ -109,12 +110,14 @@ public class SampleWindow extends ModernRibbonWindow implements ModernWindowCons
 
     menuItem = new RibbonMenuItem(UI.MENU_INFO);
 
-    getRibbonMenu().addTabbedMenuItem(menuItem, new RibbonPanelProductInfo(getAppInfo()));
+    getRibbonMenu().addTabbedMenuItem(menuItem,
+        new RibbonPanelProductInfo(getAppInfo()));
 
     menuItem = new RibbonMenuItem(UI.MENU_OPTIONS);
     getRibbonMenu().addTabbedMenuItem(menuItem);
 
-    menuItem = new RibbonMenuItem(UI.MENU_CLOSE, UIService.getInstance().loadIcon("exit", UIService.ICON_SIZE_16));
+    menuItem = new RibbonMenuItem(UI.MENU_CLOSE,
+        UIService.getInstance().loadIcon("exit", UIService.ICON_SIZE_16));
     menuItem.addClickListener(this);
     getRibbonMenu().addTabbedMenuItem(menuItem);
 
@@ -132,13 +135,13 @@ public class SampleWindow extends ModernRibbonWindow implements ModernWindowCons
     getRibbon().getHomeToolbar().add(new ClipboardRibbonSection(getRibbon()));
 
     downloadButton.setToolTip(
-        new ModernToolTip("Download Files", "Download the CEL and CHP files for this sample in a zip archive."),
+        new ModernToolTip("Download Files",
+            "Download the CEL and CHP files for this sample in a zip archive."),
         getRibbon());
     getRibbon().getHomeToolbar().getSection("data").add(downloadButton);
 
-    exportButton.setToolTip(
-        new ModernToolTip("Export Sample",
-            "Export the information on the sample as a text file. This does not include CEL, CHP or expression data."),
+    exportButton.setToolTip(new ModernToolTip("Export Sample",
+        "Export the information on the sample as a text file. This does not include CEL, CHP or expression data."),
         getRibbon());
     getRibbon().getHomeToolbar().getSection("data").add(exportButton);
 
@@ -188,9 +191,8 @@ public class SampleWindow extends ModernRibbonWindow implements ModernWindowCons
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public final void clicked(ModernClickEvent e) {
     if (e.getMessage().equals(UI.MENU_CLOSE)) {
@@ -201,14 +203,10 @@ public class SampleWindow extends ModernRibbonWindow implements ModernWindowCons
   /**
    * Show expression data.
    *
-   * @param type
-   *          the type
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @param type the type
+   * @throws NetworkFileException the network file exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
   private void showExpressionData(MicroarrayNormalizationType type)
       throws NetworkFileException, IOException, ParseException {
@@ -228,10 +226,21 @@ public class SampleWindow extends ModernRibbonWindow implements ModernWindowCons
         return;
       }
 
-      expressionData.showTables(this, samples, type, dialog.getColumns(), null, true, mStatusBar.getStatusModel());
+      expressionData.showTables(this,
+          samples,
+          type,
+          dialog.getColumns(),
+          null,
+          true,
+          mStatusBar.getStatusModel());
     } else {
       // we all all columns since there is only the data column with rma
-      expressionData.showTables(this, samples, type, CollectionUtils.asList(true), null, true,
+      expressionData.showTables(this,
+          samples,
+          type,
+          CollectionUtils.asList(true),
+          null,
+          true,
           mStatusBar.getStatusModel());
     }
   }

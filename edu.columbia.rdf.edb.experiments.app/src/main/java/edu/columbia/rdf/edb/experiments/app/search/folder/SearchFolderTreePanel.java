@@ -30,11 +30,9 @@ import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.tree.TreeNode;
 import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.UI;
 import org.jebtk.modern.event.ModernSelectionListener;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
-import org.jebtk.modern.text.ModernSubHeadingLabel;
 import org.jebtk.modern.tree.ModernTree;
 import org.xml.sax.SAXException;
 
@@ -57,7 +55,8 @@ public class SearchFolderTreePanel extends ModernComponent {
   private static final long serialVersionUID = 1L;
 
   /** The Constant NO_SAMPLES. */
-  private static final List<Sample> NO_SAMPLES = Collections.unmodifiableList(new ArrayList<Sample>());
+  private static final List<Sample> NO_SAMPLES = Collections
+      .unmodifiableList(new ArrayList<Sample>());
 
   /** The m tree. */
   private ModernTree<UserSearch> mTree;
@@ -147,16 +146,13 @@ public class SearchFolderTreePanel extends ModernComponent {
   /**
    * Instantiates a new search folder tree panel.
    *
-   * @param sampleModel
-   *          the sample model
-   * @throws SAXException
-   *           the SAX exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
+   * @param sampleModel the sample model
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
    */
-  public SearchFolderTreePanel(SampleModel sampleModel) throws SAXException, IOException, ParserConfigurationException {
+  public SearchFolderTreePanel(SampleModel sampleModel)
+      throws SAXException, IOException, ParserConfigurationException {
     mSampleModel = sampleModel;
 
     mTree = SearchFolderTree.autoLoad();
@@ -213,10 +209,8 @@ public class SearchFolderTreePanel extends ModernComponent {
   /**
    * Adds the search folder.
    *
-   * @param name
-   *          the name
-   * @param userSearch
-   *          the user search
+   * @param name the name
+   * @param userSearch the user search
    */
   public void addSearchFolder(String name, UserSearch userSearch) {
     ((SearchFolderTree) mTree).addSearchFolder(name, userSearch);
@@ -237,8 +231,7 @@ public class SearchFolderTreePanel extends ModernComponent {
    * Gets the selected samples.
    *
    * @return the selected samples
-   * @throws Exception
-   *           the exception
+   * @throws Exception the exception
    */
   private List<Sample> getSelectedSamples() throws Exception {
     if (mTree.getSelectedNodes().size() == 0) {
@@ -258,7 +251,8 @@ public class SearchFolderTreePanel extends ModernComponent {
     Set<Sample> samples = new HashSet<Sample>();
 
     for (UserSearch folder : folders) {
-      Deque<SearchStackElementCategory> stack = SearchStackElementCategory.getSearchStack(folder);
+      Deque<SearchStackElementCategory> stack = SearchStackElementCategory
+          .getSearchStack(folder);
 
       System.err.println("stack " + stack.size());
 
@@ -276,14 +270,12 @@ public class SearchFolderTreePanel extends ModernComponent {
   /**
    * Recursively examine a node and its children to find those with experiments.
    *
-   * @param node
-   *          the node
-   * @param folders
-   *          the folders
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @param node the node
+   * @param folders the folders
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  private void selectedSamples(TreeNode<UserSearch> node, List<UserSearch> folders) throws IOException {
+  private void selectedSamples(TreeNode<UserSearch> node,
+      List<UserSearch> folders) throws IOException {
 
     if (node.getValue() != null) {
       folders.add(node.getValue());
@@ -299,8 +291,7 @@ public class SearchFolderTreePanel extends ModernComponent {
   /**
    * Sets the selected.
    *
-   * @param i
-   *          the new selected
+   * @param i the new selected
    */
   public void setSelected(int i) {
     mTree.selectNode(i);

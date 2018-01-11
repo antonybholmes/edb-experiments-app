@@ -28,8 +28,7 @@ public abstract class SortSamplesByRnaSeqField extends SortSamplesByTag {
   /**
    * Instantiates a new sort samples by rna seq field.
    *
-   * @param path
-   *          the path
+   * @param path the path
    */
   public SortSamplesByRnaSeqField(String path) {
     this(new Path(path));
@@ -38,8 +37,7 @@ public abstract class SortSamplesByRnaSeqField extends SortSamplesByTag {
   /**
    * Instantiates a new sort samples by rna seq field.
    *
-   * @param path
-   *          the path
+   * @param path the path
    */
   public SortSamplesByRnaSeqField(Path path) {
     super(path);

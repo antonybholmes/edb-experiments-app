@@ -47,8 +47,7 @@ public class FilesDataViewGridModel extends ModernColumnHeaderTableModel {
   /**
    * Instantiates a new files data view grid model.
    *
-   * @param files
-   *          the files
+   * @param files the files
    */
   public FilesDataViewGridModel(List<FileDescriptor> files) {
 

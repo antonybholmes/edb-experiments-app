@@ -37,7 +37,8 @@ import org.jebtk.modern.window.ModernWindow;
 /**
  * The Class SampleDownloadDialog.
  */
-public class SampleDownloadDialog extends ModernDialogWindow implements ModernClickListener {
+public class SampleDownloadDialog extends ModernDialogWindow
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -63,8 +64,7 @@ public class SampleDownloadDialog extends ModernDialogWindow implements ModernCl
   /**
    * Instantiates a new sample download dialog.
    *
-   * @param parent
-   *          the parent
+   * @param parent the parent
    */
   public SampleDownloadDialog(ModernWindow parent) {
     super(parent);
@@ -122,9 +122,8 @@ public class SampleDownloadDialog extends ModernDialogWindow implements ModernCl
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public final void clicked(ModernClickEvent e) {
     if (e.getSource().equals(okButton)) {

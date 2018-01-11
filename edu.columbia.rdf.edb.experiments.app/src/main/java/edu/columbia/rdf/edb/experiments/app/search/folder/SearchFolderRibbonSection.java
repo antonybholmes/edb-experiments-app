@@ -36,7 +36,8 @@ import edu.columbia.rdf.edb.ui.search.UserSearch;
  * @author Antony Holmes Holmes
  *
  */
-public class SearchFolderRibbonSection extends RibbonSection implements ModernClickListener {
+public class SearchFolderRibbonSection extends RibbonSection
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -45,17 +46,20 @@ public class SearchFolderRibbonSection extends RibbonSection implements ModernCl
   public static final String DOWNLOAD = "Download";
 
   /** The m new folder button. */
-  private ModernButtonWidget mNewFolderButton = new RibbonLargeButton("New Folder",
-      UIService.getInstance().loadIcon(SearchFolderVectorIcon.class, 24), "New Search Folder",
-      "Create a new search folder.");
+  private ModernButtonWidget mNewFolderButton = new RibbonLargeButton(
+      "New Folder",
+      UIService.getInstance().loadIcon(SearchFolderVectorIcon.class, 24),
+      "New Search Folder", "Create a new search folder.");
 
   /** The m edit folder button. */
-  private ModernButtonWidget mEditFolderButton = new RibbonLargeButton("Edit Folder",
-      UIService.getInstance().loadIcon("edit_bw", 16), "Edit Search Folder", "Edit the selected search folder.");
+  private ModernButtonWidget mEditFolderButton = new RibbonLargeButton(
+      "Edit Folder", UIService.getInstance().loadIcon("edit_bw", 16),
+      "Edit Search Folder", "Edit the selected search folder.");
 
   /** The m delete folder button. */
-  private ModernButtonWidget mDeleteFolderButton = new RibbonLargeButton("Delete Folders",
-      UIService.getInstance().loadIcon("trash_bw", 16), "Delete Search Folders", "Delete selected search folders.");
+  private ModernButtonWidget mDeleteFolderButton = new RibbonLargeButton(
+      "Delete Folders", UIService.getInstance().loadIcon("trash_bw", 16),
+      "Delete Search Folders", "Delete selected search folders.");
 
   /** The m parent. */
   private ModernRibbonWindow mParent;
@@ -72,8 +76,8 @@ public class SearchFolderRibbonSection extends RibbonSection implements ModernCl
      * (non-Javadoc)
      * 
      * @see
-     * org.abh.common.ui.dialog.DialogEventListener#statusChanged(org.abh.common.ui.
-     * dialog.DialogEvent)
+     * org.abh.common.ui.dialog.DialogEventListener#statusChanged(org.abh.common
+     * .ui. dialog.DialogEvent)
      */
     @Override
     public void statusChanged(DialogEvent e) {
@@ -87,12 +91,11 @@ public class SearchFolderRibbonSection extends RibbonSection implements ModernCl
   /**
    * Instantiates a new search folder ribbon section.
    *
-   * @param parent
-   *          the parent
-   * @param folderPanel
-   *          the folder panel
+   * @param parent the parent
+   * @param folderPanel the folder panel
    */
-  public SearchFolderRibbonSection(ModernRibbonWindow parent, SearchFolderTreePanel folderPanel) {
+  public SearchFolderRibbonSection(ModernRibbonWindow parent,
+      SearchFolderTreePanel folderPanel) {
     super(parent.getRibbon(), "Search Folders");
 
     mParent = parent;
@@ -110,9 +113,8 @@ public class SearchFolderRibbonSection extends RibbonSection implements ModernCl
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {
@@ -125,13 +127,15 @@ public class SearchFolderRibbonSection extends RibbonSection implements ModernCl
         return;
       }
 
-      mFolderPanel.addSearchFolder(dialog.getSearchFolderName(), dialog.getUserSearch());
+      mFolderPanel.addSearchFolder(dialog.getSearchFolderName(),
+          dialog.getUserSearch());
     } else if (e.getSource().equals(mEditFolderButton)) {
       TreeNode<UserSearch> node = mFolderPanel.getSelectedNode();
 
       if (node.getValue() != null) {
 
-        SearchFolderDialog dialog = new SearchFolderDialog(mParent, node.getName(), node.getValue());
+        SearchFolderDialog dialog = new SearchFolderDialog(mParent,
+            node.getName(), node.getValue());
 
         dialog.setVisible(true);
 
@@ -140,7 +144,9 @@ public class SearchFolderRibbonSection extends RibbonSection implements ModernCl
         }
       }
     } else if (e.getSource().equals(mDeleteFolderButton)) {
-      mParent.createOkCancelDialog("Are you sure you want to delete the selected search folders?", new DeleteEvent());
+      mParent.createOkCancelDialog(
+          "Are you sure you want to delete the selected search folders?",
+          new DeleteEvent());
     }
   }
 }

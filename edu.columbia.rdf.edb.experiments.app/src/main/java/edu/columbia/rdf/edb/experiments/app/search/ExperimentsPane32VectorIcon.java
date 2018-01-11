@@ -29,11 +29,17 @@ public class ExperimentsPane32VectorIcon extends LeftPane32VectorIcon {
   /*
    * (non-Javadoc)
    * 
-   * @see org.abh.common.ui.graphics.icons.LeftPane32VectorIcon#drawIcon(java.awt.
+   * @see
+   * org.abh.common.ui.graphics.icons.LeftPane32VectorIcon#drawIcon(java.awt.
    * Graphics2D, int, int, int, int)
    */
   @Override
-  public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
+  public void drawIcon(Graphics2D g2,
+      int x,
+      int y,
+      int w,
+      int h,
+      Object... params) {
     super.drawIcon(g2, x, y, w, h, params);
 
     x = x + (w - WIDTH) / 2 + 2;

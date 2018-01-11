@@ -19,7 +19,8 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
 /**
  * The Class SortSamplesByMicroarrayBasedClassification.
  */
-public class SortSamplesByMicroarrayBasedClassification extends SortSamplesByMicroarrayField {
+public class SortSamplesByMicroarrayBasedClassification
+    extends SortSamplesByMicroarrayField {
 
   /**
    * Instantiates a new sort samples by microarray based classification.

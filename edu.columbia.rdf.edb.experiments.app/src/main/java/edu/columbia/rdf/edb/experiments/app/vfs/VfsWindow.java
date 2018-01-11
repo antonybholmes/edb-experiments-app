@@ -15,7 +15,6 @@
  */
 package edu.columbia.rdf.edb.experiments.app.vfs;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Map;
@@ -30,7 +29,6 @@ import org.jebtk.modern.contentpane.ModernHContentPane;
 import org.jebtk.modern.contentpane.SizableContentPane;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
-import org.jebtk.modern.graphics.icons.DownloadVectorIcon;
 import org.jebtk.modern.help.ModernAboutDialog;
 import org.jebtk.modern.options.ModernOptionsDialog;
 import org.jebtk.modern.ribbon.QuickAccessButton;
@@ -53,7 +51,8 @@ import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
 /**
  * The Class VfsWindow.
  */
-public class VfsWindow extends ModernRibbonWindow implements ModernClickListener {
+public class VfsWindow extends ModernRibbonWindow
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -88,8 +87,7 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
     /**
      * Instantiates a new download task.
      *
-     * @param statusModel
-     *          the status model
+     * @param statusModel the status model
      */
     public DownloadTask(StatusModel statusModel) {
       super(statusModel);
@@ -128,8 +126,7 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
   /**
    * Instantiates a new vfs window.
    *
-   * @param parent
-   *          the parent
+   * @param parent the parent
    */
   public VfsWindow(ModernWindow parent) {
     this(parent, new SampleModel());
@@ -138,10 +135,8 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
   /**
    * Instantiates a new vfs window.
    *
-   * @param parent
-   *          the parent
-   * @param selectionModel
-   *          the selection model
+   * @param parent the parent
+   * @param selectionModel the selection model
    */
   public VfsWindow(ModernWindow parent, SampleModel selectionModel) {
     super(parent.getAppInfo());
@@ -149,7 +144,8 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
     setSubTitle("File Explorer");
 
     // First organize by experiment
-    Map<Experiment, Set<Sample>> sortByExperiment = Experiment.sortSamplesByExperiment(selectionModel.getItems());
+    Map<Experiment, Set<Sample>> sortByExperiment = Experiment
+        .sortSamplesByExperiment(selectionModel.getItems());
 
     mViewPanel = new VfsFilesTreePanel(mFilesModel, sortByExperiment);
 
@@ -207,10 +203,11 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
 
     ModernButtonWidget button;
 
-    button = new QuickAccessButton(UIService.getInstance().loadIcon("download", 16));
+    button = new QuickAccessButton(
+        UIService.getInstance().loadIcon("download", 16));
     button.setClickMessage("Download");
-    button.setToolTip(
-        new ModernToolTip("Download Files", "Download the selected files to your computer in a zip archive."));
+    button.setToolTip(new ModernToolTip("Download Files",
+        "Download the selected files to your computer in a zip archive."));
     button.addClickListener(this);
     addQuickAccessButton(button);
 
@@ -248,11 +245,12 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
     // toolbar.add(mSampleViewSection);
 
     mDownloadButton.setClickMessage("Download");
-    mDownloadButton.setToolTip(
-        new ModernToolTip("Download Files", "Download the selected files to your computer in a zip archive."));
+    mDownloadButton.setToolTip(new ModernToolTip("Download Files",
+        "Download the selected files to your computer in a zip archive."));
     mDownloadButton.addClickListener(this);
     getRibbon().getToolbar("Files").getSection("Files").add(mDownloadButton);
-    getRibbon().getToolbar("Files").addSection(new FileViewRibbonPanel(getRibbon(), mFileViewModel));
+    getRibbon().getToolbar("Files")
+        .addSection(new FileViewRibbonPanel(getRibbon(), mFileViewModel));
   }
 
   /*
@@ -324,9 +322,8 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public final void clicked(ModernClickEvent e) {
     if (e.getMessage().equals(UI.MENU_EXIT)) {
@@ -351,8 +348,7 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
   /**
    * Download files.
    *
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
   private void downloadFiles() throws IOException {
     mFilesPanel.downloadFiles();
@@ -366,6 +362,7 @@ public class VfsWindow extends ModernRibbonWindow implements ModernClickListener
       return;
     }
 
-    mContentPane.getModel().addLeftTab(new SizableContentPane("Folders", mViewPanel, 300, 100, 600));
+    mContentPane.getModel().addLeftTab(
+        new SizableContentPane("Folders", mViewPanel, 300, 100, 600));
   }
 }

@@ -83,8 +83,7 @@ public class SampleDataTableModel extends AbstractTableModel {
   /**
    * Instantiates a new sample data table model.
    *
-   * @param data
-   *          the data
+   * @param data the data
    */
   public SampleDataTableModel(List<List<String>> data) {
 

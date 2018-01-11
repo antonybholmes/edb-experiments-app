@@ -43,7 +43,8 @@ import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
  *
  * @author Antony Holmes Holmes
  */
-public class ExperimentSummaryPanel extends ModernPanel implements ModernSelectionListener {
+public class ExperimentSummaryPanel extends ModernPanel
+    implements ModernSelectionListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -54,8 +55,7 @@ public class ExperimentSummaryPanel extends ModernPanel implements ModernSelecti
   /**
    * Instantiates a new experiment summary panel.
    *
-   * @param model
-   *          the model
+   * @param model the model
    */
   public ExperimentSummaryPanel(SampleModel model) {
     mModel = model;
@@ -70,8 +70,7 @@ public class ExperimentSummaryPanel extends ModernPanel implements ModernSelecti
   /**
    * Display.
    *
-   * @param experiments
-   *          the experiments
+   * @param experiments the experiments
    */
   private void display(Collection<Experiment> experiments) {
     Box box = VBox.create();
@@ -144,7 +143,8 @@ public class ExperimentSummaryPanel extends ModernPanel implements ModernSelecti
       box.add(UI.createVGap(10));
       box.add(new SummaryTitleLabel("Description"));
 
-      ModernMultilineLabel textArea = new ModernMultilineLabel(experiment.getDescription());
+      ModernMultilineLabel textArea = new ModernMultilineLabel(
+          experiment.getDescription());
       box.add(textArea);
     }
 
@@ -175,7 +175,8 @@ public class ExperimentSummaryPanel extends ModernPanel implements ModernSelecti
 
     Sample sample = mModel.get(0);
 
-    List<Experiment> sortedExperiments = CollectionUtils.asList(sample.getExperiment());
+    List<Experiment> sortedExperiments = CollectionUtils
+        .asList(sample.getExperiment());
 
     display(sortedExperiments);
   }

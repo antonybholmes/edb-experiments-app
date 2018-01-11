@@ -44,13 +44,16 @@ public class DownloadListFileRenderer extends ModernListTwoLineCellRenderer {
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.list.ModernListTwoLineCellRenderer#getCellRendererComponent
-   * (org.abh.common.ui.list.ModernList, java.lang.Object, boolean, boolean,
-   * boolean, int)
+   * @see org.abh.common.ui.list.ModernListTwoLineCellRenderer#
+   * getCellRendererComponent (org.abh.common.ui.list.ModernList,
+   * java.lang.Object, boolean, boolean, boolean, int)
    */
-  public Component getCellRendererComponent(ModernList<File> list, File value, boolean highlight, boolean isSelected,
-      boolean hasFocus, int row) {
+  public Component getCellRendererComponent(ModernList<File> list,
+      File value,
+      boolean highlight,
+      boolean isSelected,
+      boolean hasFocus,
+      int row) {
 
     if (value != null) {
       setText(value.getName(), "Downloaded");
@@ -58,6 +61,11 @@ public class DownloadListFileRenderer extends ModernListTwoLineCellRenderer {
       setText("", "");
     }
 
-    return super.getCellRendererComponent(list, value, highlight, isSelected, hasFocus, row);
+    return super.getCellRendererComponent(list,
+        value,
+        highlight,
+        isSelected,
+        hasFocus,
+        row);
   }
 }

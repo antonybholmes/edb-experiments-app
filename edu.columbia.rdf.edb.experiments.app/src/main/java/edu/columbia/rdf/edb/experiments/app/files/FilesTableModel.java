@@ -50,8 +50,7 @@ public class FilesTableModel extends ModernColumnHeaderTableModel {
   /**
    * Instantiates a new files table model.
    *
-   * @param files
-   *          the files
+   * @param files the files
    */
   public FilesTableModel(List<FileDescriptor> files) {
 

@@ -19,7 +19,8 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
 /**
  * The Class SortSamplesBySourceDiseaseStatus.
  */
-public class SortSamplesBySourceDiseaseStatus extends SortSamplesByMicroarrayField {
+public class SortSamplesBySourceDiseaseStatus
+    extends SortSamplesByMicroarrayField {
 
   /**
    * Instantiates a new sort samples by source disease status.

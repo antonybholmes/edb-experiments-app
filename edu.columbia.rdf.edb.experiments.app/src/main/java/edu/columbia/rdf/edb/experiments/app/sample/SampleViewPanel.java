@@ -72,8 +72,8 @@ public class SampleViewPanel extends ModernPanel implements SelectedSamples {
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+     * ChangeEvent)
      */
     @Override
     public void changed(ChangeEvent e) {
@@ -84,29 +84,25 @@ public class SampleViewPanel extends ModernPanel implements SelectedSamples {
   /**
    * Instantiates a new sample view panel.
    *
-   * @param parent
-   *          the parent
-   * @param viewModel
-   *          the view model
-   * @param layoutViewModel
-   *          the layout view model
-   * @param sampleModel
-   *          the sample model
-   * @param sampleSelectionModel
-   *          the sample selection model
-   * @param fileViewModel
-   *          the file view model
+   * @param parent the parent
+   * @param viewModel the view model
+   * @param layoutViewModel the layout view model
+   * @param sampleModel the sample model
+   * @param sampleSelectionModel the sample selection model
+   * @param fileViewModel the file view model
    */
-  public SampleViewPanel(ModernWindow parent, ViewModel viewModel, ViewModel layoutViewModel, SampleModel sampleModel,
-      SampleModel sampleSelectionModel, FilterModel filterModel, ViewModel fileViewModel) {
+  public SampleViewPanel(ModernWindow parent, ViewModel viewModel,
+      ViewModel layoutViewModel, SampleModel sampleModel,
+      SampleModel sampleSelectionModel, FilterModel filterModel,
+      ViewModel fileViewModel) {
     mLayoutViewModel = layoutViewModel;
     mSampleModel = sampleModel;
 
-    mAnnotationVerticalPanel = new SampleViewVerticalPanel(parent, viewModel, sampleModel, sampleSelectionModel,
-        filterModel, fileViewModel);
+    mAnnotationVerticalPanel = new SampleViewVerticalPanel(parent, viewModel,
+        sampleModel, sampleSelectionModel, filterModel, fileViewModel);
 
-    mAnnotationWidePanel = new SampleViewWidePanel(parent, viewModel, sampleModel, sampleSelectionModel, filterModel,
-        fileViewModel);
+    mAnnotationWidePanel = new SampleViewWidePanel(parent, viewModel,
+        sampleModel, sampleSelectionModel, filterModel, fileViewModel);
 
     // sampleModel.addSelectionListener(new SelectionEvents());
 
@@ -115,8 +111,10 @@ public class SampleViewPanel extends ModernPanel implements SelectedSamples {
     // mTabsPanel.getTabsModel().addTab("Details", new
     // ModernScrollPane(mViewDetails));
 
-    // mTabsPanel.getTabsModel().addTab("List", new ModernScrollPane(mViewList));
-    // mTabsPanel.getTabsModel().addTab("Tiles", new ModernScrollPane(mViewTiles));
+    // mTabsPanel.getTabsModel().addTab("List", new
+    // ModernScrollPane(mViewList));
+    // mTabsPanel.getTabsModel().addTab("Tiles", new
+    // ModernScrollPane(mViewTiles));
 
     setBody(mTabsPanel);
 

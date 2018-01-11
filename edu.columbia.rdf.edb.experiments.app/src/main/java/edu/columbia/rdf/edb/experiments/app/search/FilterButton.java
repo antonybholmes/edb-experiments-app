@@ -15,11 +15,6 @@
  */
 package edu.columbia.rdf.edb.experiments.app.search;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
-import org.jebtk.modern.UI;
-import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernChipButton;
 import org.jebtk.modern.theme.ThemeService;
 
@@ -35,8 +30,7 @@ public class FilterButton extends ModernChipButton {
   /**
    * Instantiates a new filter button.
    *
-   * @param text1
-   *          the text 1
+   * @param text1 the text 1
    */
   public FilterButton(String text1) {
     this(text1, false);
@@ -45,10 +39,8 @@ public class FilterButton extends ModernChipButton {
   /**
    * Instantiates a new filter button.
    *
-   * @param text1
-   *          the text 1
-   * @param selected
-   *          the selected
+   * @param text1 the text 1
+   * @param selected the selected
    */
   public FilterButton(String text1, boolean selected) {
     super(text1, selected);

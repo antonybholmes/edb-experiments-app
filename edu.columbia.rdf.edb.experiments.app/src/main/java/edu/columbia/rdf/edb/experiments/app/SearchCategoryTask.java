@@ -39,15 +39,13 @@ public class SearchCategoryTask extends SwingWorker<Void, Void> {
   /**
    * Instantiates a new search category task.
    *
-   * @param searchStack
-   *          the search stack
-   * @param dataTypes
-   *          the data types
-   * @param organisms
-   *          the organisms
+   * @param searchStack the search stack
+   * @param dataTypes the data types
+   * @param organisms the organisms
    */
-  public SearchCategoryTask(SampleModel model, Deque<SearchStackElementCategory> searchStack,
-      Collection<Type> dataTypes, Collection<Species> organisms, Groups groups) {
+  public SearchCategoryTask(SampleModel model,
+      Deque<SearchStackElementCategory> searchStack, Collection<Type> dataTypes,
+      Collection<Species> organisms, Groups groups) {
     mSampleSearchModel = model;
     mSearchStack = searchStack;
     mDataTypes = dataTypes;
@@ -67,7 +65,8 @@ public class SearchCategoryTask extends SwingWorker<Void, Void> {
 
     // find a list of relevant experiments
     try {
-      mSamples = search.searchSamples(mSearchStack, mDataTypes, mOrganisms, mGroups);
+      mSamples = search
+          .searchSamples(mSearchStack, mDataTypes, mOrganisms, mGroups);
     } catch (Exception e) {
       e.printStackTrace();
     }

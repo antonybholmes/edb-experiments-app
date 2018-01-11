@@ -95,19 +95,14 @@ public class AttributesTableTab extends ModernWidget {
   /**
    * Instantiates a new attributes table tab.
    *
-   * @param parent
-   *          the parent
-   * @param sampleModel
-   *          the sample model
-   * @param viewModel
-   *          the view model
-   * @param statusModel
-   *          the status model
-   * @param view
-   *          the view
+   * @param parent the parent
+   * @param sampleModel the sample model
+   * @param viewModel the view model
+   * @param statusModel the status model
+   * @param view the view
    */
-  public AttributesTableTab(ModernWindow parent, SampleModel sampleModel, ViewModel viewModel, StatusModel statusModel,
-      DataView view) {
+  public AttributesTableTab(ModernWindow parent, SampleModel sampleModel,
+      ViewModel viewModel, StatusModel statusModel, DataView view) {
     mParent = parent;
     mStatusModel = statusModel;
     mViewModel = viewModel;
@@ -159,14 +154,10 @@ public class AttributesTableTab extends ModernWidget {
   /**
    * Show expression data.
    *
-   * @param type
-   *          the type
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @param type the type
+   * @throws NetworkFileException the network file exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
   public void showExpressionData(MicroarrayNormalizationType type)
       throws NetworkFileException, IOException, ParseException {
@@ -176,7 +167,9 @@ public class AttributesTableTab extends ModernWidget {
       // row model to determine which rows are currently
       // selected.
 
-      ModernMessageDialog.createDialog(mParent, mParent.getAppInfo().getName(), "You must select at least one sample.",
+      ModernMessageDialog.createDialog(mParent,
+          mParent.getAppInfo().getName(),
+          "You must select at least one sample.",
           MessageDialogType.WARNING);
 
       return;
@@ -195,10 +188,21 @@ public class AttributesTableTab extends ModernWidget {
         return;
       }
 
-      expressionData.showTables(mParent, expressionSamples, type, dialog.getColumns(), null, true, mStatusModel);
+      expressionData.showTables(mParent,
+          expressionSamples,
+          type,
+          dialog.getColumns(),
+          null,
+          true,
+          mStatusModel);
     } else {
       // we all all columns since there is only the data column with rma
-      expressionData.showTables(mParent, expressionSamples, type, CollectionUtils.asList(true), null, true,
+      expressionData.showTables(mParent,
+          expressionSamples,
+          type,
+          CollectionUtils.asList(true),
+          null,
+          true,
           mStatusModel);
     }
   }

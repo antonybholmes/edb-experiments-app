@@ -50,10 +50,12 @@ public class FilesTileCellRenderer extends ModernDataCellRenderer {
   private static final long serialVersionUID = 1L;
 
   /** The Constant FILE_ICON. */
-  private static final ModernIcon FILE_ICON = UIService.getInstance().loadIcon(FileVectorIcon.class, 72);
+  private static final ModernIcon FILE_ICON = UIService.getInstance()
+      .loadIcon(FileVectorIcon.class, 72);
 
   /** The Constant DIR_ICON. */
-  private static final ModernIcon DIR_ICON = UIService.getInstance().loadIcon(FolderVectorIcon.class, 72);
+  private static final ModernIcon DIR_ICON = UIService.getInstance()
+      .loadIcon(FolderVectorIcon.class, 72);
 
   /** The m text. */
   private String mText;
@@ -64,14 +66,16 @@ public class FilesTileCellRenderer extends ModernDataCellRenderer {
   /*
    * (non-Javadoc)
    * 
-   * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
+   * @see
+   * org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
    */
   @Override
   public void drawForegroundAAText(Graphics2D g2) {
     if (mIcon != null) {
       // this.icon.draw(this,
       // g2,
-      // new Rectangle((this.getWidth() - 64) / 2, (this.getHeight() - 64) / 2, 64,
+      // new Rectangle((this.getWidth() - 64) / 2, (this.getHeight() - 64) / 2,
+      // 64,
       // 64));
 
       mIcon.drawIcon(g2, (getWidth() - 64) / 2, (getWidth() - 64) / 2, 64);
@@ -93,8 +97,13 @@ public class FilesTileCellRenderer extends ModernDataCellRenderer {
    * getCellRendererComponent(org.abh.lib.ui.modern.dataview.ModernData,
    * java.lang.Object, boolean, boolean, boolean, int, int)
    */
-  public Component getCellRendererComponent(ModernData table, Object value, boolean highlight, boolean isSelected,
-      boolean hasFocus, int row, int column) {
+  public Component getCellRendererComponent(ModernData table,
+      Object value,
+      boolean highlight,
+      boolean isSelected,
+      boolean hasFocus,
+      int row,
+      int column) {
 
     mText = value.toString();
 
@@ -104,6 +113,12 @@ public class FilesTileCellRenderer extends ModernDataCellRenderer {
       mIcon = FILE_ICON;
     }
 
-    return super.getCellRendererComponent(table, value, highlight, isSelected, hasFocus, row, column);
+    return super.getCellRendererComponent(table,
+        value,
+        highlight,
+        isSelected,
+        hasFocus,
+        row,
+        column);
   }
 }

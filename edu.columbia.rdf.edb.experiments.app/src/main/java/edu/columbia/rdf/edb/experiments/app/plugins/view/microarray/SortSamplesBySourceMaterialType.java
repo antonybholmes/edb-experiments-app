@@ -19,7 +19,8 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
 /**
  * The Class SortSamplesBySourceMaterialType.
  */
-public class SortSamplesBySourceMaterialType extends SortSamplesByMicroarrayField {
+public class SortSamplesBySourceMaterialType
+    extends SortSamplesByMicroarrayField {
 
   /**
    * Instantiates a new sort samples by source material type.

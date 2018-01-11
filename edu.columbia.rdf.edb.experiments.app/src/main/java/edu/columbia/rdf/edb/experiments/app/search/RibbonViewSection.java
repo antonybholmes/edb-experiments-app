@@ -35,7 +35,8 @@ import org.jebtk.modern.view.ViewModel;
  * @author Antony Holmes Holmes
  *
  */
-public class RibbonViewSection extends RibbonSection implements ModernClickListener {
+public class RibbonViewSection extends RibbonSection
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -58,10 +59,8 @@ public class RibbonViewSection extends RibbonSection implements ModernClickListe
   /**
    * Instantiates a new ribbon view section.
    *
-   * @param ribbon
-   *          the ribbon
-   * @param viewModel
-   *          the view model
+   * @param ribbon the ribbon
+   * @param viewModel the view model
    */
   public RibbonViewSection(Ribbon ribbon, ViewModel viewModel) {
     super(ribbon, "View");
@@ -82,7 +81,8 @@ public class RibbonViewSection extends RibbonSection implements ModernClickListe
     tilesButton.setToolTip("Tiles", "Display items as tiles.", mRibbon);
     tilesButton.addClickListener(this);
 
-    detailsButton.setToolTip("Details", "Display items in a detailed list.", mRibbon);
+    detailsButton
+        .setToolTip("Details", "Display items in a detailed list.", mRibbon);
     detailsButton.addClickListener(this);
 
     ModernButtonGroup group = new ModernButtonGroup();
@@ -97,8 +97,7 @@ public class RibbonViewSection extends RibbonSection implements ModernClickListe
   /**
    * Enabled or disable all the controls on the panel.
    *
-   * @param enabled
-   *          the new enabled
+   * @param enabled the new enabled
    */
   @Override
   public final void setEnabled(boolean enabled) {
@@ -110,9 +109,8 @@ public class RibbonViewSection extends RibbonSection implements ModernClickListe
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {

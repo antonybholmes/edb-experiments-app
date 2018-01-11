@@ -32,8 +32,7 @@ public class SummaryTextField extends ModernClipboardTextField {
   /**
    * Instantiates a new summary text field.
    *
-   * @param text
-   *          the text
+   * @param text the text
    */
   public SummaryTextField(String text) {
     super(text);

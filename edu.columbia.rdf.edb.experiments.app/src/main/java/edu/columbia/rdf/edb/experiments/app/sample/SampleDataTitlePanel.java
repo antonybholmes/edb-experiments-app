@@ -32,8 +32,7 @@ public class SampleDataTitlePanel extends ModernWidget {
   /**
    * Instantiates a new sample data title panel.
    *
-   * @param text
-   *          the text
+   * @param text the text
    */
   public SampleDataTitlePanel(String text) {
 

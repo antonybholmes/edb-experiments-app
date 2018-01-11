@@ -34,7 +34,8 @@ import org.jebtk.modern.widget.tooltip.ModernToolTipModel;
  * @author Antony Holmes Holmes
  *
  */
-public class RibbonShowSection extends RibbonSection implements ModernClickListener {
+public class RibbonShowSection extends RibbonSection
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -51,34 +52,36 @@ public class RibbonShowSection extends RibbonSection implements ModernClickListe
   /**
    * Instantiates a new ribbon show section.
    *
-   * @param ribbon
-   *          the ribbon
-   * @param tooltipModel
-   *          the tooltip model
+   * @param ribbon the ribbon
+   * @param tooltipModel the tooltip model
    */
   public RibbonShowSection(Ribbon ribbon, ModernToolTipModel tooltipModel) {
     super(ribbon, "Show");
 
-    experimentsButton = new RibbonLargeButton("Folders", new Raster32Icon(new ExperimentsPane32VectorIcon()));
+    experimentsButton = new RibbonLargeButton("Folders",
+        new Raster32Icon(new ExperimentsPane32VectorIcon()));
     // Ui.setSize(experimentsButton,
     // ModernTheme.getInstance().getClass("ribbon-large-button").getDimension("extra-wide"));
-    experimentsButton.setToolTip(new ModernToolTip("Show Folders Pane", "Display the folders in a tree."),
-        tooltipModel);
+    experimentsButton.setToolTip(new ModernToolTip("Show Folders Pane",
+        "Display the folders in a tree."), tooltipModel);
     experimentsButton.setClickMessage("folders_pane");
     experimentsButton.addClickListener(this);
     add(experimentsButton);
 
-    categoriesButton = new RibbonLargeButton("Categories", new Raster32Icon(new CategoryPane32VectorIcon()));
+    categoriesButton = new RibbonLargeButton("Categories",
+        new Raster32Icon(new CategoryPane32VectorIcon()));
     categoriesButton.addClickListener(this);
-    categoriesButton.setToolTip(new ModernToolTip("Show Categories Pane", "Display the category directory."),
-        tooltipModel);
+    categoriesButton.setToolTip(new ModernToolTip("Show Categories Pane",
+        "Display the category directory."), tooltipModel);
     categoriesButton.setClickMessage("categories_pane");
     // Ui.setSize(categoriesButton,
     // ModernTheme.getInstance().getClass("ribbon-large-button").getDimension("extra-wide"));
     add(categoriesButton);
 
-    summaryButton = new RibbonLargeButton("Summary", new Raster32Icon(new Summary32VectorIcon()));
-    summaryButton.setToolTip(new ModernToolTip("Show Summary Pane", "Display the experiment summary."), tooltipModel);
+    summaryButton = new RibbonLargeButton("Summary",
+        new Raster32Icon(new Summary32VectorIcon()));
+    summaryButton.setToolTip(new ModernToolTip("Show Summary Pane",
+        "Display the experiment summary."), tooltipModel);
     // Ui.setSize(summaryButton,
     // ModernTheme.getInstance().getClass("ribbon-large-button").getDimension("wide"));
     summaryButton.setClickMessage("summary_pane");
@@ -89,9 +92,8 @@ public class RibbonShowSection extends RibbonSection implements ModernClickListe
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public void clicked(ModernClickEvent e) {
     this.fireClicked(new ModernClickEvent(this, e.getMessage()));

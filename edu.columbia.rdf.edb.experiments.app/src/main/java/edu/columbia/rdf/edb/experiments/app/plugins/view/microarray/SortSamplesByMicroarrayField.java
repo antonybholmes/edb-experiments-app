@@ -29,8 +29,7 @@ public abstract class SortSamplesByMicroarrayField extends SortSamplesByTag {
   /**
    * Instantiates a new sort samples by microarray field.
    *
-   * @param levels
-   *          the levels
+   * @param levels the levels
    */
   public SortSamplesByMicroarrayField(Object... levels) {
     super(new RootPath(NormalizationDialog.MICROARRAY_EXPRESSION_DATA, levels));

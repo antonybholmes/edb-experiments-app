@@ -30,10 +30,8 @@ public class GEOUrlLinkButton extends PersonButton {
   /**
    * Instantiates a new GEO url link button.
    *
-   * @param accession
-   *          the accession
-   * @throws MalformedURLException
-   *           the malformed URL exception
+   * @param accession the accession
+   * @throws MalformedURLException the malformed URL exception
    */
   public GEOUrlLinkButton(String accession) throws MalformedURLException {
     this(accession, accession);
@@ -42,14 +40,13 @@ public class GEOUrlLinkButton extends PersonButton {
   /**
    * Instantiates a new GEO url link button.
    *
-   * @param title
-   *          the title
-   * @param accession
-   *          the accession
-   * @throws MalformedURLException
-   *           the malformed URL exception
+   * @param title the title
+   * @param accession the accession
+   * @throws MalformedURLException the malformed URL exception
    */
-  public GEOUrlLinkButton(String title, String accession) throws MalformedURLException {
-    super(title, new URL("http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" + accession));
+  public GEOUrlLinkButton(String title, String accession)
+      throws MalformedURLException {
+    super(title, new URL(
+        "http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=" + accession));
   }
 }

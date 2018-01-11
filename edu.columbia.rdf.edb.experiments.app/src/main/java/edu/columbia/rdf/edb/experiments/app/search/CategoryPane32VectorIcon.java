@@ -36,7 +36,12 @@ public class CategoryPane32VectorIcon extends Window32VectorIcon {
    * Graphics2D, int, int, int, int)
    */
   @Override
-  public void drawIcon(Graphics2D g2, int x, int y, int w, int h, Object... params) {
+  public void drawIcon(Graphics2D g2,
+      int x,
+      int y,
+      int w,
+      int h,
+      Object... params) {
     super.drawIcon(g2, x, y, w, h, params);
 
     x = x + (w - WIDTH) / 2 + 2;
@@ -74,7 +79,10 @@ public class CategoryPane32VectorIcon extends Window32VectorIcon {
     x2 = x + PANE_WIDTH_1 + 2;
     y1 = y + 2;
 
-    g2.drawLine(x + 2 * PANE_WIDTH_1 + 1, y, x + 2 * PANE_WIDTH_1 + 1, y + HEIGHT - 6);
+    g2.drawLine(x + 2 * PANE_WIDTH_1 + 1,
+        y,
+        x + 2 * PANE_WIDTH_1 + 1,
+        y + HEIGHT - 6);
 
     y1 += 2;
 

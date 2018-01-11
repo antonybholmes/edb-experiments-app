@@ -52,7 +52,8 @@ public class FilesListViewCellRenderer extends ModernDataCellRenderer {
   private static final ModernIcon FILE_ICON = new FileVectorIcon();
 
   /** The Constant DIR_ICON. */
-  private static final ModernIcon DIR_ICON = UIService.getInstance().loadIcon(FolderVectorIcon.class, 32);
+  private static final ModernIcon DIR_ICON = UIService.getInstance()
+      .loadIcon(FolderVectorIcon.class, 32);
 
   /** The m text. */
   private String mText;
@@ -63,7 +64,8 @@ public class FilesListViewCellRenderer extends ModernDataCellRenderer {
   /*
    * (non-Javadoc)
    * 
-   * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
+   * @see
+   * org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
    */
   @Override
   public void drawForegroundAAText(Graphics2D g2) {
@@ -82,8 +84,13 @@ public class FilesListViewCellRenderer extends ModernDataCellRenderer {
    * getCellRendererComponent(org.abh.lib.ui.modern.dataview.ModernData,
    * java.lang.Object, boolean, boolean, boolean, int, int)
    */
-  public Component getCellRendererComponent(ModernData table, Object value, boolean highlight, boolean isSelected,
-      boolean hasFocus, int row, int column) {
+  public Component getCellRendererComponent(ModernData table,
+      Object value,
+      boolean highlight,
+      boolean isSelected,
+      boolean hasFocus,
+      int row,
+      int column) {
 
     mText = value.toString();
 
@@ -93,6 +100,12 @@ public class FilesListViewCellRenderer extends ModernDataCellRenderer {
       mIcon = FILE_ICON;
     }
 
-    return super.getCellRendererComponent(table, value, highlight, isSelected, hasFocus, row, column);
+    return super.getCellRendererComponent(table,
+        value,
+        highlight,
+        isSelected,
+        hasFocus,
+        row,
+        column);
   }
 }

@@ -34,7 +34,8 @@ import edu.columbia.rdf.edb.ui.DataViewXmlHandler;
  */
 public class RnaSeqDataView extends DataView {
 
-  private static final java.nio.file.Path VIEW_FILE = PathUtils.getPath("res/views/rna_seq.xml");
+  private static final java.nio.file.Path VIEW_FILE = PathUtils
+      .getPath("res/views/rna_seq.xml");
 
   /**
    * Instantiates a new rna seq data view.
@@ -49,12 +50,13 @@ public class RnaSeqDataView extends DataView {
     }
 
     /*
-     * DataViewSection section = new DataViewSection("Sample"); section.addField(new
-     * DataViewField(new Path("/RNA-seq/Sample/Seq_Id"), "Sequence Id"));
-     * section.addField(new DataViewField(new Path("/Sample/Organism"),
-     * "Organism")); section.addField(new DataViewField(new
-     * Path("/RNA-seq/Sample/Genome"), "Genome")); section.addField(new
-     * DataViewField(new Path("/RNA-seq/Sample/Read_Length"), "Read Length"));
+     * DataViewSection section = new DataViewSection("Sample");
+     * section.addField(new DataViewField(new Path("/RNA-seq/Sample/Seq_Id"),
+     * "Sequence Id")); section.addField(new DataViewField(new
+     * Path("/Sample/Organism"), "Organism")); section.addField(new
+     * DataViewField(new Path("/RNA-seq/Sample/Genome"), "Genome"));
+     * section.addField(new DataViewField(new
+     * Path("/RNA-seq/Sample/Read_Length"), "Read Length"));
      * 
      * addSection(section);
      */

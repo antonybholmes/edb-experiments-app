@@ -48,13 +48,15 @@ import edu.columbia.rdf.edb.Sample;
  * @author Antony Holmes Holmes
  *
  */
-public class SampleViewRibbonSection extends RibbonSection implements ModernClickListener {
+public class SampleViewRibbonSection extends RibbonSection
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The Constant SIZE. */
-  private static final Dimension SIZE = new Dimension(120, ModernWidget.WIDGET_HEIGHT);
+  private static final Dimension SIZE = new Dimension(120,
+      ModernWidget.WIDGET_HEIGHT);
 
   /** The m button sort map. */
   private Map<String, ModernClickWidget> mButtonSortMap = new HashMap<String, ModernClickWidget>();
@@ -70,24 +72,24 @@ public class SampleViewRibbonSection extends RibbonSection implements ModernClic
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+     * ChangeEvent)
      */
     @Override
     public void changed(ChangeEvent e) {
-      mButtonSortMap.get(mSampleViewModel.getSorter().getName()).setSelected(true);
+      mButtonSortMap.get(mSampleViewModel.getSorter().getName())
+          .setSelected(true);
     }
   }
 
   /**
    * Instantiates a new sample view ribbon section.
    *
-   * @param ribbon
-   *          the ribbon
-   * @param sampleViewModel
-   *          the sample view model
+   * @param ribbon the ribbon
+   * @param sampleViewModel the sample view model
    */
-  public SampleViewRibbonSection(Ribbon ribbon, SampleViewModel sampleViewModel) {
+  public SampleViewRibbonSection(Ribbon ribbon,
+      SampleViewModel sampleViewModel) {
     super(ribbon, "Folders");
 
     mSampleViewModel = sampleViewModel;
@@ -108,7 +110,8 @@ public class SampleViewRibbonSection extends RibbonSection implements ModernClic
 
     // Dimension dim = new Dimension(70, Ribbon.LARGE_BUTTON_HEIGHT);
 
-    // List<String> tokens = TextUtils.fastSplit(sortModel.getDefault().getName(),
+    // List<String> tokens =
+    // TextUtils.fastSplit(sortModel.getDefault().getName(),
     // TextUtils.SPACE_DELIMITER);
 
     ModernClickWidget sortCheckBox;
@@ -141,7 +144,8 @@ public class SampleViewRibbonSection extends RibbonSection implements ModernClic
         add(box);
       }
 
-      sortCheckBox = new ModernCheckButton(name, UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
+      sortCheckBox = new ModernCheckButton(name,
+          UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
       UI.setSize(sortCheckBox, SIZE);
       group.add(sortCheckBox);
       sortCheckBox.addClickListener(this);
@@ -156,9 +160,8 @@ public class SampleViewRibbonSection extends RibbonSection implements ModernClic
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   public void clicked(ModernClickEvent e) {
     // if (e.getSource().equals(sortAscendButton)) {

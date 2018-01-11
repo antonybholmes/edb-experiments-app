@@ -45,7 +45,6 @@ import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.status.StatusModel;
 import org.jebtk.modern.window.ModernWindow;
-import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +56,7 @@ import edu.columbia.rdf.edb.ui.FileDownloader;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
 import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
+import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -71,7 +71,8 @@ public class MicroarrayExpressionData {
   public static final File MAS5_FILE = new File("expression.mas5");
 
   /** The Constant LOG. */
-  private static final Logger LOG = LoggerFactory.getLogger(MicroarrayExpressionData.class);
+  private static final Logger LOG = LoggerFactory
+      .getLogger(MicroarrayExpressionData.class);
 
   /*
    * private class ShowSamples implements Runnable {
@@ -99,10 +100,8 @@ public class MicroarrayExpressionData {
     /**
      * Instantiates a new plot samples.
      *
-     * @param allSamplesFile
-     *          the all samples file
-     * @param platform
-     *          the platform
+     * @param allSamplesFile the all samples file
+     * @param platform the platform
      */
     public PlotSamples(Path allSamplesFile, String platform) {
       mFile = allSamplesFile;
@@ -126,42 +125,42 @@ public class MicroarrayExpressionData {
   /**
    * Shows the expression data.
    *
-   * @param parent
-   *          the parent
-   * @param samples
-   *          the samples
-   * @param type
-   *          the type
-   * @param columns
-   *          the columns
-   * @param columnAnnotations
-   *          the column annotations
-   * @param checkIfFileExists
-   *          the check if file exists
-   * @param statusModel
-   *          the status model
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @param parent the parent
+   * @param samples the samples
+   * @param type the type
+   * @param columns the columns
+   * @param columnAnnotations the column annotations
+   * @param checkIfFileExists the check if file exists
+   * @param statusModel the status model
+   * @throws NetworkFileException the network file exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  public void showTables(ModernWindow parent, Collection<Sample> samples, MicroarrayNormalizationType type,
-      List<Boolean> columns, List<DataViewField> columnAnnotations, boolean checkIfFileExists, StatusModel statusModel)
+  public void showTables(ModernWindow parent,
+      Collection<Sample> samples,
+      MicroarrayNormalizationType type,
+      List<Boolean> columns,
+      List<DataViewField> columnAnnotations,
+      boolean checkIfFileExists,
+      StatusModel statusModel)
       throws NetworkFileException, IOException, ParseException {
 
     // Create a set of pseudo experiments to store samples
 
-    Map<String, Set<Sample>> samplesGroupedByArray = Sample.sortByArrayDesign(samples);
+    Map<String, Set<Sample>> samplesGroupedByArray = Sample
+        .sortByArrayDesign(samples);
 
     boolean areDifferentExperiments = samplesGroupedByArray.size() > 1;
 
     if (areDifferentExperiments) {
-      String types = TextUtils.listAsSentence(CollectionUtils.sort(samplesGroupedByArray.keySet()));
+      String types = TextUtils
+          .listAsSentence(CollectionUtils.sort(samplesGroupedByArray.keySet()));
 
-      ModernDialogStatus status = ModernMessageDialog.createDialog(parent, parent.getAppInfo().getName(),
-          MessageDialogType.WARNING_OK_CANCEL, "You have selected samples on arrays:", types,
+      ModernDialogStatus status = ModernMessageDialog.createDialog(parent,
+          parent.getAppInfo().getName(),
+          MessageDialogType.WARNING_OK_CANCEL,
+          "You have selected samples on arrays:",
+          types,
           "Are you sure you want to group them?");
 
       if (status == ModernDialogStatus.CANCEL) {
@@ -171,41 +170,42 @@ public class MicroarrayExpressionData {
 
     /*
      * for threading ExpressionDataTask expressionTask = new
-     * ExpressionDataTask(parent, experiments, samplesGroupedByArray, type, columns,
-     * columnAnnotations, checkIfFileExists, statusModel);
+     * ExpressionDataTask(parent, experiments, samplesGroupedByArray, type,
+     * columns, columnAnnotations, checkIfFileExists, statusModel);
      * 
      * expressionTask.execute();
      */
 
-    download(parent, samplesGroupedByArray, type, columns, columnAnnotations, checkIfFileExists, statusModel);
+    download(parent,
+        samplesGroupedByArray,
+        type,
+        columns,
+        columnAnnotations,
+        checkIfFileExists,
+        statusModel);
   }
 
   /**
    * Download and merge samples.
    *
-   * @param parent
-   *          the parent
-   * @param samplesGroupedByArray
-   *          the samples grouped by array
-   * @param type
-   *          the type
-   * @param columns
-   *          the columns
-   * @param columnAnnotations
-   *          the column annotations
-   * @param checkIfFileExists
-   *          the check if file exists
-   * @param statusModel
-   *          the status model
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws ParseException
-   *           the parse exception
+   * @param parent the parent
+   * @param samplesGroupedByArray the samples grouped by array
+   * @param type the type
+   * @param columns the columns
+   * @param columnAnnotations the column annotations
+   * @param checkIfFileExists the check if file exists
+   * @param statusModel the status model
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws NetworkFileException the network file exception
+   * @throws ParseException the parse exception
    */
-  public void download(Frame parent, Map<String, Set<Sample>> samplesGroupedByArray, MicroarrayNormalizationType type,
-      List<Boolean> columns, List<DataViewField> columnAnnotations, boolean checkIfFileExists, StatusModel statusModel)
+  public void download(Frame parent,
+      Map<String, Set<Sample>> samplesGroupedByArray,
+      MicroarrayNormalizationType type,
+      List<Boolean> columns,
+      List<DataViewField> columnAnnotations,
+      boolean checkIfFileExists,
+      StatusModel statusModel)
       throws IOException, NetworkFileException, ParseException {
 
     //
@@ -216,7 +216,10 @@ public class MicroarrayExpressionData {
 
     for (String arrayDesign : samplesGroupedByArray.keySet()) {
       for (Sample sample : samplesGroupedByArray.get(arrayDesign)) {
-        Path localFile = downloadExpressionData(sample, type, checkIfFileExists, statusModel);
+        Path localFile = downloadExpressionData(sample,
+            type,
+            checkIfFileExists,
+            statusModel);
 
         sampleFiles.put(sample, localFile);
       }
@@ -226,7 +229,10 @@ public class MicroarrayExpressionData {
     // Now lets merge all of the experiment data together
     //
 
-    Path allSamplesFile = pasteFiles(sampleFiles, columns, columnAnnotations, statusModel);
+    Path allSamplesFile = pasteFiles(sampleFiles,
+        columns,
+        columnAnnotations,
+        statusModel);
 
     // If the first column is set to true and the others are false, this
     // means only the signal is required. In that case we can load the
@@ -265,19 +271,16 @@ public class MicroarrayExpressionData {
   /**
    * Takes a list of files and pastes them together.
    *
-   * @param sampleFileMap
-   *          the sample file map
-   * @param columns
-   *          the columns
-   * @param columnAnnotations
-   *          the column annotations
-   * @param statusModel
-   *          the status model
+   * @param sampleFileMap the sample file map
+   * @param columns the columns
+   * @param columnAnnotations the column annotations
+   * @param statusModel the status model
    * @return the path
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  private Path pasteFiles(Map<Sample, Path> sampleFileMap, List<Boolean> columns, List<DataViewField> columnAnnotations,
+  private Path pasteFiles(Map<Sample, Path> sampleFileMap,
+      List<Boolean> columns,
+      List<DataViewField> columnAnnotations,
       StatusModel statusModel) throws IOException {
     LOG.info("Merging expression data...");
 
@@ -361,7 +364,8 @@ public class MicroarrayExpressionData {
     LOG.info("Building common annotations...");
 
     // We allow for repeating probe ids where the gene annotation is different
-    Map<String, List<String>> annotationMap = DefaultHashMap.create(new ArrayListCreator<String>());
+    Map<String, List<String>> annotationMap = DefaultHashMap
+        .create(new ArrayListCreator<String>());
 
     // Since all the files have the same annotation, use the first
     reader = FileUtils.newBufferedReader(sampleFileMap.get(samples.get(0)));
@@ -387,13 +391,15 @@ public class MicroarrayExpressionData {
           continue;
         }
 
-        // The first three columns are annotation (probe, entrez, gene symbol) so
+        // The first three columns are annotation (probe, entrez, gene symbol)
+        // so
         // we store them with the probe since this doesn't change regardless
         // of the number of samples
 
         // Since there can be multiple gene annotations for a given probe,
         // we store all of them
-        annotationMap.get(probe).add(TextUtils.tabJoin(CollectionUtils.head(tokens, 3)));
+        annotationMap.get(probe)
+            .add(TextUtils.tabJoin(CollectionUtils.head(tokens, 3)));
       }
     } finally {
       reader.close();
@@ -417,7 +423,8 @@ public class MicroarrayExpressionData {
 
     List<String> tokens;
 
-    // System.err.println("Writing to " + tempFile1 + " " + commonProbesList.size()
+    // System.err.println("Writing to " + tempFile1 + " " +
+    // commonProbesList.size()
     // + " " + samples.size());
 
     try {
@@ -466,7 +473,8 @@ public class MicroarrayExpressionData {
             }
 
             if (v.size() > 0) {
-              header += " " + TextUtils.parenthesis(TextUtils.join(v, TextUtils.COMMA_DELIMITER));
+              header += " " + TextUtils
+                  .parenthesis(TextUtils.join(v, TextUtils.COMMA_DELIMITER));
             }
           }
 
@@ -506,9 +514,12 @@ public class MicroarrayExpressionData {
 
               tokens = TextUtils.tabSplit(line);
 
-              // System.err.println(tokens.get(0) + " " + probe + " " + annotation + " " +
-              // samples.get(0).getName() + " " + samples.get(1).getName() + " " +
-              // commonProbesList.size() + " " + annotationMap.get(probe).size());
+              // System.err.println(tokens.get(0) + " " + probe + " " +
+              // annotation + " " +
+              // samples.get(0).getName() + " " + samples.get(1).getName() + " "
+              // +
+              // commonProbesList.size() + " " +
+              // annotationMap.get(probe).size());
 
               if (tokens.get(0).equals(probe)) {
                 break;
@@ -572,24 +583,27 @@ public class MicroarrayExpressionData {
      * 
      * tokens = TextUtils.fastSplit(line, TextUtils.TAB_DELIMITER);
      * 
-     * // don't need the id column as this is duplicated in // every expression file
-     * tokens = ArrayUtils.subList(tokens, 1);
+     * // don't need the id column as this is duplicated in // every expression
+     * file tokens = ArrayUtils.subList(tokens, 1);
      * 
      * for (int c = 0; c < tokens.size(); ++c) { if (!columns.get(c %
      * columns.size())) { continue; }
      * 
-     * String h = tokens.get(c).replace(".rma-Signal", "").replace(".mas5-Signal",
-     * "");
+     * String h = tokens.get(c).replace(".rma-Signal",
+     * "").replace(".mas5-Signal", "");
      * 
      * //header.add(h);
      * 
-     * if (columnAnnotations != null) { List<String> v = new ArrayList<String>();
+     * if (columnAnnotations != null) { List<String> v = new
+     * ArrayList<String>();
      * 
-     * for (DataViewField a : columnAnnotations) { // TODO check if getName correct
-     * v.add(sample.getSection(a.getSection().getType()).getField(a.getName())); }
+     * for (DataViewField a : columnAnnotations) { // TODO check if getName
+     * correct
+     * v.add(sample.getSection(a.getSection().getType()).getField(a.getName()));
+     * }
      * 
-     * if (v.size() > 0) { h += " (" + TextUtils.join(v, TextUtils.COMMA_DELIMITER)
-     * + ")"; } }
+     * if (v.size() > 0) { h += " (" + TextUtils.join(v,
+     * TextUtils.COMMA_DELIMITER) + ")"; } }
      * 
      * header.add(h); }
      * 
@@ -614,28 +628,29 @@ public class MicroarrayExpressionData {
      * // store the probe probeText.put(probe, TextUtils.join(printColumns,
      * TextUtils.TAB_DELIMITER)); } } finally { reader.close(); }
      * 
-     * // for this particular file we can now write it out // by concatenating it
-     * with the temp file
+     * // for this particular file we can now write it out // by concatenating
+     * it with the temp file
      * 
      * // first the header
      * 
-     * System.err.println("header " + header.toString() + " " + tempFile1 + " " +
-     * commonProbes.size());
+     * System.err.println("header " + header.toString() + " " + tempFile1 + " "
+     * + commonProbes.size());
      * 
      * reader = new BufferedReader(new FileReader(tempFile1)); writer = new
      * BufferedWriter(new FileWriter(tempFile2));
      * 
      * try { //writer.write(reader.readLine());
-     * //writer.write(TextUtils.TAB_DELIMITER); //System.err.println("headers " +
-     * header);
+     * //writer.write(TextUtils.TAB_DELIMITER); //System.err.println("headers "
+     * + header);
      * 
      * //writer.write(TextUtils.join(header, TextUtils.TAB_DELIMITER));
      * //writer.newLine();
      * 
-     * // now the probes. Since the temp file is in order // of common probes, we
-     * simply write it out in order
+     * // now the probes. Since the temp file is in order // of common probes,
+     * we simply write it out in order
      * 
-     * for (String probe : commonProbes) { //System.err.println("probe " + probe);
+     * for (String probe : commonProbes) { //System.err.println("probe " +
+     * probe);
      * 
      * writer.write(reader.readLine()); writer.write(TextUtils.TAB_DELIMITER);
      * writer.write(probeText.get(probe)); writer.newLine(); } } finally {
@@ -686,11 +701,15 @@ public class MicroarrayExpressionData {
      * writer.write(TextUtils.TAB_DELIMITER);
      * writer.write(Integer.toString(header.size())); writer.newLine();
      * 
-     * // text rows (row annotation) writer.write(DataMatrix.EST_ANNOTATION_GROUPS);
-     * writer.write(TextUtils.TAB_DELIMITER); writer.write("0"); writer.newLine();
+     * // text rows (row annotation)
+     * writer.write(DataMatrix.EST_ANNOTATION_GROUPS);
+     * writer.write(TextUtils.TAB_DELIMITER); writer.write("0");
+     * writer.newLine();
      * 
-     * // text rows (row annotation) writer.write(DataMatrix.EST_ANNOTATION_ROWS);
-     * writer.write(TextUtils.TAB_DELIMITER); writer.write("0"); writer.newLine();
+     * // text rows (row annotation)
+     * writer.write(DataMatrix.EST_ANNOTATION_ROWS);
+     * writer.write(TextUtils.TAB_DELIMITER); writer.write("0");
+     * writer.newLine();
      * 
      * // text rows (row annotation)
      * writer.write(DataMatrix.EST_ANNOTATION_COLUMNS);
@@ -702,19 +721,20 @@ public class MicroarrayExpressionData {
      * writer.write(TextUtils.TAB_DELIMITER);
      * 
      * for (DataViewField a : columnAnnotations) {
-     * writer.write(TextUtils.TAB_DELIMITER); writer.write(a.getDisplayName()); } }
-     * else { writer.write("0"); }
+     * writer.write(TextUtils.TAB_DELIMITER); writer.write(a.getDisplayName());
+     * } } else { writer.write("0"); }
      * 
      * writer.newLine();
      * 
      * // Now the column annotations
      * 
-     * writer.write(DataMatrix.ROW_NAMES); writer.write(TextUtils.TAB_DELIMITER);
+     * writer.write(DataMatrix.ROW_NAMES);
+     * writer.write(TextUtils.TAB_DELIMITER);
      * writer.write(TextUtils.join(header, TextUtils.TAB_DELIMITER));
      * writer.newLine();
      * 
-     * // additional annotations if (columnAnnotations != null) { for (DataViewField
-     * a : columnAnnotations) { // to account for the probe id
+     * // additional annotations if (columnAnnotations != null) { for
+     * (DataViewField a : columnAnnotations) { // to account for the probe id
      * //writer.write(Text.TAB_DELIMITER);
      * 
      * for (Sample sample : readers.keySet()) {
@@ -723,8 +743,8 @@ public class MicroarrayExpressionData {
      * 
      * writer.newLine(); } }
      * 
-     * // copy all of the lines as is while ((line = reader.readLine()) != null) {
-     * writer.write(line); writer.newLine(); } } finally { reader.close();
+     * // copy all of the lines as is while ((line = reader.readLine()) != null)
+     * { writer.write(line); writer.newLine(); } } finally { reader.close();
      * writer.close(); }
      * 
      * Io.delete(tempFile1);
@@ -739,8 +759,7 @@ public class MicroarrayExpressionData {
    * Formats a sample name to match a file name to remove inconsistencies in the
    * way files are named and the way samples are named.
    *
-   * @param name
-   *          the name
+   * @param name the name
    * @return the string
    */
   public final String convertSampleNameToFilename(String name) {
@@ -757,28 +776,24 @@ public class MicroarrayExpressionData {
   /**
    * Download a file associated with a given sample.
    *
-   * @param sample
-   *          the sample
-   * @param type
-   *          the type
-   * @param checkExists
-   *          the check exists
-   * @param statusModel
-   *          the status model
+   * @param sample the sample
+   * @param type the type
+   * @param checkExists the check exists
+   * @param statusModel the status model
    * @return the path
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @throws NetworkFileException the network file exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  private final Path downloadExpressionData(Sample sample, MicroarrayNormalizationType type, boolean checkExists,
-      StatusModel statusModel) throws NetworkFileException, IOException, ParseException {
+  private final Path downloadExpressionData(Sample sample,
+      MicroarrayNormalizationType type,
+      boolean checkExists,
+      StatusModel statusModel)
+      throws NetworkFileException, IOException, ParseException {
     LOG.info("Downloading expression data for sample {} ...", sample.getName());
 
-    FileDownloader downloader = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP)
-        .getFileDownloader();
+    FileDownloader downloader = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP).getFileDownloader();
 
     FileDescriptor arrayFile = getRemoteExpressionFile(sample, type);
 
@@ -793,17 +808,14 @@ public class MicroarrayExpressionData {
    * For a given sample, returns the file accessor for its expression file in
    * either MAS5 or RMA form.
    *
-   * @param sample
-   *          the sample
-   * @param normalisationType
-   *          the normalisation type
+   * @param sample the sample
+   * @param normalisationType the normalisation type
    * @return the remote expression file
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  private final FileDescriptor getRemoteExpressionFile(Sample sample, MicroarrayNormalizationType normalisationType)
+  private final FileDescriptor getRemoteExpressionFile(Sample sample,
+      MicroarrayNormalizationType normalisationType)
       throws IOException, ParseException {
 
     String type;
@@ -814,7 +826,8 @@ public class MicroarrayExpressionData {
       type = DownloadManager.MAS5;
     }
 
-    Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+    Repository repository = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP);
 
     for (FileDescriptor f : repository.getSampleFiles(sample)) {
       if (f.getExt().equals(type)) {

@@ -42,7 +42,10 @@ public class ViewSamplesByOrganism extends SampleView {
    * org.abh.common.ui.tree.ModernTree, boolean,
    * org.abh.common.ui.search.FilterModel)
    */
-  public void arrange(Collection<Sample> samples, ModernTree<Sample> tree, boolean ascending, FilterModel filterModel) {
+  public void arrange(Collection<Sample> samples,
+      ModernTree<Sample> tree,
+      boolean ascending,
+      FilterModel filterModel) {
     Map<String, List<Sample>> map = ArrayListMultiMap.create();
 
     for (Sample sample : samples) {

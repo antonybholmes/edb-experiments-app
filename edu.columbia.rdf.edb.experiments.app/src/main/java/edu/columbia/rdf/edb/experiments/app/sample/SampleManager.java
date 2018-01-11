@@ -46,17 +46,14 @@ public class SampleManager {
   /**
    * Export.
    *
-   * @param parent
-   *          the parent
-   * @param sample
-   *          the sample
-   * @param view
-   *          the view
+   * @param parent the parent
+   * @param sample the sample
+   * @param view the view
    * @return the path
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static Path export(ModernWindow parent, Sample sample, DataView view) throws IOException {
+  public static Path export(ModernWindow parent, Sample sample, DataView view)
+      throws IOException {
     List<Sample> samples = new ArrayList<Sample>();
 
     samples.add(sample);
@@ -67,21 +64,21 @@ public class SampleManager {
   /**
    * Export.
    *
-   * @param parent
-   *          the parent
-   * @param samples
-   *          the samples
-   * @param view
-   *          the view
+   * @param parent the parent
+   * @param samples the samples
+   * @param view the view
    * @return the path
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  public final static Path export(ModernWindow parent, List<Sample> samples, DataView view) throws IOException {
+  public final static Path export(ModernWindow parent,
+      List<Sample> samples,
+      DataView view) throws IOException {
 
     if (samples == null || samples.size() == 0) {
-      ModernMessageDialog.createDialog(parent, parent.getAppInfo().getName(),
-          "You must select at least one sample to export.", MessageDialogType.WARNING);
+      ModernMessageDialog.createDialog(parent,
+          parent.getAppInfo().getName(),
+          "You must select at least one sample to export.",
+          MessageDialogType.WARNING);
 
       return null;
     }
@@ -102,10 +99,12 @@ public class SampleManager {
       return null;
     }
 
-    java.nio.file.Path output = PathUtils.addExtension(fc.getSelectedFile().toPath(), "txt");
+    java.nio.file.Path output = PathUtils
+        .addExtension(fc.getSelectedFile().toPath(), "txt");
 
     if (FileUtils.exists(output)) {
-      ModernDialogStatus n = ModernMessageDialog.createFileReplaceDialog(parent, output);
+      ModernDialogStatus n = ModernMessageDialog.createFileReplaceDialog(parent,
+          output);
 
       if (n == ModernDialogStatus.CANCEL) {
         return export(parent, samples, view);
@@ -114,7 +113,8 @@ public class SampleManager {
 
     export(samples, view, output);
 
-    ModernMessageDialog.createFileSavedDialog(parent, parent.getAppInfo().getName(), output);
+    ModernMessageDialog
+        .createFileSavedDialog(parent, parent.getAppInfo().getName(), output);
 
     return output;
   }
@@ -122,16 +122,13 @@ public class SampleManager {
   /**
    * Export.
    *
-   * @param samples
-   *          the samples
-   * @param view
-   *          the view
-   * @param output
-   *          the output
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @param samples the samples
+   * @param view the view
+   * @param output the output
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static void export(List<Sample> samples, DataView view, Path output) throws IOException {
+  public static void export(List<Sample> samples, DataView view, Path output)
+      throws IOException {
     BufferedWriter out = FileUtils.newBufferedWriter(output);
 
     try {
@@ -215,8 +212,8 @@ public class SampleManager {
    * 
    * //Show it. int returnVal = fc.showDialog(parent, "Export");
    * 
-   * //Process the results. if (returnVal == JFileChooser.CANCEL_OPTION) { return
-   * null; }
+   * //Process the results. if (returnVal == JFileChooser.CANCEL_OPTION) {
+   * return null; }
    * 
    * File output = Io.addExtension(fc.getSelectedFile(), "txt");
    * 
@@ -251,12 +248,13 @@ public class SampleManager {
    * List<String> values = new ArrayList<String>();
    * 
    * for (ArrayDesign arrayDesign : experiment.getArrayDesigns()) {
-   * values.add(arrayDesign.getName() + " (" + arrayDesign.getProvider() + ")"); }
+   * values.add(arrayDesign.getName() + " (" + arrayDesign.getProvider() + ")");
+   * }
    * 
    * Collections.sort(values);
    * 
-   * out.write(TextUtils.join(values, TextUtils.COMMA_DELIMITER)); out.newLine();
-   * }
+   * out.write(TextUtils.join(values, TextUtils.COMMA_DELIMITER));
+   * out.newLine(); }
    * 
    * out.write("Organisms"); out.write(TextUtils.TAB_DELIMITER);
    * out.write(TextUtils.join(ArrayUtils.sort(experiment.getOrganisms()),

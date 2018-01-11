@@ -22,10 +22,6 @@ import java.util.Set;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import edu.columbia.rdf.htsview.chipseq.SortSamplesByCellType;
-import edu.columbia.rdf.htsview.chipseq.SortSamplesByClassification;
-import edu.columbia.rdf.htsview.chipseq.SortSamplesByGenome;
-import edu.columbia.rdf.htsview.chipseq.SortSamplesByTreatment;
 import org.jebtk.core.collections.IterMap;
 import org.jebtk.core.path.Path;
 import org.jebtk.modern.ModernComponent;
@@ -51,6 +47,10 @@ import edu.columbia.rdf.edb.ui.search.SearchCategoryGroup;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 import edu.columbia.rdf.htsview.app.HTSViewInfo;
 import edu.columbia.rdf.htsview.app.MainHtsView;
+import edu.columbia.rdf.htsview.chipseq.SortSamplesByCellType;
+import edu.columbia.rdf.htsview.chipseq.SortSamplesByClassification;
+import edu.columbia.rdf.htsview.chipseq.SortSamplesByGenome;
+import edu.columbia.rdf.htsview.chipseq.SortSamplesByTreatment;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -59,7 +59,8 @@ import edu.columbia.rdf.htsview.app.MainHtsView;
  * @author Antony Holmes Holmes
  *
  */
-public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener {
+public class ChipSeqViewPlugin extends ViewPlugin
+    implements ModernClickListener {
 
   /** The Constant CHIPSEQ. */
   public static final String CHIPSEQ = "ChIP-Seq";
@@ -74,8 +75,8 @@ public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener
   private Path mDisplayField2 = new Path("/ChIP-Seq/Sample/Treatment");
 
   /** The m view button. */
-  private RibbonLargeButton mViewButton = new RibbonLargeButton(new HTSViewInfo().getName(),
-      new HTSViewInfo().getIcon());
+  private RibbonLargeButton mViewButton = new RibbonLargeButton(
+      new HTSViewInfo().getName(), new HTSViewInfo().getIcon());
 
   /** The m parent. */
   private ModernRibbonWindow mParent;
@@ -89,8 +90,7 @@ public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener
   /**
    * Instantiates a new chip seq view plugin.
    *
-   * @param login
-   *          the login
+   * @param login the login
    */
   public ChipSeqViewPlugin(EDBWLogin login) {
     mLogin = login;
@@ -124,8 +124,8 @@ public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener
    * (non-Javadoc)
    * 
    * @see
-   * edu.columbia.rdf.edb.ui.ViewPlugin#initSampleSorters(org.abh.common.ui.search
-   * .SortModel)
+   * edu.columbia.rdf.edb.ui.ViewPlugin#initSampleSorters(org.abh.common.ui.
+   * search .SortModel)
    */
   @Override
   public void initSampleSorters(SortModel<Sample> sampleSortModel) {
@@ -145,7 +145,8 @@ public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener
   /*
    * (non-Javadoc)
    * 
-   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getSamplePanel(edu.columbia.rdf.edb.
+   * @see
+   * edu.columbia.rdf.edb.ui.ViewPlugin#getSamplePanel(edu.columbia.rdf.edb.
    * Sample)
    */
   @Override
@@ -162,24 +163,27 @@ public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener
    * org.abh.common.ui.SelectionModel)
    */
   @Override
-  public void init(ModernRibbonWindow parent, StatusModel statusModel, ModernToolTipModel toolTipModel,
+  public void init(ModernRibbonWindow parent,
+      StatusModel statusModel,
+      ModernToolTipModel toolTipModel,
       SelectionModel<Sample> selectedSamples) {
     mParent = parent;
     mSelectedSamples = selectedSamples;
 
-    parent.getRibbon().getHomeToolbar().getSection(getExpressionType()).add(mViewButton);
+    parent.getRibbon().getHomeToolbar().getSection(getExpressionType())
+        .add(mViewButton);
 
     mViewButton.setToolTip(
-        new ModernToolTip("View ChIP-seq data", "View ChIP-seq data for the currently selected samples."),
+        new ModernToolTip("View ChIP-seq data",
+            "View ChIP-seq data for the currently selected samples."),
         toolTipModel);
   }
 
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {
@@ -203,25 +207,21 @@ public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener
   /**
    * Show samples.
    *
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ServerException
-   *           the server exception
-   * @throws ClassNotFoundException
-   *           the class not found exception
-   * @throws ParseException
-   *           the parse exception
-   * @throws SAXException
-   *           the SAX exception
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ServerException the server exception
+   * @throws ClassNotFoundException the class not found exception
+   * @throws ParseException the parse exception
+   * @throws SAXException the SAX exception
+   * @throws ParserConfigurationException the parser configuration exception
    */
-  private void showSamples() throws IOException, ServerException, ClassNotFoundException, ParseException, SAXException,
-      ParserConfigurationException {
+  private void showSamples()
+      throws IOException, ServerException, ClassNotFoundException,
+      ParseException, SAXException, ParserConfigurationException {
     List<Sample> samples = mSelectedSamples.getItems();
 
     if (samples.size() == 0) {
-      ModernMessageDialog.createWarningDialog(mParent, "You must select at least one sample.");
+      ModernMessageDialog.createWarningDialog(mParent,
+          "You must select at least one sample.");
 
       return;
     }
@@ -236,7 +236,8 @@ public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener
     }
 
     if (!correctType) {
-      ModernMessageDialog.createWarningDialog(mParent, "You can only view track data for ChIP-seq samples.");
+      ModernMessageDialog.createWarningDialog(mParent,
+          "You can only view track data for ChIP-seq samples.");
 
       return;
     }
@@ -263,19 +264,25 @@ public class ChipSeqViewPlugin extends ViewPlugin implements ModernClickListener
    * (non-Javadoc)
    * 
    * @see
-   * edu.columbia.rdf.edb.ui.ViewPlugin#initSearchCategories(edu.columbia.rdf.edb.
-   * ui.search.SearchCategoryService)
+   * edu.columbia.rdf.edb.ui.ViewPlugin#initSearchCategories(edu.columbia.rdf.
+   * edb. ui.search.SearchCategoryService)
    */
   @Override
-  public void initSearchCategories(SearchCategoryService searchCategoryService) {
+  public void initSearchCategories(
+      SearchCategoryService searchCategoryService) {
     SearchCategoryGroup group;
 
     group = new SearchCategoryGroup("ChIP-Seq");
-    group.addCategory(new SearchCategory("Sequence Id", new Path("/ChIP-Seq/Sample/Seq_Id")));
-    group.addCategory(new SearchCategory("Classification", new Path("/ChIP-Seq/Sample/Classification")));
-    group.addCategory(new SearchCategory("Cell Type", new Path("/ChIP-Seq/Sample/Cell_Type")));
-    group.addCategory(new SearchCategory("Treatment", new Path("/ChIP-Seq/Sample/Treatment")));
-    group.addCategory(new SearchCategory("Genome", new Path("/ChIP-Seq/Sample/Genome")));
+    group.addCategory(
+        new SearchCategory("Sequence Id", new Path("/ChIP-Seq/Sample/Seq_Id")));
+    group.addCategory(new SearchCategory("Classification",
+        new Path("/ChIP-Seq/Sample/Classification")));
+    group.addCategory(new SearchCategory("Cell Type",
+        new Path("/ChIP-Seq/Sample/Cell_Type")));
+    group.addCategory(new SearchCategory("Treatment",
+        new Path("/ChIP-Seq/Sample/Treatment")));
+    group.addCategory(
+        new SearchCategory("Genome", new Path("/ChIP-Seq/Sample/Genome")));
 
     searchCategoryService.addGroup(group);
   }

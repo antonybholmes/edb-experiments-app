@@ -32,8 +32,7 @@ public class SummaryTitleLabel extends ModernLabelBold {
   /**
    * Instantiates a new summary title label.
    *
-   * @param text
-   *          the text
+   * @param text the text
    */
   public SummaryTitleLabel(String text) {
     super(text);

@@ -19,7 +19,8 @@ package edu.columbia.rdf.edb.experiments.app.plugins.view.microarray;
 /**
  * The Class SortSamplesBySourceOrganismPart.
  */
-public class SortSamplesBySourceOrganismPart extends SortSamplesByMicroarrayField {
+public class SortSamplesBySourceOrganismPart
+    extends SortSamplesByMicroarrayField {
 
   /**
    * Instantiates a new sort samples by source organism part.

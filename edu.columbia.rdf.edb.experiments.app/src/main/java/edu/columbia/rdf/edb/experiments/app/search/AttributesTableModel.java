@@ -54,8 +54,7 @@ public class AttributesTableModel extends ModernTableModel {
   /**
    * Instantiates a new attributes table model.
    *
-   * @param view
-   *          the view
+   * @param view the view
    */
   public AttributesTableModel(DataView view) {
     mView = view;
@@ -66,10 +65,8 @@ public class AttributesTableModel extends ModernTableModel {
   /**
    * Instantiates a new attributes table model.
    *
-   * @param samples
-   *          the samples
-   * @param view
-   *          the view
+   * @param samples the samples
+   * @param view the view
    */
   public AttributesTableModel(List<Sample> samples, DataView view) {
     mView = view;

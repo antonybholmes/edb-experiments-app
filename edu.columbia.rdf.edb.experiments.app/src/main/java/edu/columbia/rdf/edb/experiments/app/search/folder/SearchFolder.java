@@ -34,10 +34,8 @@ public class SearchFolder implements Comparable<SearchFolder> {
   /**
    * Instantiates a new search folder.
    *
-   * @param name
-   *          the name
-   * @param search
-   *          the search
+   * @param name the name
+   * @param search the search
    */
   public SearchFolder(String name, UserSearch search) {
     mName = name;

@@ -34,8 +34,7 @@ public class SearchFolderTreeNode extends TreeNode<UserSearch> {
   /**
    * Instantiates a new search folder tree node.
    *
-   * @param name
-   *          the name
+   * @param name the name
    */
   public SearchFolderTreeNode(String name) {
     super(name);
@@ -44,10 +43,8 @@ public class SearchFolderTreeNode extends TreeNode<UserSearch> {
   /**
    * Instantiates a new search folder tree node.
    *
-   * @param name
-   *          the name
-   * @param userSearch
-   *          the user search
+   * @param name the name
+   * @param userSearch the user search
    */
   public SearchFolderTreeNode(String name, UserSearch userSearch) {
     super(name, userSearch);

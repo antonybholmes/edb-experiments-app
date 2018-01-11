@@ -61,8 +61,9 @@ public class SampleSortService extends SampleSortModel {
 
     /*
      * add(new SortSamplesByArrayPlatform()); add(new
-     * SortSamplesBySourceCellType()); add(new SortSamplesBySourceDiseaseState());
-     * add(new SortSamplesBySourceDiseaseStatus()); add(new
+     * SortSamplesBySourceCellType()); add(new
+     * SortSamplesBySourceDiseaseState()); add(new
+     * SortSamplesBySourceDiseaseStatus()); add(new
      * SortSamplesBySourceGender()); add(new
      * SortSamplesByMicroarrayBasedClassification()); add(new
      * SortSamplesBySourceMaterialType()); add(new

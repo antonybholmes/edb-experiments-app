@@ -25,7 +25,8 @@ import edu.columbia.rdf.edb.ui.search.SearchCategory;
  *
  * @author Antony Holmes Holmes
  */
-public class SearchCategoryDropDownMenuButton extends ModernDropDownMenuLabelButton {
+public class SearchCategoryDropDownMenuButton
+    extends ModernDropDownMenuLabelButton {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -33,12 +34,11 @@ public class SearchCategoryDropDownMenuButton extends ModernDropDownMenuLabelBut
   /**
    * Instantiates a new search category drop down menu button.
    *
-   * @param field
-   *          the field
-   * @param searchCriteriaPopup
-   *          the search criteria popup
+   * @param field the field
+   * @param searchCriteriaPopup the search criteria popup
    */
-  public SearchCategoryDropDownMenuButton(SearchCategory field, SearchCriteriaPopup searchCriteriaPopup) {
+  public SearchCategoryDropDownMenuButton(SearchCategory field,
+      SearchCriteriaPopup searchCriteriaPopup) {
     super(field.getName(), searchCriteriaPopup);
   }
 }

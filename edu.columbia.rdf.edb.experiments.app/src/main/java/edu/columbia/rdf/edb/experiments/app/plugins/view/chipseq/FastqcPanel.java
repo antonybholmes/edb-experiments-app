@@ -30,7 +30,6 @@ import org.jebtk.graphplot.figure.SubFigurePanel;
 import org.jebtk.graphplot.figure.series.XYSeries;
 import org.jebtk.graphplot.figure.series.XYSeriesGroup;
 import org.jebtk.math.matrix.DataFrame;
-import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 
@@ -50,10 +49,8 @@ public class FastqcPanel extends ModernComponent {
   /**
    * Instantiates a new fastqc panel.
    *
-   * @param sample
-   *          the sample
-   * @param file
-   *          the file
+   * @param sample the sample
+   * @param file the file
    */
   public FastqcPanel(Sample sample, FileDescriptor file) {
     try {
@@ -76,12 +73,11 @@ public class FastqcPanel extends ModernComponent {
   /**
    * Make per base quality plot.
    *
-   * @param lines
-   *          the lines
-   * @throws ParseException
-   *           the parse exception
+   * @param lines the lines
+   * @throws ParseException the parse exception
    */
-  private void makePerBaseQualityPlot(List<String> lines) throws ParseException {
+  private void makePerBaseQualityPlot(List<String> lines)
+      throws ParseException {
 
     List<String> qcLines = new ArrayList<String>();
 
@@ -126,9 +122,11 @@ public class FastqcPanel extends ModernComponent {
     PlotFactory.createBoxWhiskerSummaryPlot(m, subFigure.currentAxes(), g);
 
     subFigure.currentAxes().setInternalSize(g.getCount() * 24, 300);
-    subFigure.currentAxes().getX1Axis().getTicks().getMajorTicks().setRotation(Mathematics.HALF_PI);
+    subFigure.currentAxes().getX1Axis().getTicks().getMajorTicks()
+        .setRotation(Mathematics.HALF_PI);
 
-    ModernScrollPane scrollPane = new ModernScrollPane(new SubFigurePanel(subFigure));
+    ModernScrollPane scrollPane = new ModernScrollPane(
+        new SubFigurePanel(subFigure));
 
     setBody(scrollPane);
   }

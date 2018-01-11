@@ -43,8 +43,7 @@ public class OperatorComboButton extends ModernDropDownMenuLabelButton {
   /**
    * Instantiates a new operator combo button.
    *
-   * @param text
-   *          the text
+   * @param text the text
    */
   public OperatorComboButton(String text) {
     super(text);
@@ -55,8 +54,7 @@ public class OperatorComboButton extends ModernDropDownMenuLabelButton {
   /**
    * Instantiates a new operator combo button.
    *
-   * @param booleanOperator
-   *          the boolean operator
+   * @param booleanOperator the boolean operator
    */
   public OperatorComboButton(SearchStackOperator booleanOperator) {
     this(booleanOperator.toString());

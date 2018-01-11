@@ -38,7 +38,8 @@ import edu.columbia.rdf.edb.ui.SampleView;
 public class ViewSamplesByArrayPlatform extends SampleView {
 
   /** The Constant PATH. */
-  private static final Path PATH = new Path("/Microarray/Sample/Labeled_Extract/Characteristic/Array_Platform");
+  private static final Path PATH = new Path(
+      "/Microarray/Sample/Labeled_Extract/Characteristic/Array_Platform");
 
   /*
    * (non-Javadoc)
@@ -47,7 +48,10 @@ public class ViewSamplesByArrayPlatform extends SampleView {
    * org.abh.common.ui.tree.ModernTree, boolean,
    * org.abh.common.ui.search.FilterModel)
    */
-  public void arrange(Collection<Sample> samples, ModernTree<Sample> tree, boolean ascending, FilterModel filterModel) {
+  public void arrange(Collection<Sample> samples,
+      ModernTree<Sample> tree,
+      boolean ascending,
+      FilterModel filterModel) {
     Map<String, List<Sample>> map = ArrayListMultiMap.create();
 
     for (Sample sample : samples) {

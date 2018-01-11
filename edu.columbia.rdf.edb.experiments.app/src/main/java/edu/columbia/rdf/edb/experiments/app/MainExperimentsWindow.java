@@ -109,7 +109,8 @@ import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 /**
  * The Class MainExperimentsWindow.
  */
-public class MainExperimentsWindow extends ModernRibbonWindow implements ModernClickListener {
+public class MainExperimentsWindow extends ModernRibbonWindow
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -165,7 +166,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   // private ExperimentModel selectedExperimentModel = new ExperimentModel();
 
   /** The m experiment summary panel. */
-  private ExperimentSummaryPanel mExperimentSummaryPanel = new ExperimentSummaryPanel(mSampleSelectionModel);
+  private ExperimentSummaryPanel mExperimentSummaryPanel = new ExperimentSummaryPanel(
+      mSampleSelectionModel);
 
   /** The m sample folder panel. */
   private SearchFolderTreePanel mSampleFolderPanel; // SampleViewTreePanel
@@ -203,8 +205,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
     /**
      * Instantiates a new search error.
      *
-     * @param parent
-     *          the parent
+     * @param parent the parent
      */
     public SearchError(ModernWindow parent) {
       mParent = parent;
@@ -217,8 +218,10 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
      */
     @Override
     public void run() {
-      ModernMessageDialog.createDialog(mParent, getAppInfo().getName(),
-          "There are no experiments matching your search criteria.", MessageDialogType.INFORMATION);
+      ModernMessageDialog.createDialog(mParent,
+          getAppInfo().getName(),
+          "There are no experiments matching your search criteria.",
+          MessageDialogType.INFORMATION);
     }
 
   }
@@ -234,8 +237,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
     /**
      * Instantiates a new download task.
      *
-     * @param statusModel
-     *          the status model
+     * @param statusModel the status model
      */
     public DownloadTask(StatusModel statusModel) {
       super(statusModel);
@@ -331,14 +333,13 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   /**
    * Instantiates a new main experiments window.
    *
-   * @param appInfo
-   *          the app info
+   * @param appInfo the app info
    */
   public MainExperimentsWindow(GuiAppInfo appInfo) {
     super(appInfo);
 
-    mAnnotationPanel = new SampleViewPanel(this, mViewModel, mLayoutViewModel, mSampleModel, mSampleSelectionModel,
-        mFilterModel, mFileViewModel);
+    mAnnotationPanel = new SampleViewPanel(this, mViewModel, mLayoutViewModel,
+        mSampleModel, mSampleSelectionModel, mFilterModel, mFileViewModel);
 
     try {
       mSampleFolderPanel = new SearchFolderTreePanel(mSampleFolderModel);
@@ -422,8 +423,9 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
       public void clicked(ModernClickEvent e) {
         try {
           createInfoTable();
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | FontFormatException
-            | IOException | UnsupportedLookAndFeelException e1) {
+        } catch (ClassNotFoundException | InstantiationException
+            | IllegalAccessException | FontFormatException | IOException
+            | UnsupportedLookAndFeelException e1) {
           e1.printStackTrace();
         }
       }
@@ -434,14 +436,19 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
     // add the data view toolbars
 
     for (ViewPlugin plugin : ViewPluginService.getInstance()) {
-      plugin.init(this, getStatusBar().getStatusModel(), getRibbon(), mSampleSelectionModel);
+      plugin.init(this,
+          getStatusBar().getStatusModel(),
+          getRibbon(),
+          mSampleSelectionModel);
     }
 
     getRibbon().getHomeToolbar().getSection("Files").add(mFilesButton);
 
-    getRibbon().getToolbar("View").add(new RibbonWideLayoutSection(getRibbon(), "Layout", mLayoutViewModel));
+    getRibbon().getToolbar("View").add(
+        new RibbonWideLayoutSection(getRibbon(), "Layout", mLayoutViewModel));
 
-    getRibbon().getToolbar("View").add(new SearchFolderRibbonSection(this, mSampleFolderPanel));
+    getRibbon().getToolbar("View")
+        .add(new SearchFolderRibbonSection(this, mSampleFolderPanel));
 
     // getRibbon().getHomeToolbar().getSection("Files").add(mAllFilesButton);
 
@@ -479,8 +486,9 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
      * 
      * mSearchSampleTitleButton.addClickListener(this);
      * mSearchSampleTitleButton.setToolTip(new
-     * ModernToolTip("Search by Sample Title", "Search sample titles by keywords."),
-     * getRibbon()); buttonContainer.add(mSearchSampleTitleButton);
+     * ModernToolTip("Search by Sample Title",
+     * "Search sample titles by keywords."), getRibbon());
+     * buttonContainer.add(mSearchSampleTitleButton);
      * 
      * vPanel = Ribbon.createToolbarButtonColumnPanel(120);
      * 
@@ -496,8 +504,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
      * 
      * 
      * otherFieldButton = new ModernDropDownButton("Other",
-     * UIResources.getInstance().loadIcon("search_field", UIResources.ICON_SIZE_16),
-     * searchCriteriaPopup);
+     * UIResources.getInstance().loadIcon("search_field",
+     * UIResources.ICON_SIZE_16), searchCriteriaPopup);
      * 
      * otherFieldButton.setToolTip(new ModernToolTip("Other Search Criteria",
      * "Show all search criteria by which experiments and samples can be searched."
@@ -528,7 +536,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
    * Load search results.
    */
   private void loadSearchResults() {
-    List<Sample> samples = CollectionUtils.uniquePreserveOrder(mSampleSearchModel);
+    List<Sample> samples = CollectionUtils
+        .uniquePreserveOrder(mSampleSearchModel);
 
     if (samples.size() > 0) {
       // If we are searching within the folder, another
@@ -539,7 +548,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
       SwingUtilities.invokeLater(new SearchError(this));
     }
 
-    mStatusBar.getStatusModel().setStatus("Found " + mSampleSearchModel.size() + " samples.");
+    mStatusBar.getStatusModel()
+        .setStatus("Found " + mSampleSearchModel.size() + " samples.");
   }
 
   /*
@@ -560,13 +570,16 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
     mDataTypesModel.addChangeListener(l);
     mOrganismsModel.addChangeListener(l);
 
-    mResultsPanel = new ResultsPanel(SampleSortService.getInstance(), mFilterModel);
+    mResultsPanel = new ResultsPanel(SampleSortService.getInstance(),
+        mFilterModel);
 
     // TabsModel groupTabsModel = new TabsModel();
     getIconTabs().addTab("Results", 'R', mResultsPanel);
     getIconTabs().addTab("Groups", 'G', mUserGroupsPanel);
     getIconTabs().addTab("Data Types", 'T', mDataTypesPanel);
-    getIconTabs().addTab("Folders", new IconTabsFolderIcon(), new TabPanel("Folders", mSampleFolderPanel));
+    getIconTabs().addTab("Folders",
+        new IconTabsFolderIcon(),
+        new TabPanel("Folders", mSampleFolderPanel));
 
     // mViewPanel = new IconTabsPanel(groupTabsModel, 36, 22); //new
     // ModernComponent(new IconTabsPanel(groupTabsModel, 30, 20),
@@ -616,8 +629,10 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 
     mSearchPanel.addUserSearchEntry(UserSearchEntry.createDefaultSearchEntry());
 
-    if (SettingsService.getInstance().getAsBool("edb.experiments.default-search")) {
-      // perform an initial search with no filter to return all experiments so that
+    if (SettingsService.getInstance()
+        .getAsBool("edb.experiments.default-search")) {
+      // perform an initial search with no filter to return all experiments so
+      // that
       // the
       // the search window shows everything by default
       search();
@@ -625,10 +640,12 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 
     // Default to the samples tab
     // mTabsModel.changeTab(0);
-    mViewModel.setView(SettingsService.getInstance().getAsString("edb.experiments.default-view"));
+    mViewModel.setView(SettingsService.getInstance()
+        .getAsString("edb.experiments.default-view"));
 
     // Set the default layout
-    mLayoutViewModel.setView(SettingsService.getInstance().getAsString("edb.experiments.default-layout-view"));
+    mLayoutViewModel.setView(SettingsService.getInstance()
+        .getAsString("edb.experiments.default-layout-view"));
 
     // Add some default panes so user can search
     // addFoldersPane();
@@ -667,9 +684,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public final void clicked(ModernClickEvent e) {
@@ -737,33 +753,28 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   /**
    * Reload cache.
    *
-   * @throws SAXException
-   *           the SAX exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
-   * @throws KeyManagementException
-   *           the key management exception
-   * @throws NoSuchAlgorithmException
-   *           the no such algorithm exception
-   * @throws FontFormatException
-   *           the font format exception
-   * @throws ClassNotFoundException
-   *           the class not found exception
-   * @throws InstantiationException
-   *           the instantiation exception
-   * @throws IllegalAccessException
-   *           the illegal access exception
-   * @throws UnsupportedLookAndFeelException
-   *           the unsupported look and feel exception
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws KeyManagementException the key management exception
+   * @throws NoSuchAlgorithmException the no such algorithm exception
+   * @throws FontFormatException the font format exception
+   * @throws ClassNotFoundException the class not found exception
+   * @throws InstantiationException the instantiation exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws UnsupportedLookAndFeelException the unsupported look and feel
+   *           exception
    */
-  private void reloadCache() throws SAXException, IOException, ParserConfigurationException, KeyManagementException,
-      NoSuchAlgorithmException, FontFormatException, ClassNotFoundException, InstantiationException,
-      IllegalAccessException, UnsupportedLookAndFeelException {
+  private void reloadCache()
+      throws SAXException, IOException, ParserConfigurationException,
+      KeyManagementException, NoSuchAlgorithmException, FontFormatException,
+      ClassNotFoundException, InstantiationException, IllegalAccessException,
+      UnsupportedLookAndFeelException {
 
-    ModernDialogStatus status = ModernMessageDialog.createDialog(this, getAppInfo().getName(),
-        "Are you sure you want to reload the cache?", MessageDialogType.INFORMATION_YES_NO);
+    ModernDialogStatus status = ModernMessageDialog.createDialog(this,
+        getAppInfo().getName(),
+        "Are you sure you want to reload the cache?",
+        MessageDialogType.INFORMATION_YES_NO);
 
     if (status != ModernDialogStatus.OK) {
       return;
@@ -775,8 +786,12 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 
     RepositorySession.clear();
 
-    status = ModernMessageDialog.createDialog(this, getAppInfo().getName(), MessageDialogType.INFORMATION_YES_NO,
-        "Reloading the cache requires " + getAppInfo().getName() + " to be restarted.", "Do you want to restart now?");
+    status = ModernMessageDialog.createDialog(this,
+        getAppInfo().getName(),
+        MessageDialogType.INFORMATION_YES_NO,
+        "Reloading the cache requires " + getAppInfo().getName()
+            + " to be restarted.",
+        "Do you want to restart now?");
 
     if (status != ModernDialogStatus.OK) {
       return;
@@ -789,15 +804,17 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   }
 
   /**
-   * Adjusts the height of the search bar depending on how many criteria the user
-   * has added.
+   * Adjusts the height of the search bar depending on how many criteria the
+   * user has added.
    */
   private void resizeSeachPanel() {
-    // annotationPanel.setDividerLocation(SEARCH_ROW_OFFSET + SEARCH_ROW_HEIGHT *
+    // annotationPanel.setDividerLocation(SEARCH_ROW_OFFSET + SEARCH_ROW_HEIGHT
+    // *
     // Math.max(1, searchPanel.getSearch().size()));
 
     mSearchPanel.setPreferredSize(new Dimension(Short.MAX_VALUE,
-        SEARCH_ROW_OFFSET + TYPES_OFFSET + SEARCH_ROW_HEIGHT * Math.max(1, mSearchPanel.getSearch().size())));
+        SEARCH_ROW_OFFSET + TYPES_OFFSET + SEARCH_ROW_HEIGHT
+            * Math.max(1, mSearchPanel.getSearch().size())));
 
     validate();
     repaint();
@@ -806,8 +823,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   /**
    * Download files.
    *
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
   private void downloadFiles() throws IOException {
     /*
@@ -828,14 +844,12 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   /**
    * Loads a user's saved search from an XML file.
    *
-   * @throws ParserConfigurationException
-   *           the parser configuration exception
-   * @throws SAXException
-   *           the SAX exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws ParserConfigurationException the parser configuration exception
+   * @throws SAXException the SAX exception
+   * @throws IOException Signals that an I/O exception has occurred.
    */
-  private void loadUserSearch() throws ParserConfigurationException, SAXException, IOException {
+  private void loadUserSearch()
+      throws ParserConfigurationException, SAXException, IOException {
     JFileChooser fc = new JFileChooser();
 
     FileFilter filter = new SearchGuiFileFilter();
@@ -875,8 +889,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   /**
    * Saves a user's search as an XML file.
    *
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
+   * @throws IOException Signals that an I/O exception has occurred.
    */
   private void saveUserSearch() throws IOException {
     JFileChooser fc = new JFileChooser();
@@ -899,7 +912,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
     file = PathUtils.addExtension(file, "search");
 
     if (FileUtils.exists(file)) {
-      ModernDialogStatus status = ModernMessageDialog.createFileReplaceDialog(this, file);
+      ModernDialogStatus status = ModernMessageDialog
+          .createFileReplaceDialog(this, file);
 
       if (status == ModernDialogStatus.CANCEL) {
         return;
@@ -937,9 +951,9 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
    * 
    * //searchBox.addTerm(searchBox.getText());
    * 
-   * boolean cel = dialog.getDownloadCel(); boolean chp = dialog.getDownloadCHP();
-   * boolean mas5 = dialog.getDownloadMAS5(); boolean rma =
-   * dialog.getDownloadRMA();
+   * boolean cel = dialog.getDownloadCel(); boolean chp =
+   * dialog.getDownloadCHP(); boolean mas5 = dialog.getDownloadMAS5(); boolean
+   * rma = dialog.getDownloadRMA();
    * 
    * Repository repository = RepositoryService.getInstance().getRepository();
    * 
@@ -947,9 +961,11 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
    * 
    * boolean download = false;
    * 
-   * if (cel && file.getName().toLowerCase().endsWith("cel")) { download = true; }
+   * if (cel && file.getName().toLowerCase().endsWith("cel")) { download = true;
+   * }
    * 
-   * if (chp && file.getName().toLowerCase().endsWith("chp")) { download = true; }
+   * if (chp && file.getName().toLowerCase().endsWith("chp")) { download = true;
+   * }
    * 
    * if (mas5 && file.getName().toLowerCase().endsWith(DownloadManager.MAS5)) {
    * download = true; }
@@ -989,8 +1005,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
   /**
    * Sets the user search.
    *
-   * @param search
-   *          the new user search
+   * @param search the new user search
    */
   private void setUserSearch(UserSearch search) {
     mSearchPanel.setUserSearch(search);
@@ -1012,23 +1027,28 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
     } catch (Exception e) {
       e.printStackTrace();
 
-      ModernMessageDialog.createDialog(this, getAppInfo().getName(), "Your search query is badly formed.",
+      ModernMessageDialog.createDialog(this,
+          getAppInfo().getName(),
+          "Your search query is badly formed.",
           MessageDialogType.WARNING);
 
       return;
     }
 
     // ModernClickListener searchTask = new SearchTask(this, searchStack);
-    // ModernClickListener searchTask = new SearchCategoryTask(this, searchStack);
+    // ModernClickListener searchTask = new SearchCategoryTask(this,
+    // searchStack);
 
-    // SearchCategoryTask searchTask = new SearchCategoryTask(mSampleSearchModel,
+    // SearchCategoryTask searchTask = new
+    // SearchCategoryTask(mSampleSearchModel,
     // searchStack,
     // mSearchPanel.getDataTypes(),
     // mSearchPanel.getOrganisms(),
     // mUserGroupsModel.getGroups());
 
-    SearchCategoryTask searchTask = new SearchCategoryTask(mSampleSearchModel, searchStack, mDataTypesModel.getTypes(),
-        mOrganismsModel.getOrganisms(), mUserGroupsModel.getGroups());
+    SearchCategoryTask searchTask = new SearchCategoryTask(mSampleSearchModel,
+        searchStack, mDataTypesModel.getTypes(), mOrganismsModel.getOrganisms(),
+        mUserGroupsModel.getGroups());
 
     searchTask.execute();
   }
@@ -1051,8 +1071,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
    * 
    */
   /*
-   * private void changeTab() { if (mTabsModel.getSelectedTab() == null) { return;
-   * }
+   * private void changeTab() { if (mTabsModel.getSelectedTab() == null) {
+   * return; }
    * 
    * if (mTabsModel.getSelectedTab().getName().equals("Files")) {
    * //getRibbon().changeView("data");
@@ -1072,8 +1092,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
    * 
    * ModernPanel panel = new ModernPanel();
    * 
-   * panel.add(mSearchPanel, BorderLayout.PAGE_START); panel.add(mAnnotationPanel,
-   * BorderLayout.CENTER);
+   * panel.add(mSearchPanel, BorderLayout.PAGE_START);
+   * panel.add(mAnnotationPanel, BorderLayout.CENTER);
    * 
    * 
    * mContentPane.getModel().setCenterTab(new CenterTab(panel));
@@ -1110,31 +1130,29 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
       return;
     }
 
-    getTabsPane().addRightTab("Experiment", mExperimentSummaryPanel, 250, 200, 500);
+    getTabsPane()
+        .addRightTab("Experiment", mExperimentSummaryPanel, 250, 200, 500);
   }
 
   /**
    * Creates a table of all the sample field data.
    *
-   * @throws ClassNotFoundException
-   *           the class not found exception
-   * @throws InstantiationException
-   *           the instantiation exception
-   * @throws IllegalAccessException
-   *           the illegal access exception
-   * @throws FontFormatException
-   *           the font format exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws UnsupportedLookAndFeelException
-   *           the unsupported look and feel exception
+   * @throws ClassNotFoundException the class not found exception
+   * @throws InstantiationException the instantiation exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws FontFormatException the font format exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws UnsupportedLookAndFeelException the unsupported look and feel
+   *           exception
    */
-  private void createInfoTable() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
-      FontFormatException, IOException, UnsupportedLookAndFeelException {
+  private void createInfoTable() throws ClassNotFoundException,
+      InstantiationException, IllegalAccessException, FontFormatException,
+      IOException, UnsupportedLookAndFeelException {
     List<Sample> samples = mSampleSelectionModel.getItems();
 
     if (samples.size() == 0) {
-      ModernMessageDialog.createWarningDialog(this, "You must select at least one sample.");
+      ModernMessageDialog.createWarningDialog(this,
+          "You must select at least one sample.");
 
       return;
     }
@@ -1146,7 +1164,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
     Map<DataViewField, Integer> indexMap = new HashMap<DataViewField, Integer>();
 
     for (Sample sample : samples) {
-      DataView dataView = ViewPluginService.getInstance().getView(sample).getDataView();
+      DataView dataView = ViewPluginService.getInstance().getView(sample)
+          .getDataView();
 
       for (DataViewSection viewSection : dataView) {
         for (DataViewField field : viewSection) {
@@ -1160,19 +1179,21 @@ public class MainExperimentsWindow extends ModernRibbonWindow implements ModernC
 
     DataFrame matrix = DataFrame.createDataFrame(samples.size(), fields.size());
 
-    List<String> names = Stream.of(fields).map(new Function<DataViewField, String>() {
-      @Override
-      public String apply(DataViewField field) {
-        return field.getName();
-      }
-    }).toList();
+    List<String> names = Stream.of(fields)
+        .map(new Function<DataViewField, String>() {
+          @Override
+          public String apply(DataViewField field) {
+            return field.getName();
+          }
+        }).toList();
 
     matrix.setColumnNames(names);
 
     int row = 0;
 
     for (Sample sample : samples) {
-      DataView dataView = ViewPluginService.getInstance().getView(sample).getDataView();
+      DataView dataView = ViewPluginService.getInstance().getView(sample)
+          .getDataView();
 
       for (DataViewSection viewSection : dataView) {
         for (DataViewField field : viewSection) {

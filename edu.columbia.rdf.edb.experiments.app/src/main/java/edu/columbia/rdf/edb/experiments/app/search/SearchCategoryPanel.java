@@ -42,7 +42,8 @@ import edu.columbia.rdf.edb.ui.search.SearchCategory;
 /**
  * The Class SearchCategoryPanel.
  */
-public class SearchCategoryPanel extends HBox implements KeyListener, ModernClickListener, ModernClickEventProducer {
+public class SearchCategoryPanel extends HBox
+    implements KeyListener, ModernClickListener, ModernClickEventProducer {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -63,31 +64,29 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
   private SearchField mSearchText;
 
   /** The Constant CRITERIA_SIZE. */
-  private static final Dimension CRITERIA_SIZE = new Dimension(150, ModernWidget.WIDGET_HEIGHT);
+  private static final Dimension CRITERIA_SIZE = new Dimension(150,
+      ModernWidget.WIDGET_HEIGHT);
 
   /**
    * Instantiates a new search category panel.
    *
-   * @param parent
-   *          the parent
-   * @param index
-   *          the index
-   * @param booleanOperator
-   *          the boolean operator
-   * @param text
-   *          the text
-   * @param field
-   *          the field
+   * @param parent the parent
+   * @param index the index
+   * @param booleanOperator the boolean operator
+   * @param text the text
+   * @param field the field
    */
-  public SearchCategoryPanel(ModernWindow parent, int index, SearchStackOperator booleanOperator, String text,
-      SearchCategory field) {
+  public SearchCategoryPanel(ModernWindow parent, int index,
+      SearchStackOperator booleanOperator, String text, SearchCategory field) {
 
     setBorder(BorderService.getInstance().createBottomBorder(2));
 
     // setMinimumSize(new Dimension(ModernWidget.WIDGET_HEIGHT,
     // ModernWidget.WIDGET_HEIGHT));
-    // setMaximumSize(new Dimension(Short.MAX_VALUE, ModernWidget.WIDGET_HEIGHT));
-    // setPreferredSize(new Dimension(Short.MAX_VALUE, ModernWidget.WIDGET_HEIGHT));
+    // setMaximumSize(new Dimension(Short.MAX_VALUE,
+    // ModernWidget.WIDGET_HEIGHT));
+    // setPreferredSize(new Dimension(Short.MAX_VALUE,
+    // ModernWidget.WIDGET_HEIGHT));
 
     mLogicalButton = new OperatorComboButton(booleanOperator);
 
@@ -111,8 +110,10 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
     mSearchText.addKeyListener(this);
 
     ModernTextBorderPanel panel = new ModernTextBorderPanel(mSearchText);
-    panel.setPreferredSize(new Dimension(Short.MAX_VALUE, ModernWidget.WIDGET_HEIGHT));
-    panel.setMaximumSize(new Dimension(Short.MAX_VALUE, ModernWidget.WIDGET_HEIGHT));
+    panel.setPreferredSize(
+        new Dimension(Short.MAX_VALUE, ModernWidget.WIDGET_HEIGHT));
+    panel.setMaximumSize(
+        new Dimension(Short.MAX_VALUE, ModernWidget.WIDGET_HEIGHT));
     add(panel);
 
     add(ModernPanel.createHGap());
@@ -123,7 +124,8 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
     // What can be searched
     //
 
-    SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(parent);
+    SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(
+        parent);
 
     mField = new SearchCategoryDropDownMenuButton(field, searchCriteriaPopup);
 
@@ -145,7 +147,8 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
     //
     // Can we remove it
 
-    mRemoveButton = new ModernButton(UIService.getInstance().loadIcon(CloseVectorIcon.class, 16));
+    mRemoveButton = new ModernButton(
+        UIService.getInstance().loadIcon(CloseVectorIcon.class, 16));
     mRemoveButton.setClickMessage(SearchCategoriesPanel.FIELD_REMOVED);
     mRemoveButton.addClickListener(this);
     mRemoveButton.setToolTip("Remove Entry", "Remove the search entry.");
@@ -196,9 +199,8 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {
@@ -221,8 +223,8 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
    * (non-Javadoc)
    * 
    * @see
-   * org.abh.common.ui.event.ModernClickEventProducer#removeClickListener(org.abh.
-   * common.ui.event.ModernClickListener)
+   * org.abh.common.ui.event.ModernClickEventProducer#removeClickListener(org.
+   * abh. common.ui.event.ModernClickListener)
    */
   @Override
   public void removeClickListener(ModernClickListener l) {
@@ -232,9 +234,8 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickEventProducer#fireClicked(org.abh.common.
-   * ui.event.ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickEventProducer#fireClicked(org.abh.
+   * common. ui.event.ModernClickEvent)
    */
   @Override
   public void fireClicked(ModernClickEvent event) {
@@ -244,8 +245,7 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
   /**
    * Sets the text.
    *
-   * @param text
-   *          the new text
+   * @param text the new text
    */
   public void setText(String text) {
     mSearchText.setText(text);
@@ -281,8 +281,7 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
   /**
    * Sets the logical.
    *
-   * @param booleanOperator
-   *          the new logical
+   * @param booleanOperator the new logical
    */
   public void setLogical(SearchStackOperator booleanOperator) {
     setLogical(booleanOperator.toString());
@@ -291,8 +290,7 @@ public class SearchCategoryPanel extends HBox implements KeyListener, ModernClic
   /**
    * Sets the logical.
    *
-   * @param text
-   *          the new logical
+   * @param text the new logical
    */
   public void setLogical(String text) {
     mLogicalButton.setText(text);

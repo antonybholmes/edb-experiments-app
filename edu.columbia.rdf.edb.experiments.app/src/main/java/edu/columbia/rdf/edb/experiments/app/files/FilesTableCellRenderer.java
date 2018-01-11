@@ -63,16 +63,17 @@ public class FilesTableCellRenderer extends ModernDataCellRenderer {
   private ModernIcon mIcon;
 
   /** The Constant FILE_ICON. */
-  private static final ModernIcon FILE_ICON = UIService.getInstance().loadIcon(FileVectorIcon.class, 16);
+  private static final ModernIcon FILE_ICON = UIService.getInstance()
+      .loadIcon(FileVectorIcon.class, 16);
 
   /** The Constant DIR_ICON. */
-  private static final ModernIcon DIR_ICON = UIService.getInstance().loadIcon(FolderVectorIcon.class, 16);
+  private static final ModernIcon DIR_ICON = UIService.getInstance()
+      .loadIcon(FolderVectorIcon.class, 16);
 
   /**
    * Instantiates a new modern data grid cell renderer.
    *
-   * @param defaultValue
-   *          the default value
+   * @param defaultValue the default value
    */
   public FilesTableCellRenderer(String defaultValue) {
     mDefaultValue = defaultValue;
@@ -88,7 +89,8 @@ public class FilesTableCellRenderer extends ModernDataCellRenderer {
   /*
    * (non-Javadoc)
    * 
-   * @see org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
+   * @see
+   * org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
    */
   @Override
   public void drawForegroundAAText(Graphics2D g2) {
@@ -112,8 +114,7 @@ public class FilesTableCellRenderer extends ModernDataCellRenderer {
   /**
    * Sets the text.
    *
-   * @param text
-   *          the new text
+   * @param text the new text
    */
   public final void setText(String text) {
     mText = text;
@@ -127,8 +128,13 @@ public class FilesTableCellRenderer extends ModernDataCellRenderer {
    * java.lang.Object, boolean, boolean, boolean, int, int)
    */
   @Override
-  public Component getCellRendererComponent(ModernData table, Object value, boolean highlight, boolean isSelected,
-      boolean hasFocus, int row, int column) {
+  public Component getCellRendererComponent(ModernData table,
+      Object value,
+      boolean highlight,
+      boolean isSelected,
+      boolean hasFocus,
+      int row,
+      int column) {
     if (value != null) {
       setText(value.toString());
     } else {
@@ -141,6 +147,12 @@ public class FilesTableCellRenderer extends ModernDataCellRenderer {
       mIcon = FILE_ICON;
     }
 
-    return super.getCellRendererComponent(table, value, highlight, isSelected, hasFocus, row, column);
+    return super.getCellRendererComponent(table,
+        value,
+        highlight,
+        isSelected,
+        hasFocus,
+        row,
+        column);
   }
 }

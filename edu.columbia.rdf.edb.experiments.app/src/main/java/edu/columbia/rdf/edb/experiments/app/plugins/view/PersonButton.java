@@ -31,15 +31,14 @@ public class PersonButton extends ModernUrlTextLink {
   private static final long serialVersionUID = 1L;
 
   /** The color2. */
-  private static Color COLOR2 = ThemeService.getInstance().colors().getHighlight32(12);
+  private static Color COLOR2 = ThemeService.getInstance().colors()
+      .getHighlight32(12);
 
   /**
    * Instantiates a new person button.
    *
-   * @param title
-   *          the title
-   * @param email
-   *          the email
+   * @param title the title
+   * @param email the email
    */
   public PersonButton(String title, String email) {
     super(title, email, SummaryLabel.COLOR1, COLOR2);
@@ -48,10 +47,8 @@ public class PersonButton extends ModernUrlTextLink {
   /**
    * Instantiates a new person button.
    *
-   * @param title
-   *          the title
-   * @param url
-   *          the url
+   * @param title the title
+   * @param url the url
    */
   public PersonButton(String title, URL url) {
     super(title, url, SummaryLabel.COLOR1, COLOR2);

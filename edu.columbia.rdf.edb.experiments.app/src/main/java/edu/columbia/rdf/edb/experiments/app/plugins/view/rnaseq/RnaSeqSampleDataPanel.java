@@ -35,10 +35,8 @@ public class RnaSeqSampleDataPanel extends SampleDataPanel {
   /**
    * Instantiates a new rna seq sample data panel.
    *
-   * @param sample
-   *          the sample
-   * @param view
-   *          the view
+   * @param sample the sample
+   * @param view the view
    */
   public RnaSeqSampleDataPanel(Sample sample, DataView view) {
     super(sample, view);

@@ -101,36 +101,41 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
   /**
    * Load samples.
    *
-   * @param samples
-   *          the samples
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @param samples the samples
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  public void loadSamples(Collection<Sample> samples) throws IOException, ParseException {
+  public void loadSamples(Collection<Sample> samples)
+      throws IOException, ParseException {
     if (samples == null) {
       return;
     }
 
-    Repository repository = RepositoryService.getInstance().getRepository(RepositoryService.DEFAULT_REP);
+    Repository repository = RepositoryService.getInstance()
+        .getRepository(RepositoryService.DEFAULT_REP);
 
-    Map<Experiment, Set<Sample>> experiments = Experiment.sortSamplesByExperiment(samples);
+    Map<Experiment, Set<Sample>> experiments = Experiment
+        .sortSamplesByExperiment(samples);
 
-    List<Experiment> sortedExperiments = CollectionUtils.sort(experiments.keySet());
+    List<Experiment> sortedExperiments = CollectionUtils
+        .sort(experiments.keySet());
 
     TreeRootNode<FileDescriptor> root = new TreeRootNode<FileDescriptor>();
 
-    TreeNode<FileDescriptor> experimentsRoot = new TreeNode<FileDescriptor>("Experiments");
+    TreeNode<FileDescriptor> experimentsRoot = new TreeNode<FileDescriptor>(
+        "Experiments");
 
     for (Experiment experiment : sortedExperiments) {
-      TreeNode<FileDescriptor> experimentNode = new TreeNode<FileDescriptor>(experiment.getName());
+      TreeNode<FileDescriptor> experimentNode = new TreeNode<FileDescriptor>(
+          experiment.getName());
 
       experimentNode.setIsExpandable(false);
 
-      for (FileDescriptor file : repository.getSampleFiles(experiments.get(experiment))) {
+      for (FileDescriptor file : repository
+          .getSampleFiles(experiments.get(experiment))) {
 
-        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(file.getName(), file);
+        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(
+            file.getName(), file);
 
         experimentNode.addChild(fileNode);
       }
@@ -139,7 +144,8 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
       // new TreeNode<ArrayDbFileDescriptor>("Samples");
 
       /*
-       * List<SampleSearchResult> sortedSamples = Lists.sort(experiment.getSamples());
+       * List<SampleSearchResult> sortedSamples =
+       * Lists.sort(experiment.getSamples());
        * 
        * for (SampleSearchResult sample : sortedSamples) {
        * TreeNode<ArrayDbFileDescriptor> sampleNode = new
@@ -204,13 +210,12 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
   /**
    * Gets the files.
    *
-   * @param node
-   *          the node
-   * @param files
-   *          the files
+   * @param node the node
+   * @param files the files
    * @return the files
    */
-  private void getFiles(TreeNode<FileDescriptor> node, Set<FileDescriptor> files) {
+  private void getFiles(TreeNode<FileDescriptor> node,
+      Set<FileDescriptor> files) {
     if (node.getValue() != null) {
       files.add(node.getValue());
     }
@@ -225,8 +230,7 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
   /**
    * Sets the selected sample.
    *
-   * @param sample
-   *          the new selected sample
+   * @param sample the new selected sample
    */
   public void setSelectedSample(Sample sample) {
     setSelectedSample(sample.getName());
@@ -235,8 +239,7 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
   /**
    * Sets the selected sample.
    *
-   * @param name
-   *          the new selected sample
+   * @param name the new selected sample
    */
   public void setSelectedSample(String name) {
     setSelectedSample(tree.getNodeIndexByName(name));
@@ -245,8 +248,7 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
   /**
    * Sets the selected sample.
    *
-   * @param row
-   *          the new selected sample
+   * @param row the new selected sample
    */
   public void setSelectedSample(int row) {
     tree.selectNode(row);
@@ -255,8 +257,7 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
   /**
    * Adds the selection listener.
    *
-   * @param l
-   *          the l
+   * @param l the l
    */
   public void addSelectionListener(ModernSelectionListener l) {
     tree.addSelectionListener(l);

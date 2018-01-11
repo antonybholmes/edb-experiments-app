@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
-import edu.columbia.rdf.htsview.chipseq.SortSamplesByGenome;
 import org.jebtk.core.ColorUtils;
 import org.jebtk.core.NetworkFileException;
 import org.jebtk.core.path.Path;
@@ -47,6 +46,7 @@ import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.search.SearchCategory;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryGroup;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
+import edu.columbia.rdf.htsview.chipseq.SortSamplesByGenome;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -55,11 +55,13 @@ import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
  * @author Antony Holmes Holmes
  *
  */
-public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener {
+public class RnaSeqViewPlugin extends ViewPlugin
+    implements ModernClickListener {
 
   /** The m fpkm button. */
   private ModernButtonWidget mFpkmButton = new RibbonLargeButton("FPKM",
-      new Raster32Icon(new Window32VectorIcon(ColorUtils.decodeHtmlColor("#e580ff"))));
+      new Raster32Icon(
+          new Window32VectorIcon(ColorUtils.decodeHtmlColor("#e580ff"))));
 
   /** The m parent. */
   private ModernRibbonWindow mParent;
@@ -112,8 +114,8 @@ public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener 
    * (non-Javadoc)
    * 
    * @see
-   * edu.columbia.rdf.edb.ui.ViewPlugin#initSampleSorters(org.abh.common.ui.search
-   * .SortModel)
+   * edu.columbia.rdf.edb.ui.ViewPlugin#initSampleSorters(org.abh.common.ui.
+   * search .SortModel)
    */
   @Override
   public void initSampleSorters(SortModel<Sample> sampleSortModel) {
@@ -124,7 +126,8 @@ public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener 
   /*
    * (non-Javadoc)
    * 
-   * @see edu.columbia.rdf.edb.ui.ViewPlugin#getSamplePanel(edu.columbia.rdf.edb.
+   * @see
+   * edu.columbia.rdf.edb.ui.ViewPlugin#getSamplePanel(edu.columbia.rdf.edb.
    * Sample)
    */
   @Override
@@ -136,16 +139,19 @@ public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener 
    * (non-Javadoc)
    * 
    * @see
-   * edu.columbia.rdf.edb.ui.ViewPlugin#initSearchCategories(edu.columbia.rdf.edb.
-   * ui.search.SearchCategoryService)
+   * edu.columbia.rdf.edb.ui.ViewPlugin#initSearchCategories(edu.columbia.rdf.
+   * edb. ui.search.SearchCategoryService)
    */
   @Override
-  public void initSearchCategories(SearchCategoryService searchCategoryService) {
+  public void initSearchCategories(
+      SearchCategoryService searchCategoryService) {
     SearchCategoryGroup group;
 
     group = new SearchCategoryGroup("RNA-seq");
-    group.addCategory(new SearchCategory("Sequence Id", new Path("/RNA-seq/Sample/Seq_Id")));
-    group.addCategory(new SearchCategory("Genome", new Path("/RNA-seq/Sample/Genome")));
+    group.addCategory(
+        new SearchCategory("Sequence Id", new Path("/RNA-seq/Sample/Seq_Id")));
+    group.addCategory(
+        new SearchCategory("Genome", new Path("/RNA-seq/Sample/Genome")));
 
     searchCategoryService.addGroup(group);
   }
@@ -159,24 +165,28 @@ public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener 
    * org.abh.common.ui.SelectionModel)
    */
   @Override
-  public void init(ModernRibbonWindow parent, StatusModel statusModel, ModernToolTipModel toolTipModel,
+  public void init(ModernRibbonWindow parent,
+      StatusModel statusModel,
+      ModernToolTipModel toolTipModel,
       SelectionModel<Sample> selectedSamples) {
     mParent = parent;
     mStatusModel = statusModel;
     mSelectedSamples = selectedSamples;
 
-    parent.getRibbon().getHomeToolbar().getSection(getExpressionType()).add(mFpkmButton);
+    parent.getRibbon().getHomeToolbar().getSection(getExpressionType())
+        .add(mFpkmButton);
 
     mFpkmButton.setToolTip(new ModernToolTip("MAS5 Expression Data",
-        "Download MAS5 normalized expression data for the currently selected samples."), toolTipModel);
+        "Download MAS5 normalized expression data for the currently selected samples."),
+        toolTipModel);
   }
 
   /*
    * (non-Javadoc)
    * 
    * @see
-   * edu.columbia.rdf.edb.ui.ViewPlugin#customizeSampleMenu(org.abh.common.ui.menu
-   * .ModernPopupMenu)
+   * edu.columbia.rdf.edb.ui.ViewPlugin#customizeSampleMenu(org.abh.common.ui.
+   * menu .ModernPopupMenu)
    */
   @Override
   public void customizeSampleMenu(ModernPopupMenu menu) {
@@ -201,9 +211,8 @@ public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener 
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public void clicked(ModernClickEvent e) {
@@ -219,18 +228,17 @@ public class RnaSeqViewPlugin extends ViewPlugin implements ModernClickListener 
   /**
    * Show expression data.
    *
-   * @throws NetworkFileException
-   *           the network file exception
-   * @throws IOException
-   *           Signals that an I/O exception has occurred.
-   * @throws ParseException
-   *           the parse exception
+   * @throws NetworkFileException the network file exception
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ParseException the parse exception
    */
-  private void showExpressionData() throws NetworkFileException, IOException, ParseException {
+  private void showExpressionData()
+      throws NetworkFileException, IOException, ParseException {
     List<Sample> samples = mSelectedSamples.getItems();
 
     if (samples.size() == 0) {
-      ModernMessageDialog.createWarningDialog(mParent, "You must select at least one sample.");
+      ModernMessageDialog.createWarningDialog(mParent,
+          "You must select at least one sample.");
 
       return;
     }

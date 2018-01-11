@@ -40,7 +40,6 @@ import org.jebtk.modern.menu.ModernPopupMenu;
 import org.jebtk.modern.menu.ModernTitleMenuItem;
 import org.jebtk.modern.panel.ModernPanel;
 import org.jebtk.modern.ribbon.RibbonSubSectionSeparator;
-import org.jebtk.modern.search.FilterButton;
 import org.jebtk.modern.search.FilterModel;
 import org.jebtk.modern.search.SortDirectionButton;
 import org.jebtk.modern.search.SortModel;
@@ -60,7 +59,8 @@ import edu.columbia.rdf.edb.Sample;
  * @author Antony Holmes Holmes
  *
  */
-public class SamplesSortPanel extends ModernWidget implements ModernClickListener {
+public class SamplesSortPanel extends ModernWidget
+    implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -83,7 +83,8 @@ public class SamplesSortPanel extends ModernWidget implements ModernClickListene
   private ModernComboBox mSortFieldMenuButton;
 
   /** The m sort direction button. */
-  private SortDirectionButton mSortDirectionButton = new SortDirectionButton(true);
+  private SortDirectionButton mSortDirectionButton = new SortDirectionButton(
+      true);
 
   /** The m list button. */
   private ModernCheckRadioButton mListButton = new ModernCheckRadioButton(
@@ -113,8 +114,8 @@ public class SamplesSortPanel extends ModernWidget implements ModernClickListene
     /*
      * (non-Javadoc)
      * 
-     * @see
-     * org.abh.common.event.ChangeListener#changed(org.abh.common.event.ChangeEvent)
+     * @see org.abh.common.event.ChangeListener#changed(org.abh.common.event.
+     * ChangeEvent)
      */
     @Override
     public void changed(ChangeEvent e) {
@@ -129,17 +130,13 @@ public class SamplesSortPanel extends ModernWidget implements ModernClickListene
   /**
    * Instantiates a new samples sort panel.
    *
-   * @param parent
-   *          the parent
-   * @param sortModel
-   *          the sort model
-   * @param filterModel
-   *          the filter model
-   * @param viewModel
-   *          the view model
+   * @param parent the parent
+   * @param sortModel the sort model
+   * @param filterModel the filter model
+   * @param viewModel the view model
    */
-  public SamplesSortPanel(ModernWindow parent, SortModel<Sample> sortModel, FilterModel filterModel,
-      ViewModel viewModel) {
+  public SamplesSortPanel(ModernWindow parent, SortModel<Sample> sortModel,
+      FilterModel filterModel, ViewModel viewModel) {
     mSortModel = sortModel;
     mViewModel = viewModel;
 
@@ -180,7 +177,8 @@ public class SamplesSortPanel extends ModernWidget implements ModernClickListene
     mPopup.add(menuItem);
 
     ModernComponent gridPanel = new ModernComponent();
-    gridPanel.setLayout(new SamplesSortLayout(170, 28)); // new GridLayout(0, 3, 0, 0));
+    gridPanel.setLayout(new SamplesSortLayout(170, 28)); // new GridLayout(0, 3,
+                                                         // 0, 0));
     gridPanel.setBorder(LEFT_RIGHT_BORDER);
 
     for (String name : names.get("Common Properties")) {
@@ -206,11 +204,13 @@ public class SamplesSortPanel extends ModernWidget implements ModernClickListene
       mPopup.add(menuItem);
 
       gridPanel = new ModernComponent();
-      gridPanel.setLayout(new SamplesSortLayout(170, 28)); // new GridLayout(0, 3, 0, 0));
+      gridPanel.setLayout(new SamplesSortLayout(170, 28)); // new GridLayout(0,
+                                                           // 3, 0, 0));
       gridPanel.setBorder(LEFT_RIGHT_BORDER);
 
       for (String name : names.get(type)) {
-        subMenuItem = new ModernRadioButton(name); // new ModernCheckBoxMenuItem(name);
+        subMenuItem = new ModernRadioButton(name); // new
+                                                   // ModernCheckBoxMenuItem(name);
         subMenuItem.addClickListener(this);
         // Ui.setSize(menuItem, MENU_SIZE);
         gridPanel.add(subMenuItem);
@@ -232,7 +232,8 @@ public class SamplesSortPanel extends ModernWidget implements ModernClickListene
     // add(Box.createHorizontalGlue());
 
     // sortFieldMenuButton = new ModernHiddenComboBox("Array Design", popup);
-    // mSortFieldMenuButton = new ModernDropDownMenuLabelButton("Sort by", popup);
+    // mSortFieldMenuButton = new ModernDropDownMenuLabelButton("Sort by",
+    // popup);
     mSortFieldMenuButton = new ModernComboBox(mPopup);
     mSortFieldMenuButton.addClickListener(this);
     UI.setSize(mSortFieldMenuButton, 200, WIDGET_HEIGHT);
@@ -287,9 +288,8 @@ public class SamplesSortPanel extends ModernWidget implements ModernClickListene
   /*
    * (non-Javadoc)
    * 
-   * @see
-   * org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.event.
-   * ModernClickEvent)
+   * @see org.abh.common.ui.event.ModernClickListener#clicked(org.abh.common.ui.
+   * event. ModernClickEvent)
    */
   @Override
   public final void clicked(ModernClickEvent e) {

@@ -33,8 +33,7 @@ public abstract class ExperimentsTab extends ModernWidget {
   /**
    * Sets the experiments.
    *
-   * @param experiments
-   *          the new experiments
+   * @param experiments the new experiments
    */
   public abstract void setExperiments(Collection<Experiment> experiments);
 }

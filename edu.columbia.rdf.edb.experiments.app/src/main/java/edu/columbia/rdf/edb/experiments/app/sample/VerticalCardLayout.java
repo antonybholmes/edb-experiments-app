@@ -57,8 +57,7 @@ public class VerticalCardLayout implements LayoutManager {
   /**
    * Sets the sizes.
    *
-   * @param parent
-   *          the new sizes
+   * @param parent the new sizes
    */
   private void setSizes(Container parent) {
     int nComps = parent.getComponentCount();
@@ -121,8 +120,8 @@ public class VerticalCardLayout implements LayoutManager {
    */
   /*
    * This is called when the panel is first displayed, and every time its size
-   * changes. Note: You CAN'T assume preferredLayoutSize or minimumLayoutSize will
-   * be called -- in the case of applets, at least, they probably won't be.
+   * changes. Note: You CAN'T assume preferredLayoutSize or minimumLayoutSize
+   * will be called -- in the case of applets, at least, they probably won't be.
    */
   @Override
   public void layoutContainer(Container parent) {

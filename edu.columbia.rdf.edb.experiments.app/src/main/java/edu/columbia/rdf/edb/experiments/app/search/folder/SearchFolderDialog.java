@@ -128,7 +128,7 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
    * Creates the ui.
    */
   private final void createUi() {
-    // this.getContentPane().add(new JLabel("Change " +
+    // this.getWindowContentPanel().add(new JLabel("Change " +
     // getProductDetails().getProductName() + " settings", JLabel.LEFT),
     // BorderLayout.PAGE_START);
 

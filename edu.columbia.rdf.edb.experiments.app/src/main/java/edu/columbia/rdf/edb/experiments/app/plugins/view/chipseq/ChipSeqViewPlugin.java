@@ -32,8 +32,8 @@ import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.search.SortModel;
 import org.jebtk.modern.status.StatusModel;
-import org.jebtk.modern.widget.tooltip.ModernToolTip;
-import org.jebtk.modern.widget.tooltip.ModernToolTipModel;
+import org.jebtk.modern.tooltip.ModernToolTip;
+import org.jebtk.modern.tooltip.ModernToolTipModel;
 import org.jebtk.modern.window.ModernRibbonWindow;
 import org.xml.sax.SAXException;
 

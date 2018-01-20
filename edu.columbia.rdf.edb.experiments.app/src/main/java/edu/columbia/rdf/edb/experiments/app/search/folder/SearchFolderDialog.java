@@ -38,8 +38,8 @@ import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 import org.jebtk.modern.text.ModernAutoSizeLabel;
 import org.jebtk.modern.text.ModernTextBorderPanel;
 import org.jebtk.modern.text.ModernTextField;
+import org.jebtk.modern.tooltip.ModernToolTip;
 import org.jebtk.modern.widget.ModernWidget;
-import org.jebtk.modern.widget.tooltip.ModernToolTip;
 import org.jebtk.modern.window.ModernWindow;
 import org.jebtk.modern.window.WindowWidgetFocusEvents;
 

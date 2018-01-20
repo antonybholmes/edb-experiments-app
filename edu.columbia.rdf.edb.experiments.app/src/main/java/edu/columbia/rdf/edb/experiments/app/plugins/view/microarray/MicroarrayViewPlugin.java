@@ -38,8 +38,8 @@ import org.jebtk.modern.menu.ModernTitleIconMenuItem;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.search.SortModel;
 import org.jebtk.modern.status.StatusModel;
-import org.jebtk.modern.widget.tooltip.ModernToolTip;
-import org.jebtk.modern.widget.tooltip.ModernToolTipModel;
+import org.jebtk.modern.tooltip.ModernToolTip;
+import org.jebtk.modern.tooltip.ModernToolTipModel;
 import org.jebtk.modern.window.ModernRibbonWindow;
 
 import edu.columbia.rdf.edb.DataView;

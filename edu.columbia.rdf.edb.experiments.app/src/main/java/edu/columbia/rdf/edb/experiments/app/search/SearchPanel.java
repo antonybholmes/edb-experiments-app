@@ -37,8 +37,8 @@ import org.jebtk.modern.graphics.icons.SearchVectorIcon;
 import org.jebtk.modern.panel.HBox;
 import org.jebtk.modern.splitpane.HSplitPane;
 import org.jebtk.modern.splitpane.ModernHSplitPaneEllipsis;
+import org.jebtk.modern.tooltip.ModernToolTip;
 import org.jebtk.modern.widget.ModernClickWidget;
-import org.jebtk.modern.widget.tooltip.ModernToolTip;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.Species;

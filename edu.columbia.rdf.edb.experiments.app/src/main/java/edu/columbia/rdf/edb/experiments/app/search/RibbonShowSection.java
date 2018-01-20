@@ -22,8 +22,8 @@ import org.jebtk.modern.graphics.icons.Raster32Icon;
 import org.jebtk.modern.ribbon.Ribbon;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.ribbon.RibbonSection;
-import org.jebtk.modern.widget.tooltip.ModernToolTip;
-import org.jebtk.modern.widget.tooltip.ModernToolTipModel;
+import org.jebtk.modern.tooltip.ModernToolTip;
+import org.jebtk.modern.tooltip.ModernToolTipModel;
 
 // TODO: Auto-generated Javadoc
 /**

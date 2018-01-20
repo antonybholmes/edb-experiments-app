@@ -36,8 +36,8 @@ import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.ribbon.RibbonMenuItem;
 import org.jebtk.modern.status.StatusModel;
 import org.jebtk.modern.status.StatusTask;
+import org.jebtk.modern.tooltip.ModernToolTip;
 import org.jebtk.modern.view.ViewModel;
-import org.jebtk.modern.widget.tooltip.ModernToolTip;
 import org.jebtk.modern.window.ModernRibbonWindow;
 import org.jebtk.modern.window.ModernWindow;
 

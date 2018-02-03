@@ -32,8 +32,6 @@ import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.search.SortModel;
 import org.jebtk.modern.status.StatusModel;
-import org.jebtk.modern.tooltip.ModernToolTip;
-import org.jebtk.modern.tooltip.ModernToolTipModel;
 import org.jebtk.modern.window.ModernRibbonWindow;
 import org.xml.sax.SAXException;
 
@@ -165,7 +163,6 @@ public class ChipSeqViewPlugin extends ViewPlugin
   @Override
   public void init(ModernRibbonWindow parent,
       StatusModel statusModel,
-      ModernToolTipModel toolTipModel,
       SelectionModel<Sample> selectedSamples) {
     mParent = parent;
     mSelectedSamples = selectedSamples;
@@ -173,10 +170,8 @@ public class ChipSeqViewPlugin extends ViewPlugin
     parent.getRibbon().getHomeToolbar().getSection(getExpressionType())
         .add(mViewButton);
 
-    mViewButton.setToolTip(
-        new ModernToolTip("View ChIP-seq data",
-            "View ChIP-seq data for the currently selected samples."),
-        toolTipModel);
+    mViewButton.setToolTip("View ChIP-seq data",
+        "View ChIP-seq data for the currently selected samples.");
   }
 
   /*

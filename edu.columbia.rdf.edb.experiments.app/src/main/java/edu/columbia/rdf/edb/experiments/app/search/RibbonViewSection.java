@@ -75,14 +75,14 @@ public class RibbonViewSection extends RibbonSection
 
     add(container);
 
-    listButton.setToolTip("List", "Display items in a list.", mRibbon);
+    listButton.setToolTip("List", "Display items in a list.");
     listButton.addClickListener(this);
 
-    tilesButton.setToolTip("Tiles", "Display items as tiles.", mRibbon);
+    tilesButton.setToolTip("Tiles", "Display items as tiles.");
     tilesButton.addClickListener(this);
 
     detailsButton
-        .setToolTip("Details", "Display items in a detailed list.", mRibbon);
+        .setToolTip("Details", "Display items in a detailed list.");
     detailsButton.addClickListener(this);
 
     ModernButtonGroup group = new ModernButtonGroup();

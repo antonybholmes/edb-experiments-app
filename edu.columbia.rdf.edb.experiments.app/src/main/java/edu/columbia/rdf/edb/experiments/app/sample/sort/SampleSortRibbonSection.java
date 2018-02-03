@@ -143,13 +143,11 @@ public class SampleSortRibbonSection extends RibbonSection
     sortAscendButton.setSelected(true);
 
     sortAscendButton.setToolTip("Sort Ascending",
-        "Sort the experiments in ascending order.",
-        mRibbon);
+        "Sort the experiments in ascending order.");
     sortAscendButton.addClickListener(this);
 
     sortDescendButton.setToolTip("Sort Descending",
-        "Sort the experiments in descending order.",
-        mRibbon);
+        "Sort the experiments in descending order.");
     sortDescendButton.addClickListener(this);
 
     ModernButtonGroup sortGroup = new ModernButtonGroup();

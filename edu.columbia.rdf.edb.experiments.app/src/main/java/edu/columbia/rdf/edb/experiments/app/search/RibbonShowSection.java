@@ -22,8 +22,6 @@ import org.jebtk.modern.graphics.icons.Raster32Icon;
 import org.jebtk.modern.ribbon.Ribbon;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.ribbon.RibbonSection;
-import org.jebtk.modern.tooltip.ModernToolTip;
-import org.jebtk.modern.tooltip.ModernToolTipModel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -55,15 +53,15 @@ public class RibbonShowSection extends RibbonSection
    * @param ribbon the ribbon
    * @param tooltipModel the tooltip model
    */
-  public RibbonShowSection(Ribbon ribbon, ModernToolTipModel tooltipModel) {
+  public RibbonShowSection(Ribbon ribbon) {
     super(ribbon, "Show");
 
     experimentsButton = new RibbonLargeButton("Folders",
         new Raster32Icon(new ExperimentsPane32VectorIcon()));
     // Ui.setSize(experimentsButton,
     // ModernTheme.getInstance().getClass("ribbon-large-button").getDimension("extra-wide"));
-    experimentsButton.setToolTip(new ModernToolTip("Show Folders Pane",
-        "Display the folders in a tree."), tooltipModel);
+    experimentsButton.setToolTip("Show Folders Pane",
+        "Display the folders in a tree.");
     experimentsButton.setClickMessage("folders_pane");
     experimentsButton.addClickListener(this);
     add(experimentsButton);
@@ -71,8 +69,8 @@ public class RibbonShowSection extends RibbonSection
     categoriesButton = new RibbonLargeButton("Categories",
         new Raster32Icon(new CategoryPane32VectorIcon()));
     categoriesButton.addClickListener(this);
-    categoriesButton.setToolTip(new ModernToolTip("Show Categories Pane",
-        "Display the category directory."), tooltipModel);
+    categoriesButton.setToolTip("Show Categories Pane",
+        "Display the category directory.");
     categoriesButton.setClickMessage("categories_pane");
     // Ui.setSize(categoriesButton,
     // ModernTheme.getInstance().getClass("ribbon-large-button").getDimension("extra-wide"));
@@ -80,8 +78,8 @@ public class RibbonShowSection extends RibbonSection
 
     summaryButton = new RibbonLargeButton("Summary",
         new Raster32Icon(new Summary32VectorIcon()));
-    summaryButton.setToolTip(new ModernToolTip("Show Summary Pane",
-        "Display the experiment summary."), tooltipModel);
+    summaryButton.setToolTip("Show Summary Pane",
+        "Display the experiment summary.");
     // Ui.setSize(summaryButton,
     // ModernTheme.getInstance().getClass("ribbon-large-button").getDimension("wide"));
     summaryButton.setClickMessage("summary_pane");

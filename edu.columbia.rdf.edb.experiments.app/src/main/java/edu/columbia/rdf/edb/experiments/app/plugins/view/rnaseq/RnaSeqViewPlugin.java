@@ -36,8 +36,6 @@ import org.jebtk.modern.menu.ModernTitleIconMenuItem;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.search.SortModel;
 import org.jebtk.modern.status.StatusModel;
-import org.jebtk.modern.tooltip.ModernToolTip;
-import org.jebtk.modern.tooltip.ModernToolTipModel;
 import org.jebtk.modern.window.ModernRibbonWindow;
 
 import edu.columbia.rdf.edb.DataView;
@@ -167,7 +165,6 @@ public class RnaSeqViewPlugin extends ViewPlugin
   @Override
   public void init(ModernRibbonWindow parent,
       StatusModel statusModel,
-      ModernToolTipModel toolTipModel,
       SelectionModel<Sample> selectedSamples) {
     mParent = parent;
     mStatusModel = statusModel;
@@ -176,9 +173,8 @@ public class RnaSeqViewPlugin extends ViewPlugin
     parent.getRibbon().getHomeToolbar().getSection(getExpressionType())
         .add(mFpkmButton);
 
-    mFpkmButton.setToolTip(new ModernToolTip("MAS5 Expression Data",
-        "Download MAS5 normalized expression data for the currently selected samples."),
-        toolTipModel);
+    mFpkmButton.setToolTip("MAS5 Expression Data",
+        "Download MAS5 normalized expression data for the currently selected samples.");
   }
 
   /*

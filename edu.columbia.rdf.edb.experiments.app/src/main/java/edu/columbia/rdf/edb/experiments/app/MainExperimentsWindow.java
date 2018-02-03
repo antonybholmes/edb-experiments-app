@@ -438,7 +438,6 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     for (ViewPlugin plugin : ViewPluginService.getInstance()) {
       plugin.init(this,
           getStatusBar().getStatusModel(),
-          getRibbon(),
           mSampleSelectionModel);
     }
 

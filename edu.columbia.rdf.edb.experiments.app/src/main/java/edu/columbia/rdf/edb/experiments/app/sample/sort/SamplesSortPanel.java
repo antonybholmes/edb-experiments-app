@@ -31,12 +31,12 @@ import org.jebtk.modern.UIService;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckRadioButton;
 import org.jebtk.modern.button.ModernRadioButton;
-import org.jebtk.modern.combobox.ModernComboBox;
+import org.jebtk.modern.combobox.ModernComboBox2;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.graphics.icons.ListVectorIcon;
 import org.jebtk.modern.graphics.icons.TreeVectorIcon;
-import org.jebtk.modern.menu.ModernPopupMenu;
+import org.jebtk.modern.menu.ModernPopupMenu2;
 import org.jebtk.modern.menu.ModernTitleMenuItem;
 import org.jebtk.modern.panel.ModernPanel;
 import org.jebtk.modern.ribbon.RibbonSubSectionSeparator;
@@ -77,10 +77,10 @@ public class SamplesSortPanel extends ModernWidget
   // Resources.getInstance().loadIcon("down_scroll", Resources.ICON_SIZE_16);
 
   /** The m popup. */
-  private ModernPopupMenu mPopup;
+  private ModernPopupMenu2 mPopup;
 
   /** The m sort field menu button. */
-  private ModernComboBox mSortFieldMenuButton;
+  private ModernComboBox2 mSortFieldMenuButton;
 
   /** The m sort direction button. */
   private SortDirectionButton mSortDirectionButton = new SortDirectionButton(
@@ -168,7 +168,7 @@ public class SamplesSortPanel extends ModernWidget
 
     setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
-    mPopup = new ModernPopupMenu(); // parentFrame);
+    mPopup = new ModernPopupMenu2(); // parentFrame);
 
     ModernTitleMenuItem menuItem;
     ModernClickWidget subMenuItem;
@@ -234,7 +234,7 @@ public class SamplesSortPanel extends ModernWidget
     // sortFieldMenuButton = new ModernHiddenComboBox("Array Design", popup);
     // mSortFieldMenuButton = new ModernDropDownMenuLabelButton("Sort by",
     // popup);
-    mSortFieldMenuButton = new ModernComboBox(mPopup);
+    mSortFieldMenuButton = new ModernComboBox2(mPopup);
     mSortFieldMenuButton.addClickListener(this);
     UI.setSize(mSortFieldMenuButton, 200, WIDGET_HEIGHT);
 

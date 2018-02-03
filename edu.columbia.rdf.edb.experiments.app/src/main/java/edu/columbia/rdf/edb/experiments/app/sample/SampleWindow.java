@@ -134,15 +134,12 @@ public class SampleWindow extends ModernRibbonWindow
 
     getRibbon().getHomeToolbar().add(new ClipboardRibbonSection(getRibbon()));
 
-    downloadButton.setToolTip(
-        new ModernToolTip("Download Files",
-            "Download the CEL and CHP files for this sample in a zip archive."),
-        getRibbon());
+    downloadButton.setToolTip("Download Files",
+            "Download the CEL and CHP files for this sample in a zip archive.");
     getRibbon().getHomeToolbar().getSection("data").add(downloadButton);
 
-    exportButton.setToolTip(new ModernToolTip("Export Sample",
-        "Export the information on the sample as a text file. This does not include CEL, CHP or expression data."),
-        getRibbon());
+    exportButton.setToolTip("Export Sample",
+        "Export the information on the sample as a text file. This does not include CEL, CHP or expression data.");
     getRibbon().getHomeToolbar().getSection("data").add(exportButton);
 
     // put it all together

@@ -190,8 +190,6 @@ public class ChipSeqViewPlugin extends ViewPlugin
       e1.printStackTrace();
     } catch (ClassNotFoundException e1) {
       e1.printStackTrace();
-    } catch (ParseException e1) {
-      e1.printStackTrace();
     } catch (SAXException e1) {
       e1.printStackTrace();
     } catch (ParserConfigurationException e1) {
@@ -211,7 +209,7 @@ public class ChipSeqViewPlugin extends ViewPlugin
    */
   private void showSamples()
       throws IOException, ServerException, ClassNotFoundException,
-      ParseException, SAXException, ParserConfigurationException {
+      SAXException, ParserConfigurationException {
     List<Sample> samples = mSelectedSamples.getItems();
 
     if (samples.size() == 0) {

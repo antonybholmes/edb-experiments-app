@@ -1125,11 +1125,11 @@ public class MainExperimentsWindow extends ModernRibbonWindow
    * Adds the experiment summary pane.
    */
   private void addExperimentSummaryPane() {
-    if (getTabsPane().getModel().getRightTabs().containsTab("Experiment")) {
+    if (tabsPane().tabs().right().contains("Experiment")) {
       return;
     }
 
-    getTabsPane()
+    tabsPane()
         .addRightTab("Experiment", mExperimentSummaryPanel, 250, 200, 500);
   }
 

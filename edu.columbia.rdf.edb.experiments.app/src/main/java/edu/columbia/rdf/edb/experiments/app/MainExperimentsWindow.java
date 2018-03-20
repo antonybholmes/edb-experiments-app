@@ -45,6 +45,7 @@ import org.jebtk.core.settings.SettingsService;
 import org.jebtk.core.stream.Stream;
 import org.jebtk.core.text.TextUtils;
 import org.jebtk.math.matrix.DataFrame;
+import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.UIService;
 import org.jebtk.modern.button.ModernButton;
@@ -60,7 +61,6 @@ import org.jebtk.modern.help.GuiAppInfo;
 import org.jebtk.modern.help.ModernAboutDialog;
 import org.jebtk.modern.io.RecentFilesService;
 import org.jebtk.modern.options.ModernOptionsDialog;
-import org.jebtk.modern.panel.ModernPanel;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.ribbon.RibbonMenuItem;
 import org.jebtk.modern.search.FilterModel;
@@ -604,7 +604,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     // to trigger a search etc
     mSearchPanel.addClickListener(this);
 
-    ModernPanel panel = new ModernPanel();
+    ModernComponent panel = new ModernComponent();
     panel.setHeader(mSearchPanel);
     panel.setBody(mAnnotationPanel);
 
@@ -1130,7 +1130,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     }
 
     tabsPane()
-        .addRightTab("Experiment", mExperimentSummaryPanel, 250, 200, 500);
+        .tabs().right().add("Experiment", mExperimentSummaryPanel, 250, 200, 500);
   }
 
   /**

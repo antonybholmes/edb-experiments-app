@@ -19,6 +19,11 @@
 	<setting name="edb.experiments.sample-view.file" value="res/sample.view.xml"/>
 	<setting name="edb.experiments.sdrf-view.file" value="res/sdrf.view.xml"/>
 	
+	<!-- Which modules should be enabled in the user interface -->
+	<setting name="edb.modules.microarray.enabled" value="true"/>
+	<setting name="edb.modules.rnaseq.enabled" value="true"/>
+	<setting name="edb.modules.chipseq.enabled" value="true"/>
+	
 	<!-- Controls whether to search globally or only within the folder currently selected -->
 	<setting name="edb.experiments.search.within-current-folder" value="false"/>
 	
@@ -37,9 +42,9 @@
 	<setting name="experiments.help.type" value="web"/>
 	<setting name="experiments.help.url" value="https://github.com/lab-rdf/edb-experiments-app/wiki" />
 	
-	<setting name="edbw.server" value="http://localhost:8080/edbw6"/>
+	<setting name="edbw.server" value="http://localhost:8080/edbw7"/>
 	<setting name="edbw.key" value=""/>
-	<setting name="edbw.user" value=""/>
+	<setting name="edbw.totp" value=""/>
 	<setting name="edbw.totp.epoch.offset.ms" value="0"/>
 	<setting name="edbw.totp.step-size.ms" value="3600000"/>
 	

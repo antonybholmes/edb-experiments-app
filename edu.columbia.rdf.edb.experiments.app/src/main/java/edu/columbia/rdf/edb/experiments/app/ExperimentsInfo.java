@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Antony Holmes
+ * Copyright 2018 Antony Holmes
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ public class ExperimentsInfo extends GuiAppInfo {
    * Instantiates a new experiments info.
    */
   public ExperimentsInfo() {
-    super("Experiments", new AppVersion(37),
+    super("Experiments", new AppVersion(38),
         "Copyright (C) 2011-${year} Antony Holmes.",
         UIService.getInstance().loadIcon(ExperimentsIcon.class, 32),
         UIService.getInstance().loadIcon(ExperimentsIcon.class, 128),
-        "Experiment Database Viewer");
+        "Experiment Database Browser");
   }
 }

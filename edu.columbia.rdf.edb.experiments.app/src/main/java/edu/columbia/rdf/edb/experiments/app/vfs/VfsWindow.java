@@ -362,7 +362,7 @@ public class VfsWindow extends ModernRibbonWindow
       return;
     }
 
-    mContentPane.tabs().addLeftTab(
+    mContentPane.tabs().left().add(
         new SizableTab("Folders", mViewPanel, 300, 100, 600));
   }
 }

@@ -27,6 +27,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.jebtk.core.AppService;
 import org.jebtk.core.dictionary.DictionaryService;
 import org.jebtk.core.dictionary.SubstitutionService;
+import org.jebtk.core.settings.SettingsService;
 import org.jebtk.modern.help.GuiAppInfo;
 import org.jebtk.modern.search.SearchTermsService;
 import org.jebtk.modern.theme.ThemeService;
@@ -65,10 +66,10 @@ public class MainExperiments {
    *           exception
    */
   public static final void main(String[] args) throws ServerException,
-      SAXException, IOException, ParserConfigurationException,
-      KeyManagementException, NoSuchAlgorithmException, FontFormatException,
-      ClassNotFoundException, InstantiationException, IllegalAccessException,
-      UnsupportedLookAndFeelException {
+  SAXException, IOException, ParserConfigurationException,
+  KeyManagementException, NoSuchAlgorithmException, FontFormatException,
+  ClassNotFoundException, InstantiationException, IllegalAccessException,
+  UnsupportedLookAndFeelException {
     main();
   }
 
@@ -110,8 +111,8 @@ public class MainExperiments {
     // DataViewService.getInstance().loadXml();
 
     // Load search categories
-    SearchCategoryService.getInstance()
-        .loadXml(SearchCategoryService.DEFAULT_SEARCH_CATEGORIES_XML_FILE);
+    //SearchCategoryService.getInstance()
+    //   .loadXml(SearchCategoryService.SEARCH_CATEGORIES_XML_FILE);
 
     // load plugins from the plugin directory
     // PluginService.getInstance().scanDirectory(Settings.getInstance().getChild("main.plugins-directory").getValue());
@@ -120,18 +121,30 @@ public class MainExperiments {
     // File(SettingsService.getInstance().getSetting("experiments.working-directory").getValue()));
 
     // load previous search terms
-    SearchTermsService.getInstance()
-        .loadXml(SearchTermsService.DEFAULT_XML_FILE);
-    DictionaryService.getInstance().loadXml(DictionaryService.DEFAULT_FILE);
-    SubstitutionService.getInstance()
-        .loadTSVFile(SubstitutionService.DEFAULT_FILE);
+    //SearchTermsService.getInstance()
+    //   .loadXml(SearchTermsService.DEFAULT_XML_FILE);
+
+
+    //DictionaryService.getInstance().loadXml(DictionaryService.DEFAULT_FILE);
+
+    //SubstitutionService.getInstance()
+    //    .loadTSVFile(SubstitutionService.DEFAULT_FILE);
 
     EDBWLogin login = EDBWLogin.loadFromSettings();
 
     // Configure default views
-    ViewPluginService.getInstance().register(new MicroarrayViewPlugin());
-    ViewPluginService.getInstance().register(new RnaSeqViewPlugin());
-    ViewPluginService.getInstance().register(new ChipSeqViewPlugin(login));
+
+    if (SettingsService.getInstance().getAsBool("edb.modules.microarray.enabled")) {
+      ViewPluginService.getInstance().register(new MicroarrayViewPlugin());
+    }
+
+    if (SettingsService.getInstance().getAsBool("edb.modules.chipseq.enabled")) {
+      ViewPluginService.getInstance().register(new ChipSeqViewPlugin(login));
+    }
+
+    if (SettingsService.getInstance().getAsBool("edb.modules.rnaseq.enabled")) {
+      ViewPluginService.getInstance().register(new RnaSeqViewPlugin());
+    }
 
     for (ViewPlugin plugin : ViewPluginService.getInstance()) {
       plugin.initSampleSorters(SampleSortService.getInstance());

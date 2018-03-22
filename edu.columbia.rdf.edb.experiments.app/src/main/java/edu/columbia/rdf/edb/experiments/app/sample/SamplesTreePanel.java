@@ -35,13 +35,14 @@ import org.jebtk.modern.graphics.icons.MinusVectorIcon;
 import org.jebtk.modern.graphics.icons.PlusVectorIcon;
 import org.jebtk.modern.menu.ModernCheckBoxMenuItem;
 import org.jebtk.modern.menu.ModernIconMenuItem;
-import org.jebtk.modern.menu.ModernPopupMenu;
-import org.jebtk.modern.menu.ModernTitleIconMenuItem;
+import org.jebtk.modern.menu.ModernPopupMenu2;
+import org.jebtk.modern.menu.ModernTitleMenuItem;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarLocation;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 import org.jebtk.modern.search.FilterEventListener;
 import org.jebtk.modern.search.FilterModel;
+import org.jebtk.modern.tooltip.ToolTipService;
 import org.jebtk.modern.tree.ModernTree;
 import org.jebtk.modern.tree.ModernTreeNodeRenderer;
 import org.jebtk.modern.tree.TreeNodeFileCountRenderer;
@@ -50,8 +51,8 @@ import org.jebtk.modern.widget.ModernTwoStateWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.Sample;
-import edu.columbia.rdf.edb.experiments.app.sample.sort.SampleSortService;
 import edu.columbia.rdf.edb.experiments.app.sample.sort.SamplesSortPanel;
+import edu.columbia.rdf.edb.ui.SampleSortService;
 import edu.columbia.rdf.edb.ui.SamplesListTreeNodeRenderer;
 import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.ViewPluginService;
@@ -79,7 +80,7 @@ public class SamplesTreePanel extends SamplesPanel
   private SamplesSortPanel mSamplesSortPanel;
 
   /** The m menu. */
-  private ModernPopupMenu mMenu;
+  private ModernPopupMenu2 mMenu;
 
   /** The m sort menu item. */
   private ModernTwoStateWidget mSortMenuItem = new ModernCheckBoxMenuItem(
@@ -145,7 +146,9 @@ public class SamplesTreePanel extends SamplesPanel
         return;
       }
 
-      mMenu.showPopup(e.getComponent(), e.getX(), e.getY());
+      //mMenu.showPopup(e.getComponent(), e.getX(), e.getY());
+      
+      ToolTipService.getInstance().showToolTip(createToolTipEvent(mMenu, e));
     }
 
   }
@@ -295,14 +298,14 @@ public class SamplesTreePanel extends SamplesPanel
    * Creates the menu.
    */
   private void createMenu() {
-    mMenu = new ModernPopupMenu();
+    mMenu = new ModernPopupMenu2();
 
     mMenu.addClickListener(this);
 
     mMenu.add(new ModernIconMenuItem(UI.MENU_COPY,
         UIService.getInstance().loadIcon("copy", 16)));
 
-    mMenu.add(new ModernTitleIconMenuItem("Sort Options"));
+    mMenu.add(new ModernTitleMenuItem("Sort Options"));
 
     mMenu.add(expandMenuItem);
     mMenu.add(collapseMenuItem);
@@ -330,7 +333,7 @@ public class SamplesTreePanel extends SamplesPanel
 
     mMenu.add(mSortMenuItem);
 
-    for (ViewPlugin plugin : ViewPluginService.getInstance()) {
+    for (ViewPlugin plugin : ViewPluginService.instance()) {
       plugin.customizeSampleMenu(mMenu);
     }
   }

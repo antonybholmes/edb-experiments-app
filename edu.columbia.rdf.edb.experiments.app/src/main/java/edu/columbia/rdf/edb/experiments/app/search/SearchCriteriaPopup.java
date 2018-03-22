@@ -19,7 +19,7 @@ import java.awt.Dimension;
 
 import org.jebtk.modern.UIService;
 import org.jebtk.modern.menu.ModernIconMenuItem;
-import org.jebtk.modern.menu.ModernScrollPopupMenu;
+import org.jebtk.modern.menu.ModernScrollPopupMenu2;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -29,7 +29,7 @@ import org.jebtk.modern.menu.ModernScrollPopupMenu;
  * @author Antony Holmes Holmes
  *
  */
-public class SearchCriteriaPopup extends ModernScrollPopupMenu {
+public class SearchCriteriaPopup extends ModernScrollPopupMenu2 {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;

@@ -13,34 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.columbia.rdf.edb.experiments.app.search;
+package edu.columbia.rdf.edb.experiments.app.modules;
 
-import org.jebtk.modern.combobox.ModernComboBox2;
+import java.awt.Font;
 
-import edu.columbia.rdf.edb.ui.search.SearchCategory;
+import org.jebtk.core.settings.SettingsService;
+import org.jebtk.modern.font.FontService;
+import org.jebtk.modern.text.ModernAutoSizeLabel;
 
 // TODO: Auto-generated Javadoc
 /**
- * Specialised combobox for showing selecting search criteria.
- * 
- * @author Antony Holmes Holmes
- *
+ * The Class SummaryTitleLabel.
  */
-public class SearchCategoryComboBox extends ModernComboBox2 {
+public class SummaryTitleLabel extends ModernAutoSizeLabel {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Instantiates a new search category combo box.
-   *
-   * @param searchCriteriaPopup the search criteria popup
-   * @param field the field
-   */
-  public SearchCategoryComboBox(SearchCriteriaPopup searchCriteriaPopup,
-      SearchCategory field) {
-    super.setMenu(searchCriteriaPopup);
+  /** The Constant FONT. */
+  private static final Font FONT = FontService.getInstance()
+      .loadFont(
+          SettingsService.getInstance()
+              .getAsString("theme.widget.fonts.medium-text.family"),
+          14);
 
-    setText(field.getName());
+  /**
+   * Instantiates a new summary title label.
+   *
+   * @param text the text
+   */
+  public SummaryTitleLabel(String text) {
+    super(text, FONT);
   }
 }

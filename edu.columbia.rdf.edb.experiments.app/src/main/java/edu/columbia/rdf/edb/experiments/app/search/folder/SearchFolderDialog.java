@@ -25,7 +25,7 @@ import org.jebtk.modern.UIService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.dialog.MessageDialogType;
 import org.jebtk.modern.dialog.ModernDialogButton;
-import org.jebtk.modern.dialog.ModernDialogOptionalDropDownMenuButton;
+import org.jebtk.modern.dialog.ModernDialogOptionalDropDownMenuButton2;
 import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernDialogTaskWindow;
 import org.jebtk.modern.dialog.ModernMessageDialog;
@@ -68,7 +68,7 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
       UIService.getInstance().loadIcon("trash_bw", 16));
 
   /** The m add field button. */
-  private ModernDialogOptionalDropDownMenuButton mAddFieldButton;
+  private ModernDialogOptionalDropDownMenuButton2 mAddFieldButton;
 
   /** The m text name. */
   private ModernTextField mTextName = new ModernTextField("New Search");
@@ -152,7 +152,7 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
     SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(
         mParent);
 
-    mAddFieldButton = new ModernDialogOptionalDropDownMenuButton(
+    mAddFieldButton = new ModernDialogOptionalDropDownMenuButton2(
         UIService.getInstance().loadIcon("search_field", 16),
         searchCriteriaPopup);
 

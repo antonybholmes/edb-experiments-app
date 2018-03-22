@@ -94,7 +94,7 @@ public class ExperimentsSearchCriteriaPopup extends SearchCriteriaPopup {
       addScrollMenuItem(item);
 
       ModernComponent gridPanel = new ModernComponent();
-      gridPanel.setLayout(new SamplesSortLayout(200, 28)); // new GridLayout(0,
+      gridPanel.setLayout(new SamplesSortLayout(180, 28)); // new GridLayout(0,
                                                            // 3, 0, 0));
       gridPanel.setBorder(ModernWidget.LEFT_RIGHT_BORDER);
 

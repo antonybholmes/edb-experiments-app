@@ -36,7 +36,7 @@ import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.Sample;
-import edu.columbia.rdf.edb.experiments.app.plugins.view.microarray.MicroarrayExpressionData;
+import edu.columbia.rdf.edb.experiments.app.modules.microarray.MicroarrayExpressionData;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
 import edu.columbia.rdf.edb.ui.microarray.Mas5Dialog;
 import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;

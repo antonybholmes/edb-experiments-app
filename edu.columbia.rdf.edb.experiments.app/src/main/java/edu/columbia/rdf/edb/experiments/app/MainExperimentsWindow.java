@@ -81,7 +81,6 @@ import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.SampleTag;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleViewPanel;
-import edu.columbia.rdf.edb.experiments.app.sample.sort.SampleSortService;
 import edu.columbia.rdf.edb.experiments.app.search.ExperimentSummaryPanel;
 import edu.columbia.rdf.edb.experiments.app.search.RibbonWideLayoutSection;
 import edu.columbia.rdf.edb.experiments.app.search.SearchGuiFileFilter;
@@ -90,6 +89,7 @@ import edu.columbia.rdf.edb.experiments.app.search.folder.SearchFolderRibbonSect
 import edu.columbia.rdf.edb.experiments.app.search.folder.SearchFolderTreePanel;
 import edu.columbia.rdf.edb.experiments.app.vfs.VfsWindow;
 import edu.columbia.rdf.edb.ui.RepositorySession;
+import edu.columbia.rdf.edb.ui.SampleSortService;
 import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.ViewPluginService;
 import edu.columbia.rdf.edb.ui.filter.datatypes.DataTypesModel;
@@ -435,7 +435,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
 
     // add the data view toolbars
 
-    for (ViewPlugin plugin : ViewPluginService.getInstance()) {
+    for (ViewPlugin plugin : ViewPluginService.instance()) {
       plugin.init(this,
           getStatusBar().getStatusModel(),
           mSampleSelectionModel);
@@ -607,7 +607,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     ModernComponent panel = new ModernComponent();
     panel.setHeader(mSearchPanel);
     panel.setBody(mAnnotationPanel);
-
+    panel.setBorder(ModernWidget.BORDER);
+    
     setCard(panel);
 
     // panel.add(searchPanel, BorderLayout.PAGE_START);
@@ -1163,7 +1164,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     Map<DataViewField, Integer> indexMap = new HashMap<DataViewField, Integer>();
 
     for (Sample sample : samples) {
-      DataView dataView = ViewPluginService.getInstance().getView(sample)
+      DataView dataView = ViewPluginService.instance().getView(sample)
           .getDataView();
 
       for (DataViewSection viewSection : dataView) {
@@ -1191,7 +1192,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     int row = 0;
 
     for (Sample sample : samples) {
-      DataView dataView = ViewPluginService.getInstance().getView(sample)
+      DataView dataView = ViewPluginService.instance().getView(sample)
           .getDataView();
 
       for (DataViewSection viewSection : dataView) {

@@ -24,8 +24,6 @@ import org.jebtk.modern.UI;
 import org.jebtk.modern.UIService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernButtonWidget;
-import org.jebtk.modern.contentpane.CenterTab;
-import org.jebtk.modern.contentpane.ModernHContentPane;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.help.ModernAboutDialog;
@@ -63,8 +61,6 @@ public class VfsWindow extends ModernRibbonWindow
   /** The m files model. */
   private FilesModel mFilesModel = new FilesModel();
 
-  /** The m content pane. */
-  private ModernHContentPane mContentPane = new ModernHContentPane();
 
   /** The m view panel. */
   private VfsFilesTreePanel mViewPanel;
@@ -288,13 +284,11 @@ public class VfsWindow extends ModernRibbonWindow
     // topPanel.add(label);
     // topPanel.add(Ui.createHorizontalGap(20));
 
-    mContentPane.tabs().setCenterTab(new CenterTab(mFilesPanel));
-
-    // panel.add(searchPanel, BorderLayout.PAGE_START);
+     // panel.add(searchPanel, BorderLayout.PAGE_START);
     // panel.setBody(mContentPane);
     // panel.add(mTabBar, BorderLayout.PAGE_END);
 
-    setBody(mContentPane);
+    setCard(mFilesPanel);
   }
 
   /*
@@ -358,11 +352,7 @@ public class VfsWindow extends ModernRibbonWindow
    * Adds the folders pane.
    */
   private void addFoldersPane() {
-    if (mContentPane.tabs().containsTab("Folders")) {
-      return;
-    }
-
-    mContentPane.tabs().left().add(
+    tabsPane().tabs().left().add(
         new SizableTab("Folders", mViewPanel, 300, 100, 600));
   }
 }

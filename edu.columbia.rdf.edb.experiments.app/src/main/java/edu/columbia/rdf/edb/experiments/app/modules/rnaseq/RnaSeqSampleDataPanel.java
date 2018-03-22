@@ -13,32 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.columbia.rdf.edb.experiments.app.search;
+package edu.columbia.rdf.edb.experiments.app.modules.rnaseq;
 
-import org.jebtk.modern.button.ModernDropDownMenuLabelButton2;
-
-import edu.columbia.rdf.edb.ui.search.SearchCategory;
+import edu.columbia.rdf.edb.DataView;
+import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.experiments.app.modules.SampleSummaryPanel;
+import edu.columbia.rdf.edb.ui.SampleDataPanel;
 
 // TODO: Auto-generated Javadoc
 /**
- * Acts like a flat drop down menu button, but alters the button text as well.
- *
+ * Displays all of the information pertaining to a particular sample.
+ * 
  * @author Antony Holmes Holmes
+ *
  */
-public class SearchCategoryDropDownMenuButton
-    extends ModernDropDownMenuLabelButton2 {
+public class RnaSeqSampleDataPanel extends SampleDataPanel {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /**
-   * Instantiates a new search category drop down menu button.
+   * Instantiates a new rna seq sample data panel.
    *
-   * @param field the field
-   * @param searchCriteriaPopup the search criteria popup
+   * @param sample the sample
+   * @param view the view
    */
-  public SearchCategoryDropDownMenuButton(SearchCategory field,
-      SearchCriteriaPopup searchCriteriaPopup) {
-    super(field.getName(), searchCriteriaPopup);
+  public RnaSeqSampleDataPanel(Sample sample, DataView view) {
+    super(sample, view);
+
+    SampleSummaryPanel titlePanel = new SampleSummaryPanel(sample);
+
+    setHeader(titlePanel);
   }
 }

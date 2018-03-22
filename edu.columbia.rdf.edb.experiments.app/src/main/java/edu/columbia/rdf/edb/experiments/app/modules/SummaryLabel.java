@@ -13,34 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.columbia.rdf.edb.experiments.app.search;
+package edu.columbia.rdf.edb.experiments.app.modules;
 
-import org.jebtk.modern.combobox.ModernComboBox2;
+import java.awt.Color;
 
-import edu.columbia.rdf.edb.ui.search.SearchCategory;
+import org.jebtk.modern.text.ModernAutoSizeLabel;
+import org.jebtk.modern.theme.ThemeService;
 
 // TODO: Auto-generated Javadoc
 /**
- * Specialised combobox for showing selecting search criteria.
- * 
- * @author Antony Holmes Holmes
- *
+ * The Class SummaryLabel.
  */
-public class SearchCategoryComboBox extends ModernComboBox2 {
+public class SummaryLabel extends ModernAutoSizeLabel {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Instantiates a new search category combo box.
-   *
-   * @param searchCriteriaPopup the search criteria popup
-   * @param field the field
-   */
-  public SearchCategoryComboBox(SearchCriteriaPopup searchCriteriaPopup,
-      SearchCategory field) {
-    super.setMenu(searchCriteriaPopup);
+  /** The color1. */
+  public static Color COLOR1 = ThemeService.getInstance().colors()
+      .getHighlight32(24);
 
-    setText(field.getName());
+  /**
+   * Instantiates a new summary label.
+   *
+   * @param text the text
+   */
+  public SummaryLabel(String text) {
+    super(text, COLOR1);
   }
 }

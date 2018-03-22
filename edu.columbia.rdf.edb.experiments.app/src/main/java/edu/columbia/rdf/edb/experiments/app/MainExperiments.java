@@ -34,10 +34,10 @@ import org.jebtk.modern.theme.ThemeService;
 import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.edb.EDBWLogin;
-import edu.columbia.rdf.edb.experiments.app.plugins.view.chipseq.ChipSeqViewPlugin;
-import edu.columbia.rdf.edb.experiments.app.plugins.view.microarray.MicroarrayViewPlugin;
-import edu.columbia.rdf.edb.experiments.app.plugins.view.rnaseq.RnaSeqViewPlugin;
-import edu.columbia.rdf.edb.experiments.app.sample.sort.SampleSortService;
+import edu.columbia.rdf.edb.experiments.app.modules.chipseq.ChipSeqViewPlugin;
+import edu.columbia.rdf.edb.experiments.app.modules.microarray.MicroarrayViewPlugin;
+import edu.columbia.rdf.edb.experiments.app.modules.rnaseq.RnaSeqViewPlugin;
+import edu.columbia.rdf.edb.ui.SampleSortService;
 import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.ViewPluginService;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
@@ -135,22 +135,21 @@ public class MainExperiments {
     // Configure default views
 
     if (SettingsService.getInstance().getAsBool("edb.modules.microarray.enabled")) {
-      ViewPluginService.getInstance().register(new MicroarrayViewPlugin());
+      ViewPluginService.instance().add(new MicroarrayViewPlugin());
     }
 
     if (SettingsService.getInstance().getAsBool("edb.modules.chipseq.enabled")) {
-      ViewPluginService.getInstance().register(new ChipSeqViewPlugin(login));
+      ViewPluginService.instance().add(new ChipSeqViewPlugin(login));
     }
 
     if (SettingsService.getInstance().getAsBool("edb.modules.rnaseq.enabled")) {
-      ViewPluginService.getInstance().register(new RnaSeqViewPlugin());
+      ViewPluginService.instance().add(new RnaSeqViewPlugin());
     }
 
-    for (ViewPlugin plugin : ViewPluginService.getInstance()) {
-      plugin.initSampleSorters(SampleSortService.getInstance());
-      // plugin.initSampleFolders(sampleFolderModel);
-      plugin.initSearchCategories(SearchCategoryService.getInstance());
-    }
+    //for (ViewPlugin plugin : ViewPluginService.instance()) {
+    //  plugin.loadSampleSorters(SampleSortService.getInstance());
+    //  plugin.initSearchCategories(SearchCategoryService.getInstance());
+    //}
 
     //
     // User selects login

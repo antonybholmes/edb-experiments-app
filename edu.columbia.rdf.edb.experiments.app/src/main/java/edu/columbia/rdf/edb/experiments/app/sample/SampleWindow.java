@@ -41,7 +41,7 @@ import org.jebtk.modern.window.ModernWindowConstructor;
 
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.experiments.app.ExperimentsInfo;
-import edu.columbia.rdf.edb.experiments.app.plugins.view.microarray.MicroarrayExpressionData;
+import edu.columbia.rdf.edb.experiments.app.modules.microarray.MicroarrayExpressionData;
 import edu.columbia.rdf.edb.ui.ViewPluginService;
 import edu.columbia.rdf.edb.ui.microarray.Mas5Dialog;
 import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
@@ -161,7 +161,7 @@ public class SampleWindow extends ModernRibbonWindow
 
     ModernPanel content = new ModernPanel();
 
-    samplePanel = ViewPluginService.getInstance().getSamplePanel(mSample);
+    samplePanel = ViewPluginService.instance().getSamplePanel(mSample);
 
     content.add(samplePanel, BorderLayout.CENTER);
 

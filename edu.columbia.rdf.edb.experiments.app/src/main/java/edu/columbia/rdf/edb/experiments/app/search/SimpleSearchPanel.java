@@ -52,7 +52,7 @@ import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
 /**
  * The Class SearchPanel.
  */
-public class SearchPanel extends ModernClickWidget
+public class SimpleSearchPanel extends ModernClickWidget
     implements ModernClickListener, SearchCriteriaCategory {
 
   /** The Constant serialVersionUID. */
@@ -61,9 +61,6 @@ public class SearchPanel extends ModernClickWidget
   /** The Constant SEARCH_QUEUE. */
   public static final String SEARCH_QUEUE = "search_queue";
 
-  /** The Constant FIELD_ADDED. */
-  public static final String FIELD_ADDED = "add_field";
-
   /** The m search fields panel. */
   private SearchCategoriesPanel mSearchFieldsPanel;
 
@@ -71,14 +68,6 @@ public class SearchPanel extends ModernClickWidget
   private ModernButton mSearchButton = new ModernButton(
       UIService.getInstance().loadIcon(SearchVectorIcon.class, 16)); // Resources.getInstance().loadIcon("search",
                                                                      // Resources.ICON_SIZE_16));
-
-  /** The m clear button. */
-  private ModernButton mClearButton = new ModernButton(
-      UIService.getInstance().loadIcon("trash_bw", 16));
-
-  /** The m add field button. */
-  private ModernOptionalDropDownMenuButton2 mAddFieldButton;
-
   // private ModernComboBox searchScopeCombo = new ModernHiddenComboBox();
 
   /** The m parent. */
@@ -92,7 +81,7 @@ public class SearchPanel extends ModernClickWidget
    *
    * @param parent the parent window.
    */
-  public SearchPanel(ModernWindow parent) {
+  public SimpleSearchPanel(ModernWindow parent) {
     mParent = parent;
 
     mSearchFieldsPanel = new SearchCategoriesPanel(parent);
@@ -153,23 +142,7 @@ public class SearchPanel extends ModernClickWidget
 
     // searchCriteriaPopup.addClickListener(this);
 
-    mAddFieldButton = new ModernOptionalDropDownMenuButton2(
-        UIService.getInstance().loadIcon("search_field", 16),
-        searchCriteriaPopup);
-
-    mAddFieldButton.setClickMessage("add_field");
-    mAddFieldButton.setToolTip(new ModernToolTip("Add Field",
-        "Add another search field to your search criteria."));
-    mAddFieldButton.addClickListener(this);
-
-    box.add(mAddFieldButton);
-
-    box.add(createHGap());
-
-    mClearButton.setToolTip("Remove All Search Criteria",
-        "Remove all search criteria and return the search back to its default state.");
-    mClearButton.addClickListener(this);
-    box.add(mClearButton);
+   
 
     box.setAlignmentY(TOP_ALIGNMENT);
     box.setAlignmentX(LEFT_ALIGNMENT);
@@ -235,18 +208,6 @@ public class SearchPanel extends ModernClickWidget
 
     if (e.getSource().equals(mSearchButton)) {
       command = UI.MENU_SEARCH;
-    } else if (e.getSource().equals(mAddFieldButton)) {
-      if (e.getMessage().equals(FIELD_ADDED)) {
-        addUserSearchEntry(UserSearchEntry.createDefaultSearchEntry());
-      } else {
-        // from drop down menu
-        addUserSearchEntry(UserSearchEntry.create(SearchCategoryService
-            .getInstance().getSearchCategory(e.getMessage())));
-      }
-    } else if (e.getSource().equals(mClearButton)) {
-      removeUserSearchEntries();
-
-      command = "search_cleared";
     } else if (e.getSource().equals(mSearchFieldsPanel)) {
       // pass the command on
       command = e.getMessage();
@@ -259,26 +220,6 @@ public class SearchPanel extends ModernClickWidget
     }
 
     fireClicked(new ModernClickEvent(this, command));
-  }
-
-  /**
-   * Removes the user search entries.
-   */
-  private void removeUserSearchEntries() {
-    ModernDialogStatus status = ModernMessageDialog.createDialog(mParent,
-        mParent.getAppInfo().getName(),
-        "Are you sure you want to remove all of your search criteria?",
-        MessageDialogType.WARNING_OK_CANCEL);
-
-    if (status == ModernDialogStatus.CANCEL) {
-      return;
-    }
-
-    // Remove the user entries
-    mSearchFieldsPanel.removeUserSearchEntries();
-
-    // force a new search to reset the search
-    fireClicked(new ModernClickEvent(this, UI.MENU_SEARCH));
   }
 
   /*

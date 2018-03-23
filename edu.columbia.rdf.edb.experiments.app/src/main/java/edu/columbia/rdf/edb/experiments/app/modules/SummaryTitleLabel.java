@@ -15,27 +15,16 @@
  */
 package edu.columbia.rdf.edb.experiments.app.modules;
 
-import java.awt.Font;
-
-import org.jebtk.core.settings.SettingsService;
-import org.jebtk.modern.font.FontService;
-import org.jebtk.modern.text.ModernAutoSizeLabel;
+import org.jebtk.modern.text.ModernSubHeadingLabel;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class SummaryTitleLabel.
  */
-public class SummaryTitleLabel extends ModernAutoSizeLabel {
+public class SummaryTitleLabel extends ModernSubHeadingLabel {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
-
-  /** The Constant FONT. */
-  private static final Font FONT = FontService.getInstance()
-      .loadFont(
-          SettingsService.getInstance()
-              .getAsString("theme.widget.fonts.medium-text.family"),
-          14);
 
   /**
    * Instantiates a new summary title label.
@@ -43,6 +32,6 @@ public class SummaryTitleLabel extends ModernAutoSizeLabel {
    * @param text the text
    */
   public SummaryTitleLabel(String text) {
-    super(text, FONT);
+    super(text);
   }
 }

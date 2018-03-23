@@ -119,7 +119,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
   private static final int SEARCH_ROW_OFFSET = ModernWidget.WIDGET_HEIGHT;
 
   /** The Constant SEARCH_ROW_HEIGHT. */
-  private static final int SEARCH_ROW_HEIGHT = 28;
+  private static final int SEARCH_ROW_HEIGHT = 30;
 
   /** The Constant TYPES_OFFSET. */
   private static final int TYPES_OFFSET = 0; // 28;

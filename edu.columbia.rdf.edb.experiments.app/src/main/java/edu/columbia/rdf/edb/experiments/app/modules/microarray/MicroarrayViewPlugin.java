@@ -52,7 +52,6 @@ import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
 import edu.columbia.rdf.edb.ui.microarray.RMADialog;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 
-// TODO: Auto-generated Javadoc
 /**
  * Plugin for display of microarray data.
  * 

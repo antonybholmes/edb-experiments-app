@@ -19,7 +19,6 @@ import org.jebtk.modern.combobox.ModernComboBox2;
 
 import edu.columbia.rdf.edb.ui.search.SearchCategory;
 
-// TODO: Auto-generated Javadoc
 /**
  * Specialised combobox for showing selecting search criteria.
  * 

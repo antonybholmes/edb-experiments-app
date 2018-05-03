@@ -17,7 +17,6 @@ package edu.columbia.rdf.edb.experiments.app.search.folder;
 
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 
-// TODO: Auto-generated Javadoc
 /**
  * A client to connect to a caarray server and search it.
  *

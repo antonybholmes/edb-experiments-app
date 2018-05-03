@@ -51,7 +51,6 @@ import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
 
-// TODO: Auto-generated Javadoc
 /**
  * Control which conservation scores are shown.
  * 

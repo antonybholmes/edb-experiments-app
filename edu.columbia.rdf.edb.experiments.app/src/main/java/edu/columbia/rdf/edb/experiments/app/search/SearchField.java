@@ -17,7 +17,6 @@ package edu.columbia.rdf.edb.experiments.app.search;
 
 import org.jebtk.modern.text.SuggestionTextBox;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchField.
  */

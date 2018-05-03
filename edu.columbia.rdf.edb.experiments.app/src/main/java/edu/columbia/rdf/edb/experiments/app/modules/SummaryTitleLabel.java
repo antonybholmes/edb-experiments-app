@@ -17,7 +17,6 @@ package edu.columbia.rdf.edb.experiments.app.modules;
 
 import org.jebtk.modern.text.ModernSubHeadingLabel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SummaryTitleLabel.
  */

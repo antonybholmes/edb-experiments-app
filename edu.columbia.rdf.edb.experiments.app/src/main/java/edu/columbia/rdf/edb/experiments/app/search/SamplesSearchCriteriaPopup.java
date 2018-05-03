@@ -30,7 +30,6 @@ import edu.columbia.rdf.edb.ui.search.SearchCategory;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryGroup;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 
-// TODO: Auto-generated Javadoc
 /**
  * Specialised combobox for showing search criteria relevant for search through
  * samples within a particular experiment.

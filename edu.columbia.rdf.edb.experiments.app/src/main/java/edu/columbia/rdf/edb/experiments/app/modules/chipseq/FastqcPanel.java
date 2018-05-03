@@ -37,7 +37,6 @@ import edu.columbia.rdf.edb.FileDescriptor;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.DownloadManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FastqcPanel.
  */

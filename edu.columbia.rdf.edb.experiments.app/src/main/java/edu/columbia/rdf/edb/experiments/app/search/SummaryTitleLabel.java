@@ -20,7 +20,6 @@ import java.awt.Dimension;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.text.ModernLabelBold;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SummaryTitleLabel.
  */

@@ -28,7 +28,6 @@ import edu.columbia.rdf.edb.experiments.app.modules.GEOUrlLinkButton;
 import edu.columbia.rdf.edb.experiments.app.modules.SampleSummaryPanel;
 import edu.columbia.rdf.edb.experiments.app.modules.SummaryLabel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MicroarraySampleSummaryPanel.
  */

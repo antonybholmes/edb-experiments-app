@@ -26,7 +26,6 @@ import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.ribbon.RibbonLargeDropDownButton;
 import org.jebtk.modern.ribbon.RibbonSection;
 
-// TODO: Auto-generated Javadoc
 /**
  * Allows user to customize how the experiments are listed.
  *

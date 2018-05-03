@@ -21,7 +21,6 @@ import org.jebtk.modern.UIService;
 import org.jebtk.modern.menu.ModernIconMenuItem;
 import org.jebtk.modern.menu.ModernScrollPopupMenu2;
 
-// TODO: Auto-generated Javadoc
 /**
  * Specialised combobox for showing search criteria. This class should be
  * subclassed and not used directly.

@@ -37,7 +37,6 @@ import edu.columbia.rdf.edb.ui.search.SearchStackElementCategory;
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchCategoriesPanel.
  */

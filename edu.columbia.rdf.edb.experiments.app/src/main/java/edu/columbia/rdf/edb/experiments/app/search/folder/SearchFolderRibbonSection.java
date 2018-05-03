@@ -29,7 +29,6 @@ import org.jebtk.modern.window.ModernRibbonWindow;
 
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 
-// TODO: Auto-generated Javadoc
 /**
  * Allows user to customize how the experiments are listed.
  *

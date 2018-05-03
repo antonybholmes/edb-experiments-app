@@ -18,7 +18,6 @@ package edu.columbia.rdf.edb.experiments.app.search;
 import org.jebtk.core.search.SearchStackOperator;
 import org.jebtk.modern.combobox.AndOrLogicalComboBox;
 
-// TODO: Auto-generated Javadoc
 /**
  * Extension of the Logical Combo box to support MatchStackOperators which are a
  * superset of the boolean operators.

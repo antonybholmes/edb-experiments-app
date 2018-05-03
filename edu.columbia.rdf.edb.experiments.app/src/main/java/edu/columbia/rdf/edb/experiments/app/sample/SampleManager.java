@@ -37,7 +37,6 @@ import edu.columbia.rdf.edb.DataViewField;
 import edu.columbia.rdf.edb.DataViewSection;
 import edu.columbia.rdf.edb.Sample;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SampleManager.
  */

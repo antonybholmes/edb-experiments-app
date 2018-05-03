@@ -17,7 +17,6 @@ package edu.columbia.rdf.edb.experiments.app.modules.rnaseq;
 
 import org.jebtk.core.path.Path;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SortSamplesBySeqId.
  */

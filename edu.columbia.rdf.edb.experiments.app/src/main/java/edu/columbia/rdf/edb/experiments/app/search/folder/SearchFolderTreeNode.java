@@ -22,7 +22,6 @@ import org.w3c.dom.Element;
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchFolderTreeNode.
  */

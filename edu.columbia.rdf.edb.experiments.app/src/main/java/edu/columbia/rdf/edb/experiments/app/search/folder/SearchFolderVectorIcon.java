@@ -20,7 +20,6 @@ import java.awt.Graphics2D;
 
 import org.jebtk.modern.graphics.icons.FolderVectorIcon;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchFolderVectorIcon.
  */

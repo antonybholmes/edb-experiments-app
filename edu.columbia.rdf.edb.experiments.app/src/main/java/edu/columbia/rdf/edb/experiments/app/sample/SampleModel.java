@@ -19,7 +19,6 @@ import org.jebtk.modern.SelectionModel;
 
 import edu.columbia.rdf.edb.Sample;
 
-// TODO: Auto-generated Javadoc
 /**
  * Centrally keep track of selected experiments in the order they were selected.
  * 

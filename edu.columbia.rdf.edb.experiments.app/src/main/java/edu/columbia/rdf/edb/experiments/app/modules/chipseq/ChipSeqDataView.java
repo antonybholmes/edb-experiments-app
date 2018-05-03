@@ -25,7 +25,6 @@ import org.xml.sax.SAXException;
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.ui.DataViewXmlHandler;
 
-// TODO: Auto-generated Javadoc
 /**
  * Plugin for display of microarray data.
  * 

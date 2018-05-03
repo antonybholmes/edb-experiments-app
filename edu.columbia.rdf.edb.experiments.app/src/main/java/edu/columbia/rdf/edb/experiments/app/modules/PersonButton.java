@@ -21,7 +21,6 @@ import java.net.URL;
 import org.jebtk.modern.button.ModernUrlTextLink;
 import org.jebtk.modern.theme.ThemeService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PersonButton.
  */

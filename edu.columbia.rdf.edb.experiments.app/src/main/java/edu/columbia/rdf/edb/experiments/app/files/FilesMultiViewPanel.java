@@ -44,7 +44,6 @@ import org.jebtk.modern.table.ModernRowTable;
 import org.jebtk.modern.tabs.TabsViewPanel;
 import org.jebtk.modern.view.ViewModel;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class MultiViewPanel.
  */

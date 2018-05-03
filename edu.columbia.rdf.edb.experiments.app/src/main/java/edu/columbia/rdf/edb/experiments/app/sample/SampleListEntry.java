@@ -18,7 +18,6 @@ package edu.columbia.rdf.edb.experiments.app.sample;
 import edu.columbia.rdf.edb.Experiment;
 import edu.columbia.rdf.edb.Sample;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SampleListEntry.
  */

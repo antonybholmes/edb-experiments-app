@@ -38,7 +38,6 @@ import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.ui.search.SearchCategory;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchCategoryPanel.
  */

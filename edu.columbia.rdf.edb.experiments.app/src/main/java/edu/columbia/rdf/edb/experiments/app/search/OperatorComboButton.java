@@ -23,7 +23,6 @@ import org.jebtk.modern.button.ModernDropDownMenuLabelButton;
 import org.jebtk.modern.menu.ModernMenuItem;
 import org.jebtk.modern.menu.ModernPopupMenu;
 
-// TODO: Auto-generated Javadoc
 /**
  * Specialised combobox for showing selecting search criteria.
  *

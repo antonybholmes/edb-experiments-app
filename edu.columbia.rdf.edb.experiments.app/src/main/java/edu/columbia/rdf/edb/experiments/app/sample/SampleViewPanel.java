@@ -29,7 +29,6 @@ import org.jebtk.modern.window.ModernWindow;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.SelectedSamples;
 
-// TODO: Auto-generated Javadoc
 /**
  * In charge of showing the sample view.
  * 

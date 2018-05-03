@@ -15,7 +15,6 @@
  */
 package edu.columbia.rdf.edb.experiments.app.modules.microarray;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SortSamplesByMicroarrayBasedClassification.
  */

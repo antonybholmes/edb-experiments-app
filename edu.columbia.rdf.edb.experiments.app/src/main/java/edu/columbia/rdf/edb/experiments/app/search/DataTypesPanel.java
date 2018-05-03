@@ -35,7 +35,6 @@ import edu.columbia.rdf.edb.Species;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DataTypesPanel.
  */

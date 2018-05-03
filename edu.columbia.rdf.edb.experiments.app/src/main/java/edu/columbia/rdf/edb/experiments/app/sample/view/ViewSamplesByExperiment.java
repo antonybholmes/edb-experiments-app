@@ -30,7 +30,6 @@ import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.sort.SampleSorter;
 import edu.columbia.rdf.edb.ui.sort.SortSamplesByExperiment;
 
-// TODO: Auto-generated Javadoc
 /**
  * Sort samples by experiment.
  * 

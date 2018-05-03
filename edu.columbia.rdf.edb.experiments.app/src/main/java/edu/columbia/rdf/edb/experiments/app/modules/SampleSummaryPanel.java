@@ -30,7 +30,6 @@ import org.jebtk.modern.widget.ModernWidget;
 import edu.columbia.rdf.edb.Person;
 import edu.columbia.rdf.edb.Sample;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SampleSummaryPanel.
  */

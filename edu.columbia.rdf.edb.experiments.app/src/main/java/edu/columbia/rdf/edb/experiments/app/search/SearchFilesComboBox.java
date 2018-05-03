@@ -17,7 +17,6 @@ package edu.columbia.rdf.edb.experiments.app.search;
 
 import org.jebtk.modern.combobox.ModernComboBox;
 
-// TODO: Auto-generated Javadoc
 /**
  * Specialised combobox for showing selecting search criteria.
  *

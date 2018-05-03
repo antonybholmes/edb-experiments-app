@@ -27,7 +27,6 @@ import edu.columbia.rdf.edb.GEO;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.SampleView;
 
-// TODO: Auto-generated Javadoc
 /**
  * Sort samples by Array Design.
  * 

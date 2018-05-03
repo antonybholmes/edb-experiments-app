@@ -51,7 +51,6 @@ import edu.columbia.rdf.htsview.chipseq.SortSamplesByClassification;
 import edu.columbia.rdf.htsview.chipseq.SortSamplesByGenome;
 import edu.columbia.rdf.htsview.chipseq.SortSamplesByTreatment;
 
-// TODO: Auto-generated Javadoc
 /**
  * Plugin for display of microarray data.
  * 

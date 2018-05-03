@@ -18,7 +18,6 @@ package edu.columbia.rdf.edb.experiments.app.search;
 import org.jebtk.modern.button.ModernChipButton;
 import org.jebtk.modern.theme.ThemeService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FilterButton.
  */

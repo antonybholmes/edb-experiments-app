@@ -47,7 +47,6 @@ import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 import edu.columbia.rdf.htsview.chipseq.SortSamplesByGenome;
 
-// TODO: Auto-generated Javadoc
 /**
  * Plugin for display of microarray data.
  * 

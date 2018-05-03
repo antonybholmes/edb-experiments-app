@@ -21,7 +21,6 @@ import org.jebtk.modern.widget.ModernWidget;
 
 import edu.columbia.rdf.edb.Experiment;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ExperimentsTab.
  */

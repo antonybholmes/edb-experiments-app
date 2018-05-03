@@ -17,7 +17,6 @@ package edu.columbia.rdf.edb.experiments.app;
 
 import java.awt.Frame;
 
-// TODO: Auto-generated Javadoc
 /**
  * Indicates that the panel provides a GUI to export the data it contains.
  *

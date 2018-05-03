@@ -39,7 +39,6 @@ import org.jebtk.modern.search.Sorter;
 
 import edu.columbia.rdf.edb.Sample;
 
-// TODO: Auto-generated Javadoc
 /**
  * Allows user to customize how the experiments are listed.
  *

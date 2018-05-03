@@ -18,7 +18,6 @@ package edu.columbia.rdf.edb.experiments.app.modules;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class GEOUrlLinkButton.
  */

@@ -15,7 +15,6 @@
  */
 package edu.columbia.rdf.edb.experiments.app.modules.rnaseq;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SortSamplesByGenome.
  */

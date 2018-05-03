@@ -41,7 +41,6 @@ import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchFolderTree.
  */

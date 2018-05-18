@@ -30,7 +30,7 @@ public class SummaryLabel extends ModernAutoSizeLabel {
 
   /** The color1. */
   public static Color COLOR1 = ThemeService.getInstance().colors()
-      .getHighlight32(24);
+      .getGray32(24);
 
   /**
    * Instantiates a new summary label.

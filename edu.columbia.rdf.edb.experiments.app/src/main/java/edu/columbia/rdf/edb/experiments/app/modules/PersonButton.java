@@ -31,7 +31,7 @@ public class PersonButton extends ModernUrlTextLink {
 
   /** The color2. */
   private static Color COLOR2 = ThemeService.getInstance().colors()
-      .getHighlight32(12);
+      .getGray32(12);
 
   /**
    * Instantiates a new person button.

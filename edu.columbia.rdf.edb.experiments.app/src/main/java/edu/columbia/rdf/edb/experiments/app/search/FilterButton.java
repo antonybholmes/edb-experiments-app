@@ -44,6 +44,6 @@ public class FilterButton extends ModernChipButton {
   public FilterButton(String text1, boolean selected) {
     super(text1, selected);
 
-    setForeground(ThemeService.getInstance().colors().getHighlight32(24));
+    setForeground(ThemeService.getInstance().colors().getGray32(24));
   }
 }

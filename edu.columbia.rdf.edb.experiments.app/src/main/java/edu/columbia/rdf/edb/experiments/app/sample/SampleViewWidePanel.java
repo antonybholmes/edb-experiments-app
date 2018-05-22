@@ -160,7 +160,7 @@ public class SampleViewWidePanel extends ModernWidget
     if (mViewModel.getView().equals("Annotation")) {
       Sample sample = samples.get(0);
 
-      mSamplePanel = ViewPluginService.instance()
+      mSamplePanel = ViewPluginService.getInstance()
           .getView(sample.getExpressionType().getName()).getSamplePanel(sample);
       mSamplePanel.setBorder(TOP_BORDER);
 

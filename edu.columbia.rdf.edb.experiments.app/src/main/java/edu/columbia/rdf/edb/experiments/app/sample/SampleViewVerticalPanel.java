@@ -171,7 +171,7 @@ public class SampleViewVerticalPanel extends ModernWidget
     if (mViewModel.getView().equals("Annotation")) {
       Sample sample = samples.get(0);
 
-      mSamplePanel = ViewPluginService.instance().getView(sample)
+      mSamplePanel = ViewPluginService.getInstance().getView(sample)
           .getSamplePanel(sample);
       mSamplePanel.setBorder(LEFT_BORDER);
 

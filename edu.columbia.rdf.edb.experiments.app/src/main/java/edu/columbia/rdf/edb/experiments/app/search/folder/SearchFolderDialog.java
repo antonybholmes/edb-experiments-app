@@ -21,7 +21,7 @@ import javax.swing.Box;
 
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.dialog.MessageDialogType;
 import org.jebtk.modern.dialog.ModernDialogButton;
@@ -64,7 +64,7 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
 
   /** The m clear button. */
   private ModernButton mClearButton = new ModernDialogButton(
-      UIService.getInstance().loadIcon("trash_bw", 16));
+      AssetService.getInstance().loadIcon("trash_bw", 16));
 
   /** The m add field button. */
   private ModernDialogOptionalDropDownMenuButton2 mAddFieldButton;
@@ -152,7 +152,7 @@ public class SearchFolderDialog extends ModernDialogTaskWindow {
         mParent);
 
     mAddFieldButton = new ModernDialogOptionalDropDownMenuButton2(
-        UIService.getInstance().loadIcon("search_field", 16),
+        AssetService.getInstance().loadIcon("search_field", 16),
         searchCriteriaPopup);
 
     mAddFieldButton.setClickMessage("add_field");

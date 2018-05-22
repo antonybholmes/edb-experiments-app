@@ -26,7 +26,7 @@ import org.jebtk.core.settings.SettingsService;
 import org.jebtk.core.text.TextUtils;
 import org.jebtk.core.tree.TreeNode;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.clipboard.ClipboardService;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
@@ -88,16 +88,16 @@ public class SamplesTreePanel extends SamplesPanel
 
   /** The expand menu item. */
   private ModernIconMenuItem expandMenuItem = new ModernIconMenuItem(
-      "Expand All", UIService.getInstance().loadIcon(PlusVectorIcon.class, 16));
+      "Expand All", AssetService.getInstance().loadIcon(PlusVectorIcon.class, 16));
 
   /** The collapse menu item. */
   private ModernIconMenuItem collapseMenuItem = new ModernIconMenuItem(
       "Collapse All",
-      UIService.getInstance().loadIcon(MinusVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(MinusVectorIcon.class, 16));
 
   /** The m view model. */
   private ViewModel mViewModel = new ViewModel(SettingsService.getInstance()
-      .getAsString("edb.experiments.samples.default-view"));
+      .getString("edb.experiments.samples.default-view"));
 
   /** The m sample model. */
   private SampleModel mSampleModel;
@@ -303,7 +303,7 @@ public class SamplesTreePanel extends SamplesPanel
     mMenu.addClickListener(this);
 
     mMenu.add(new ModernIconMenuItem(UI.MENU_COPY,
-        UIService.getInstance().loadIcon("copy", 16)));
+        AssetService.getInstance().loadIcon("copy", 16)));
 
     mMenu.add(new ModernTitleMenuItem("Sort Options"));
 
@@ -333,7 +333,7 @@ public class SamplesTreePanel extends SamplesPanel
 
     mMenu.add(mSortMenuItem);
 
-    for (ViewPlugin plugin : ViewPluginService.instance()) {
+    for (ViewPlugin plugin : ViewPluginService.getInstance()) {
       plugin.customizeSampleMenu(mMenu);
     }
   }

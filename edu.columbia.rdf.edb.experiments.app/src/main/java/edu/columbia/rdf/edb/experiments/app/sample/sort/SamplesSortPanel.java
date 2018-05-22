@@ -27,7 +27,7 @@ import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckRadioButton;
 import org.jebtk.modern.button.ModernRadioButton;
@@ -88,11 +88,11 @@ public class SamplesSortPanel extends ModernWidget
 
   /** The m list button. */
   private ModernCheckRadioButton mListButton = new ModernCheckRadioButton(
-      UIService.getInstance().loadIcon(ListVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(ListVectorIcon.class, 16));
 
   /** The m tree button. */
   private ModernCheckRadioButton mTreeButton = new ModernCheckRadioButton(
-      UIService.getInstance().loadIcon(TreeVectorIcon.class, 16));
+      AssetService.getInstance().loadIcon(TreeVectorIcon.class, 16));
 
   /** The m filter button. */
   // private FilterButton mFilterButton;

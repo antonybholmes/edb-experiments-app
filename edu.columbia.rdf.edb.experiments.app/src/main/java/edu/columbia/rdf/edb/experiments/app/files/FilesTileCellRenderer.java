@@ -30,7 +30,7 @@ package edu.columbia.rdf.edb.experiments.app.files;
 import java.awt.Component;
 import java.awt.Graphics2D;
 
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.dataview.ModernData;
 import org.jebtk.modern.dataview.ModernDataCellRenderer;
 import org.jebtk.modern.graphics.icons.FileVectorIcon;
@@ -50,11 +50,11 @@ public class FilesTileCellRenderer extends ModernDataCellRenderer {
   private static final long serialVersionUID = 1L;
 
   /** The Constant FILE_ICON. */
-  private static final ModernIcon FILE_ICON = UIService.getInstance()
+  private static final ModernIcon FILE_ICON = AssetService.getInstance()
       .loadIcon(FileVectorIcon.class, 72);
 
   /** The Constant DIR_ICON. */
-  private static final ModernIcon DIR_ICON = UIService.getInstance()
+  private static final ModernIcon DIR_ICON = AssetService.getInstance()
       .loadIcon(FolderVectorIcon.class, 72);
 
   /** The m text. */

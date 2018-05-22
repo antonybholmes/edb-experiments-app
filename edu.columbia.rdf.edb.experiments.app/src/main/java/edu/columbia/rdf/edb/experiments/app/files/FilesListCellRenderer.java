@@ -18,7 +18,7 @@ package edu.columbia.rdf.edb.experiments.app.files;
 import java.awt.Component;
 import java.awt.Graphics2D;
 
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.graphics.icons.FileVectorIcon;
 import org.jebtk.modern.list.ModernList;
 import org.jebtk.modern.list.ModernListTwoLineCellRenderer;
@@ -47,7 +47,7 @@ public class FilesListCellRenderer extends ModernListTwoLineCellRenderer {
    * Instantiates a new files list cell renderer.
    */
   FilesListCellRenderer() {
-    setIcon(UIService.getInstance().loadIcon(FileVectorIcon.class, 32));
+    setIcon(AssetService.getInstance().loadIcon(FileVectorIcon.class, 32));
   }
 
   /*
@@ -60,9 +60,9 @@ public class FilesListCellRenderer extends ModernListTwoLineCellRenderer {
   @Override
   public void drawForegroundAAText(Graphics2D g2) {
     int x = PADDING;
-    int y = (getHeight() - UIService.ICON_SIZE_32) / 2;
+    int y = (getHeight() - AssetService.ICON_SIZE_32) / 2;
 
-    mIcon.drawIcon(g2, x, y, UIService.ICON_SIZE_32);
+    mIcon.drawIcon(g2, x, y, AssetService.ICON_SIZE_32);
 
     x += PADDING + 48;
 

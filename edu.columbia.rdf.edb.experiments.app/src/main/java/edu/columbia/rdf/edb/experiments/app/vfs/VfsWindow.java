@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernButtonWidget;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -70,7 +70,7 @@ public class VfsWindow extends ModernRibbonWindow
 
   /** The m download button. */
   private ModernButton mDownloadButton = new RibbonLargeButton("Download",
-      UIService.getInstance().loadIcon("download", 24));
+      AssetService.getInstance().loadIcon("download", 24));
 
   /**
    * Download files in the background.
@@ -200,7 +200,7 @@ public class VfsWindow extends ModernRibbonWindow
     ModernButtonWidget button;
 
     button = new QuickAccessButton(
-        UIService.getInstance().loadIcon("download", 16));
+        AssetService.getInstance().loadIcon("download", 16));
     button.setClickMessage("Download");
     button.setToolTip(new ModernToolTip("Download Files",
         "Download the selected files to your computer in a zip archive."));
@@ -310,7 +310,7 @@ public class VfsWindow extends ModernRibbonWindow
 
     UI.centerWindowToScreen(this);
 
-    // mSearchWithinButton.setSelected(SettingsService.getInstance().getAsBool("edb.experiments.search.within-current-folder"));
+    // mSearchWithinButton.setSelected(SettingsService.getInstance().getBool("edb.experiments.search.within-current-folder"));
   }
 
   /*

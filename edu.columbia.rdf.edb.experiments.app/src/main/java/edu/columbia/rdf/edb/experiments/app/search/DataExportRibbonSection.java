@@ -15,7 +15,7 @@
  */
 package edu.columbia.rdf.edb.experiments.app.search;
 
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonWidget;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
@@ -40,7 +40,7 @@ public class DataExportRibbonSection extends RibbonSection
 
   /** The download button. */
   private ModernButtonWidget downloadButton = new RibbonLargeButton("Download",
-      "Files", UIService.getInstance().loadIcon("download", 32));
+      "Files", AssetService.getInstance().loadIcon("download", 32));
 
   /** The export button. */
   private RibbonLargeDropDownButton exportButton;
@@ -57,13 +57,13 @@ public class DataExportRibbonSection extends RibbonSection
 
     exportMenu
         .add(new ModernTwoLineMenuItem("Samples", "Export sample information.",
-            UIService.getInstance().loadIcon("file", 32)));
+            AssetService.getInstance().loadIcon("file", 32)));
     exportMenu.add(new ModernTwoLineMenuItem("Experiments",
         "Export experiment information.",
-        UIService.getInstance().loadIcon("file", 32)));
+        AssetService.getInstance().loadIcon("file", 32)));
 
     exportButton = new RibbonLargeDropDownButton("Export",
-        UIService.getInstance().loadIcon("save", 32), exportMenu);
+        AssetService.getInstance().loadIcon("save", 32), exportMenu);
     exportButton.addClickListener(this);
     exportButton.setToolTip("Export",
         "Export the information on the currently selected samples to a text file. This does not include CEL, CHP, or expression data.");

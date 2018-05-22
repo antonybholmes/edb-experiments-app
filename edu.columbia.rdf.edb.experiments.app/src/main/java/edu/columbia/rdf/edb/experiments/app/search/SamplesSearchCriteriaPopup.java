@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.menu.ModernMenuItem;
 import org.jebtk.modern.menu.ModernTitleMenuItem;
 import org.jebtk.modern.menu.ModernTwoLineMenuItem;
@@ -86,8 +86,8 @@ public class SamplesSearchCriteriaPopup extends SearchCriteriaPopup {
 
       for (SearchCategory criterion : group) {
         ModernMenuItem subItem = new ModernTwoLineMenuItem(criterion.getName(),
-            criterion.getDescription(), UIService.getInstance()
-                .loadIcon("search_criterion", UIService.ICON_SIZE_32));
+            criterion.getDescription(), AssetService.getInstance()
+                .loadIcon("search_criterion", AssetService.ICON_SIZE_32));
 
         // subItem.setActionCommand(name);
 

@@ -16,7 +16,7 @@
 package edu.columbia.rdf.edb.experiments.app.search.folder;
 
 import org.jebtk.core.tree.TreeNode;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonWidget;
 import org.jebtk.modern.dialog.DialogEvent;
 import org.jebtk.modern.dialog.DialogEventListener;
@@ -47,17 +47,17 @@ public class SearchFolderRibbonSection extends RibbonSection
   /** The m new folder button. */
   private ModernButtonWidget mNewFolderButton = new RibbonLargeButton(
       "New Folder",
-      UIService.getInstance().loadIcon(SearchFolderVectorIcon.class, 24),
+      AssetService.getInstance().loadIcon(SearchFolderVectorIcon.class, 24),
       "New Search Folder", "Create a new search folder.");
 
   /** The m edit folder button. */
   private ModernButtonWidget mEditFolderButton = new RibbonLargeButton(
-      "Edit Folder", UIService.getInstance().loadIcon("edit_bw", 16),
+      "Edit Folder", AssetService.getInstance().loadIcon("edit_bw", 16),
       "Edit Search Folder", "Edit the selected search folder.");
 
   /** The m delete folder button. */
   private ModernButtonWidget mDeleteFolderButton = new RibbonLargeButton(
-      "Delete Folders", UIService.getInstance().loadIcon("trash_bw", 16),
+      "Delete Folders", AssetService.getInstance().loadIcon("trash_bw", 16),
       "Delete Search Folders", "Delete selected search folders.");
 
   /** The m parent. */

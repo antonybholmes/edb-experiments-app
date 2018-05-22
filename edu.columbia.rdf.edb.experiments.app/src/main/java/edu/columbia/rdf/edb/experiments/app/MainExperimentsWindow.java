@@ -47,7 +47,7 @@ import org.jebtk.core.text.TextUtils;
 import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.dialog.MessageDialogType;
 import org.jebtk.modern.dialog.ModernDialogStatus;
@@ -174,7 +174,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
 
   /** The m files button. */
   private ModernButton mFilesButton = new RibbonLargeButton("Files",
-      UIService.getInstance().loadIcon(FolderVectorIcon.class, 24));
+      AssetService.getInstance().loadIcon(FolderVectorIcon.class, 24));
 
   private GroupsPanel mUserGroupsPanel;
 
@@ -415,7 +415,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     // addQuickAccessButton(button);
 
     RibbonLargeButton button = new RibbonLargeButton("Info",
-        UIService.getInstance().loadIcon(TableVectorIcon.class, 24));
+        AssetService.getInstance().loadIcon(TableVectorIcon.class, 24));
 
     button.addClickListener(new ModernClickListener() {
 
@@ -435,7 +435,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
 
     // add the data view toolbars
 
-    for (ViewPlugin plugin : ViewPluginService.instance()) {
+    for (ViewPlugin plugin : ViewPluginService.getInstance()) {
       plugin.init(this,
           getStatusBar().getStatusModel(),
           mSampleSelectionModel);
@@ -630,7 +630,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     mSearchPanel.addUserSearchEntry(UserSearchEntry.createDefaultSearchEntry());
 
     if (SettingsService.getInstance()
-        .getAsBool("edb.experiments.default-search")) {
+        .getBool("edb.experiments.default-search")) {
       // perform an initial search with no filter to return all experiments so
       // that
       // the
@@ -641,11 +641,11 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     // Default to the samples tab
     // mTabsModel.changeTab(0);
     mViewModel.setView(SettingsService.getInstance()
-        .getAsString("edb.experiments.default-view"));
+        .getString("edb.experiments.default-view"));
 
     // Set the default layout
     mLayoutViewModel.setView(SettingsService.getInstance()
-        .getAsString("edb.experiments.default-layout-view"));
+        .getString("edb.experiments.default-layout-view"));
 
     // Add some default panes so user can search
     // addFoldersPane();
@@ -1164,7 +1164,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     Map<DataViewField, Integer> indexMap = new HashMap<DataViewField, Integer>();
 
     for (Sample sample : samples) {
-      DataView dataView = ViewPluginService.instance().getView(sample)
+      DataView dataView = ViewPluginService.getInstance().getView(sample)
           .getDataView();
 
       for (DataViewSection viewSection : dataView) {
@@ -1192,7 +1192,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     int row = 0;
 
     for (Sample sample : samples) {
-      DataView dataView = ViewPluginService.instance().getView(sample)
+      DataView dataView = ViewPluginService.getInstance().getView(sample)
           .getDataView();
 
       for (DataViewSection viewSection : dataView) {

@@ -18,7 +18,7 @@ package edu.columbia.rdf.edb.experiments.app.search;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.core.settings.SettingsService;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckButton;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -47,11 +47,11 @@ public class RibbonWideLayoutSection extends RibbonSection
   /** The m vertical button. */
   private ModernCheckButton mVerticalButton = new RibbonLargeRadioButton(
       "Vertical",
-      UIService.getInstance().loadIcon(ViewVerticalVectorIcon.class, 32));
+      AssetService.getInstance().loadIcon(ViewVerticalVectorIcon.class, 32));
 
   /** The m wide button. */
   private ModernCheckButton mWideButton = new RibbonLargeRadioButton("Wide",
-      UIService.getInstance().loadIcon(ViewWideVectorIcon.class, 32));
+      AssetService.getInstance().loadIcon(ViewWideVectorIcon.class, 32));
 
   // private ModernCheckButton listButton =
   // new RibbonLargeRadioButton2("List",

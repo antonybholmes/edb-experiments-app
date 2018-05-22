@@ -28,7 +28,7 @@ import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckButton;
@@ -81,19 +81,19 @@ public class FilesPanel extends ModernPanel
 
   /** The m download button. */
   private ModernButton mDownloadButton = new ModernDialogFlatButton("Download",
-      UIService.getInstance().loadIcon("download", 16));
+      AssetService.getInstance().loadIcon("download", 16));
 
   /** The m button details. */
   private ModernCheckButton mButtonDetails = new ModernCheckRadioButton(
-      UIService.getInstance().loadIcon("view_details", 16));
+      AssetService.getInstance().loadIcon("view_details", 16));
 
   /** The m button list. */
   private ModernCheckButton mButtonList = new ModernCheckRadioButton(
-      UIService.getInstance().loadIcon("view_list", 16));
+      AssetService.getInstance().loadIcon("view_list", 16));
 
   /** The m button icons. */
   private ModernCheckButton mButtonIcons = new ModernCheckRadioButton(
-      UIService.getInstance().loadIcon("view_tiles", 16));
+      AssetService.getInstance().loadIcon("view_tiles", 16));
 
   /** The m sample selection model. */
   private SampleModel mSampleSelectionModel;

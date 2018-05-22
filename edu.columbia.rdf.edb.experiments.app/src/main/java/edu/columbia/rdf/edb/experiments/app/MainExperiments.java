@@ -134,19 +134,19 @@ public class MainExperiments {
 
     // Configure default views
 
-    if (SettingsService.getInstance().getAsBool("edb.modules.microarray.enabled")) {
-      ViewPluginService.instance().add(new MicroarrayViewPlugin());
+    if (SettingsService.getInstance().getBool("edb.modules.microarray.enabled")) {
+      ViewPluginService.getInstance().add(new MicroarrayViewPlugin());
     }
 
-    if (SettingsService.getInstance().getAsBool("edb.modules.chipseq.enabled")) {
-      ViewPluginService.instance().add(new ChipSeqViewPlugin(login));
+    if (SettingsService.getInstance().getBool("edb.modules.chipseq.enabled")) {
+      ViewPluginService.getInstance().add(new ChipSeqViewPlugin(login));
     }
 
-    if (SettingsService.getInstance().getAsBool("edb.modules.rnaseq.enabled")) {
-      ViewPluginService.instance().add(new RnaSeqViewPlugin());
+    if (SettingsService.getInstance().getBool("edb.modules.rnaseq.enabled")) {
+      ViewPluginService.getInstance().add(new RnaSeqViewPlugin());
     }
 
-    //for (ViewPlugin plugin : ViewPluginService.instance()) {
+    //for (ViewPlugin plugin : ViewPluginService.getInstance()) {
     //  plugin.loadSampleSorters(SampleSortService.getInstance());
     //  plugin.initSearchCategories(SearchCategoryService.getInstance());
     //}

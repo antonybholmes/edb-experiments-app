@@ -25,7 +25,7 @@ import org.jebtk.core.NetworkFileException;
 import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.clipboard.ClipboardRibbonSection;
 import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -59,11 +59,11 @@ public class SampleWindow extends ModernRibbonWindow
   /** The export button. */
   private RibbonLargeButton exportButton = new RibbonLargeButton("Export",
       "Sample",
-      UIService.getInstance().loadIcon("export", UIService.ICON_SIZE_32));
+      AssetService.getInstance().loadIcon("export", AssetService.ICON_SIZE_32));
 
   /** The download button. */
   private RibbonLargeButton downloadButton = new RibbonLargeButton("Download",
-      "Files", UIService.getInstance().loadIcon("zip", UIService.ICON_SIZE_32));
+      "Files", AssetService.getInstance().loadIcon("zip", AssetService.ICON_SIZE_32));
 
   /** The m status bar. */
   private ModernStatusBar mStatusBar = new ModernStatusBar();
@@ -117,7 +117,7 @@ public class SampleWindow extends ModernRibbonWindow
     getRibbonMenu().addTabbedMenuItem(menuItem);
 
     menuItem = new RibbonMenuItem(UI.MENU_CLOSE,
-        UIService.getInstance().loadIcon("exit", UIService.ICON_SIZE_16));
+        AssetService.getInstance().loadIcon("exit", AssetService.ICON_SIZE_16));
     menuItem.addClickListener(this);
     getRibbonMenu().addTabbedMenuItem(menuItem);
 
@@ -161,7 +161,7 @@ public class SampleWindow extends ModernRibbonWindow
 
     ModernPanel content = new ModernPanel();
 
-    samplePanel = ViewPluginService.instance().getSamplePanel(mSample);
+    samplePanel = ViewPluginService.getInstance().getSamplePanel(mSample);
 
     content.add(samplePanel, BorderLayout.CENTER);
 

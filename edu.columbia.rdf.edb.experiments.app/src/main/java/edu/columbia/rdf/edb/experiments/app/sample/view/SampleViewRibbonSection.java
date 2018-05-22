@@ -27,7 +27,7 @@ import javax.swing.Box;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckButton;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -144,7 +144,7 @@ public class SampleViewRibbonSection extends RibbonSection
       }
 
       sortCheckBox = new ModernCheckButton(name,
-          UIService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
+          AssetService.getInstance().loadIcon(OpenFolderVectorIcon.class, 16));
       UI.setSize(sortCheckBox, SIZE);
       group.add(sortCheckBox);
       sortCheckBox.addClickListener(this);

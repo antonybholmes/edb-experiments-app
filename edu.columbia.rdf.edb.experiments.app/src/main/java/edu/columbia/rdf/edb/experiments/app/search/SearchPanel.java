@@ -25,7 +25,7 @@ import javax.swing.Box;
 import org.jebtk.bioinformatics.annotation.Type;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernOptionalDropDownMenuButton2;
 import org.jebtk.modern.dialog.MessageDialogType;
@@ -68,12 +68,12 @@ public class SearchPanel extends ModernClickWidget
 
   /** The m search button. */
   private ModernButton mSearchButton = new ModernButton(
-      UIService.getInstance().loadIcon(SearchVectorIcon.class, 16)); // Resources.getInstance().loadIcon("search",
+      AssetService.getInstance().loadIcon(SearchVectorIcon.class, 16)); // Resources.getInstance().loadIcon("search",
                                                                      // Resources.ICON_SIZE_16));
 
   /** The m clear button. */
   private ModernButton mClearButton = new ModernButton(
-      UIService.getInstance().loadIcon("trash_bw", 16));
+      AssetService.getInstance().loadIcon("trash_bw", 16));
 
   /** The m add field button. */
   private ModernOptionalDropDownMenuButton2 mAddFieldButton;
@@ -153,7 +153,7 @@ public class SearchPanel extends ModernClickWidget
     // searchCriteriaPopup.addClickListener(this);
 
     mAddFieldButton = new ModernOptionalDropDownMenuButton2(
-        UIService.getInstance().loadIcon("search_field", 16),
+        AssetService.getInstance().loadIcon("search_field", 16),
         searchCriteriaPopup);
 
     mAddFieldButton.setClickMessage("add_field");

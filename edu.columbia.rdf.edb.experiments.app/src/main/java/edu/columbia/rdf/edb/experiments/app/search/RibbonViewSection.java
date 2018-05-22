@@ -17,7 +17,7 @@ package edu.columbia.rdf.edb.experiments.app.search;
 
 import javax.swing.Box;
 
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckButton;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -42,15 +42,15 @@ public class RibbonViewSection extends RibbonSection
 
   /** The list button. */
   private ModernCheckButton listButton = new ModernCheckButton("List",
-      UIService.getInstance().loadIcon("view_list", UIService.ICON_SIZE_16));
+      AssetService.getInstance().loadIcon("view_list", AssetService.ICON_SIZE_16));
 
   /** The tiles button. */
   private ModernCheckButton tilesButton = new ModernCheckButton("Tiles",
-      UIService.getInstance().loadIcon("view_tiles", UIService.ICON_SIZE_16));
+      AssetService.getInstance().loadIcon("view_tiles", AssetService.ICON_SIZE_16));
 
   /** The details button. */
   private ModernCheckButton detailsButton = new ModernCheckButton("Details",
-      UIService.getInstance().loadIcon("view_details", UIService.ICON_SIZE_16));
+      AssetService.getInstance().loadIcon("view_details", AssetService.ICON_SIZE_16));
 
   /** The m view model. */
   private ViewModel mViewModel;

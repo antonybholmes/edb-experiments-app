@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.jebtk.core.collections.CollectionUtils;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.list.ModernList;
 import org.jebtk.modern.list.ModernListModel;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
@@ -52,7 +52,7 @@ public class FilesListPanel extends FilesPanel {
    */
   public FilesListPanel() {
     mList.setCellRenderer(new FilesListCellRenderer());
-    mList.setRowHeight(UIService.ICON_SIZE_48);
+    mList.setRowHeight(AssetService.ICON_SIZE_48);
     mList.setBorder(RIGHT_BORDER);
 
     ModernScrollPane scrollPane = new ModernScrollPane(mList);

@@ -15,7 +15,7 @@
  */
 package edu.columbia.rdf.edb.experiments.app.files;
 
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
@@ -35,15 +35,15 @@ public class FileViewRibbonPanel extends RibbonSection {
 
   /** The m button details. */
   private RibbonLargeCheckButton mButtonDetails = new RibbonLargeRadioButton(
-      "Details", UIService.getInstance().loadIcon("view_details", 24));
+      "Details", AssetService.getInstance().loadIcon("view_details", 24));
 
   /** The m button list. */
   private RibbonLargeCheckButton mButtonList = new RibbonLargeRadioButton(
-      "List", UIService.getInstance().loadIcon("view_list", 24));
+      "List", AssetService.getInstance().loadIcon("view_list", 24));
 
   /** The m button icons. */
   private RibbonLargeCheckButton mButtonIcons = new RibbonLargeRadioButton(
-      "Icons", UIService.getInstance().loadIcon("view_tiles", 24));
+      "Icons", AssetService.getInstance().loadIcon("view_tiles", 24));
 
   /**
    * Instantiates a new file view ribbon panel.

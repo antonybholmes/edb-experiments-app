@@ -17,7 +17,7 @@ package edu.columbia.rdf.edb.experiments.app.search;
 
 import java.awt.Dimension;
 
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.menu.ModernIconMenuItem;
 import org.jebtk.modern.menu.ModernScrollPopupMenu2;
 
@@ -35,7 +35,7 @@ public class SearchCriteriaPopup extends ModernScrollPopupMenu2 {
 
   /** The Constant MENU_ITEM_SIZE. */
   public static final Dimension MENU_ITEM_SIZE = new Dimension(400,
-      UIService.ICON_SIZE_48);
+      AssetService.ICON_SIZE_48);
 
   /** The Constant MAX_HEIGHT. */
   public static final int MAX_HEIGHT = ModernIconMenuItem.HEIGHT * 15;

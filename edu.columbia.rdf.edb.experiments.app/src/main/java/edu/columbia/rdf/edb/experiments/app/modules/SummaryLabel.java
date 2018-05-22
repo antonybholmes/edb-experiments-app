@@ -29,7 +29,7 @@ public class SummaryLabel extends ModernAutoSizeLabel {
   private static final long serialVersionUID = 1L;
 
   /** The color1. */
-  public static Color COLOR1 = ThemeService.getInstance().colors()
+  public static Color COLOR1 = ThemeService.getInstance().getColors()
       .getGray32(24);
 
   /**

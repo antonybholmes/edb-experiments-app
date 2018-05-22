@@ -60,7 +60,7 @@ public class ExperimentSummaryPanel extends ModernPanel
   public ExperimentSummaryPanel(SampleModel model) {
     mModel = model;
 
-    setBackground(ThemeService.getInstance().colors().getGray32(0));
+    setBackground(ThemeService.getInstance().getColors().getGray32(0));
 
     setBorder(LARGE_BORDER);
 

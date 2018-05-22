@@ -18,7 +18,7 @@ package edu.columbia.rdf.edb.experiments.app.files;
 import java.awt.Component;
 import java.io.File;
 
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.list.ModernList;
 import org.jebtk.modern.list.ModernListTwoLineCellRenderer;
 
@@ -38,7 +38,7 @@ public class DownloadListFileRenderer extends ModernListTwoLineCellRenderer {
    * Instantiates a new download list file renderer.
    */
   public DownloadListFileRenderer() {
-    super(UIService.getInstance().loadIcon("file", UIService.ICON_SIZE_32));
+    super(AssetService.getInstance().loadIcon("file", AssetService.ICON_SIZE_32));
   }
 
   /*

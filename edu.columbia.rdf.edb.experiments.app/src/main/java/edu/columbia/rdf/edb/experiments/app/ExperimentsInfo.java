@@ -16,7 +16,7 @@
 package edu.columbia.rdf.edb.experiments.app;
 
 import org.jebtk.core.AppVersion;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.help.GuiAppInfo;
 
 /**
@@ -30,8 +30,8 @@ public class ExperimentsInfo extends GuiAppInfo {
   public ExperimentsInfo() {
     super("Experiments", new AppVersion(38),
         "Copyright (C) 2011-${year} Antony Holmes.",
-        UIService.getInstance().loadIcon(ExperimentsIcon.class, 32),
-        UIService.getInstance().loadIcon(ExperimentsIcon.class, 128),
+        AssetService.getInstance().loadIcon(ExperimentsIcon.class, 32),
+        AssetService.getInstance().loadIcon(ExperimentsIcon.class, 128),
         "Experiment Database Browser");
   }
 }

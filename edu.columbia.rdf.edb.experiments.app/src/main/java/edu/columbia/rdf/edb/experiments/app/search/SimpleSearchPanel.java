@@ -25,7 +25,7 @@ import javax.swing.Box;
 import org.jebtk.bioinformatics.annotation.Type;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernOptionalDropDownMenuButton2;
 import org.jebtk.modern.dialog.MessageDialogType;
@@ -65,7 +65,7 @@ public class SimpleSearchPanel extends ModernClickWidget
 
   /** The m search button. */
   private ModernButton mSearchButton = new ModernButton(
-      UIService.getInstance().loadIcon(SearchVectorIcon.class, 16)); // Resources.getInstance().loadIcon("search",
+      AssetService.getInstance().loadIcon(SearchVectorIcon.class, 16)); // Resources.getInstance().loadIcon("search",
                                                                      // Resources.ICON_SIZE_16));
   // private ModernComboBox searchScopeCombo = new ModernHiddenComboBox();
 

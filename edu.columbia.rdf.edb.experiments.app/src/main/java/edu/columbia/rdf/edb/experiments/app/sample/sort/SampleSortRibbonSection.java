@@ -25,7 +25,7 @@ import javax.swing.Box;
 
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckBox;
 import org.jebtk.modern.button.ModernCheckButton;
@@ -53,11 +53,11 @@ public class SampleSortRibbonSection extends RibbonSection
 
   /** The sort descend button. */
   private ModernCheckButton sortDescendButton = new ModernCheckButton(
-      UIService.getInstance().loadIcon("sort_descend", 16));
+      AssetService.getInstance().loadIcon("sort_descend", 16));
 
   /** The sort ascend button. */
   private ModernCheckButton sortAscendButton = new ModernCheckButton(
-      UIService.getInstance().loadIcon("sort_ascend", 16));
+      AssetService.getInstance().loadIcon("sort_ascend", 16));
 
   /** The m button sort map. */
   private Map<String, ModernCheckBox> mButtonSortMap = new HashMap<String, ModernCheckBox>();

@@ -22,7 +22,7 @@ import java.awt.event.KeyListener;
 import org.jebtk.core.search.SearchStackOperator;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.UIService;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernButtonWidget;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -147,7 +147,7 @@ public class SearchCategoryPanel extends HBox
     // Can we remove it
 
     mRemoveButton = new ModernButton(
-        UIService.getInstance().loadIcon(CloseVectorIcon.class, 16));
+        AssetService.getInstance().loadIcon(CloseVectorIcon.class, 16));
     mRemoveButton.setClickMessage(SearchCategoriesPanel.FIELD_REMOVED);
     mRemoveButton.addClickListener(this);
     mRemoveButton.setToolTip("Remove Entry", "Remove the search entry.");

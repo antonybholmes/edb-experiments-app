@@ -30,7 +30,7 @@ public class PersonButton extends ModernUrlTextLink {
   private static final long serialVersionUID = 1L;
 
   /** The color2. */
-  private static Color COLOR2 = ThemeService.getInstance().colors()
+  private static Color COLOR2 = ThemeService.getInstance().getColors()
       .getGray32(12);
 
   /**

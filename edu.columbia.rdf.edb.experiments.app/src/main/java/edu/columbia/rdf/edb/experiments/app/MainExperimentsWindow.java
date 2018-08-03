@@ -289,8 +289,14 @@ public class MainExperimentsWindow extends ModernRibbonWindow
      * common.event.ChangeEvent)
      */
     @Override
-    public void selectionChanged(ChangeEvent e) {
+    public void selectionAdded(ChangeEvent e) {
       loadSearchResults();
+    }
+
+    @Override
+    public void selectionRemoved(ChangeEvent e) {
+      // TODO Auto-generated method stub
+      
     }
 
   }
@@ -324,8 +330,14 @@ public class MainExperimentsWindow extends ModernRibbonWindow
      * common.event.ChangeEvent)
      */
     @Override
-    public void selectionChanged(ChangeEvent e) {
+    public void selectionAdded(ChangeEvent e) {
       mSampleModel.set(mSampleFolderModel);
+    }
+
+    @Override
+    public void selectionRemoved(ChangeEvent e) {
+      // TODO Auto-generated method stub
+      
     }
 
   }
@@ -561,7 +573,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
 
     ChangeListener l = new UserGroupModelEvents();
 
-    mUserGroupsPanel = new GroupsPanel(mUserGroupsModel);
+    mUserGroupsPanel = new GroupsPanel(this, mUserGroupsModel);
     // Respond when a user group is changed
     mUserGroupsModel.addChangeListener(l);
 
@@ -573,7 +585,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
         mFilterModel);
 
     // TabsModel groupTabsModel = new TabsModel();
-    getIconTabs().addTab("Results", 'R', mResultsPanel);
+    getIconTabs().addTab("Sort", 'S', mResultsPanel);
     getIconTabs().addTab("Groups", 'G', mUserGroupsPanel);
     getIconTabs().addTab("Data Types", 'T', mDataTypesPanel);
     getIconTabs().addTab("Folders",

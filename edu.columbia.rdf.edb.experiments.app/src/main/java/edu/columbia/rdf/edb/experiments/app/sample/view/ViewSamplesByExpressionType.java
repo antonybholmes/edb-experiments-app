@@ -47,7 +47,7 @@ public class ViewSamplesByExpressionType extends SampleView {
     Map<String, List<Sample>> map = ArrayListMultiMap.create();
 
     for (Sample sample : samples) {
-      String type = sample.getExpressionType().getName();
+      String type = sample.getDataType().getName();
 
       if (map.containsKey(type)) {
         map.get(type).add(sample);

@@ -133,13 +133,13 @@ public class SampleViewPanel extends ModernPanel implements SelectedSamples {
 
     mFilteredSamples = new ArrayList<Sample>();
 
-    String expressionType = mSampleModel.get(0).getExpressionType().getName();
+    String expressionType = mSampleModel.get(0).getDataType().getName();
 
     // When viewing samples in a table, they must all be of the
     // same type, so take the type of the first and keep only those
     // samples that match its type.
     for (Sample sample : mSampleModel.getItems()) {
-      if (!sample.getExpressionType().equals(expressionType)) {
+      if (!sample.getDataType().equals(expressionType)) {
         continue;
       }
 

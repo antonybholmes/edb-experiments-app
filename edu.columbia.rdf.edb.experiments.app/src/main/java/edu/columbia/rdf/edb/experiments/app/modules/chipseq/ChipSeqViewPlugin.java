@@ -201,7 +201,7 @@ public class ChipSeqViewPlugin extends ViewPlugin
     mParent = parent;
     mSelectedSamples = selectedSamples;
 
-    parent.getRibbon().getHomeToolbar().getSection(getExpressionType())
+    parent.getRibbon().getHomeToolbar().getSection(getDataType())
         .add(mViewButton);
 
     mViewButton.setToolTip("View ChIP-seq data",
@@ -256,7 +256,7 @@ public class ChipSeqViewPlugin extends ViewPlugin
     boolean correctType = true;
 
     for (Sample sample : samples) {
-      if (!sample.getExpressionType().getName().equals(getExpressionType())) {
+      if (!sample.getDataType().getName().equals(getDataType())) {
         correctType = false;
         break;
       }
@@ -295,7 +295,7 @@ public class ChipSeqViewPlugin extends ViewPlugin
    * @see edu.columbia.rdf.edb.ui.ViewPlugin#getExpressionType()
    */
   @Override
-  public String getExpressionType() {
+  public String getDataType() {
     return "ChIP-Seq";
   }
 

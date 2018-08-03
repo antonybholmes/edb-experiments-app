@@ -87,8 +87,14 @@ public class AttributesTableTab extends ModernWidget {
      * common.event.ChangeEvent)
      */
     @Override
-    public void selectionChanged(ChangeEvent e) {
+    public void selectionAdded(ChangeEvent e) {
       searchSamples();
+    }
+
+    @Override
+    public void selectionRemoved(ChangeEvent e) {
+      // TODO Auto-generated method stub
+      
     }
   }
 

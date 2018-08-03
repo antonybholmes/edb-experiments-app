@@ -18,6 +18,7 @@ package edu.columbia.rdf.edb.experiments.app.search;
 import java.awt.Dimension;
 
 import org.jebtk.modern.AssetService;
+import org.jebtk.modern.dialog.ModernDialogTaskType;
 import org.jebtk.modern.menu.ModernIconMenuItem;
 import org.jebtk.modern.menu.ModernScrollPopupMenu2;
 
@@ -45,5 +46,9 @@ public class SearchCriteriaPopup extends ModernScrollPopupMenu2 {
    */
   public SearchCriteriaPopup() {
     super(MAX_HEIGHT);
+    
+    //setAutoHide(false);
+    
+    setup(ModernDialogTaskType.OK);
   }
 }

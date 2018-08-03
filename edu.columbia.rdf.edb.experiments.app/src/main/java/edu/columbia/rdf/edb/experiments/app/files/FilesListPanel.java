@@ -28,7 +28,7 @@ import org.jebtk.modern.list.ModernListModel;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
 
 // TODO: Auto-generated Javadoc
@@ -41,11 +41,11 @@ public class FilesListPanel extends FilesPanel {
   private static final long serialVersionUID = 1L;
 
   /** The m list. */
-  private ModernList<FileDescriptor> mList = new ModernList<FileDescriptor>(
+  private ModernList<VfsFile> mList = new ModernList<VfsFile>(
       new FilesListCellRenderer());
 
   /** The m model. */
-  private ModernListModel<FileDescriptor> mModel;
+  private ModernListModel<VfsFile> mModel;
 
   /**
    * Instantiates a new files list panel.
@@ -75,9 +75,9 @@ public class FilesListPanel extends FilesPanel {
       throws IOException, ParseException {
     super.setSampleFiles(samples);
 
-    mModel = new ModernListModel<FileDescriptor>();
+    mModel = new ModernListModel<VfsFile>();
 
-    for (FileDescriptor file : CollectionUtils.sort(mFiles)) {
+    for (VfsFile file : CollectionUtils.sort(mFiles)) {
       mModel.addValue(file);
     }
 
@@ -91,8 +91,8 @@ public class FilesListPanel extends FilesPanel {
    * edu.columbia.rdf.edb.experiments.app.files.FilesPanel#getSelectedFiles()
    */
   @Override
-  public Set<FileDescriptor> getSelectedFiles() {
-    Set<FileDescriptor> ret = new HashSet<FileDescriptor>();
+  public Set<VfsFile> getSelectedFiles() {
+    Set<VfsFile> ret = new HashSet<VfsFile>();
 
     for (int i : mList.getSelectionModel()) {
       ret.add(mModel.getValueAt(i));

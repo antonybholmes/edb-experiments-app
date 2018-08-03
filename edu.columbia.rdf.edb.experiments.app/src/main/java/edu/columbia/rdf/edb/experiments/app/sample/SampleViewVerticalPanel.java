@@ -225,7 +225,7 @@ public class SampleViewVerticalPanel extends ModernWidget
    * common.event.ChangeEvent)
    */
   @Override
-  public void selectionChanged(ChangeEvent e) {
+  public void selectionAdded(ChangeEvent e) {
     showSampleDetails();
   }
 
@@ -247,6 +247,12 @@ public class SampleViewVerticalPanel extends ModernWidget
     UI.centerWindowToScreen(window);
 
     window.setVisible(true);
+  }
+
+  @Override
+  public void selectionRemoved(ChangeEvent e) {
+    // TODO Auto-generated method stub
+    
   }
 
   // private void viewChanged() {

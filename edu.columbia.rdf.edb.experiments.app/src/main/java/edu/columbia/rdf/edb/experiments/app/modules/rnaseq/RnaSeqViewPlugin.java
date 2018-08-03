@@ -15,18 +15,31 @@
  */
 package edu.columbia.rdf.edb.experiments.app.modules.rnaseq;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.jebtk.bioinformatics.annotation.Genome;
 import org.jebtk.core.ColorUtils;
 import org.jebtk.core.NetworkFileException;
+import org.jebtk.core.collections.CollectionUtils;
+import org.jebtk.core.collections.CountMap;
+import org.jebtk.core.io.FileUtils;
+import org.jebtk.core.io.Temp;
 import org.jebtk.core.path.Path;
+import org.jebtk.core.text.TextUtils;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.SelectionModel;
 import org.jebtk.modern.button.ModernButtonWidget;
+import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
@@ -42,10 +55,15 @@ import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.VfsFile;
+import edu.columbia.rdf.edb.ui.FileDownloader;
+import edu.columbia.rdf.edb.ui.Repository;
+import edu.columbia.rdf.edb.ui.RepositoryService;
 import edu.columbia.rdf.edb.ui.SampleSortService;
 import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 import edu.columbia.rdf.htsview.chipseq.SortSamplesByGenome;
+import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 
 /**
  * Plugin for display of microarray data.
@@ -54,10 +72,12 @@ import edu.columbia.rdf.htsview.chipseq.SortSamplesByGenome;
  *
  */
 public class RnaSeqViewPlugin extends ViewPlugin
-    implements ModernClickListener {
+implements ModernClickListener {
+
+  private static final int ANNOTATION_COLUMNS = 3;
 
   /** The m fpkm button. */
-  private ModernButtonWidget mFpkmButton = new RibbonLargeButton("FPKM",
+  private ModernButtonWidget mFpkmButton = new RibbonLargeButton("Exp",
       new Raster32Icon(
           new Window32VectorIcon(ColorUtils.decodeHtmlColor("#e580ff"))));
 
@@ -67,9 +87,6 @@ public class RnaSeqViewPlugin extends ViewPlugin
   /** The m selected samples. */
   private SelectionModel<Sample> mSelectedSamples;
 
-  /** The m status model. */
-  private StatusModel mStatusModel;
-
   /** The m view. */
   private DataView mView;
 
@@ -77,7 +94,7 @@ public class RnaSeqViewPlugin extends ViewPlugin
   private Path mDisplayField1 = new Path("/Sample/Organism");
 
   /** The m display field 2. */
-  private Path mDisplayField2 = new Path("/RNA-seq/Sample/Genome");
+  private Path mDisplayField2 = new Path("/RNA-Seq/Sample/Genome");
 
   /**
    * Instantiates a new rna seq view plugin.
@@ -140,15 +157,15 @@ public class RnaSeqViewPlugin extends ViewPlugin
         new SearchCategory("Genome", new Path("/RNA-seq/Sample/Genome")));
 
     SearchCategoryService.getInstance().addGroup(group);
-    */
-    
+     */
+
     try {
       SearchCategoryService.getInstance().loadXml(RnaSeqDataView.XML_VIEW_FILE);
     } catch (SAXException | IOException | ParserConfigurationException e) {
       e.printStackTrace();
     }
   }
-  
+
   /*
    * (non-Javadoc)
    * 
@@ -176,31 +193,13 @@ public class RnaSeqViewPlugin extends ViewPlugin
       StatusModel statusModel,
       SelectionModel<Sample> selectedSamples) {
     mParent = parent;
-    mStatusModel = statusModel;
     mSelectedSamples = selectedSamples;
 
-    parent.getRibbon().getHomeToolbar().getSection(getExpressionType())
-        .add(mFpkmButton);
+    parent.getRibbon().getHomeToolbar().getSection(getDataType())
+    .add(mFpkmButton);
 
-    mFpkmButton.setToolTip("MAS5 Expression Data",
-        "Download MAS5 normalized expression data for the currently selected samples.");
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * edu.columbia.rdf.edb.ui.ViewPlugin#customizeSampleMenu(org.abh.common.ui.
-   * menu .ModernPopupMenu)
-   */
-  @Override
-  public void customizeSampleMenu(ModernPopupMenu2 menu) {
-    menu.add(new ModernTitleMenuItem("RNA-seq"));
-
-    ModernIconMenuItem fpkmMenuItem = new ModernIconMenuItem("FPKM");
-    fpkmMenuItem.addClickListener(this);
-
-    menu.add(fpkmMenuItem);
+    mFpkmButton.setToolTip("Expression Data",
+        "Download RNA-seq expression data for the currently selected samples.");
   }
 
   /*
@@ -209,8 +208,8 @@ public class RnaSeqViewPlugin extends ViewPlugin
    * @see edu.columbia.rdf.edb.ui.ViewPlugin#getExpressionType()
    */
   @Override
-  public String getExpressionType() {
-    return "RNA-seq";
+  public String getDataType() {
+    return "RNA-Seq";
   }
 
   /*
@@ -223,8 +222,8 @@ public class RnaSeqViewPlugin extends ViewPlugin
   public void clicked(ModernClickEvent e) {
     if (e.getSource().equals(mFpkmButton)) {
       try {
-        showExpressionData();
-      } catch (NetworkFileException | IOException | ParseException ex) {
+        showData();
+      } catch (NetworkFileException | IOException ex) {
         ex.printStackTrace();
       }
     }
@@ -237,8 +236,8 @@ public class RnaSeqViewPlugin extends ViewPlugin
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws ParseException the parse exception
    */
-  private void showExpressionData()
-      throws NetworkFileException, IOException, ParseException {
+  private void showData()
+      throws NetworkFileException, IOException {
     List<Sample> samples = mSelectedSamples.getItems();
 
     if (samples.size() == 0) {
@@ -251,7 +250,7 @@ public class RnaSeqViewPlugin extends ViewPlugin
     boolean correctType = true;
 
     for (Sample sample : samples) {
-      if (!sample.getExpressionType().getName().equals("RNA-seq")) {
+      if (!sample.getDataType().getName().equals("RNA-Seq")) {
         correctType = false;
         break;
       }
@@ -259,23 +258,183 @@ public class RnaSeqViewPlugin extends ViewPlugin
 
     if (!correctType) {
       ModernMessageDialog.createWarningDialog(mParent,
-          "Some of the samples you have selected do not contain expression data.");
+          "Some of the samples are not RNA-Seq.");
 
       return;
     }
 
-    if (checkForLocked(samples)) {
-      ModernMessageDialog.createWarningDialog(mParent,
-          "You have selected one or more locked samples. These will not be shown.");
+    // Lets see what genomes these samples have in common
 
-      samples = getUnlockedSamples(samples);
+    Repository rep = RepositoryService.getInstance().getRepository();
+
+    CountMap<Genome> genomeMap = new CountMap<Genome>();
+
+    for (Sample sample : samples) {
+      genomeMap.putAll(rep.getGenomes(sample));
     }
 
-    if (samples.size() > 0) {
-      RnaSeqData expressionData = new RnaSeqData();
+    List<Genome> genomes = new ArrayList<Genome>();
 
-      expressionData.showTables(mParent, samples, true, mStatusModel);
+    for (Entry<Genome, Integer> e : genomeMap.entrySet()) {
+      if (e.getValue() == samples.size()) {
+        genomes.add(e.getKey());
+      }
     }
+
+
+    GenomeDialog dialog = new GenomeDialog(mParent, genomes);
+
+    dialog.setVisible(true);
+
+    if (dialog.getStatus() == ModernDialogStatus.CANCEL) {
+      return;
+    }
+
+    Genome genome = dialog.getGenome();
+    String type = dialog.getDataType();
+
+    List<VfsFile> files = new ArrayList<VfsFile>();
+    // Where to write the files locally
+    Map<Sample, java.nio.file.Path> localFiles = new TreeMap<Sample, java.nio.file.Path>();
+
+    FileDownloader downloader = RepositoryService.getInstance()
+        .getRepository().getFileDownloader();
+
+    for (Sample sample : samples) {
+      for (VfsFile file : rep.getGenomeFiles(sample, genome)) {
+        if (file.getName().contains(type)) {
+          files.add(file);
+
+          java.nio.file.Path localFile = Temp.createTempFile(file.getName());
+
+          localFiles.put(sample, localFile);
+
+          downloader.downloadFile(file, localFile);
+        }
+      }
+    }
+
+    java.nio.file.Path mergedFile = pasteFiles(localFiles);
+
+    try {
+      MainBioMatCalc.autoOpen(mergedFile, 3);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+
+  public static java.nio.file.Path pasteFiles(Map<Sample, java.nio.file.Path> sampleFileMap) throws IOException {
+    java.nio.file.Path tempFile1 = Temp.generateTempFile("txt");
+
+    String line;
+
+    BufferedReader reader;
+
+    //
+    // Create a list of file handlers for each file
+    //
+
+    List<Sample> samples = CollectionUtils.sort(sampleFileMap.keySet());
+
+    List<BufferedReader> readers = new ArrayList<BufferedReader>();
+
+    for (Entry<Sample, java.nio.file.Path> entry : sampleFileMap.entrySet()) {
+      readers.add(FileUtils.newBufferedReader(entry.getValue()));
+    }
+
+
+    //
+    // Do some writing
+    //
+
+    BufferedWriter writer = FileUtils.newBufferedWriter(tempFile1);
+
+    // Create a global header
+    List<String> tokens;
+
+    try {
+      writer.write("Gene");
+      writer.write(TextUtils.TAB_DELIMITER);
+      writer.write("Location");
+      writer.write(TextUtils.TAB_DELIMITER);
+      writer.write("Strand");
+
+
+      for (int i = 0; i < samples.size(); ++i) {
+        // Sample sample = samples.get(i);
+
+        reader = readers.get(i);
+
+        line = reader.readLine();
+
+        tokens = TextUtils.tabSplit(line);
+
+        // don't need the first two columns as these are duplicated in
+        // every expression file
+        tokens = CollectionUtils.subList(tokens, ANNOTATION_COLUMNS);
+
+        //
+        // Now we deal with each of the columns in the annotation
+        // file, notably to replace the names with the real sample
+        // name to account for changes in the file and the database
+
+        for (int c = 0; c < tokens.size(); ++c) {
+          String header = tokens.get(c);
+          writer.write(TextUtils.TAB_DELIMITER);
+          writer.write(header);
+        }
+      }
+
+      writer.newLine();
+
+      boolean stop = false;
+
+      while(!stop) {
+        // For each sample, skip lines until we find the probe of interest
+        for (int i = 0; i < samples.size(); ++i) {
+          reader = readers.get(i);
+
+          line = reader.readLine();
+
+          if (line == null) {
+            stop = true;
+            break;
+          }
+
+          tokens = TextUtils.tabSplit(line);
+
+          if (i == 0) {
+            writer.write(tokens.get(0));
+            writer.write(TextUtils.TAB_DELIMITER);
+            writer.write(tokens.get(1));
+            writer.write(TextUtils.TAB_DELIMITER);
+            writer.write(tokens.get(2));
+          }
+
+          // Skip the annotation columns in each file
+          tokens = CollectionUtils.subList(tokens, ANNOTATION_COLUMNS);
+
+          // Write out the annotation for this probe for this sample
+          for (int c = 0; c < tokens.size(); ++c) {
+            writer.write(TextUtils.TAB_DELIMITER);
+            writer.write(tokens.get(c));
+          }
+        }
+
+        // Finally write a new line since we have written the annotations
+        // for each sample
+        writer.newLine();
+      }
+    } finally {
+      for (BufferedReader r : readers) {
+        r.close();
+      }
+
+      writer.close();
+    }
+
+    return tempFile1;
   }
 
   /*

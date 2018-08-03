@@ -161,7 +161,7 @@ public class SampleViewWidePanel extends ModernWidget
       Sample sample = samples.get(0);
 
       mSamplePanel = ViewPluginService.getInstance()
-          .getView(sample.getExpressionType().getName()).getSamplePanel(sample);
+          .getView(sample.getDataType().getName()).getSamplePanel(sample);
       mSamplePanel.setBorder(TOP_BORDER);
 
       // mSplitPaneH.setComponent2(mSamplePanel);
@@ -218,7 +218,7 @@ public class SampleViewWidePanel extends ModernWidget
    * common.event.ChangeEvent)
    */
   @Override
-  public void selectionChanged(ChangeEvent e) {
+  public void selectionAdded(ChangeEvent e) {
     showSampleDetails();
   }
 
@@ -239,6 +239,13 @@ public class SampleViewWidePanel extends ModernWidget
     UI.centerWindowToScreen(window);
 
     window.setVisible(true);
+  }
+
+
+  @Override
+  public void selectionRemoved(ChangeEvent e) {
+    // TODO Auto-generated method stub
+    
   }
 
   /*

@@ -417,9 +417,9 @@ public class MicroarrayViewPlugin extends ViewPlugin
     mStatusModel = statusModel;
     mSelectedSamples = selectedSamples;
 
-    parent.getRibbon().getHomeToolbar().getSection(getExpressionType())
+    parent.getRibbon().getHomeToolbar().getSection(getDataType())
         .add(mMas5Button);
-    parent.getRibbon().getHomeToolbar().getSection(getExpressionType())
+    parent.getRibbon().getHomeToolbar().getSection(getDataType())
         .add(mRmaButton);
 
     mMas5Button.setToolTip("MAS5 Expression Data",
@@ -455,7 +455,7 @@ public class MicroarrayViewPlugin extends ViewPlugin
    * @see edu.columbia.rdf.edb.ui.ViewPlugin#getExpressionType()
    */
   @Override
-  public String getExpressionType() {
+  public String getDataType() {
     return "Microarray";
   }
 
@@ -506,7 +506,7 @@ public class MicroarrayViewPlugin extends ViewPlugin
     boolean correctType = true;
 
     for (Sample sample : samples) {
-      if (!sample.getExpressionType().getName().equals("Microarray")) {
+      if (!sample.getDataType().getName().equals("Microarray")) {
         correctType = false;
         break;
       }

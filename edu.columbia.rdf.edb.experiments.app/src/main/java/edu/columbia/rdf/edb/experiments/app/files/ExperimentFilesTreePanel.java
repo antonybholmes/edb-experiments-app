@@ -36,7 +36,7 @@ import org.jebtk.modern.tree.ModernTree;
 import org.jebtk.modern.tree.TreeNodeFileCountRenderer;
 
 import edu.columbia.rdf.edb.Experiment;
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
@@ -51,7 +51,7 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
   private static final long serialVersionUID = 1L;
 
   /** The tree. */
-  private ModernTree<FileDescriptor> tree = new ModernTree<FileDescriptor>();
+  private ModernTree<VfsFile> tree = new ModernTree<VfsFile>();
 
   // private SamplesSortPanel samplesListSortPanel = new SamplesSortPanel();
 
@@ -120,21 +120,21 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
     List<Experiment> sortedExperiments = CollectionUtils
         .sort(experiments.keySet());
 
-    TreeRootNode<FileDescriptor> root = new TreeRootNode<FileDescriptor>();
+    TreeRootNode<VfsFile> root = new TreeRootNode<VfsFile>();
 
-    TreeNode<FileDescriptor> experimentsRoot = new TreeNode<FileDescriptor>(
+    TreeNode<VfsFile> experimentsRoot = new TreeNode<VfsFile>(
         "Experiments");
 
     for (Experiment experiment : sortedExperiments) {
-      TreeNode<FileDescriptor> experimentNode = new TreeNode<FileDescriptor>(
+      TreeNode<VfsFile> experimentNode = new TreeNode<VfsFile>(
           experiment.getName());
 
       experimentNode.setIsExpandable(false);
 
-      for (FileDescriptor file : repository
+      for (VfsFile file : repository
           .getSampleFiles(experiments.get(experiment))) {
 
-        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(
+        TreeNode<VfsFile> fileNode = new TreeNode<VfsFile>(
             file.getName(), file);
 
         experimentNode.addChild(fileNode);
@@ -188,17 +188,17 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
    *
    * @return the selected files
    */
-  public List<FileDescriptor> getSelectedFiles() {
+  public List<VfsFile> getSelectedFiles() {
 
-    Set<FileDescriptor> fileSet = new HashSet<FileDescriptor>();
+    Set<VfsFile> fileSet = new HashSet<VfsFile>();
 
-    for (TreeNode<FileDescriptor> node : tree.getSelectedNodes()) {
+    for (TreeNode<VfsFile> node : tree.getSelectedNodes()) {
       getFiles(node, fileSet);
     }
 
-    List<FileDescriptor> files = new ArrayList<FileDescriptor>();
+    List<VfsFile> files = new ArrayList<VfsFile>();
 
-    for (FileDescriptor file : fileSet) {
+    for (VfsFile file : fileSet) {
       files.add(file);
     }
 
@@ -214,14 +214,14 @@ public class ExperimentFilesTreePanel extends ModernGradientPanel {
    * @param files the files
    * @return the files
    */
-  private void getFiles(TreeNode<FileDescriptor> node,
-      Set<FileDescriptor> files) {
+  private void getFiles(TreeNode<VfsFile> node,
+      Set<VfsFile> files) {
     if (node.getValue() != null) {
       files.add(node.getValue());
     }
 
     if (node.isParent()) {
-      for (TreeNode<FileDescriptor> child : node) {
+      for (TreeNode<VfsFile> child : node) {
         getFiles(child, files);
       }
     }

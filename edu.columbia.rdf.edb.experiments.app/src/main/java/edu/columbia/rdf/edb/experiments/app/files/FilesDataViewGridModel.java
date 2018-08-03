@@ -22,7 +22,7 @@ import java.util.List;
 import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.modern.table.ModernColumnHeaderTableModel;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.FileType;
 
 // TODO: Auto-generated Javadoc
@@ -35,7 +35,7 @@ public class FilesDataViewGridModel extends ModernColumnHeaderTableModel {
   private static final String[] HEADINGS = { "Name", "Type", "Date" };
 
   /** The m items. */
-  private List<FileDescriptor> mItems = new ArrayList<FileDescriptor>();
+  private List<VfsFile> mItems = new ArrayList<VfsFile>();
 
   /**
    * Instantiates a new files data view grid model.
@@ -49,7 +49,7 @@ public class FilesDataViewGridModel extends ModernColumnHeaderTableModel {
    *
    * @param files the files
    */
-  public FilesDataViewGridModel(List<FileDescriptor> files) {
+  public FilesDataViewGridModel(List<VfsFile> files) {
 
     mItems = files;
 

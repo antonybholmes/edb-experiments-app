@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jebtk.modern.UI;
+import org.jebtk.modern.dialog.ModernDialogTaskType;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.menu.ModernMenuItem;
 import org.jebtk.modern.menu.ModernTitleMenuItem;
@@ -104,5 +105,7 @@ public class SamplesSearchCriteriaPopup extends SearchCriteriaPopup {
     // addBreakLine();
 
     // addModernMenuItem(new ModernMenuItem("All Fields"));
+    
+    setup(ModernDialogTaskType.OK);
   }
 }

@@ -16,13 +16,14 @@
 package edu.columbia.rdf.edb.experiments.app.search;
 
 import java.awt.Dimension;
+import java.awt.Panel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import org.jebtk.core.search.SearchStackOperator;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernButtonWidget;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -32,7 +33,7 @@ import org.jebtk.modern.event.ModernClickListeners;
 import org.jebtk.modern.graphics.icons.CloseVectorIcon;
 import org.jebtk.modern.panel.HBox;
 import org.jebtk.modern.panel.ModernPanel;
-import org.jebtk.modern.text.ModernTextBorderPanel;
+import org.jebtk.modern.text.SearchTextBorderPanel;
 import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
@@ -102,13 +103,9 @@ public class SearchCategoryPanel extends HBox
     //
 
     mSearchText = new SearchField(text);
-    // mSearchText.setPreferredSize(new Dimension(Short.MAX_VALUE,
-    // ModernWidget.WIDGET_HEIGHT));
-    // mSearchText.setMaximumSize(new Dimension(Short.MAX_VALUE,
-    // ModernWidget.WIDGET_HEIGHT));
     mSearchText.addKeyListener(this);
 
-    ModernTextBorderPanel panel = new ModernTextBorderPanel(mSearchText);
+    SearchTextBorderPanel panel = new SearchTextBorderPanel(mSearchText);
     panel.setPreferredSize(
         new Dimension(Short.MAX_VALUE, ModernWidget.WIDGET_HEIGHT));
     panel.setMaximumSize(

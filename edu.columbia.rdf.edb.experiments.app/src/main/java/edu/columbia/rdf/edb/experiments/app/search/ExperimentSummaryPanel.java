@@ -168,7 +168,7 @@ public class ExperimentSummaryPanel extends ModernPanel
    * common.event.ChangeEvent)
    */
   @Override
-  public void selectionChanged(ChangeEvent e) {
+  public void selectionAdded(ChangeEvent e) {
     if (mModel.size() == 0) {
       return;
     }
@@ -179,5 +179,11 @@ public class ExperimentSummaryPanel extends ModernPanel
         .asList(sample.getExperiment());
 
     display(sortedExperiments);
+  }
+
+  @Override
+  public void selectionRemoved(ChangeEvent e) {
+    // TODO Auto-generated method stub
+    
   }
 }

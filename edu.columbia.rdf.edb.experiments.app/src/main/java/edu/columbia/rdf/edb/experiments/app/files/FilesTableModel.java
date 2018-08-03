@@ -22,7 +22,7 @@ import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.core.text.DateUtils;
 import org.jebtk.modern.table.ModernColumnHeaderTableModel;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -37,7 +37,7 @@ public class FilesTableModel extends ModernColumnHeaderTableModel {
   // private Biomaterial biomaterial;
 
   /** The items. */
-  private List<FileDescriptor> items = new ArrayList<FileDescriptor>();
+  private List<VfsFile> items = new ArrayList<VfsFile>();
 
   /**
    * Instantiates a new files table model.
@@ -52,9 +52,9 @@ public class FilesTableModel extends ModernColumnHeaderTableModel {
    *
    * @param files the files
    */
-  public FilesTableModel(List<FileDescriptor> files) {
+  public FilesTableModel(List<VfsFile> files) {
 
-    for (FileDescriptor f : files) {
+    for (VfsFile f : files) {
 
       items.add(f);
     }

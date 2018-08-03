@@ -17,7 +17,7 @@ package edu.columbia.rdf.edb.experiments.app.files;
 
 import org.jebtk.core.model.ListModel;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 
 /**
  * Provides a view model for changing the view of tabular data.
@@ -25,7 +25,7 @@ import edu.columbia.rdf.edb.FileDescriptor;
  * @author Antony Holmes Holmes
  *
  */
-public class FilesModel extends ListModel<FileDescriptor> {
+public class FilesModel extends ListModel<VfsFile> {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;

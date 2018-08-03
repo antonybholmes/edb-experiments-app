@@ -37,7 +37,7 @@ import org.jebtk.modern.tree.TreeEventAdapter;
 import org.jebtk.modern.tree.TreeNodeFileRenderer;
 
 import edu.columbia.rdf.edb.Experiment;
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.FileType;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.experiments.app.files.FilesModel;
@@ -54,7 +54,7 @@ public class VfsFilesTreePanel extends ModernComponent {
   private static final long serialVersionUID = 1L;
 
   /** The m tree. */
-  private ModernTree<FileDescriptor> mTree = new ModernTree<FileDescriptor>();
+  private ModernTree<VfsFile> mTree = new ModernTree<VfsFile>();
 
   /** The m files model. */
   private FilesModel mFilesModel;
@@ -155,7 +155,7 @@ public class VfsFilesTreePanel extends ModernComponent {
     if (mTree.getSelectedNode().getChildCount() == 0) {
       int nid = mTree.getSelectionModel().first();
 
-      TreeNode<FileDescriptor> node = mTree.getSelectedNode();
+      TreeNode<VfsFile> node = mTree.getSelectedNode();
 
       loadDirs(
           RepositoryService.getInstance()
@@ -201,11 +201,11 @@ public class VfsFilesTreePanel extends ModernComponent {
      * loadDirs(store, expNode); } } else {
      */
 
-    TreeRootNode<FileDescriptor> root = new TreeRootNode<FileDescriptor>();
+    TreeRootNode<VfsFile> root = new TreeRootNode<VfsFile>();
 
-    for (FileDescriptor file : store.vfs().ls()) {
+    for (VfsFile file : store.vfs().ls()) {
       if (file.getType() == FileType.DIR) {
-        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(
+        TreeNode<VfsFile> fileNode = new TreeNode<VfsFile>(
             file.getName(), file);
 
         fileNode.setIsParent(true);
@@ -236,12 +236,12 @@ public class VfsFilesTreePanel extends ModernComponent {
    * @throws MalformedURLException the malformed URL exception
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public void loadDirs(Repository store, TreeNode<FileDescriptor> node)
+  public void loadDirs(Repository store, TreeNode<VfsFile> node)
       throws ParseException, MalformedURLException, IOException {
-    for (FileDescriptor file : store.vfs().ls(node.getValue().getId())) {
+    for (VfsFile file : store.vfs().ls(node.getValue().getId())) {
 
       if (file.getType() == FileType.DIR) {
-        TreeNode<FileDescriptor> fileNode = new TreeNode<FileDescriptor>(
+        TreeNode<VfsFile> fileNode = new TreeNode<VfsFile>(
             file.getName(), file);
 
         fileNode.setIsParent(true);
@@ -258,17 +258,17 @@ public class VfsFilesTreePanel extends ModernComponent {
    *
    * @return the selected files
    */
-  public List<FileDescriptor> getSelectedFiles() {
+  public List<VfsFile> getSelectedFiles() {
 
-    Set<FileDescriptor> fileSet = new HashSet<FileDescriptor>();
+    Set<VfsFile> fileSet = new HashSet<VfsFile>();
 
-    for (TreeNode<FileDescriptor> node : mTree.getSelectedNodes()) {
+    for (TreeNode<VfsFile> node : mTree.getSelectedNodes()) {
       getFiles(node, fileSet);
     }
 
-    List<FileDescriptor> files = new ArrayList<FileDescriptor>();
+    List<VfsFile> files = new ArrayList<VfsFile>();
 
-    for (FileDescriptor file : fileSet) {
+    for (VfsFile file : fileSet) {
       files.add(file);
     }
 
@@ -284,14 +284,14 @@ public class VfsFilesTreePanel extends ModernComponent {
    * @param files the files
    * @return the files
    */
-  private void getFiles(TreeNode<FileDescriptor> node,
-      Set<FileDescriptor> files) {
+  private void getFiles(TreeNode<VfsFile> node,
+      Set<VfsFile> files) {
     if (node.getValue() != null) {
       files.add(node.getValue());
     }
 
     if (node.isParent()) {
-      for (TreeNode<FileDescriptor> child : node) {
+      for (TreeNode<VfsFile> child : node) {
         getFiles(child, files);
       }
     }
@@ -342,23 +342,23 @@ public class VfsFilesTreePanel extends ModernComponent {
    */
   private void setFiles()
       throws ParseException, MalformedURLException, IOException {
-    FileDescriptor file = mTree.getSelectedNode().getValue();
+    VfsFile file = mTree.getSelectedNode().getValue();
 
     if (file != null) {
       Repository repository = RepositoryService.getInstance()
           .getRepository(RepositoryService.DEFAULT_REP);
 
-      List<FileDescriptor> files = repository.vfs()
+      List<VfsFile> files = repository.vfs()
           .ls(mTree.getSelectedNode().getValue().getId());
 
       Collections.sort(files);
 
       // Organize folders first
 
-      List<FileDescriptor> ret = new ArrayList<FileDescriptor>();
-      List<FileDescriptor> f2 = new ArrayList<FileDescriptor>();
+      List<VfsFile> ret = new ArrayList<VfsFile>();
+      List<VfsFile> f2 = new ArrayList<VfsFile>();
 
-      for (FileDescriptor f : files) {
+      for (VfsFile f : files) {
         if (f.getType() == FileType.DIR) {
           ret.add(f);
         } else {

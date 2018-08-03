@@ -96,8 +96,14 @@ public class SearchFolderTreePanel extends ModernComponent {
      * common.event.ChangeEvent)
      */
     @Override
-    public void selectionChanged(ChangeEvent e) {
+    public void selectionAdded(ChangeEvent e) {
       search();
+    }
+
+    @Override
+    public void selectionRemoved(ChangeEvent e) {
+      // TODO Auto-generated method stub
+      
     }
   }
 

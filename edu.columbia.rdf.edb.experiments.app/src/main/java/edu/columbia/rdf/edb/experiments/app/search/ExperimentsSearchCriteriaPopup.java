@@ -21,6 +21,7 @@ import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernRadioButton;
+import org.jebtk.modern.dialog.ModernDialogTaskType;
 import org.jebtk.modern.menu.ModernMenuItem;
 import org.jebtk.modern.menu.ModernTitleMenuItem;
 import org.jebtk.modern.widget.ModernClickWidget;
@@ -167,5 +168,7 @@ public class ExperimentsSearchCriteriaPopup extends SearchCriteriaPopup {
      */
 
     // addScrollMenuItems(items);
+    
+    setup(ModernDialogTaskType.OK);
   }
 }

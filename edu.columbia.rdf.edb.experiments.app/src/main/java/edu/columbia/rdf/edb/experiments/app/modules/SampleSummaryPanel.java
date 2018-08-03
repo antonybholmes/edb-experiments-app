@@ -51,7 +51,7 @@ public class SampleSummaryPanel extends VBox {
     Box box;
 
     ModernAutoSizeLabel label = new SummaryTitleLabel(
-        sample.getName() + " (" + sample.getExpressionType() + ")");
+        sample.getName() + " (" + sample.getDataType() + ")");
 
     add(UI.createVGap(5));
 

@@ -20,7 +20,7 @@ import java.awt.Component;
 import org.jebtk.modern.dataview.ModernData;
 import org.jebtk.modern.dataview.ModernDataTileCellRenderer;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -47,7 +47,7 @@ public class FilesDataViewGridCellRenderer extends ModernDataTileCellRenderer {
       int row,
       int column) {
 
-    FileDescriptor file = (FileDescriptor) value;
+    VfsFile file = (VfsFile) value;
 
     setText(file.getName());
 

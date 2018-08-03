@@ -30,7 +30,7 @@ import org.jebtk.modern.tabs.TabsModel;
 import org.jebtk.modern.view.ViewModel;
 import org.jebtk.modern.window.ModernWindow;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.experiments.app.files.FilesDataViewGridModel;
 import edu.columbia.rdf.edb.experiments.app.files.FilesModel;
 import edu.columbia.rdf.edb.experiments.app.files.FilesMultiViewPanel;
@@ -58,7 +58,7 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
   private FilesModel mFilesModel;
 
   /** The m files. */
-  private List<FileDescriptor> mFiles;
+  private List<VfsFile> mFiles;
 
   /**
    * Instantiates a new vfs files panel.
@@ -93,7 +93,7 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
    *
    * @param files the files
    */
-  private void displayFilteredFiles(Collection<FileDescriptor> files) {
+  private void displayFilteredFiles(Collection<VfsFile> files) {
     mFiles = CollectionUtils.sort(files);
 
     mTable.setModel(new FilesDataViewGridModel(mFiles));
@@ -106,7 +106,7 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
    */
   public void downloadFiles() throws IOException {
 
-    Set<FileDescriptor> files = new TreeSet<FileDescriptor>();
+    Set<VfsFile> files = new TreeSet<VfsFile>();
 
     for (int i : mTable.getCellSelectionModel().getRowSelectionModel()) {
       files.add(mFiles.get(mTable.convertRowIndexToModel(i)));

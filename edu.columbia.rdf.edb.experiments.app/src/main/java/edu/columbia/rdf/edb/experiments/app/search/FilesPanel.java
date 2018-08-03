@@ -44,7 +44,7 @@ import org.jebtk.modern.tabs.TabsModel;
 import org.jebtk.modern.view.ViewModel;
 import org.jebtk.modern.window.ModernWindow;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.experiments.app.files.FilesDataViewGridModel;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
@@ -63,7 +63,7 @@ public class FilesPanel extends ModernPanel
   private static final long serialVersionUID = 1L;
 
   /** The m filtered files. */
-  private List<FileDescriptor> mFilteredFiles = null;
+  private List<VfsFile> mFilteredFiles = null;
 
   // private ModernRowTable table = new ModernRowTable();
   // private ModernDataViewGrid table = new ModernDataViewGrid();
@@ -218,7 +218,7 @@ public class FilesPanel extends ModernPanel
    */
   public void downloadFiles() throws IOException {
 
-    Set<FileDescriptor> files = new TreeSet<FileDescriptor>();
+    Set<VfsFile> files = new TreeSet<VfsFile>();
 
     System.err.println(mFilteredFiles.toString());
 
@@ -246,7 +246,7 @@ public class FilesPanel extends ModernPanel
    */
   private void searchFiles() throws IOException, ParseException {
 
-    mFilteredFiles = new ArrayList<FileDescriptor>();
+    mFilteredFiles = new ArrayList<VfsFile>();
 
     // searchBox.addTerm(searchBox.getText());
 
@@ -255,7 +255,7 @@ public class FilesPanel extends ModernPanel
 
     for (Sample sample : mSampleSelectionModel) {
 
-      for (FileDescriptor file : repository.getSampleFiles(sample)) { // sample.getFiles())
+      for (VfsFile file : repository.getSampleFiles(sample)) { // sample.getFiles())
                                                                       // {
         mFilteredFiles.add(file);
       }
@@ -272,7 +272,7 @@ public class FilesPanel extends ModernPanel
    * common.event.ChangeEvent)
    */
   @Override
-  public void selectionChanged(ChangeEvent e) {
+  public void selectionAdded(ChangeEvent e) {
     try {
       searchFiles();
     } catch (IOException | ParseException e1) {
@@ -308,5 +308,11 @@ public class FilesPanel extends ModernPanel
     } catch (IOException e1) {
       e1.printStackTrace();
     }
+  }
+
+  @Override
+  public void selectionRemoved(ChangeEvent e) {
+    // TODO Auto-generated method stub
+    
   }
 }

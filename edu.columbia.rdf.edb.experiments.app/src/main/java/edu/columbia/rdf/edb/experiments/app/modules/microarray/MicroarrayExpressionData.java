@@ -49,7 +49,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.columbia.rdf.edb.DataViewField;
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.DownloadManager;
 import edu.columbia.rdf.edb.ui.FileDownloader;
@@ -795,7 +795,7 @@ public class MicroarrayExpressionData {
     FileDownloader downloader = RepositoryService.getInstance()
         .getRepository(RepositoryService.DEFAULT_REP).getFileDownloader();
 
-    FileDescriptor arrayFile = getRemoteExpressionFile(sample, type);
+    VfsFile arrayFile = getRemoteExpressionFile(sample, type);
 
     Path localFile = Temp.generateTempFile();
 
@@ -814,7 +814,7 @@ public class MicroarrayExpressionData {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws ParseException the parse exception
    */
-  private final FileDescriptor getRemoteExpressionFile(Sample sample,
+  private final VfsFile getRemoteExpressionFile(Sample sample,
       MicroarrayNormalizationType normalisationType)
       throws IOException, ParseException {
 
@@ -829,7 +829,7 @@ public class MicroarrayExpressionData {
     Repository repository = RepositoryService.getInstance()
         .getRepository(RepositoryService.DEFAULT_REP);
 
-    for (FileDescriptor f : repository.getSampleFiles(sample)) {
+    for (VfsFile f : repository.getSampleFiles(sample)) {
       if (f.getExt().equals(type)) {
         return f;
       }

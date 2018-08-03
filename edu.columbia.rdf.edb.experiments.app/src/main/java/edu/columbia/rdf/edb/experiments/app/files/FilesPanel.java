@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.jebtk.modern.ModernComponent;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
@@ -37,7 +37,7 @@ public abstract class FilesPanel extends ModernComponent {
   private static final long serialVersionUID = 1L;
 
   /** The m files. */
-  protected Set<FileDescriptor> mFiles = null;
+  protected Set<VfsFile> mFiles = null;
 
   /**
    * Sets the sample files.
@@ -59,5 +59,5 @@ public abstract class FilesPanel extends ModernComponent {
    *
    * @return the selected files
    */
-  public abstract Set<FileDescriptor> getSelectedFiles();
+  public abstract Set<VfsFile> getSelectedFiles();
 }

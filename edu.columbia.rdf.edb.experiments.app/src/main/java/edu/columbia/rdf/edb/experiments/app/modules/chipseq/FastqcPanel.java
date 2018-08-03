@@ -33,7 +33,7 @@ import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.DownloadManager;
 
@@ -51,7 +51,7 @@ public class FastqcPanel extends ModernComponent {
    * @param sample the sample
    * @param file the file
    */
-  public FastqcPanel(Sample sample, FileDescriptor file) {
+  public FastqcPanel(Sample sample, VfsFile file) {
     try {
       java.nio.file.Path tempFile = Temp.generateTempFile();
 

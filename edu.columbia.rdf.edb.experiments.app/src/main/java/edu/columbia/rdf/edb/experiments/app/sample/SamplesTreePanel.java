@@ -166,8 +166,14 @@ public class SamplesTreePanel extends SamplesPanel
      * common.event.ChangeEvent)
      */
     @Override
-    public void selectionChanged(ChangeEvent e) {
+    public void selectionAdded(ChangeEvent e) {
       filterSamples();
+    }
+
+    @Override
+    public void selectionRemoved(ChangeEvent e) {
+      // TODO Auto-generated method stub
+      
     }
 
   }

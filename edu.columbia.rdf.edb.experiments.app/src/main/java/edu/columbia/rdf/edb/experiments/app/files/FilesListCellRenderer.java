@@ -23,7 +23,7 @@ import org.jebtk.modern.graphics.icons.FileVectorIcon;
 import org.jebtk.modern.list.ModernList;
 import org.jebtk.modern.list.ModernListTwoLineCellRenderer;
 
-import edu.columbia.rdf.edb.FileDescriptor;
+import edu.columbia.rdf.edb.VfsFile;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -93,7 +93,7 @@ public class FilesListCellRenderer extends ModernListTwoLineCellRenderer {
       boolean hasFocus,
       int row) {
 
-    FileDescriptor file = (FileDescriptor) value;
+    VfsFile file = (VfsFile) value;
 
     if (value != null) {
       filename = file.getName();

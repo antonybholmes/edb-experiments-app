@@ -143,7 +143,7 @@ public class VfsFilesPanel extends ModernPanel implements ChangeListener {
    * @throws ParseException the parse exception
    */
   public void setFiles(SampleModel selectionModel)
-      throws IOException, ParseException {
+      throws IOException {
     if (selectionModel.size() > 0) {
       Repository repository = RepositoryService.getInstance()
           .getRepository(RepositoryService.DEFAULT_REP);

@@ -149,7 +149,7 @@ public class VfsWindow extends ModernRibbonWindow
 
     try {
       mFilesPanel.setFiles(selectionModel);
-    } catch (IOException | ParseException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
 

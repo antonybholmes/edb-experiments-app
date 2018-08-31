@@ -132,8 +132,6 @@ public class VfsFilesTreePanel extends ModernComponent {
 
     try {
       loadDirs();
-    } catch (ParseException e) {
-      e.printStackTrace();
     } catch (MalformedURLException e) {
       e.printStackTrace();
     } catch (IOException e) {
@@ -179,8 +177,7 @@ public class VfsFilesTreePanel extends ModernComponent {
    * @throws MalformedURLException the malformed URL exception
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public void loadDirs()
-      throws ParseException, MalformedURLException, IOException {
+  public void loadDirs() throws MalformedURLException, IOException {
 
     Repository store = RepositoryService.getInstance()
         .getRepository(RepositoryService.DEFAULT_REP);
@@ -205,15 +202,15 @@ public class VfsFilesTreePanel extends ModernComponent {
 
     for (VfsFile file : store.vfs().ls()) {
       if (file.getType() == FileType.DIR) {
-        TreeNode<VfsFile> fileNode = new TreeNode<VfsFile>(
+        TreeNode<VfsFile> dirNode = new TreeNode<VfsFile>(
             file.getName(), file);
 
-        fileNode.setIsParent(true);
+        dirNode.setIsParent(true);
 
         // add first level children
-        loadDirs(store, fileNode);
+        loadDirs(store, dirNode);
 
-        root.addChild(fileNode);
+        root.addChild(dirNode);
       }
     }
     // }
@@ -237,7 +234,7 @@ public class VfsFilesTreePanel extends ModernComponent {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public void loadDirs(Repository store, TreeNode<VfsFile> node)
-      throws ParseException, MalformedURLException, IOException {
+      throws MalformedURLException, IOException {
     for (VfsFile file : store.vfs().ls(node.getValue().getId())) {
 
       if (file.getType() == FileType.DIR) {

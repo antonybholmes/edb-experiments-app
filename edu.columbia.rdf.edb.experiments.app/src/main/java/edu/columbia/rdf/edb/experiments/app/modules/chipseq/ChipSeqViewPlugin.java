@@ -18,6 +18,7 @@ package edu.columbia.rdf.edb.experiments.app.modules.chipseq;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -37,12 +38,9 @@ import org.xml.sax.SAXException;
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.EDBWLogin;
 import edu.columbia.rdf.edb.Sample;
-import edu.columbia.rdf.edb.experiments.app.modules.rnaseq.RnaSeqDataView;
 import edu.columbia.rdf.edb.ui.SampleSortService;
 import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.network.ServerException;
-import edu.columbia.rdf.edb.ui.search.SearchCategory;
-import edu.columbia.rdf.edb.ui.search.SearchCategoryGroup;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 import edu.columbia.rdf.htsview.app.HTSViewInfo;
 import edu.columbia.rdf.htsview.app.MainHtsView;
@@ -281,8 +279,8 @@ public class ChipSeqViewPlugin extends ViewPlugin
     IterMap<String, Set<Sample>> sorted = Sample.sortByGenome(samples);
 
     if (sorted.size() > 0) {
-      for (String genome : sorted) {
-        MainHtsView.main(mLogin, genome, sorted.get(genome));
+      for (Entry<String, Set<Sample>> f : sorted) {
+        MainHtsView.main(mLogin, f.getKey(), f.getValue());
       }
     }
   }

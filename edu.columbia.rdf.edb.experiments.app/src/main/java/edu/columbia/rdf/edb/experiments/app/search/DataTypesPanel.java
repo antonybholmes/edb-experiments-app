@@ -18,6 +18,7 @@ package edu.columbia.rdf.edb.experiments.app.search;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.jebtk.bioinformatics.annotation.Type;
 import org.jebtk.core.collections.IterHashMap;
@@ -72,14 +73,14 @@ public class DataTypesPanel extends HBox
       typeMap.put(t.getName(), t);
     }
 
-    for (String name : typeMap) {
-      ModernTwoStateWidget check = new ModernCheckSwitch(name, true); // new
+    for (Entry<String, Type> f : typeMap) {
+      ModernTwoStateWidget check = new ModernCheckSwitch(f.getKey(), true); // new
                                                                       // FilterButton(name,
                                                                       // true);
 
       check.addClickListener(this);
 
-      mTypesMap.put(check, typeMap.get(name));
+      mTypesMap.put(check, f.getValue());
 
       add(check);
       // add(UI.createHGap(5));
@@ -95,12 +96,12 @@ public class DataTypesPanel extends HBox
       speciesMap.put(s.getName(), s);
     }
 
-    for (String name : speciesMap) {
-      ModernTwoStateWidget check = new ModernCheckSwitch(name, true);
+    for (Entry<String, Species> f : speciesMap) {
+      ModernTwoStateWidget check = new ModernCheckSwitch(f.getKey(), true);
 
       check.addClickListener(this);
 
-      mSpeciesMap.put(check, speciesMap.get(name));
+      mSpeciesMap.put(check, f.getValue());
 
       add(check);
       // add(UI.createHGap(5));
@@ -115,9 +116,9 @@ public class DataTypesPanel extends HBox
   public Collection<Type> getDataTypes() {
     List<Type> ret = new ArrayList<Type>(mTypesMap.size());
 
-    for (ModernTwoStateWidget c : mTypesMap) {
-      if (c.isSelected()) {
-        ret.add(mTypesMap.get(c));
+    for (Entry<ModernTwoStateWidget, Type> f : mTypesMap) {
+      if (f.getKey().isSelected()) {
+        ret.add(f.getValue());
       }
     }
 
@@ -138,9 +139,9 @@ public class DataTypesPanel extends HBox
   public Collection<Species> getOrganisms() {
     List<Species> ret = new ArrayList<Species>(mSpeciesMap.size());
 
-    for (ModernTwoStateWidget c : mSpeciesMap) {
-      if (c.isSelected()) {
-        ret.add(mSpeciesMap.get(c));
+    for (Entry<ModernTwoStateWidget, Species> f : mSpeciesMap) {
+      if (f.getKey().isSelected()) {
+        ret.add(f.getValue());
       }
     }
 

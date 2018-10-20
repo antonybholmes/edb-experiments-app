@@ -1072,7 +1072,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
    */
   @Override
   public void close() {
-    Temp.deleteTempFiles();
+    TmpService.getInstance().deleteTempFiles();
 
     super.close();
   }

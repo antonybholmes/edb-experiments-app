@@ -53,7 +53,7 @@ public class FastqcPanel extends ModernComponent {
    */
   public FastqcPanel(Sample sample, VfsFile file) {
     try {
-      java.nio.file.Path tempFile = Temp.generateTempFile();
+      java.nio.file.Path tempFile = TmpService.getInstance().newTmpFile();
 
       DownloadManager.download(file, tempFile);
 

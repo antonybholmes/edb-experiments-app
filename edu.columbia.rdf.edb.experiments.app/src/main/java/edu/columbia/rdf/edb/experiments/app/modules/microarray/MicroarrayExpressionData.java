@@ -284,7 +284,7 @@ public class MicroarrayExpressionData {
       StatusModel statusModel) throws IOException {
     LOG.info("Merging expression data...");
 
-    Path tempFile1 = Temp.generateTempFile("txt");
+    Path tempFile1 = TmpService.getInstance().newTmpFile("txt");
 
     String line;
 
@@ -797,7 +797,7 @@ public class MicroarrayExpressionData {
 
     VfsFile arrayFile = getRemoteExpressionFile(sample, type);
 
-    Path localFile = Temp.generateTempFile();
+    Path localFile = TmpService.getInstance().newTmpFile();
 
     downloader.downloadFile(arrayFile, localFile);
 

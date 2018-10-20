@@ -305,7 +305,7 @@ implements ModernClickListener {
         if (file.getName().contains(type)) {
           files.add(file);
 
-          java.nio.file.Path localFile = Temp.createTempFile(file.getName());
+          java.nio.file.Path localFile = TmpService.getInstance().newTmpFile(file.getName());
 
           localFiles.put(sample, localFile);
 
@@ -325,7 +325,7 @@ implements ModernClickListener {
 
 
   public static java.nio.file.Path pasteFiles(Map<Sample, java.nio.file.Path> sampleFileMap) throws IOException {
-    java.nio.file.Path tempFile1 = Temp.generateTempFile("txt");
+    java.nio.file.Path tempFile1 = TmpService.getInstance().newTmpFile("txt");
 
     String line;
 

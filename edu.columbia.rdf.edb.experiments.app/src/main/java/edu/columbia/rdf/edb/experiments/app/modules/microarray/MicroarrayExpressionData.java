@@ -38,7 +38,7 @@ import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.core.collections.DefaultHashMap;
 import org.jebtk.core.io.FileUtils;
 import org.jebtk.core.io.Io;
-import org.jebtk.core.io.Temp;
+import org.jebtk.core.io.TmpService;
 import org.jebtk.core.text.TextUtils;
 import org.jebtk.modern.dialog.MessageDialogType;
 import org.jebtk.modern.dialog.ModernDialogStatus;
@@ -49,8 +49,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.columbia.rdf.edb.DataViewField;
-import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.ui.DownloadManager;
 import edu.columbia.rdf.edb.ui.FileDownloader;
 import edu.columbia.rdf.edb.ui.Repository;

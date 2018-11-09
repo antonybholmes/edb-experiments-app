@@ -23,9 +23,9 @@ import java.util.List;
 
 import org.jebtk.core.NetworkFileException;
 import org.jebtk.core.collections.CollectionUtils;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.AssetService;
 import org.jebtk.modern.clipboard.ClipboardRibbonSection;
 import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -35,7 +35,6 @@ import org.jebtk.modern.panel.ModernPanel;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.ribbon.RibbonMenuItem;
 import org.jebtk.modern.status.ModernStatusBar;
-import org.jebtk.modern.tooltip.ModernToolTip;
 import org.jebtk.modern.window.ModernRibbonWindow;
 import org.jebtk.modern.window.ModernWindowConstructor;
 

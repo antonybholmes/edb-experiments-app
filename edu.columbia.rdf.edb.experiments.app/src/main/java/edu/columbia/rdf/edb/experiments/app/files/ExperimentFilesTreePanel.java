@@ -36,8 +36,8 @@ import org.jebtk.modern.tree.ModernTree;
 import org.jebtk.modern.tree.TreeNodeFileCountRenderer;
 
 import edu.columbia.rdf.edb.Experiment;
-import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
 

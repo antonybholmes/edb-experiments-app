@@ -25,9 +25,9 @@ import javax.swing.BoxLayout;
 
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckRadioButton;
 import org.jebtk.modern.button.ModernRadioButton;

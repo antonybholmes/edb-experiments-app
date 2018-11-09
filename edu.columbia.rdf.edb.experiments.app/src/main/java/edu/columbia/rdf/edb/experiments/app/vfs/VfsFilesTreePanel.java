@@ -37,9 +37,9 @@ import org.jebtk.modern.tree.TreeEventAdapter;
 import org.jebtk.modern.tree.TreeNodeFileRenderer;
 
 import edu.columbia.rdf.edb.Experiment;
-import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.FileType;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.experiments.app.files.FilesModel;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;

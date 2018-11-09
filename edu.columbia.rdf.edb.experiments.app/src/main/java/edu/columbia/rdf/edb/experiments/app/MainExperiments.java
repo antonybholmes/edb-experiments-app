@@ -25,11 +25,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.jebtk.core.AppService;
-import org.jebtk.core.dictionary.DictionaryService;
-import org.jebtk.core.dictionary.SubstitutionService;
 import org.jebtk.core.settings.SettingsService;
 import org.jebtk.modern.help.GuiAppInfo;
-import org.jebtk.modern.search.SearchTermsService;
 import org.jebtk.modern.theme.ThemeService;
 import org.xml.sax.SAXException;
 
@@ -37,10 +34,7 @@ import edu.columbia.rdf.edb.EDBWLogin;
 import edu.columbia.rdf.edb.experiments.app.modules.chipseq.ChipSeqViewPlugin;
 import edu.columbia.rdf.edb.experiments.app.modules.microarray.MicroarrayViewPlugin;
 import edu.columbia.rdf.edb.experiments.app.modules.rnaseq.RnaSeqViewPlugin;
-import edu.columbia.rdf.edb.ui.SampleSortService;
-import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.ViewPluginService;
-import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 
 // TODO: Auto-generated Javadoc
 /**

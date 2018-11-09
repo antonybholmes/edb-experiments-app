@@ -22,8 +22,8 @@ import java.util.Set;
 
 import org.jebtk.modern.ModernComponent;
 
-import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
 

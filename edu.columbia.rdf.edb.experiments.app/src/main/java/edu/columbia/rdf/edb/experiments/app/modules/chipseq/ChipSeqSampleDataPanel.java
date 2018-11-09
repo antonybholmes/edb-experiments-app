@@ -15,10 +15,6 @@
  */
 package edu.columbia.rdf.edb.experiments.app.modules.chipseq;
 
-import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.theme.ThemeService;
-import org.jebtk.modern.widget.ModernWidget;
-
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.experiments.app.modules.SampleSummaryPanel;

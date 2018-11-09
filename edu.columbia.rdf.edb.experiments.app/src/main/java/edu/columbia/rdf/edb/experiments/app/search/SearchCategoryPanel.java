@@ -16,7 +16,6 @@
 package edu.columbia.rdf.edb.experiments.app.search;
 
 import java.awt.Dimension;
-import java.awt.Panel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

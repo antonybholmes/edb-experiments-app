@@ -26,9 +26,9 @@ import javax.swing.Box;
 
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckButton;
@@ -44,8 +44,8 @@ import org.jebtk.modern.tabs.TabsModel;
 import org.jebtk.modern.view.ViewModel;
 import org.jebtk.modern.window.ModernWindow;
 
-import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.experiments.app.files.FilesDataViewGridModel;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
 import edu.columbia.rdf.edb.ui.DownloadManager;

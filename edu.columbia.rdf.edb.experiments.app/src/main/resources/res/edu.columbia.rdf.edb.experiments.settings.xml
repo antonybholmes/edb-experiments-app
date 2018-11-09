@@ -40,7 +40,7 @@
 
 	<!-- Specify which types of files the user can search for -->
 	<setting name="experiments.help.type" value="web"/>
-	<setting name="experiments.help.url" value="https://github.com/lab-rdf/edb-experiments-app/wiki" />
+	<setting name="experiments.help.url" value="https://github.com/lab-rdf/lab-rdf.github.io/wiki/Experiments" />
 	
 	<setting name="edbw.server" value="http://localhost:8080/edbw7"/>
 	<setting name="edbw.key" value=""/>

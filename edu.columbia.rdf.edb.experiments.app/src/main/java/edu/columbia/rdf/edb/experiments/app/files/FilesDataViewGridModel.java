@@ -22,8 +22,8 @@ import java.util.List;
 import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.modern.table.ModernColumnHeaderTableModel;
 
-import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.FileType;
+import edu.columbia.rdf.edb.VfsFile;
 
 // TODO: Auto-generated Javadoc
 /**

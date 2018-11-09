@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.jebtk.core.Mathematics;
 import org.jebtk.core.io.Io;
-import org.jebtk.core.io.Temp;
+import org.jebtk.core.io.TmpService;
 import org.jebtk.core.text.TextUtils;
 import org.jebtk.graphplot.PlotFactory;
 import org.jebtk.graphplot.figure.SubFigure;
@@ -33,8 +33,8 @@ import org.jebtk.math.matrix.DataFrame;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 
-import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.ui.DownloadManager;
 
 /**

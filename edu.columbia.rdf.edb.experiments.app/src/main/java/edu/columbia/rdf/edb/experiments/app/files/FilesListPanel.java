@@ -28,8 +28,8 @@ import org.jebtk.modern.list.ModernListModel;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
 
-import edu.columbia.rdf.edb.VfsFile;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.VfsFile;
 
 // TODO: Auto-generated Javadoc
 /**

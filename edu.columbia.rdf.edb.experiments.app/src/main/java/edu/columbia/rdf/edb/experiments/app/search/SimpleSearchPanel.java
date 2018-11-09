@@ -23,14 +23,10 @@ import java.util.Deque;
 import javax.swing.Box;
 
 import org.jebtk.bioinformatics.annotation.Type;
+import org.jebtk.modern.AssetService;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.AssetService;
 import org.jebtk.modern.button.ModernButton;
-import org.jebtk.modern.button.ModernOptionalDropDownMenuButton2;
-import org.jebtk.modern.dialog.MessageDialogType;
-import org.jebtk.modern.dialog.ModernDialogStatus;
-import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.graphics.icons.SearchVectorIcon;
@@ -42,7 +38,6 @@ import org.jebtk.modern.widget.ModernClickWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.Species;
-import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 import edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory;
 import edu.columbia.rdf.edb.ui.search.SearchStackElementCategory;
 import edu.columbia.rdf.edb.ui.search.UserSearch;

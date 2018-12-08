@@ -95,7 +95,7 @@ public class AttributesTableModel extends ModernTableModel {
    * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
    */
   @Override
-  public final int getColumnCount() {
+  public final int getColCount() {
     return mColumnNames.size();
   }
 

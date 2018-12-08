@@ -68,7 +68,7 @@ public class FilesTableModel extends ModernColumnHeaderTableModel {
    * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
    */
   @Override
-  public final int getColumnCount() {
+  public final int getColCount() {
     return HEADINGS.length;
   }
 

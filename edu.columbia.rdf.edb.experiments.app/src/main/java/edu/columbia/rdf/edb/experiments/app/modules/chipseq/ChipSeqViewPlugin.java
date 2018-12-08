@@ -23,6 +23,8 @@ import java.util.Set;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.jebtk.bioinformatics.genomic.Genome;
+import org.jebtk.bioinformatics.genomic.GenomeService;
 import org.jebtk.core.collections.IterMap;
 import org.jebtk.core.path.Path;
 import org.jebtk.modern.ModernComponent;
@@ -279,8 +281,10 @@ public class ChipSeqViewPlugin extends ViewPlugin
     IterMap<String, Set<Sample>> sorted = Sample.sortByGenome(samples);
 
     if (sorted.size() > 0) {
-      for (Entry<String, Set<Sample>> f : sorted) {
-        MainHtsView.main(mLogin, f.getKey(), f.getValue());
+      for (Entry<String, Set<Sample>> item : sorted) {
+        Genome g = GenomeService.getInstance().guessGenome(item.getKey());
+        
+        MainHtsView.main(mLogin, g, item.getValue());
       }
     }
   }

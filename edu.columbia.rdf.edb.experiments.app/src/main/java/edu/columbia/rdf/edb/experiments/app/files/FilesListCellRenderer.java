@@ -54,11 +54,11 @@ public class FilesListCellRenderer extends ModernListTwoLineCellRenderer {
    * (non-Javadoc)
    * 
    * @see
-   * org.abh.common.ui.list.ModernListTwoLineCellRenderer#drawForegroundAAText(
+   * org.abh.common.ui.list.ModernListTwoLineCellRenderer#drawForegroundAA(
    * java.awt.Graphics2D)
    */
   @Override
-  public void drawForegroundAAText(Graphics2D g2) {
+  public void drawForegroundAA(Graphics2D g2) {
     int x = PADDING;
     int y = (getHeight() - AssetService.ICON_SIZE_32) / 2;
 

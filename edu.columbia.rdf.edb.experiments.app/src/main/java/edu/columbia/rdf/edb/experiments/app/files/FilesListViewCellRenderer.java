@@ -68,7 +68,7 @@ public class FilesListViewCellRenderer extends ModernDataCellRenderer {
    * org.abh.lib.ui.modern.ModernWidget#drawForegroundAA(java.awt.Graphics2D)
    */
   @Override
-  public void drawForegroundAAText(Graphics2D g2) {
+  public void drawForegroundAA(Graphics2D g2) {
     mIcon.drawIcon(g2, PADDING, (getHeight() - 32) / 2, 32);
 
     String t = getTruncatedText(g2, mText, 0, getWidth() - DOUBLE_PADDING - 32);

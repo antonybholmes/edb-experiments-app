@@ -44,10 +44,10 @@ public class SectionPanelCollapseNodeRenderer
    * (non-Javadoc)
    * 
    * @see org.abh.common.ui.collapsepane.ModernCollapseNodeRenderer#
-   * drawForegroundAAText(java.awt.Graphics2D)
+   * drawForegroundAA(java.awt.Graphics2D)
    */
   @Override
-  public void drawForegroundAAText(Graphics2D g2) {
+  public void drawForegroundAA(Graphics2D g2) {
     int x = 0;
 
     int y = (getHeight() - 16) / 2;

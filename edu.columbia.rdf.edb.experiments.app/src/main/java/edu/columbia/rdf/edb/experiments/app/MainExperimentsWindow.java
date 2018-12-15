@@ -597,6 +597,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     // ModernWidget.DOUBLE_BORDER);
 
     // Show the column groups by default
+    System.err.println("sdsdfsdf");
     getIconTabs().changeTab(0);
 
     // mViewPanel = new ModernComponent();

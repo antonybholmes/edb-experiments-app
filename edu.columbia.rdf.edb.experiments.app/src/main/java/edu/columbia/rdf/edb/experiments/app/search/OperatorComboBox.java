@@ -22,7 +22,7 @@ import org.jebtk.modern.combobox.AndOrLogicalComboBox;
  * Extension of the Logical Combo box to support MatchStackOperators which are a
  * superset of the boolean operators.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  */
 public class OperatorComboBox extends AndOrLogicalComboBox {
 

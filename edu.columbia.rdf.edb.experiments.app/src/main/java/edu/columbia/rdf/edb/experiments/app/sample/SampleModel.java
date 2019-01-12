@@ -22,7 +22,7 @@ import edu.columbia.rdf.edb.Sample;
 /**
  * Centrally keep track of selected experiments in the order they were selected.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SampleModel extends SelectionModel<Sample> {

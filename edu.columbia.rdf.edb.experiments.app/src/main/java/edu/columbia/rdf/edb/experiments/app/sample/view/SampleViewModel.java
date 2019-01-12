@@ -23,7 +23,7 @@ import edu.columbia.rdf.edb.Sample;
 /**
  * Sort model for determining how the folder view appears.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SampleViewModel extends SortModel<Sample> {

@@ -56,7 +56,7 @@ import edu.columbia.rdf.edb.Sample;
 /**
  * Allows user to sort samples.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SamplesSortPanel extends ModernWidget

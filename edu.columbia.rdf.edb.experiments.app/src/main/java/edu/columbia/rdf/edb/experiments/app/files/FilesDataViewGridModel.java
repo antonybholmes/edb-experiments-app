@@ -20,7 +20,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jebtk.core.collections.CollectionUtils;
-import org.jebtk.modern.table.ModernColumnHeaderTableModel;
+import org.jebtk.core.text.TextUtils;
+import org.jebtk.modern.table.ModernTableModel;
 
 import edu.columbia.rdf.edb.FileType;
 import edu.columbia.rdf.edb.VfsFile;
@@ -29,7 +30,7 @@ import edu.columbia.rdf.edb.VfsFile;
 /**
  * The Class FilesDataViewGridModel.
  */
-public class FilesDataViewGridModel extends ModernColumnHeaderTableModel {
+public class FilesDataViewGridModel extends ModernTableModel {
 
   /** The Constant HEADINGS. */
   private static final String[] HEADINGS = { "Name", "Type", "Date" };
@@ -69,6 +70,7 @@ public class FilesDataViewGridModel extends ModernColumnHeaderTableModel {
    * 
    * @see org.abh.common.ui.dataview.ModernDataModel#getColumnCount()
    */
+  @Override
   public final int getColCount() {
     return HEADINGS.length;
   }
@@ -76,14 +78,14 @@ public class FilesDataViewGridModel extends ModernColumnHeaderTableModel {
   /*
    * (non-Javadoc)
    * 
-   * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
+   * @see org.abh.common.ui.table.ModernTableModel#getColumns().getAnnotation(int)
    */
   @Override
-  public final List<String> getColumnAnnotationText(int column) {
+  public final String getColumnName(int column) {
     if (column < HEADINGS.length) {
-      return CollectionUtils.asList(HEADINGS[column]);
+      return HEADINGS[column];
     } else {
-      return Collections.emptyList();
+      return TextUtils.EMPTY_STRING;
     }
   }
 

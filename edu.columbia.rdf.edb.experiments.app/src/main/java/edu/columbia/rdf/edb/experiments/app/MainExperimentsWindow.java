@@ -66,8 +66,8 @@ import org.jebtk.modern.ribbon.RibbonMenuItem;
 import org.jebtk.modern.search.FilterModel;
 import org.jebtk.modern.status.StatusModel;
 import org.jebtk.modern.status.StatusTask;
-import org.jebtk.modern.tabs.IconTabsFolderIcon;
-import org.jebtk.modern.tabs.TabPanel;
+import org.jebtk.modern.tabs.SegmentTabsPanel;
+import org.jebtk.modern.tabs.TabsModel;
 import org.jebtk.modern.view.ViewModel;
 import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernRibbonWindow;
@@ -79,14 +79,16 @@ import edu.columbia.rdf.edb.DataViewField;
 import edu.columbia.rdf.edb.DataViewSection;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.SampleTag;
+import edu.columbia.rdf.edb.experiments.app.cart.CartPanel;
+import edu.columbia.rdf.edb.experiments.app.cart.SampleCartService;
+import edu.columbia.rdf.edb.experiments.app.page.PagePanel;
+import edu.columbia.rdf.edb.experiments.app.page.PageService;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleViewPanel;
 import edu.columbia.rdf.edb.experiments.app.search.ExperimentSummaryPanel;
 import edu.columbia.rdf.edb.experiments.app.search.RibbonWideLayoutSection;
 import edu.columbia.rdf.edb.experiments.app.search.SearchGuiFileFilter;
 import edu.columbia.rdf.edb.experiments.app.search.SearchPanel;
-import edu.columbia.rdf.edb.experiments.app.search.folder.SearchFolderRibbonSection;
-import edu.columbia.rdf.edb.experiments.app.search.folder.SearchFolderTreePanel;
 import edu.columbia.rdf.edb.experiments.app.vfs.VfsWindow;
 import edu.columbia.rdf.edb.ui.RepositorySession;
 import edu.columbia.rdf.edb.ui.SampleSortService;
@@ -98,8 +100,12 @@ import edu.columbia.rdf.edb.ui.filter.datatypes.DataTypesService;
 import edu.columbia.rdf.edb.ui.filter.groups.GroupsModel;
 import edu.columbia.rdf.edb.ui.filter.groups.GroupsPanel;
 import edu.columbia.rdf.edb.ui.filter.groups.GroupsService;
+import edu.columbia.rdf.edb.ui.filter.organisms.OrganismsModel;
 import edu.columbia.rdf.edb.ui.filter.organisms.OrganismsService;
 import edu.columbia.rdf.edb.ui.filter.results.ResultsPanel;
+import edu.columbia.rdf.edb.ui.filter.sets.SetsModel;
+import edu.columbia.rdf.edb.ui.filter.sets.SetsPanel;
+import edu.columbia.rdf.edb.ui.filter.sets.SetsService;
 import edu.columbia.rdf.edb.ui.search.SearchStackElementCategory;
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
@@ -170,7 +176,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
       mSampleSelectionModel);
 
   /** The m sample folder panel. */
-  private SearchFolderTreePanel mSampleFolderPanel; // SampleViewTreePanel
+  //private SearchFolderTreePanel mSampleFolderPanel; // SampleViewTreePanel
 
   /** The m files button. */
   private ModernButton mFilesButton = new RibbonLargeButton("Files",
@@ -182,7 +188,9 @@ public class MainExperimentsWindow extends ModernRibbonWindow
 
   private DataTypesModel mDataTypesModel = DataTypesService.getInstance();
 
-  private OrganismsService mOrganismsModel = OrganismsService.getInstance();
+  private OrganismsModel mOrganismsModel = OrganismsService.getInstance();
+  
+  private SetsModel mSetsModel = SetsService.getInstance();
 
   private DataTypesPanel mDataTypesPanel;
 
@@ -191,10 +199,20 @@ public class MainExperimentsWindow extends ModernRibbonWindow
 
   private ResultsPanel mResultsPanel;
 
+  private SetsPanel mSetsPanel;
+
+  private CartPanel mCartPanel;
+  
+  private ModernButton mAddToCartButton = new RibbonLargeButton("Add To Cart", 
+      AssetService.getInstance().loadIcon("cart", 24));
+
+  private PagePanel mPagePanel;
+  
+
   /**
    * Display an error message to the user that no experiments could be found.
    * 
-   * @author Antony Holmes Holmes
+   * @author Antony Holmes
    *
    */
   private class SearchError implements Runnable {
@@ -229,7 +247,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
   /**
    * Download files in the background.
    * 
-   * @author Antony Holmes Holmes
+   * @author Antony Holmes
    *
    */
   private class DownloadTask extends StatusTask {
@@ -276,7 +294,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
   /**
    * Controls what happens when a user clicks on a folder.
    * 
-   * @author Antony Holmes Holmes
+   * @author Antony Holmes
    *
    */
   private class SampleSearchModelEvents implements ModernSelectionListener {
@@ -353,6 +371,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     mAnnotationPanel = new SampleViewPanel(this, mViewModel, mLayoutViewModel,
         mSampleModel, mSampleSelectionModel, mFilterModel, mFileViewModel);
 
+    /*
     try {
       mSampleFolderPanel = new SearchFolderTreePanel(mSampleFolderModel);
     } catch (SAXException e) {
@@ -362,6 +381,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     } catch (ParserConfigurationException e) {
       e.printStackTrace();
     }
+    */
 
     createMenus();
 
@@ -458,8 +478,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     getRibbon().getToolbar("View").add(
         new RibbonWideLayoutSection(getRibbon(), "Layout", mLayoutViewModel));
 
-    getRibbon().getToolbar("View")
-        .add(new SearchFolderRibbonSection(this, mSampleFolderPanel));
+    //getRibbon().getToolbar("View")
+     //   .add(new SearchFolderRibbonSection(this, mSampleFolderPanel));
 
     // getRibbon().getHomeToolbar().getSection("Files").add(mAllFilesButton);
 
@@ -541,6 +561,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow
      * 
      * toolbar.add(buttonContainer);
      */
+    
+    getRibbon().getHomeToolbar().add(mAddToCartButton);
   }
 
   /**
@@ -579,25 +601,31 @@ public class MainExperimentsWindow extends ModernRibbonWindow
 
     mDataTypesPanel = new DataTypesPanel(mDataTypesModel, mOrganismsModel);
     mDataTypesModel.addChangeListener(l);
+    
+    mSetsPanel = new SetsPanel(mSetsModel);
+    mSetsModel.addChangeListener(l);
+    
     mOrganismsModel.addChangeListener(l);
+    
+    PageService.getInstance().addChangeListener(l);
 
     mResultsPanel = new ResultsPanel(SampleSortService.getInstance(),
         mFilterModel);
 
     // TabsModel groupTabsModel = new TabsModel();
-    getIconTabs().addTab("Sort", 'S', mResultsPanel);
+    getIconTabs().addTab("Filter", 'F', mResultsPanel);
     getIconTabs().addTab("Groups", 'G', mUserGroupsPanel);
+    getIconTabs().addTab("Sets", 'S', mSetsPanel);
     getIconTabs().addTab("Data Types", 'T', mDataTypesPanel);
-    getIconTabs().addTab("Folders",
-        new IconTabsFolderIcon(),
-        new TabPanel("Folders", mSampleFolderPanel));
+    //getIconTabs().addTab("Folders",
+    //    new IconTabsFolderIcon(),
+    //    new TabPanel("Folders", mSampleFolderPanel));
 
     // mViewPanel = new IconTabsPanel(groupTabsModel, 36, 22); //new
     // ModernComponent(new IconTabsPanel(groupTabsModel, 30, 20),
     // ModernWidget.DOUBLE_BORDER);
 
     // Show the column groups by default
-    System.err.println("sdsdfsdf");
     getIconTabs().changeTab(0);
 
     // mViewPanel = new ModernComponent();
@@ -612,6 +640,8 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     //
 
     mSearchPanel = new SearchPanel(this);
+    
+    mPagePanel = new PagePanel(this);
 
     // The search panel can mimick some of the click events of the UI
     // to trigger a search etc
@@ -620,13 +650,28 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     ModernComponent panel = new ModernComponent();
     panel.setHeader(mSearchPanel);
     panel.setBody(mAnnotationPanel);
+    panel.setFooter(mPagePanel);
     panel.setBorder(ModernWidget.BORDER);
     
-    setCard(panel);
+    
+    
+    mCartPanel = new CartPanel(this);
+    
+    TabsModel tabsModel = new TabsModel();
+    tabsModel.addTab("Search", panel);
+    tabsModel.addTab("Cart", mCartPanel);
 
+    SegmentTabsPanel tabsPanel = new SegmentTabsPanel(tabsModel, 80);
+    
+    setCard(tabsPanel);
+
+    tabsModel.changeTab(0);
     // panel.add(searchPanel, BorderLayout.PAGE_START);
     // panel.setBody(mContentPane);
     // panel.add(mTabBar, BorderLayout.PAGE_END);
+    
+    
+    
   }
 
   /*
@@ -677,6 +722,13 @@ public class MainExperimentsWindow extends ModernRibbonWindow
         showFiles();
       }
     });
+    
+    mAddToCartButton.addClickListener(new ModernClickListener() {
+      @Override
+      public void clicked(ModernClickEvent e) {
+        addToCart();
+      }
+    });
 
     /*
      * mAllFilesButton.addClickListener(new ModernClickListener() {
@@ -692,6 +744,11 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     VfsWindow window = new VfsWindow(this, mSampleSelectionModel);
 
     window.setVisible(true);
+  }
+  
+  private void addToCart() {
+    System.err.println("add to cart");
+    SampleCartService.getInstance().add(mSampleSelectionModel);
   }
 
   /*

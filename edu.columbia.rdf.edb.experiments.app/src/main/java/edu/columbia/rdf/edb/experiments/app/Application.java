@@ -19,7 +19,7 @@ package edu.columbia.rdf.edb.experiments.app;
 /**
  * Contains constant strings for commonly used command names within the program.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 

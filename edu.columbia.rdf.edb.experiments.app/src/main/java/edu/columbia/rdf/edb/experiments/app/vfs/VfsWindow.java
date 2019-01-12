@@ -74,7 +74,7 @@ public class VfsWindow extends ModernRibbonWindow
   /**
    * Download files in the background.
    * 
-   * @author Antony Holmes Holmes
+   * @author Antony Holmes
    *
    */
   private class DownloadTask extends StatusTask {

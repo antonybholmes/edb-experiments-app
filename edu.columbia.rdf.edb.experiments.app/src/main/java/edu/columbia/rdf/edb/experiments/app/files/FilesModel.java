@@ -22,7 +22,7 @@ import edu.columbia.rdf.edb.VfsFile;
 /**
  * Provides a view model for changing the view of tabular data.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class FilesModel extends ListModel<VfsFile> {

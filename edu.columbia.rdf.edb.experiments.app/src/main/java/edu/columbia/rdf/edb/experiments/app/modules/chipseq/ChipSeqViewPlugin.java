@@ -40,6 +40,7 @@ import org.xml.sax.SAXException;
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.EDBWLogin;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.experiments.app.cart.SampleCartService;
 import edu.columbia.rdf.edb.ui.SampleSortService;
 import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.network.ServerException;
@@ -54,7 +55,7 @@ import edu.columbia.rdf.htsview.chipseq.SortSamplesByTreatment;
 /**
  * Plugin for display of microarray data.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class ChipSeqViewPlugin extends ViewPlugin
@@ -80,7 +81,7 @@ public class ChipSeqViewPlugin extends ViewPlugin
   private ModernRibbonWindow mParent;
 
   /** The m selected samples. */
-  private SelectionModel<Sample> mSelectedSamples;
+  //private SelectionModel<Sample> mSelectedSamples;
 
   /** The m login. */
   private EDBWLogin mLogin;
@@ -199,7 +200,7 @@ public class ChipSeqViewPlugin extends ViewPlugin
       StatusModel statusModel,
       SelectionModel<Sample> selectedSamples) {
     mParent = parent;
-    mSelectedSamples = selectedSamples;
+    //mSelectedSamples = selectedSamples;
 
     parent.getRibbon().getHomeToolbar().getSection(getDataType())
         .add(mViewButton);
@@ -244,7 +245,7 @@ public class ChipSeqViewPlugin extends ViewPlugin
   private void showSamples()
       throws IOException, ServerException, ClassNotFoundException,
       SAXException, ParserConfigurationException {
-    List<Sample> samples = mSelectedSamples.getItems();
+    List<Sample> samples = SampleCartService.getInstance().toList(); //mSelectedSamples.getItems();
 
     if (samples.size() == 0) {
       ModernMessageDialog.createWarningDialog(mParent,

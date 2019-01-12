@@ -1,18 +1,21 @@
 package edu.columbia.rdf.edb.experiments.app;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Deque;
-import java.util.List;
 
 import javax.swing.SwingWorker;
 
 import org.jebtk.bioinformatics.annotation.Type;
 
-import edu.columbia.rdf.edb.Groups;
-import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.Group;
 import edu.columbia.rdf.edb.Species;
+import edu.columbia.rdf.edb.experiments.app.page.PageService;
 import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
-import edu.columbia.rdf.edb.ui.search.ArraySearchRT;
+import edu.columbia.rdf.edb.ui.Repository;
+import edu.columbia.rdf.edb.ui.RepositoryService;
+import edu.columbia.rdf.edb.ui.SearchResults;
+import edu.columbia.rdf.edb.ui.filter.sets.SetsService;
 import edu.columbia.rdf.edb.ui.search.SearchStackElementCategory;
 
 /**
@@ -24,17 +27,17 @@ public class SearchCategoryTask extends SwingWorker<Void, Void> {
   private Deque<SearchStackElementCategory> mSearchStack;
 
   /** The m samples. */
-  private List<Sample> mSamples;
+  private SearchResults mSamples;
 
   /** The m data types. */
   private Collection<Type> mDataTypes;
 
   /** The m organisms. */
-  private Collection<Species> mOrganisms;
+  private Collection<Species>  mOrganisms;
 
   private SampleModel mSampleSearchModel;
 
-  private Groups mGroups;
+  private Collection<Group> mGroups;
 
   /**
    * Instantiates a new search category task.
@@ -45,7 +48,7 @@ public class SearchCategoryTask extends SwingWorker<Void, Void> {
    */
   public SearchCategoryTask(SampleModel model,
       Deque<SearchStackElementCategory> searchStack, Collection<Type> dataTypes,
-      Collection<Species> organisms, Groups groups) {
+      Collection<Species> organisms, Collection<Group> groups) {
     mSampleSearchModel = model;
     mSearchStack = searchStack;
     mDataTypes = dataTypes;
@@ -60,14 +63,32 @@ public class SearchCategoryTask extends SwingWorker<Void, Void> {
    */
   @Override
   public Void doInBackground() {
+    
+    
+    Repository store = RepositoryService.getInstance().getRepository();
+    
+    
+    
+    if (mSearchStack.size() == 0 || (mSearchStack.size() == 1
+        && mSearchStack.peek().getSearch() == null)) {
+      try {
+        mSamples = store.getAllSamples(SetsService.getInstance().getSampleSets(), PageService.getInstance().getPage());
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+    
+    SearchStackElementCategory op = mSearchStack.pop();
 
-    ArraySearchRT search = new ArraySearchRT();
-
-    // find a list of relevant experiments
     try {
-      mSamples = search
-          .searchSamples(mSearchStack, mDataTypes, mOrganisms, mGroups);
-    } catch (Exception e) {
+      mSamples = store.searchSamples(op.getSearch().search,
+          op.getSearchField().getPath(),
+          mDataTypes,
+          mOrganisms,
+          mGroups,
+          SetsService.getInstance().getSampleSets(),
+          PageService.getInstance().getPage());
+    } catch (IOException e) {
       e.printStackTrace();
     }
 
@@ -81,6 +102,8 @@ public class SearchCategoryTask extends SwingWorker<Void, Void> {
    */
   @Override
   public void done() {
-    mSampleSearchModel.set(mSamples);
+    mSampleSearchModel.set(mSamples.samples);
+    
+    PageService.getInstance().set(mSamples.metaData);
   }
 }

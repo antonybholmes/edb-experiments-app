@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<groups all="false">
+<groups>
   <group name="Administrator" selected="false"/>
-  <group name="Beta" selected="false"/>
-  <group name="Elodie" selected="true"/>
+  <group name="Beta" selected="true"/>
+  <group name="Elodie" selected="false"/>
   <group name="Katia" selected="false"/>
   <group name="Other Lab" selected="false"/>
-  <group name="RDF" selected="false"/>
+  <group name="RDF" selected="true"/>
   <group name="Released" selected="false"/>
   <group name="Superuser" selected="false"/>
 </groups>

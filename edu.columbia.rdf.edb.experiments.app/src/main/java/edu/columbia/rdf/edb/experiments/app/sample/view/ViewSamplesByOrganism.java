@@ -29,7 +29,7 @@ import edu.columbia.rdf.edb.ui.SampleView;
 /**
  * Sort samples by Array Design.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class ViewSamplesByOrganism extends SampleView {

@@ -29,7 +29,7 @@ import org.jebtk.modern.ribbon.RibbonSection;
 /**
  * Allows user to customize how the experiments are listed.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class DataExportRibbonSection extends RibbonSection

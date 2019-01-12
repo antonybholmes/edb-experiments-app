@@ -35,7 +35,7 @@ import org.jebtk.modern.view.ViewModel;
  * functionality to the currently highlighted control that supports clipboard
  * operations.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class RibbonWideLayoutSection extends RibbonSection

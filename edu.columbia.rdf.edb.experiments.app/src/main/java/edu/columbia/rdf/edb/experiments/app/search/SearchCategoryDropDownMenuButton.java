@@ -23,7 +23,7 @@ import edu.columbia.rdf.edb.ui.search.SearchCategory;
 /**
  * Acts like a flat drop down menu button, but alters the button text as well.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  */
 public class SearchCategoryDropDownMenuButton
     extends ModernDropDownMenuLabelButton2 {

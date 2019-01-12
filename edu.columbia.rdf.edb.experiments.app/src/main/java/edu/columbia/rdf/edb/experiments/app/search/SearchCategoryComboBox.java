@@ -22,7 +22,7 @@ import edu.columbia.rdf.edb.ui.search.SearchCategory;
 /**
  * Specialised combobox for showing selecting search criteria.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SearchCategoryComboBox extends ModernComboBox2 {

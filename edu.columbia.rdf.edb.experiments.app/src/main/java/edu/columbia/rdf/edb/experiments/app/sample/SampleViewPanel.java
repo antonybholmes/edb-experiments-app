@@ -32,7 +32,7 @@ import edu.columbia.rdf.edb.ui.SelectedSamples;
 /**
  * In charge of showing the sample view.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SampleViewPanel extends ModernPanel implements SelectedSamples {

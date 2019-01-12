@@ -35,7 +35,7 @@ import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
  * Specialised combobox for showing search criteria relevant for search through
  * samples within a particular experiment.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SamplesSearchCriteriaPopup extends SearchCriteriaPopup {

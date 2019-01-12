@@ -31,7 +31,7 @@ import edu.columbia.rdf.edb.Sample;
 /**
  * Display a sample attributes (e.g. the SDRF details).
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class AttributesTableModel extends ModernTableModel {
@@ -112,11 +112,11 @@ public class AttributesTableModel extends ModernTableModel {
   /*
    * (non-Javadoc)
    * 
-   * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
+   * @see org.abh.common.ui.table.ModernTableModel#getColumns().getAnnotation(int)
    */
   @Override
-  public final List<String> getColumnAnnotationText(int column) {
-    return CollectionUtils.asList(columnDisplayNames.get(column));
+  public final String getColumnName(int column) {
+    return columnDisplayNames.get(column);
   }
 
   /*

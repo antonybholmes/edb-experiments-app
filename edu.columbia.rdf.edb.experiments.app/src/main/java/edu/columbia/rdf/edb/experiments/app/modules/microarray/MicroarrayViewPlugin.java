@@ -44,6 +44,7 @@ import org.xml.sax.SAXException;
 
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.Sample;
+import edu.columbia.rdf.edb.experiments.app.cart.SampleCartService;
 import edu.columbia.rdf.edb.ui.SampleSortService;
 import edu.columbia.rdf.edb.ui.ViewPlugin;
 import edu.columbia.rdf.edb.ui.microarray.Mas5Dialog;
@@ -55,7 +56,7 @@ import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 /**
  * Plugin for display of microarray data.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class MicroarrayViewPlugin extends ViewPlugin
@@ -81,7 +82,7 @@ public class MicroarrayViewPlugin extends ViewPlugin
   private ModernRibbonWindow mParent;
 
   /** The m selected samples. */
-  private SelectionModel<Sample> mSelectedSamples;
+  //private SelectionModel<Sample> mSelectedSamples;
 
   /** The m status model. */
   private StatusModel mStatusModel;
@@ -415,7 +416,7 @@ public class MicroarrayViewPlugin extends ViewPlugin
       SelectionModel<Sample> selectedSamples) {
     mParent = parent;
     mStatusModel = statusModel;
-    mSelectedSamples = selectedSamples;
+    //mSelectedSamples = selectedSamples;
 
     parent.getRibbon().getHomeToolbar().getSection(getDataType())
         .add(mMas5Button);
@@ -470,13 +471,13 @@ public class MicroarrayViewPlugin extends ViewPlugin
     if (e.getMessage().equals(BUTTON_MAS5)) {
       try {
         showExpressionData(MicroarrayNormalizationType.MAS5);
-      } catch (NetworkFileException | IOException | ParseException ex) {
+      } catch (NetworkFileException | IOException ex) {
         ex.printStackTrace();
       }
     } else if (e.getMessage().equals(BUTTON_RMA)) {
       try {
         showExpressionData(MicroarrayNormalizationType.RMA);
-      } catch (NetworkFileException | IOException | ParseException ex) {
+      } catch (NetworkFileException | IOException ex) {
         ex.printStackTrace();
       }
     } else {
@@ -493,8 +494,8 @@ public class MicroarrayViewPlugin extends ViewPlugin
    * @throws ParseException the parse exception
    */
   private void showExpressionData(MicroarrayNormalizationType type)
-      throws NetworkFileException, IOException, ParseException {
-    List<Sample> samples = mSelectedSamples.getItems();
+      throws NetworkFileException, IOException {
+    List<Sample> samples = SampleCartService.getInstance().toList(); //mSelectedSamples.getItems();
 
     if (samples.size() == 0) {
       ModernMessageDialog.createWarningDialog(mParent,
@@ -543,7 +544,7 @@ public class MicroarrayViewPlugin extends ViewPlugin
           samples,
           type,
           dialog.getColumns(),
-          dialog.getColumnAnnotations(),
+          dialog.getAnnotations(),
           true,
           mStatusModel);
     } else {
@@ -559,7 +560,7 @@ public class MicroarrayViewPlugin extends ViewPlugin
           samples,
           type,
           CollectionUtils.asList(true),
-          dialog.getColumnAnnotations(),
+          dialog.getAnnotations(),
           true,
           mStatusModel);
     }

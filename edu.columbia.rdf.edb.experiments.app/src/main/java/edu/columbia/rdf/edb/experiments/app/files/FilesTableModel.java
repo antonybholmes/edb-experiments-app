@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.core.text.DateUtils;
-import org.jebtk.modern.table.ModernColumnHeaderTableModel;
+import org.jebtk.modern.table.ModernTableModel;
 
 import edu.columbia.rdf.edb.VfsFile;
 
@@ -28,7 +28,7 @@ import edu.columbia.rdf.edb.VfsFile;
 /**
  * The Class FilesTableModel.
  */
-public class FilesTableModel extends ModernColumnHeaderTableModel {
+public class FilesTableModel extends ModernTableModel {
 
   /** The Constant HEADINGS. */
   private static final String[] HEADINGS = { "Name", "Type", "Date" };
@@ -85,11 +85,11 @@ public class FilesTableModel extends ModernColumnHeaderTableModel {
   /*
    * (non-Javadoc)
    * 
-   * @see org.abh.common.ui.table.ModernTableModel#getColumnAnnotationText(int)
+   * @see org.abh.common.ui.table.ModernTableModel#getColumns().getAnnotation(int)
    */
   @Override
-  public final List<String> getColumnAnnotationText(int column) {
-    return CollectionUtils.asList(HEADINGS[column]);
+  public final String getColumnName(int column) {
+    return HEADINGS[column];
   }
 
   /*

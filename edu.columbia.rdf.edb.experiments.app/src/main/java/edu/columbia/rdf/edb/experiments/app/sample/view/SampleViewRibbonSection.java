@@ -44,7 +44,7 @@ import edu.columbia.rdf.edb.Sample;
 /**
  * Allows user to customize how the experiments are listed.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SampleViewRibbonSection extends RibbonSection

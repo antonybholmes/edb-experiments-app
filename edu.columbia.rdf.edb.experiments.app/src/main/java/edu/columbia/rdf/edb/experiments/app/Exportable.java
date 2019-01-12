@@ -20,7 +20,7 @@ import java.awt.Frame;
 /**
  * Indicates that the panel provides a GUI to export the data it contains.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public interface Exportable {

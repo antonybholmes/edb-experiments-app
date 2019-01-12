@@ -40,7 +40,7 @@ import edu.columbia.rdf.edb.ui.ViewPluginService;
 /**
  * Offers a column oriented view of the sample data.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SampleViewWidePanel extends ModernWidget

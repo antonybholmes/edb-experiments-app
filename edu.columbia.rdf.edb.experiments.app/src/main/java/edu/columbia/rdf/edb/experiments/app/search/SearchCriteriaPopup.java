@@ -26,7 +26,7 @@ import org.jebtk.modern.menu.ModernScrollPopupMenu2;
  * Specialised combobox for showing search criteria. This class should be
  * subclassed and not used directly.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SearchCriteriaPopup extends ModernScrollPopupMenu2 {

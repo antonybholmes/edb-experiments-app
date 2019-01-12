@@ -24,7 +24,7 @@ import edu.columbia.rdf.edb.ui.SampleDataPanel;
 /**
  * Displays all of the information pertaining to a particular sample.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class RnaSeqSampleDataPanel extends SampleDataPanel {

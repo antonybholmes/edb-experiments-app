@@ -20,7 +20,7 @@ import org.jebtk.modern.combobox.ModernComboBox;
 /**
  * Specialised combobox for showing selecting search criteria.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  */
 public class SearchFilesComboBox extends ModernComboBox {
 

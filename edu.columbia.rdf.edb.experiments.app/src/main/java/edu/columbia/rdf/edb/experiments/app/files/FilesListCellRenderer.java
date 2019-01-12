@@ -29,7 +29,7 @@ import edu.columbia.rdf.edb.VfsFile;
 /**
  * Renders a file as a list item showing the name, type and size.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class FilesListCellRenderer extends ModernListTwoLineCellRenderer {

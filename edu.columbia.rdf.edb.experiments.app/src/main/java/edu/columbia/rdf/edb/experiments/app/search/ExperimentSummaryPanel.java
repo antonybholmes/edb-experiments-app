@@ -41,7 +41,7 @@ import edu.columbia.rdf.edb.experiments.app.sample.SampleModel;
 /**
  * Displays an experiment's details and contacts.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  */
 public class ExperimentSummaryPanel extends ModernPanel
     implements ModernSelectionListener {

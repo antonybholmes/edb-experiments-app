@@ -45,7 +45,7 @@ import edu.columbia.rdf.edb.ui.microarray.MicroarrayNormalizationType;
 /**
  * Present samples in an SDRF like view.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  */
 public class AttributesTableTab extends ModernWidget {
 

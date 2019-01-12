@@ -26,7 +26,7 @@ import org.jebtk.modern.menu.ModernPopupMenu;
 /**
  * Specialised combobox for showing selecting search criteria.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  */
 public class OperatorComboButton extends ModernDropDownMenuLabelButton {
 

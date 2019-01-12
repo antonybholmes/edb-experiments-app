@@ -38,7 +38,7 @@ import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
  * Specialised combobox for showing search criteria relevant for search through
  * experiments and samples.
  *
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class ExperimentsSearchCriteriaPopup extends SearchCriteriaPopup {

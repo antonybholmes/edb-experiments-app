@@ -33,7 +33,7 @@ import edu.columbia.rdf.edb.ui.sort.SortSamplesByExperiment;
 /**
  * Sort samples by experiment.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class ViewSamplesByExperiment extends SampleSorter {

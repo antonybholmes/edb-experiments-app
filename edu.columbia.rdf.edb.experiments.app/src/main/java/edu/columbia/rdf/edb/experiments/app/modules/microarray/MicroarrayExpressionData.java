@@ -143,7 +143,7 @@ public class MicroarrayExpressionData {
       List<DataViewField> columnAnnotations,
       boolean checkIfFileExists,
       StatusModel statusModel)
-      throws NetworkFileException, IOException, ParseException {
+      throws NetworkFileException, IOException {
 
     // Create a set of pseudo experiments to store samples
 
@@ -206,7 +206,7 @@ public class MicroarrayExpressionData {
       List<DataViewField> columnAnnotations,
       boolean checkIfFileExists,
       StatusModel statusModel)
-      throws IOException, NetworkFileException, ParseException {
+      throws IOException, NetworkFileException {
 
     //
     // Download the experiments so we can extract data from them
@@ -789,7 +789,7 @@ public class MicroarrayExpressionData {
       MicroarrayNormalizationType type,
       boolean checkExists,
       StatusModel statusModel)
-      throws NetworkFileException, IOException, ParseException {
+      throws NetworkFileException, IOException {
     LOG.info("Downloading expression data for sample {} ...", sample.getName());
 
     FileDownloader downloader = RepositoryService.getInstance()
@@ -816,7 +816,7 @@ public class MicroarrayExpressionData {
    */
   private final VfsFile getRemoteExpressionFile(Sample sample,
       MicroarrayNormalizationType normalisationType)
-      throws IOException, ParseException {
+      throws IOException {
 
     String type;
 

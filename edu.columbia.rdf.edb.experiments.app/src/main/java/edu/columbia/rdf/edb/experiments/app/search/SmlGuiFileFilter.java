@@ -23,7 +23,7 @@ import javax.swing.filechooser.FileFilter;
 /**
  * For user search xml files.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class SmlGuiFileFilter extends FileFilter {

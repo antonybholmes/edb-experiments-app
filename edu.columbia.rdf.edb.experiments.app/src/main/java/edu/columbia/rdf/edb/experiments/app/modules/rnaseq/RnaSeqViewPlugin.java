@@ -53,6 +53,7 @@ import org.xml.sax.SAXException;
 import edu.columbia.rdf.edb.DataView;
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.VfsFile;
+import edu.columbia.rdf.edb.experiments.app.cart.SampleCartService;
 import edu.columbia.rdf.edb.ui.FileDownloader;
 import edu.columbia.rdf.edb.ui.Repository;
 import edu.columbia.rdf.edb.ui.RepositoryService;
@@ -65,7 +66,7 @@ import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 /**
  * Plugin for display of microarray data.
  * 
- * @author Antony Holmes Holmes
+ * @author Antony Holmes
  *
  */
 public class RnaSeqViewPlugin extends ViewPlugin
@@ -82,7 +83,7 @@ implements ModernClickListener {
   private ModernRibbonWindow mParent;
 
   /** The m selected samples. */
-  private SelectionModel<Sample> mSelectedSamples;
+  //private SelectionModel<Sample> mSelectedSamples;
 
   /** The m view. */
   private DataView mView;
@@ -190,7 +191,7 @@ implements ModernClickListener {
       StatusModel statusModel,
       SelectionModel<Sample> selectedSamples) {
     mParent = parent;
-    mSelectedSamples = selectedSamples;
+    //mSelectedSamples = selectedSamples;
 
     parent.getRibbon().getHomeToolbar().getSection(getDataType())
     .add(mFpkmButton);
@@ -231,11 +232,10 @@ implements ModernClickListener {
    *
    * @throws NetworkFileException the network file exception
    * @throws IOException Signals that an I/O exception has occurred.
-   * @throws ParseException the parse exception
    */
   private void showData()
       throws NetworkFileException, IOException {
-    List<Sample> samples = mSelectedSamples.getItems();
+    List<Sample> samples = SampleCartService.getInstance().toList(); //mSelectedSamples.getItems();
 
     if (samples.size() == 0) {
       ModernMessageDialog.createWarningDialog(mParent,

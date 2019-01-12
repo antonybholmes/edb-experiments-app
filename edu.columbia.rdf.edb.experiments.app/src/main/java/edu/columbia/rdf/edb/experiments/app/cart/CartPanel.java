@@ -5,15 +5,17 @@ import javax.swing.Box;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.panel.HBox;
-import org.jebtk.modern.panel.VBox;
+import org.jebtk.modern.panel.VBoxAutoWidth;
+import org.jebtk.modern.ribbon.RibbonButton;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
+import org.jebtk.modern.widget.ButtonStyle;
+import org.jebtk.modern.widget.ModernClickWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.Sample;
@@ -25,7 +27,7 @@ public class CartPanel extends ModernComponent implements ChangeListener {
    */
   private static final long serialVersionUID = 1L;
 
-  private ModernButton mClearButton = new ModernButton("Clear Cart");
+  private ModernClickWidget mClearButton = new RibbonButton("Clear Cart").setButtonStyle(ButtonStyle.PILL_CONTENT, ButtonStyle.PILL);
 
   private ModernWindow mParent;
 
@@ -33,7 +35,7 @@ public class CartPanel extends ModernComponent implements ChangeListener {
     mParent = parent;
 
     Box box = new HBox();
-    // box.add(Box.createHorizontalGlue());
+    box.add(Box.createHorizontalGlue());
     box.add(mClearButton);
     box.setBorder(TOP_BOTTOM_BORDER);
 
@@ -62,7 +64,7 @@ public class CartPanel extends ModernComponent implements ChangeListener {
 
   @Override
   public void changed(ChangeEvent e) {
-    Box box = new VBox();
+    VBoxAutoWidth box = new VBoxAutoWidth();
 
     int c = 1;
 

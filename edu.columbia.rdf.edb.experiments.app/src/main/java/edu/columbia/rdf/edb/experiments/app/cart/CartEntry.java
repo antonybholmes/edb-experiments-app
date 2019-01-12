@@ -2,10 +2,10 @@ package edu.columbia.rdf.edb.experiments.app.cart;
 
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.ModernComponent;
-import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.graphics.icons.CrossVectorIcon;
+import org.jebtk.modern.ribbon.RibbonButton;
 import org.jebtk.modern.text.ModernLabel;
 import org.jebtk.modern.widget.ButtonStyle;
 import org.jebtk.modern.widget.ModernClickWidget;
@@ -18,7 +18,7 @@ public class CartEntry extends ModernComponent {
    */
   private static final long serialVersionUID = 1L;
 
-  private ModernClickWidget mClearButton = new ModernButton(
+  private ModernClickWidget mClearButton = new RibbonButton(
       AssetService.getInstance().loadIcon(CrossVectorIcon.class, 16)).setButtonStyle(ButtonStyle.CIRCLE);
 
   private Sample mSample;

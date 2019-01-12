@@ -747,7 +747,6 @@ public class MainExperimentsWindow extends ModernRibbonWindow
   }
   
   private void addToCart() {
-    System.err.println("add to cart");
     SampleCartService.getInstance().add(mSampleSelectionModel);
   }
 

@@ -18,7 +18,6 @@ package edu.columbia.rdf.edb.experiments.app.search;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.core.path.Path;
 import org.jebtk.modern.table.ModernTableModel;
 

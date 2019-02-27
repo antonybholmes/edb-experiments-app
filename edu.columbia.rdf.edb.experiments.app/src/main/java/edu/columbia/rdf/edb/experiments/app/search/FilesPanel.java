@@ -33,13 +33,13 @@ import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckButton;
 import org.jebtk.modern.button.ModernCheckRadioButton;
-import org.jebtk.modern.dialog.ModernDialogFlatButton;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.event.ModernSelectionListener;
 import org.jebtk.modern.panel.HBox;
 import org.jebtk.modern.panel.ModernPanel;
 import org.jebtk.modern.panel.MultiViewPanel;
+import org.jebtk.modern.ribbon.RibbonButton;
 import org.jebtk.modern.tabs.TabsModel;
 import org.jebtk.modern.view.ViewModel;
 import org.jebtk.modern.window.ModernWindow;
@@ -80,7 +80,7 @@ public class FilesPanel extends ModernPanel
   // private ModernTextField searchBox = new ModernTextField();
 
   /** The m download button. */
-  private ModernButton mDownloadButton = new ModernDialogFlatButton("Download",
+  private ModernButton mDownloadButton = new RibbonButton("Download",
       AssetService.getInstance().loadIcon("download", 16));
 
   /** The m button details. */

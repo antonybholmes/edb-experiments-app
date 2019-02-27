@@ -18,7 +18,6 @@ package edu.columbia.rdf.edb.experiments.app.modules.rnaseq;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

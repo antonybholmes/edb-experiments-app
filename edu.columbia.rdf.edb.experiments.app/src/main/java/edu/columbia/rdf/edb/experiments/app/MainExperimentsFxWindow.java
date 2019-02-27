@@ -54,6 +54,7 @@ import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.event.ModernSelectionListener;
+import org.jebtk.modern.fx.ribbon.FxRibbonWindow;
 import org.jebtk.modern.graphics.icons.FolderVectorIcon;
 import org.jebtk.modern.graphics.icons.TableVectorIcon;
 import org.jebtk.modern.help.GuiAppInfo;
@@ -67,7 +68,6 @@ import org.jebtk.modern.tabs.SegmentTabsPanel;
 import org.jebtk.modern.tabs.TabsModel;
 import org.jebtk.modern.view.ViewModel;
 import org.jebtk.modern.widget.ModernWidget;
-import org.jebtk.modern.window.ModernRibbonWindow;
 import org.jebtk.modern.window.ModernWindow;
 import org.xml.sax.SAXException;
 
@@ -111,7 +111,7 @@ import edu.columbia.rdf.matcalc.bio.app.MainBioMatCalc;
 /**
  * The Class MainExperimentsWindow.
  */
-public class MainExperimentsWindow extends ModernRibbonWindow
+public class MainExperimentsFxWindow extends FxRibbonWindow
     implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
@@ -359,7 +359,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
    *
    * @param appInfo the app info
    */
-  public MainExperimentsWindow(GuiAppInfo appInfo) {
+  public MainExperimentsFxWindow(GuiAppInfo appInfo) {
     super(appInfo);
 
     mAnnotationPanel = new SampleViewPanel(this, mViewModel, mLayoutViewModel,
@@ -468,7 +468,7 @@ public class MainExperimentsWindow extends ModernRibbonWindow
     mFilesButton = getRibbon().getHomeToolbar().getSection("Files").createButton("Files",
         AssetService.getInstance().loadIcon(FolderVectorIcon.class, 24));
 
-    getRibbon().getToolbar("View").add(
+    getRibbon().getToolbar("View").update(
         new RibbonWideLayoutSection(getRibbon(), "Layout", mLayoutViewModel));
 
     //getRibbon().getToolbar("View")

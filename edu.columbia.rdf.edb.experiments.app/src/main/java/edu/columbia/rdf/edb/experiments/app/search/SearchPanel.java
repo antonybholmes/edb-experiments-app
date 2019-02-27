@@ -17,12 +17,10 @@ package edu.columbia.rdf.edb.experiments.app.search;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.Collection;
 import java.util.Deque;
 
 import javax.swing.Box;
 
-import org.jebtk.bioinformatics.annotation.Type;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.BorderService;
 import org.jebtk.modern.UI;
@@ -41,7 +39,6 @@ import org.jebtk.modern.tooltip.ModernToolTip;
 import org.jebtk.modern.widget.ModernClickWidget;
 import org.jebtk.modern.window.ModernWindow;
 
-import edu.columbia.rdf.edb.Species;
 import edu.columbia.rdf.edb.ui.search.SearchCategoryService;
 import edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory;
 import edu.columbia.rdf.edb.ui.search.SearchStackElementCategory;
@@ -83,9 +80,6 @@ public class SearchPanel extends ModernClickWidget
   /** The m parent. */
   private ModernWindow mParent;
 
-  /** The m data types panel. */
-  private DataTypesPanel mDataTypesPanel;
-
   /**
    * Create a new search category panel.
    *
@@ -95,8 +89,6 @@ public class SearchPanel extends ModernClickWidget
     mParent = parent;
 
     mSearchFieldsPanel = new SearchCategoriesPanel(parent);
-
-    mDataTypesPanel = new DataTypesPanel();
 
     mSearchFieldsPanel.addClickListener(this);
 
@@ -195,21 +187,6 @@ public class SearchPanel extends ModernClickWidget
     // setFooter(mDataTypesPanel);
 
     setBorder(DOUBLE_BORDER);
-
-    mDataTypesPanel.addClickListener(new ModernClickListener() {
-
-      @Override
-      public void clicked(ModernClickEvent e) {
-        search();
-      }
-    });
-  }
-
-  /**
-   * Search.
-   */
-  private void search() {
-    fireClicked(new ModernClickEvent(this, UI.MENU_SEARCH));
   }
 
   @Override
@@ -344,23 +321,5 @@ public class SearchPanel extends ModernClickWidget
     }
 
     mSearchFieldsPanel.addUserSearchEntry(entry);
-  }
-
-  /**
-   * Gets the data types.
-   *
-   * @return the data types
-   */
-  public Collection<Type> getDataTypes() {
-    return mDataTypesPanel.getDataTypes();
-  }
-
-  /**
-   * Gets the organisms.
-   *
-   * @return the organisms
-   */
-  public Collection<Species> getOrganisms() {
-    return mDataTypesPanel.getOrganisms();
   }
 }

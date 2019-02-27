@@ -27,7 +27,7 @@ public class CartPanel extends ModernComponent implements ChangeListener {
    */
   private static final long serialVersionUID = 1L;
 
-  private ModernClickWidget mClearButton = new RibbonButton("Clear Cart").setButtonStyle(ButtonStyle.PILL_CONTENT, ButtonStyle.PILL);
+  private ModernClickWidget mClearButton = new RibbonButton("Clear Cart").setButtonStyle(ButtonStyle.PILL_CONTENT);
 
   private ModernWindow mParent;
 

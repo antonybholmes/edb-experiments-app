@@ -1,6 +1,5 @@
 package edu.columbia.rdf.edb.experiments.app.page;
 
-import org.jebtk.core.event.ChangeListener;
 import org.jebtk.core.event.ChangeListeners;
 
 import edu.columbia.rdf.edb.ui.SearchMetaData;

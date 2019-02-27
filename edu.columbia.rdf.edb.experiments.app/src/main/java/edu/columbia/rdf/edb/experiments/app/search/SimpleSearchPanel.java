@@ -15,30 +15,17 @@
  */
 package edu.columbia.rdf.edb.experiments.app.search;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.util.Collection;
 import java.util.Deque;
 
-import javax.swing.Box;
-
-import org.jebtk.bioinformatics.annotation.Type;
-import org.jebtk.modern.AssetService;
-import org.jebtk.modern.BorderService;
+import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
-import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
-import org.jebtk.modern.graphics.icons.SearchVectorIcon;
-import org.jebtk.modern.panel.HBox;
-import org.jebtk.modern.splitpane.HSplitPane;
-import org.jebtk.modern.splitpane.ModernHSplitPaneEllipsis;
-import org.jebtk.modern.tooltip.ModernToolTip;
-import org.jebtk.modern.widget.ModernClickWidget;
+import org.jebtk.modern.event.ModernClickListeners;
+import org.jebtk.modern.panel.HAutoStretchLayout;
+import org.jebtk.modern.search.ModernSearchPanel;
 import org.jebtk.modern.window.ModernWindow;
 
-import edu.columbia.rdf.edb.Species;
-import edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory;
 import edu.columbia.rdf.edb.ui.search.SearchStackElementCategory;
 import edu.columbia.rdf.edb.ui.search.UserSearch;
 import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
@@ -46,148 +33,30 @@ import edu.columbia.rdf.edb.ui.search.UserSearchEntry;
 /**
  * The Class SearchPanel.
  */
-public class SimpleSearchPanel extends ModernClickWidget
-    implements ModernClickListener, SearchCriteriaCategory {
+public class SimpleSearchPanel extends ModernComponent implements ModernClickListener {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
-
-  /** The Constant SEARCH_QUEUE. */
-  public static final String SEARCH_QUEUE = "search_queue";
-
-  /** The m search fields panel. */
-  private SearchCategoriesPanel mSearchFieldsPanel;
-
-  /** The m search button. */
-  private ModernButton mSearchButton = new ModernButton(
-      AssetService.getInstance().loadIcon(SearchVectorIcon.class, 16)); // Resources.getInstance().loadIcon("search",
-                                                                     // Resources.ICON_SIZE_16));
-  // private ModernComboBox searchScopeCombo = new ModernHiddenComboBox();
-
-  /** The m parent. */
-  private ModernWindow mParent;
-
-  /** The m data types panel. */
-  private DataTypesPanel mDataTypesPanel;
-
+  
+  private ModernSearchPanel mSearchPanel = new ModernSearchPanel();
+  
+  private ModernClickListeners mListeners = new ModernClickListeners();
+  
   /**
    * Create a new search category panel.
    *
    * @param parent the parent window.
    */
   public SimpleSearchPanel(ModernWindow parent) {
-    mParent = parent;
-
-    mSearchFieldsPanel = new SearchCategoriesPanel(parent);
-
-    mDataTypesPanel = new DataTypesPanel();
-
-    mSearchFieldsPanel.addClickListener(this);
-
-    // searchFieldsPanel.setOpaque(true);
-    // searchFieldsPanel.setBackground(Color.WHITE);
-
-    // ModernScrollPane scrollPane = new ModernScrollPane(searchFieldsPanel);
-    // scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    // scrollPane.setHorizontalScrollBarPolicy(ScrollBarPolicy.NEVER);
-    // scrollPane.setBorder(DialogButton.LINE_BORDER);
-    // scrollPane.getViewport().setBackground(DialogButton.LIGHT_COLOR);
-    // scrollPane.setBackground(DialogButton.LIGHT_COLOR);
-    // scrollPane.setCanvasSize(new Dimension(800, 0));
-    // scrollPane.setMaximumSize(new Dimension(800, Short.MAX_VALUE));
-
-    Box box = HBox.create();
-
-    // searchScopeCombo.addMenuItem("All Samples");
-    // searchScopeCombo.addMenuItem("Current Experiment");
-    // Ui.setSize(searchScopeCombo, new Dimension(150,
-    // ModernWidget.WIDGET_HEIGHT));
-    // box.add(searchScopeCombo);
-    // box.add(ModernTheme.createHorizontalGap());
-
-    // box2.add(Box.createHorizontalGlue());
-    mSearchButton.setToolTip(new ModernToolTip("Search",
-        "Search for samples matching your search criteria."));
-
-    mSearchButton.addClickListener(this);
-    // searchButton.setToolTipText("Search for experiments.");
-    box.add(mSearchButton);
-
-    // panel.setMinimumSize(new Dimension(Ribbon.DEFAULT_BUTTON_WIDTH +
-    // ModernTheme.getInstance().getClass("widget").getInt("padding"), 0));
-    // panel.setCanvasSize(new Dimension(Ribbon.DEFAULT_BUTTON_WIDTH +
-    // ModernTheme.getInstance().getClass("widget").getInt("padding"), 0));
-    // panel.setMaximumSize(new Dimension(Ribbon.DEFAULT_BUTTON_WIDTH +
-    // ModernTheme.getInstance().getClass("widget").getInt("padding"),
-    // Short.MAX_VALUE));
-
-    // add(panel);
-
-    box.add(createHGap());
-
-    SearchCriteriaPopup searchCriteriaPopup = new ExperimentsSearchCriteriaPopup(
-        parent);
-
-    // SearchSharedMenu.getInstance().setup(searchCriteriaPopup);
-
-    // searchCriteriaPopup.addBreakLine();
-    // searchCriteriaPopup.addModernMenuItem(new ModernMenuItem("Show all..."));
-    // searchCriteriaPopup.addGlue();
-
-    // searchCriteriaPopup.addClickListener(this);
-
-   
-
-    box.setAlignmentY(TOP_ALIGNMENT);
-    box.setAlignmentX(LEFT_ALIGNMENT);
-    // box.setBorder(BorderService.getInstance().createBorder(4));
-
-    Box box2 = Box.createVerticalBox();
-
-    box2.add(box);
-
-    // searchFieldsPanel.setBorder(RIGHT_BORDER);
-    // box.setBorder(LEFT_BORDER);
-
-    HSplitPane splitPane = new ModernHSplitPaneEllipsis();
-    splitPane.addComponent(mSearchFieldsPanel, 0.75);
-    splitPane.addComponent(box2, 0.25);
-    splitPane.setMinComponentSize(150);
-    // splitPane.setDividerLocation(800);
-
-    splitPane.setBorder(BorderService.getInstance().createBorder(2));
-
-    setBody(splitPane);
-
-    // Unremark to add datatypes selection underneath search bar
-    // setFooter(mDataTypesPanel);
+    setLayout(new HAutoStretchLayout(0.5));
+    
+    UI.setSize(mSearchPanel, 500);
+    
+    add(mSearchPanel);
+    
+    mSearchPanel.addClickListener(this);
 
     setBorder(DOUBLE_BORDER);
-
-    mDataTypesPanel.addClickListener(new ModernClickListener() {
-
-      @Override
-      public void clicked(ModernClickEvent e) {
-        search();
-      }
-    });
-  }
-
-  /**
-   * Search.
-   */
-  private void search() {
-    fireClicked(new ModernClickEvent(this, UI.MENU_SEARCH));
-  }
-
-  @Override
-  public void drawBackground(Graphics2D g2) {
-    fill(g2, Color.WHITE);
-
-    // int h = getHeight() - 1;
-
-    // g2.setColor(LINE_COLOR);
-    // g2.drawLine(0, h, getWidth(), h);
   }
 
   /*
@@ -198,22 +67,7 @@ public class SimpleSearchPanel extends ModernClickWidget
    */
   @Override
   public void clicked(ModernClickEvent e) {
-    String command = null;
-
-    if (e.getSource().equals(mSearchButton)) {
-      command = UI.MENU_SEARCH;
-    } else if (e.getSource().equals(mSearchFieldsPanel)) {
-      // pass the command on
-      command = e.getMessage();
-    } else {
-      // do nothing
-    }
-
-    if (command == null) {
-      return;
-    }
-
-    fireClicked(new ModernClickEvent(this, command));
+    mListeners.fireClicked(e);
   }
 
   /*
@@ -222,81 +76,18 @@ public class SimpleSearchPanel extends ModernClickWidget
    * @see edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#getSearch()
    */
   public UserSearch getSearch() {
-    return mSearchFieldsPanel.getSearch();
+    UserSearch search = new UserSearch();
+
+    search.add(UserSearchEntry.create(mSearchPanel.getText()));
+    
+    return search;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#loadSearch(edu.
-   * columbia .rdf.edb.ui.search.UserSearch)
-   */
-  public void loadSearch(UserSearch search) {
-    mSearchFieldsPanel.loadSearch(search);
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#getSearchStack()
-   */
-  @Override
   public Deque<SearchStackElementCategory> getSearchStack() throws Exception {
-    return mSearchFieldsPanel.getSearchStack();
+    return SearchStackElementCategory.getSearchStack(getSearch());
   }
 
-  /**
-   * Sets the user search.
-   *
-   * @param userSearch the new user search
-   */
-  public final void setUserSearch(UserSearch userSearch) {
-    mSearchFieldsPanel.setUserSearch(userSearch);
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#addUserSearch(edu.
-   * columbia.rdf.edb.ui.search.UserSearch)
-   */
-  public void addUserSearch(UserSearch userSearch) {
-    mSearchFieldsPanel.addUserSearch(userSearch);
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * edu.columbia.rdf.edb.ui.search.SearchCriteriaCategory#addUserSearchEntry(
-   * edu. columbia.rdf.edb.ui.search.UserSearchEntry)
-   */
-  public void addUserSearchEntry(UserSearchEntry entry) {
-    // Impose a cut off of 8 search criteria to stop
-    // users creating unncessarily complex queries
-    if (mSearchFieldsPanel.getSearch().size() >= 8) {
-      return;
-    }
-
-    mSearchFieldsPanel.addUserSearchEntry(entry);
-  }
-
-  /**
-   * Gets the data types.
-   *
-   * @return the data types
-   */
-  public Collection<Type> getDataTypes() {
-    return mDataTypesPanel.getDataTypes();
-  }
-
-  /**
-   * Gets the organisms.
-   *
-   * @return the organisms
-   */
-  public Collection<Species> getOrganisms() {
-    return mDataTypesPanel.getOrganisms();
+  public void addClickListener(ModernClickListener l) {
+    mListeners.addClickListener(l);
   }
 }

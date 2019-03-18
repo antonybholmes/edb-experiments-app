@@ -32,7 +32,7 @@ import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
-import org.jebtk.modern.graphics.icons.Raster32Icon;
+import org.jebtk.modern.graphics.icons.Raster24Icon;
 import org.jebtk.modern.graphics.icons.Window32VectorIcon;
 import org.jebtk.modern.menu.ModernIconMenuItem;
 import org.jebtk.modern.menu.ModernPopupMenu2;
@@ -70,12 +70,12 @@ public class MicroarrayViewPlugin extends ViewPlugin
 
   /** The m mas 5 button. */
   private ModernButtonWidget mMas5Button = new RibbonLargeButton(BUTTON_MAS5,
-      new Raster32Icon(
+      new Raster24Icon(
           new Window32VectorIcon(ColorUtils.decodeHtmlColor("#e580ff"))));
 
   /** The m rma button. */
   private ModernButtonWidget mRmaButton = new RibbonLargeButton(BUTTON_RMA,
-      new Raster32Icon(
+      new Raster24Icon(
           new Window32VectorIcon(ColorUtils.decodeHtmlColor("#ff8080"))));
 
   /** The m parent. */

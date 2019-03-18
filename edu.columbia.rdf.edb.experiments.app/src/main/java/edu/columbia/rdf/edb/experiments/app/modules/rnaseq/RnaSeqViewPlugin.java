@@ -42,7 +42,7 @@ import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
-import org.jebtk.modern.graphics.icons.Raster32Icon;
+import org.jebtk.modern.graphics.icons.Raster24Icon;
 import org.jebtk.modern.graphics.icons.Window32VectorIcon;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.status.StatusModel;
@@ -75,7 +75,7 @@ implements ModernClickListener {
 
   /** The m fpkm button. */
   private ModernButtonWidget mFpkmButton = new RibbonLargeButton("Exp",
-      new Raster32Icon(
+      new Raster24Icon(
           new Window32VectorIcon(ColorUtils.decodeHtmlColor("#e580ff"))));
 
   /** The m parent. */

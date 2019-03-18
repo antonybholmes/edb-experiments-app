@@ -32,6 +32,7 @@ import org.jebtk.modern.SelectionModel;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
+import org.jebtk.modern.graphics.icons.Raster24Icon;
 import org.jebtk.modern.ribbon.RibbonLargeButton;
 import org.jebtk.modern.status.StatusModel;
 import org.jebtk.modern.window.ModernRibbonWindow;
@@ -75,7 +76,7 @@ public class ChipSeqViewPlugin extends ViewPlugin
 
   /** The m view button. */
   private RibbonLargeButton mViewButton = new RibbonLargeButton(
-      new HTSViewInfo().getName(), new HTSViewInfo().getIcon());
+      new HTSViewInfo().getName(), new Raster24Icon(new HTSViewInfo().getIcon()));
 
   /** The m parent. */
   private ModernRibbonWindow mParent;

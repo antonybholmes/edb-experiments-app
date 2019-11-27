@@ -28,7 +28,7 @@ public class ExperimentsInfo extends GuiAppInfo {
    * Instantiates a new experiments info.
    */
   public ExperimentsInfo() {
-    super("Experiments", new AppVersion(42),
+    super("Experiments", new AppVersion(43),
         "Copyright (C) 2011-${year} Antony Holmes.",
         AssetService.getInstance().loadIcon(ExperimentsIcon.class, 32),
         AssetService.getInstance().loadIcon(ExperimentsIcon.class, 128),

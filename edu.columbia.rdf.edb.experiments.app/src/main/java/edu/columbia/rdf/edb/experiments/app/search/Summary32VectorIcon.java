@@ -17,8 +17,8 @@ package edu.columbia.rdf.edb.experiments.app.search;
 
 import java.awt.Graphics2D;
 
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.graphics.icons.RightPane32VectorIcon;
-import org.jebtk.modern.widget.ModernWidget;
 
 /**
  * The Class Summary32VectorIcon.

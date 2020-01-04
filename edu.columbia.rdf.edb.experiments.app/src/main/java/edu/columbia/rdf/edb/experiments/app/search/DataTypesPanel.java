@@ -25,12 +25,12 @@ import org.jebtk.core.collections.IterHashMap;
 import org.jebtk.core.collections.IterMap;
 import org.jebtk.core.collections.IterTreeMap;
 import org.jebtk.modern.button.ModernCheckSwitch;
+import org.jebtk.modern.button.ModernTwoStateWidget;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickEventProducer;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.event.ModernClickListeners;
 import org.jebtk.modern.panel.HBox;
-import org.jebtk.modern.widget.ModernTwoStateWidget;
 
 import edu.columbia.rdf.edb.Species;
 import edu.columbia.rdf.edb.ui.Repository;

@@ -8,10 +8,10 @@ import java.awt.event.MouseListener;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.ModernComponent;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.graphics.ImageUtils;
 import org.jebtk.modern.ribbon.Ribbon;
-import org.jebtk.modern.widget.ModernWidget;
 
 
 public class PagesPanel extends ModernComponent implements ChangeListener {

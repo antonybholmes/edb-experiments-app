@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.modern.ModernComponent;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
@@ -29,7 +30,6 @@ import org.jebtk.modern.event.ModernSelectionListener;
 import org.jebtk.modern.search.FilterModel;
 import org.jebtk.modern.splitpane.ModernHSplitPaneLine;
 import org.jebtk.modern.view.ViewModel;
-import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.Sample;

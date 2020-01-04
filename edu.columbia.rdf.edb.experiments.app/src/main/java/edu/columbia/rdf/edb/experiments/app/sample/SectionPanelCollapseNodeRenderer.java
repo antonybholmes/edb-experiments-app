@@ -19,9 +19,9 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.collapsepane.ModernCollapseNodeRenderer;
 import org.jebtk.modern.tree.ModernTreeBranchNodeRenderer;
-import org.jebtk.modern.widget.ModernWidget;
 
 // TODO: Auto-generated Javadoc
 /**

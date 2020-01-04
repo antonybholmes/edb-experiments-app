@@ -24,6 +24,7 @@ import java.util.List;
 import org.jebtk.core.NetworkFileException;
 import org.jebtk.core.collections.CollectionUtils;
 import org.jebtk.core.event.ChangeEvent;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.dialog.MessageDialogType;
 import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernMessageDialog;
@@ -31,7 +32,6 @@ import org.jebtk.modern.event.ModernSelectionListener;
 import org.jebtk.modern.panel.MultiViewPanel;
 import org.jebtk.modern.status.StatusModel;
 import org.jebtk.modern.view.ViewModel;
-import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.DataView;

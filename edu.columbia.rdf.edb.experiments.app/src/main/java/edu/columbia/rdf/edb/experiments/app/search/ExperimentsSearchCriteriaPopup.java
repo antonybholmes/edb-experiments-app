@@ -18,14 +18,14 @@ package edu.columbia.rdf.edb.experiments.app.search;
 import javax.swing.BoxLayout;
 
 import org.jebtk.modern.ModernComponent;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.button.ModernButtonGroup;
+import org.jebtk.modern.button.ModernClickWidget;
 import org.jebtk.modern.button.ModernRadioButton;
 import org.jebtk.modern.dialog.ModernDialogTaskType;
 import org.jebtk.modern.menu.ModernMenuItem;
 import org.jebtk.modern.menu.ModernTitleMenuItem;
-import org.jebtk.modern.widget.ModernClickWidget;
-import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.experiments.app.sample.sort.SamplesSortLayout;

@@ -7,12 +7,12 @@ import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.ModernComponent;
 import org.jebtk.modern.UI;
+import org.jebtk.modern.button.ModernClickWidget;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.panel.HBox;
 import org.jebtk.modern.panel.HCenterBox;
 import org.jebtk.modern.ribbon.RibbonRoundButton;
-import org.jebtk.modern.widget.ModernClickWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 public class PagePanel extends HCenterBox implements ChangeListener {

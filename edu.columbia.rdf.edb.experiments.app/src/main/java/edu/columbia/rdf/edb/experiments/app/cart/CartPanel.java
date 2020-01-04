@@ -5,6 +5,8 @@ import javax.swing.Box;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.ModernComponent;
+import org.jebtk.modern.button.ButtonStyle;
+import org.jebtk.modern.button.ModernClickWidget;
 import org.jebtk.modern.dialog.ModernDialogStatus;
 import org.jebtk.modern.dialog.ModernMessageDialog;
 import org.jebtk.modern.event.ModernClickEvent;
@@ -14,8 +16,6 @@ import org.jebtk.modern.panel.VBoxAutoWidth;
 import org.jebtk.modern.ribbon.RibbonButton;
 import org.jebtk.modern.scrollpane.ModernScrollPane;
 import org.jebtk.modern.scrollpane.ScrollBarPolicy;
-import org.jebtk.modern.widget.ButtonStyle;
-import org.jebtk.modern.widget.ModernClickWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.Sample;

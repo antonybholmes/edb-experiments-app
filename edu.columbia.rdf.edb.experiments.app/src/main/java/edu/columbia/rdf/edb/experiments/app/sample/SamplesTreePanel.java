@@ -27,6 +27,7 @@ import org.jebtk.core.text.TextUtils;
 import org.jebtk.core.tree.TreeNode;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.UI;
+import org.jebtk.modern.button.ModernTwoStateWidget;
 import org.jebtk.modern.clipboard.ClipboardService;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
@@ -47,7 +48,6 @@ import org.jebtk.modern.tree.ModernTree;
 import org.jebtk.modern.tree.ModernTreeNodeRenderer;
 import org.jebtk.modern.tree.TreeNodeFileCountRenderer;
 import org.jebtk.modern.view.ViewModel;
-import org.jebtk.modern.widget.ModernTwoStateWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.Sample;

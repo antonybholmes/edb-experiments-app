@@ -17,7 +17,7 @@ package edu.columbia.rdf.edb.experiments.app.search;
 
 import java.util.Collection;
 
-import org.jebtk.modern.widget.ModernWidget;
+import org.jebtk.modern.ModernWidget;
 
 import edu.columbia.rdf.edb.Experiment;
 

@@ -27,17 +27,17 @@ import javax.swing.Box;
 import org.jebtk.core.event.ChangeEvent;
 import org.jebtk.core.event.ChangeListener;
 import org.jebtk.modern.AssetService;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.button.ModernButtonGroup;
 import org.jebtk.modern.button.ModernCheckButton;
+import org.jebtk.modern.button.ModernClickWidget;
 import org.jebtk.modern.event.ModernClickEvent;
 import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.graphics.icons.OpenFolderVectorIcon;
 import org.jebtk.modern.ribbon.Ribbon;
 import org.jebtk.modern.ribbon.RibbonSection;
 import org.jebtk.modern.search.Sorter;
-import org.jebtk.modern.widget.ModernClickWidget;
-import org.jebtk.modern.widget.ModernWidget;
 
 import edu.columbia.rdf.edb.Sample;
 

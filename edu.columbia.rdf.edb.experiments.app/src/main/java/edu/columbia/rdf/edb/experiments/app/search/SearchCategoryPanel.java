@@ -22,6 +22,7 @@ import java.awt.event.KeyListener;
 import org.jebtk.core.search.SearchStackOperator;
 import org.jebtk.modern.AssetService;
 import org.jebtk.modern.BorderService;
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernButtonWidget;
@@ -33,7 +34,6 @@ import org.jebtk.modern.graphics.icons.CloseVectorIcon;
 import org.jebtk.modern.panel.HBox;
 import org.jebtk.modern.panel.ModernPanel;
 import org.jebtk.modern.text.SearchTextBorderPanel;
-import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 import edu.columbia.rdf.edb.ui.search.SearchCategory;

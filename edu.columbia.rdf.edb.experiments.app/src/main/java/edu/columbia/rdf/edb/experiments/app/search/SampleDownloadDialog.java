@@ -17,6 +17,7 @@ package edu.columbia.rdf.edb.experiments.app.search;
 
 import javax.swing.Box;
 
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.UI;
 import org.jebtk.modern.button.ModernButton;
 import org.jebtk.modern.button.ModernCheckBox;
@@ -30,7 +31,6 @@ import org.jebtk.modern.event.ModernClickListener;
 import org.jebtk.modern.panel.ModernLineBorderPanel;
 import org.jebtk.modern.panel.ModernPaddedPanel;
 import org.jebtk.modern.panel.ModernPanel;
-import org.jebtk.modern.widget.ModernWidget;
 import org.jebtk.modern.window.ModernWindow;
 
 /**

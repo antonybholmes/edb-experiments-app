@@ -17,8 +17,8 @@ package edu.columbia.rdf.edb.experiments.app.sample;
 
 import java.awt.BorderLayout;
 
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.text.ModernTextField;
-import org.jebtk.modern.widget.ModernWidget;
 
 // TODO: Auto-generated Javadoc
 /**

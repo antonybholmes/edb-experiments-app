@@ -17,8 +17,8 @@ package edu.columbia.rdf.edb.experiments.app.sample;
 
 import java.util.List;
 
+import org.jebtk.modern.ModernWidget;
 import org.jebtk.modern.event.ModernSelectionListener;
-import org.jebtk.modern.widget.ModernWidget;
 
 import edu.columbia.rdf.edb.Sample;
 import edu.columbia.rdf.edb.ui.SelectedSamples;

@@ -40,8 +40,8 @@ public class CategoryPane32VectorIcon extends Window32VectorIcon {
       int y,
       int w,
       int h,
-      Object... params) {
-    super.drawIcon(g2, x, y, w, h, params);
+      Props props) {
+    super.drawIcon(g2, x, y, w, h, props);
 
     x = x + (w - WIDTH) / 2 + 2;
     y = y + (h - HEIGHT) / 2 + BAR_HEIGHT;
